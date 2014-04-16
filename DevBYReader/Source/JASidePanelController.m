@@ -133,20 +133,20 @@ static char ja_kvoContext;
 - (void)_baseInit {
     self.style = JASidePanelSingleActive;
     self.leftGapPercentage = 0.8f;
-    self.rightGapPercentage = 0.8f;
+    self.rightGapPercentage = 0.0f;
     self.minimumMovePercentage = 0.15f;
     self.maximumAnimationDuration = 0.2f;
     self.bounceDuration = 0.1f;
     self.bouncePercentage = 0.075f;
-    self.panningLimitedToTopViewController = YES;
+    self.panningLimitedToTopViewController = NO;
     self.recognizesPanGesture = YES;
     self.allowLeftOverpan = YES;
-    self.allowRightOverpan = YES;
-    self.bounceOnSidePanelOpen = YES;
+    self.allowRightOverpan = NO;
+    self.bounceOnSidePanelOpen = NO;
     self.bounceOnSidePanelClose = NO;
     self.bounceOnCenterPanelChange = YES;
     self.shouldDelegateAutorotateToVisiblePanel = YES;
-    self.allowRightSwipe = YES;
+    self.allowRightSwipe = NO;
     self.allowLeftSwipe = YES;
 }
 
@@ -154,7 +154,7 @@ static char ja_kvoContext;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    //self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     self.centerPanelContainer = [[UIView alloc] initWithFrame:self.view.bounds];
     _centerPanelRestingFrame = self.centerPanelContainer.frame;
@@ -163,14 +163,14 @@ static char ja_kvoContext;
     self.leftPanelContainer = [[UIView alloc] initWithFrame:self.view.bounds];
     self.leftPanelContainer.hidden = YES;
     
-    self.rightPanelContainer = [[UIView alloc] initWithFrame:self.view.bounds];
-    self.rightPanelContainer.hidden = YES;
+    //self.rightPanelContainer = [[UIView alloc] initWithFrame:self.view.bounds];
+    //self.rightPanelContainer.hidden = YES;
     
     [self _configureContainers];
     
     [self.view addSubview:self.centerPanelContainer];
     [self.view addSubview:self.leftPanelContainer];
-    [self.view addSubview:self.rightPanelContainer];
+    //[self.view addSubview:self.rightPanelContainer];
     
     self.state = JASidePanelCenterVisible;
     
@@ -258,7 +258,7 @@ static char ja_kvoContext;
 			}
             case JASidePanelRightVisible: {
                 self.visiblePanel = self.rightPanel;
-                self.rightPanelContainer.userInteractionEnabled = YES;
+                self.rightPanelContainer.userInteractionEnabled = NO;
                 break;
 			}
         }
@@ -508,7 +508,7 @@ static char ja_kvoContext;
             if (frame.origin.x > 0.0f) {
                 [self _loadLeftPanel];
             } else if(frame.origin.x < 0.0f) {
-                [self _loadRightPanel];
+              //  [self _loadRightPanel];
             }
         }
         
@@ -536,7 +536,7 @@ static char ja_kvoContext;
             if (deltaX > 0.0f) {
                 [self _showLeftPanel:YES bounce:self.bounceOnSidePanelOpen];
             } else {
-                [self _showRightPanel:YES bounce:self.bounceOnSidePanelOpen];
+               // [self _showRightPanel:YES bounce:self.bounceOnSidePanelOpen];
             }
             break;
 		}
@@ -562,7 +562,7 @@ static char ja_kvoContext;
             break;
 		}
         case JASidePanelRightVisible: {
-            [self _showRightPanel:YES bounce:NO];
+           // [self _showRightPanel:YES bounce:NO];
 		}
     }
 }
