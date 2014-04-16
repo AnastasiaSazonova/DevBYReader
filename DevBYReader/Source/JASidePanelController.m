@@ -138,7 +138,7 @@ static char ja_kvoContext;
     self.maximumAnimationDuration = 0.2f;
     self.bounceDuration = 0.1f;
     self.bouncePercentage = 0.075f;
-    self.panningLimitedToTopViewController = YES;
+    self.panningLimitedToTopViewController = NO;
     self.recognizesPanGesture = YES;
     self.allowLeftOverpan = YES;
     self.allowRightOverpan = YES;
@@ -146,7 +146,7 @@ static char ja_kvoContext;
     self.bounceOnSidePanelClose = NO;
     self.bounceOnCenterPanelChange = YES;
     self.shouldDelegateAutorotateToVisiblePanel = YES;
-    self.allowRightSwipe = YES;
+    self.allowRightSwipe = NO;
     self.allowLeftSwipe = YES;
 }
 
@@ -154,7 +154,7 @@ static char ja_kvoContext;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    //self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     self.centerPanelContainer = [[UIView alloc] initWithFrame:self.view.bounds];
     _centerPanelRestingFrame = self.centerPanelContainer.frame;
@@ -163,14 +163,14 @@ static char ja_kvoContext;
     self.leftPanelContainer = [[UIView alloc] initWithFrame:self.view.bounds];
     self.leftPanelContainer.hidden = YES;
     
-    self.rightPanelContainer = [[UIView alloc] initWithFrame:self.view.bounds];
-    self.rightPanelContainer.hidden = YES;
+    //self.rightPanelContainer = [[UIView alloc] initWithFrame:self.view.bounds];
+    //self.rightPanelContainer.hidden = YES;
     
     [self _configureContainers];
     
     [self.view addSubview:self.centerPanelContainer];
     [self.view addSubview:self.leftPanelContainer];
-    [self.view addSubview:self.rightPanelContainer];
+    //[self.view addSubview:self.rightPanelContainer];
     
     self.state = JASidePanelCenterVisible;
     

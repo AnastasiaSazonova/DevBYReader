@@ -9,6 +9,7 @@
 #import "PostsViewController.h"
 #import "TFHpple.h"
 #import "HTMLElement.h"
+#import "DetailPostsViewController.h"
 
 @interface PostsViewController ()
 {
@@ -51,7 +52,9 @@
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Dev.by", nil);
-    [self showAlert];
+    _posts = [[NSMutableArray alloc] initWithArray:@[@"0", @"1"]];
+    [self.tableView reloadData];
+    //[self showAlert];
 }
 
 #pragma mark - Table view data source
@@ -77,10 +80,16 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    HTMLElement *thisTutorial = [_posts objectAtIndex:indexPath.row];
-    cell.textLabel.text = thisTutorial.title;
-    
+    //HTMLElement *thisTutorial = [_posts objectAtIndex:indexPath.row];
+    cell.textLabel.text = _posts[indexPath.row];
+     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DetailPostsViewController * detailViewController = [[DetailPostsViewController alloc] init];
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 - (void)showAlert

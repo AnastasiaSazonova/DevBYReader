@@ -33,6 +33,7 @@
 		5DB736D218F50C91002443AD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DB736D018F50C91002443AD /* InfoPlist.strings */; };
 		5DB736D418F50C91002443AD /* DevBYReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB736D318F50C91002443AD /* DevBYReaderTests.m */; };
 		5DB736F218F51022002443AD /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DB736F118F51022002443AD /* libxml2.dylib */; };
+		5DE7EA4518F72C7B00EFA4E3 /* DetailPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7EA4418F72C7B00EFA4E3 /* DetailPostsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,8 @@
 		5DB736D118F50C91002443AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5DB736D318F50C91002443AD /* DevBYReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevBYReaderTests.m; sourceTree = "<group>"; };
 		5DB736F118F51022002443AD /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		5DE7EA4318F72C7B00EFA4E3 /* DetailPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPostsViewController.h; sourceTree = "<group>"; };
+		5DE7EA4418F72C7B00EFA4E3 /* DetailPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPostsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,19 +121,14 @@
 		5D508A4318F5E7E700ED88FE /* DevBYReader */ = {
 			isa = PBXGroup;
 			children = (
-				5DB2DACE18F658B800C7F7C5 /* Model */,
 				5D508A4418F5E7E700ED88FE /* AppDelegate.h */,
 				5D508A4518F5E7E700ED88FE /* AppDelegate.m */,
-				5D508A4618F5E7E700ED88FE /* CompaniesViewController.h */,
-				5D508A4718F5E7E700ED88FE /* CompaniesViewController.m */,
-				5D508A4818F5E7E700ED88FE /* EventsViewController.h */,
-				5D508A4918F5E7E700ED88FE /* EventsViewController.m */,
-				5D508A4C18F5E7E700ED88FE /* PostsViewController.h */,
-				5D508A4D18F5E7E700ED88FE /* PostsViewController.m */,
-				5D508A5118F5E7E700ED88FE /* VacanciesViewController.h */,
-				5D508A5218F5E7E700ED88FE /* VacanciesViewController.m */,
-				5DB2DAD618F65E8500C7F7C5 /* SideViewController.h */,
-				5DB2DAD718F65E8500C7F7C5 /* SideViewController.m */,
+				5DB2DACE18F658B800C7F7C5 /* Model */,
+				5DE7EA4018F72C2F00EFA4E3 /* Companies */,
+				5DE7EA3F18F72C2800EFA4E3 /* Events */,
+				5DE7EA3E18F72B8400EFA4E3 /* News */,
+				5DE7EA4118F72C3C00EFA4E3 /* Vacancies */,
+				5DE7EA4218F72C4600EFA4E3 /* Menu */,
 				5DB736CE18F50C91002443AD /* Supporting Files */,
 			);
 			path = DevBYReader;
@@ -239,6 +237,53 @@
 			path = DevBYReaderTests;
 			sourceTree = SOURCE_ROOT;
 		};
+		5DE7EA3E18F72B8400EFA4E3 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				5D508A4C18F5E7E700ED88FE /* PostsViewController.h */,
+				5D508A4D18F5E7E700ED88FE /* PostsViewController.m */,
+				5DE7EA4318F72C7B00EFA4E3 /* DetailPostsViewController.h */,
+				5DE7EA4418F72C7B00EFA4E3 /* DetailPostsViewController.m */,
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
+		5DE7EA3F18F72C2800EFA4E3 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				5D508A4818F5E7E700ED88FE /* EventsViewController.h */,
+				5D508A4918F5E7E700ED88FE /* EventsViewController.m */,
+			);
+			name = Events;
+			sourceTree = "<group>";
+		};
+		5DE7EA4018F72C2F00EFA4E3 /* Companies */ = {
+			isa = PBXGroup;
+			children = (
+				5D508A4618F5E7E700ED88FE /* CompaniesViewController.h */,
+				5D508A4718F5E7E700ED88FE /* CompaniesViewController.m */,
+			);
+			name = Companies;
+			sourceTree = "<group>";
+		};
+		5DE7EA4118F72C3C00EFA4E3 /* Vacancies */ = {
+			isa = PBXGroup;
+			children = (
+				5D508A5118F5E7E700ED88FE /* VacanciesViewController.h */,
+				5D508A5218F5E7E700ED88FE /* VacanciesViewController.m */,
+			);
+			name = Vacancies;
+			sourceTree = "<group>";
+		};
+		5DE7EA4218F72C4600EFA4E3 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				5DB2DAD618F65E8500C7F7C5 /* SideViewController.h */,
+				5DB2DAD718F65E8500C7F7C5 /* SideViewController.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -335,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DB2DAD518F65A2E00C7F7C5 /* UIViewController+JASidePanel.m in Sources */,
+				5DE7EA4518F72C7B00EFA4E3 /* DetailPostsViewController.m in Sources */,
 				5D508A5418F5E7E700ED88FE /* CompaniesViewController.m in Sources */,
 				5D508A5518F5E7E700ED88FE /* EventsViewController.m in Sources */,
 				5D508A6918F5E8B200ED88FE /* HTMLElement.m in Sources */,
