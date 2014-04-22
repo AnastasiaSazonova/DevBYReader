@@ -11,6 +11,9 @@
 #import "DetailEventViewController.h"
 
 @interface EventsViewController()
+{
+    EventCell * cell;
+}
 
 @property(nonatomic, strong)NSMutableArray * events;
 
@@ -46,15 +49,15 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * reuseIdentifier = @"Cell";
-    EventCell * cell = [[EventCell alloc] initWithStyle:UITableViewCellStyleDefault name:self.events[indexPath.row] reuseIdentifier:reuseIdentifier];
-    //float rowHeight = cell.bounds.size.height;
+    NSLog(@"init cell");
+    cell = [[EventCell alloc] initWithStyle:UITableViewCellStyleDefault name:self.events[indexPath.row] reuseIdentifier:reuseIdentifier];
     return cell.totalHeight;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * reuseIdentifier = @"Cell";
-    EventCell * cell = [[EventCell alloc] initWithStyle:UITableViewCellStyleDefault name:self.events[indexPath.row] reuseIdentifier:reuseIdentifier];
+    cell = [[EventCell alloc] initWithStyle:UITableViewCellStyleDefault name:self.events[indexPath.row] reuseIdentifier:reuseIdentifier];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
