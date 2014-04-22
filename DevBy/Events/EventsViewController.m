@@ -34,6 +34,21 @@
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"События", nil);
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                                                                             selector:@selector(didChangePreferredContentSize:)
+                                                                                                 name:UIContentSizeCategoryDidChangeNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIContentSizeCategoryDidChangeNotification
+                                                  object:nil];
+}
+
+- (void)didChangePreferredContentSize:(NSNotification *)notification
+{
+    [self.tableView reloadData];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -58,6 +73,7 @@
 {
     NSString * reuseIdentifier = @"Cell";
     cell = [[EventCell alloc] initWithStyle:UITableViewCellStyleDefault name:self.events[indexPath.row] reuseIdentifier:reuseIdentifier];
+    NSLog(@"cell %@", cell);
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }

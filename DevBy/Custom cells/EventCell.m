@@ -43,9 +43,9 @@
         [self addSubview:descriptionLabel];
         self.totalHeight += descriptionLabel.bounds.size.height + offset;
         
-        CGRect dateLabelFrame = CGRectMake(offset, self.totalHeight/2 - offset*2, 50, 50);
+        CGRect dateLabelFrame = CGRectMake(offset, self.totalHeight/2 - offset*1.8, 50, 50);
         UILabel * dateLabel = [[UILabel alloc] initWithFrame:dateLabelFrame];
-        dateLabel.font = [UIFont systemFontOfSize:28];
+        dateLabel.font = [UIFont systemFontOfSize:25];
         dateLabel.text = @"15";
         [dateLabel sizeToFit];
         [self addSubview:dateLabel];
