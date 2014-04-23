@@ -7,27 +7,24 @@
 //
 
 #import "AppDelegate.h"
-#import "LeftSideTableViewController.h"
-#import "PostsViewController.h"
-#import "JASidePanelController.h"
-#import "SideViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
+    NewsViewController *newsViewController = [[NewsViewController alloc] init];
     self.viewController = [[JASidePanelController alloc] init];
     self.viewController.shouldDelegateAutorotateToVisiblePanel = NO;
     
-	self.viewController.leftPanel = [[SideViewController alloc] init];
-	self.viewController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[PostsViewController alloc] init]];
-	
+	self.viewController.leftPanel = [[MenuViewController alloc] init];
+	self.viewController.centerPanel = [[UINavigationController alloc] initWithRootViewController:newsViewController];
 	self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
+    
     return YES;
-
 }
-
 @end
 

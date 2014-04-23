@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>C2D3F70F-5CC2-4D54-8AC2-F65EA1D9B185</string>
+	<string>60BCE1DE-615A-4A07-8BEC-335485ACD3EC</string>
 	<key>IDESourceControlProjectName</key>
 	<string>DevBYReader</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>0E4FBDBE-7C29-4AA6-9837-20C72828A7AA</key>
-		<string>https://github.com/AnastasiaSazonova/iOS-projects.git</string>
+		<key>C8863169-116B-4B2D-B392-40D554C8E27E</key>
+		<string>https://github.com/AnastasiaSazonova/DevBYReader.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>DevBYReader/DevBYReader.xcodeproj/project.xcworkspace</string>
+	<string>DevBYReader.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0E4FBDBE-7C29-4AA6-9837-20C72828A7AA</key>
-		<string>../../..</string>
+		<key>C8863169-116B-4B2D-B392-40D554C8E27E</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/AnastasiaSazonova/iOS-projects.git</string>
+	<string>https://github.com/AnastasiaSazonova/DevBYReader.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0E4FBDBE-7C29-4AA6-9837-20C72828A7AA</string>
+	<string>C8863169-116B-4B2D-B392-40D554C8E27E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0E4FBDBE-7C29-4AA6-9837-20C72828A7AA</string>
+			<string>C8863169-116B-4B2D-B392-40D554C8E27E</string>
 			<key>IDESourceControlWCCName</key>
-			<string>iOS projects</string>
+			<string>DevBYReaderNasty</string>
 		</dict>
 	</array>
 </dict>
