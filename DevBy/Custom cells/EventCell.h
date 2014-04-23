@@ -11,7 +11,11 @@
 @interface EventCell : UITableViewCell
 
 @property(nonatomic, assign, readonly)float totalHeight;
-- (id)initWithStyle:(UITableViewCellStyle)style name:(NSString *)name reuseIdentifier:(NSString *)reuseIdentifier;
-
+@property(nonatomic, strong)NSString * title;
+@property(nonatomic, strong)NSString * date;
+@property(nonatomic, strong)NSString * day;
+@property(nonatomic, strong)NSString * description;
+@property(nonatomic, strong)NSString * dayOfWeek;
+-(void)drawCell;
 
 @end

@@ -11,9 +11,6 @@
 #import "DetailEventViewController.h"
 
 @interface EventsViewController()
-{
-    EventCell * cell;
-}
 
 @property(nonatomic, strong)NSMutableArray * events;
 
@@ -34,9 +31,10 @@
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"События", nil);
+    [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:@"Cell"];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                                                                             selector:@selector(didChangePreferredContentSize:)
-                                                                                                 name:UIContentSizeCategoryDidChangeNotification object:nil];
+                                             selector:@selector(didChangePreferredContentSize:)
+                                                 name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
 - (void)dealloc
@@ -63,19 +61,30 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * reuseIdentifier = @"Cell";
-    NSLog(@"init cell");
-    cell = [[EventCell alloc] initWithStyle:UITableViewCellStyleDefault name:self.events[indexPath.row] reuseIdentifier:reuseIdentifier];
-    return cell.totalHeight;
+    EventCell * prototypeCell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    [self configureCell:prototypeCell forRowAtIndexPath:indexPath];
+    return prototypeCell.totalHeight;
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * reuseIdentifier = @"Cell";
-    cell = [[EventCell alloc] initWithStyle:UITableViewCellStyleDefault name:self.events[indexPath.row] reuseIdentifier:reuseIdentifier];
-    NSLog(@"cell %@", cell);
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    [self configureCell:cell forRowAtIndexPath:indexPath];
     return cell;
+}
+
+- (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell isKindOfClass:[EventCell class]])
+    {
+        EventCell *textCell = (EventCell *)cell;
+        textCell.title = self.events[indexPath.row];
+        textCell.description = @"18 апреля 16:00";
+        textCell.day = @"15";
+        textCell.date = @"апреля";
+        textCell.dayOfWeek = @"ВТ";
+        [textCell drawCell];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
