@@ -10,6 +10,8 @@
 #import "EventCell.h"
 #import "DetailEventViewController.h"
 
+NSString * eventCellReuseIdentifier = @"EventCell";
+
 @interface EventsViewController()
 
 @property(nonatomic, strong)NSMutableArray * events;
@@ -31,7 +33,7 @@
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"События", nil);
-    [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:@"Cell"];
+    [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:eventCellReuseIdentifier];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangePreferredContentSize:)
                                                  name:UIContentSizeCategoryDidChangeNotification object:nil];
@@ -61,14 +63,14 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EventCell * prototypeCell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    EventCell * prototypeCell = [self.tableView dequeueReusableCellWithIdentifier:eventCellReuseIdentifier];
     [self configureCell:prototypeCell forRowAtIndexPath:indexPath];
     return prototypeCell.totalHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:eventCellReuseIdentifier forIndexPath:indexPath];
     [self configureCell:cell forRowAtIndexPath:indexPath];
     return cell;
 }
