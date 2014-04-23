@@ -41,9 +41,9 @@
     [self addSubview:descriptionLabel];
     self.totalHeight += descriptionLabel.bounds.size.height + offset;
     
-    CGRect dateLabelFrame = CGRectMake(offset, self.totalHeight/2 - offset*1.8, 50, 50);
+    CGRect dateLabelFrame = CGRectMake(offset*1.2, self.totalHeight/2 - offset*1.6, 50, 50);
     UILabel * dateLabel = [[UILabel alloc] initWithFrame:dateLabelFrame];
-    dateLabel.font = [UIFont systemFontOfSize:25];
+    dateLabel.font = [UIFont systemFontOfSize:22];
     dateLabel.text = self.day;
     [dateLabel sizeToFit];
     [self addSubview:dateLabel];
@@ -52,7 +52,7 @@
     UILabel * dayLabel = [[UILabel alloc] initWithFrame:dayLabelFrame];
     dayLabel.font = [UIFont systemFontOfSize:17];
     dayLabel.textColor = [UIColor grayColor];
-    dayLabel.text = self.date;
+    dayLabel.text = self.month;
     [dayLabel sizeToFit];
     [self addSubview:dayLabel];
     

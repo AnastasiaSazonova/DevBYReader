@@ -34,21 +34,6 @@ NSString * eventCellReuseIdentifier = @"EventCell";
     [super viewDidLoad];
     self.title = NSLocalizedString(@"События", nil);
     [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:eventCellReuseIdentifier];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didChangePreferredContentSize:)
-                                                 name:UIContentSizeCategoryDidChangeNotification object:nil];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIContentSizeCategoryDidChangeNotification
-                                                  object:nil];
-}
-
-- (void)didChangePreferredContentSize:(NSNotification *)notification
-{
-    [self.tableView reloadData];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -83,7 +68,7 @@ NSString * eventCellReuseIdentifier = @"EventCell";
         textCell.title = self.events[indexPath.row];
         textCell.description = @"18 апреля 16:00";
         textCell.day = @"15";
-        textCell.date = @"апреля";
+        textCell.month = @"апрель";
         textCell.dayOfWeek = @"ВТ";
         [textCell drawCell];
     }

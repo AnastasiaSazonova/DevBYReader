@@ -72,24 +72,6 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (tableView == self.searchDisplayController.searchResultsTableView)
-//    {
-//        float cellContentLength = (float)[searchResults[indexPath.row] length] + (float)[self.jobsDescription[indexPath.row] length];
-//        if (cellContentLength > maxCharsPerRow)
-//        {
-//            return rowHeight * cellContentLength/maxCharsPerRow/2;
-//        }
-//    }
-//    else
-//    {
-//        float cellContentLength = (float)[self.jobsTitle[indexPath.row] length] + (float)[self.jobsDescription[indexPath.row] length];
-//        if (cellContentLength > maxCharsPerRow)
-//        {
-//            return rowHeight * cellContentLength/maxCharsPerRow/1.7;
-//        }
-//
-//    }
-//    return rowHeight;
     if (indexPath.row < 3)
     {
         float cellContentLength = (float)[self.jobsTitle[indexPath.row] length] + (float)[self.jobsDescription[indexPath.row] length];
