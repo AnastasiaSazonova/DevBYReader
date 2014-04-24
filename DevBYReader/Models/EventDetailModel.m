@@ -10,11 +10,6 @@
 
 @implementation EventDetailModel
 
-@synthesize eventId;
-@synthesize title;
-@synthesize time;
-@synthesize description;
-@synthesize author;
-
+@synthesize eventId, title, time, listenersCount, sponsorName, sponsorLogoAddress, sponsorInfo, email, siteAddress,phoneNumber, description, price, address;
 
 @end

@@ -10,6 +10,7 @@
 #import "EventsTableViewCell.h"
 #import "EventModel.h"
 #import "EventRepository.h"
+#import "EventsDetailViewController.h"
 
 @interface EventsViewController : UITableViewController
 

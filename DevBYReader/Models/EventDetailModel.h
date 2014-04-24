@@ -13,7 +13,18 @@
 @property (assign, nonatomic) NSInteger eventId;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *time;
-@property (strong, nonatomic) NSString *author;
+@property (assign, nonatomic) NSInteger listenersCount;
+
+@property (strong, nonatomic) NSString *sponsorName;
+@property (strong, nonatomic) NSString *sponsorLogoAddress;
+@property (strong, nonatomic) NSString *sponsorInfo;
+@property (strong, nonatomic) NSString *email;
+@property (strong, nonatomic) NSString *siteAddress;
+@property (strong, nonatomic) NSString *phoneNumber;
+
 @property (strong, nonatomic) NSString *description;
+
+@property (strong, nonatomic) NSString *price;
+@property (strong, nonatomic) NSString *address;
 
 @end

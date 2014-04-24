@@ -6,3 +6,7 @@ DevBYReader/DevBYReader-Info.plist
 *.xcscheme
 
 DevBYReader.xcodeproj/xcuserdata/Admin.xcuserdatad/xcschemes/xcschememanagement.plist
+
+*.xcexplist
+
+*.xcbkptlist

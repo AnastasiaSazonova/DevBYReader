@@ -44,7 +44,6 @@
         dateLabel.backgroundColor = [UIColor greenColor];
         dateDetLabel.backgroundColor = [UIColor brownColor];
         titleLabel.backgroundColor = [UIColor blueColor];
-        descriptionLabel.backgroundColor = [UIColor orangeColor];
         
         [self.contentView addSubview:titleLabel];
         [self.contentView addSubview:dateLabel];

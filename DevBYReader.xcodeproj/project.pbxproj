@@ -41,6 +41,7 @@
 		844A15491907FD67002EDB2E /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A15461907FD67002EDB2E /* NewsDetailViewController.m */; };
 		844A154A1907FD67002EDB2E /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A15481907FD67002EDB2E /* NewsViewController.m */; };
 		844A154D1907FD67002EDB2E /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A154C1907FD67002EDB2E /* MenuViewController.m */; };
+		84ABA6C8190819090087F9E3 /* EventsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ABA6C7190819090087F9E3 /* EventsDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,8 @@
 		844A15481907FD67002EDB2E /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = ViewControllers/News/NewsViewController.m; sourceTree = "<group>"; };
 		844A154B1907FD67002EDB2E /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = ViewControllers/Menu/MenuViewController.h; sourceTree = "<group>"; };
 		844A154C1907FD67002EDB2E /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = ViewControllers/Menu/MenuViewController.m; sourceTree = "<group>"; };
+		84ABA6C6190819090087F9E3 /* EventsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventsDetailViewController.h; path = ViewControllers/Events/EventsDetailViewController.h; sourceTree = "<group>"; };
+		84ABA6C7190819090087F9E3 /* EventsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventsDetailViewController.m; path = ViewControllers/Events/EventsDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,6 +361,8 @@
 			children = (
 				844A153F1907FD67002EDB2E /* EventsViewController.h */,
 				844A15401907FD67002EDB2E /* EventsViewController.m */,
+				84ABA6C6190819090087F9E3 /* EventsDetailViewController.h */,
+				84ABA6C7190819090087F9E3 /* EventsDetailViewController.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -485,6 +490,7 @@
 				5D508A5318F5E7E700ED88FE /* AppDelegate.m in Sources */,
 				844A15441907FD67002EDB2E /* CompaniesViewController.m in Sources */,
 				844A14D11907FD67002EDB2E /* JADebugViewController.m in Sources */,
+				84ABA6C8190819090087F9E3 /* EventsDetailViewController.m in Sources */,
 				844A14CD1907FD67002EDB2E /* JASidePanelController.m in Sources */,
 				844A14E01907FD67002EDB2E /* NewsTableViewCell.m in Sources */,
 				844A14F81907FD67002EDB2E /* NewsDetailModel.m in Sources */,

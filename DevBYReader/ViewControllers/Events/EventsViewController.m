@@ -74,8 +74,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    #warning insert conent
+    NSInteger eventId = [[eventList objectAtIndex:indexPath.row] eventId];
+    [self.navigationController pushViewController:[[EventsDetailViewController alloc] initWithEventId:eventId] animated:YES];
 }
-
 
 @end

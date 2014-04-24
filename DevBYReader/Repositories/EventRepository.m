@@ -23,4 +23,33 @@
     return eventsList;
 }
 
+- (EventDetailModel *)getEventDetailModel:(NSInteger)eventId_
+{
+    EventDetailModel *model = [[EventDetailModel alloc] init];
+    
+    switch (eventId_) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+            model.eventId = 0;
+            model.title = @"Как правильно составить резюме молодому специалисту";
+            model.time = @"24 апреля 14:00 Минск";
+            model.listenersCount = 4;
+            model.sponsorName = @"NoName";
+            model.sponsorLogoAddress = @"NoName";
+            model.sponsorInfo = @"NoName";
+            model.email = @"webinars@returnonintelligence.com";
+            model.siteAddress = @"http://www.exigenservices.ru/webinars/cv-for-young-specialist";
+            model.phoneNumber = @"NoName";
+            model.description = @"24 апреля 2014 г., в 14:00 (GMT+3, Minsk Time) состоится вебинар 'Как правильно составить резюме молодому специалисту'.Вебинар будет полезен студентам, ищущим стажировку, выпускникам и специалистам, которые впервые устраиваются на работу или впервые составляют резюме и также молодым специалистам.            План выступления            • Основные разделы резюме, структура            • Что стоит писать в резюме            • Типичные ошибки                       О докладчике            Дарья Лисица - закончила СПБГИЭУ.            В настоящее время – менеджер по подбору персонала в компании Return on Intelligence.            Для участия в вебинаре необходимо предварительно зарегистрироваться.";
+            model.price = @"Бесплатно";
+            model.address = @"Минск, Бровки 22";
+            break;
+    }
+    return model;
+}
+
 @end

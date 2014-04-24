@@ -14,14 +14,17 @@ typedef enum
     CompaniesSection
 } SectionTypes;
 
-//#define IS_IPHONES (([[UIScreen mainScreen] bounds].size.height - 568)? NO: YES)
-//#define IS_OS_6_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
-//#define IS_OS_7_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
-
-#define CELL_CONTENT_WIDTH 320
-#define CELL_CONTENT_MARGIN 10
+#define CONTENT_WIDTH 320
 #define CELL_CONTENT_MIN_HEIGHT 44
 #define CELL_DETAIL_HEIGHT 20
 
-#define FONT_CONTENT_SIZE 14
-#define FONT_DETAIL_SIZE 12
+#define FONT_EXTRABIG_SIZE 24
+#define FONT_BIG_SIZE 20
+#define FONT_MEDIUM_SIZE 16
+#define FONT_SMALL_SIZE 12
+
+#define MARGIN_SMALL 7
+#define MARGIN_BIG 20
+#define MARGIN_MEDUIM 13
+//#define CELL_CONTENT_MIN_HEIGHT 44
+//#define CELL_DETAIL_HEIGHT 20

@@ -10,7 +10,6 @@
 
 @interface NewsDetailViewController ()
 {
-    NSInteger newsId;
     NewsRepository *newsRepository;
     
     UILabel *titleLabel;
@@ -29,10 +28,9 @@
 {
     self = [super init];
     if (self) {
-        newsId = newsId_;
         newsRepository = [[NewsRepository alloc] init];
         scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        [self showTheNewsWithId:newsId];
+        [self showTheNewsWithId:newsId_];
     }
     return self;
 }
@@ -89,10 +87,5 @@
     scrollView.contentSize = CGSizeMake(self.view.frame.size.width, pageHeight + 200);
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
 
 @end
