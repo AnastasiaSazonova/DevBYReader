@@ -8,6 +8,8 @@
 
 #import "DetailVacanciesViewController.h"
 
+static float navBarHeight = 64.0f;
+
 @interface DetailVacanciesViewController ()
 {
     float totalHeight;
@@ -36,7 +38,7 @@
 {
     if (!_textView)
     {
-        textViewFrame = CGRectMake(offset * 0.8, totalHeight + offset/3, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/5);
+        textViewFrame = CGRectMake(offset * 0.8, totalHeight + offset/3, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/3);
         _textView = [[UITextView alloc] initWithFrame:textViewFrame];
         _textView.userInteractionEnabled = NO;
         _textView.font = [UIFont systemFontOfSize:14];
@@ -49,6 +51,10 @@
     [super viewDidLoad];
     offset = 20.0f;
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
+    if (navObjectsHeight == 0)
+    {
+        navObjectsHeight = navBarHeight;
+    }
     totalHeight = offset + navObjectsHeight;
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -56,7 +62,7 @@
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelFrame];
     nameLabel.font = [UIFont systemFontOfSize:21];
     nameLabel.numberOfLines = 0;
-    nameLabel.text = @"An Extraordinary Project for Senior JavaScript Software Engineer";
+    nameLabel.text = self.jobTitle;
     [nameLabel sizeToFit];
     [self.scrollView addSubview:nameLabel];
     totalHeight += nameLabel.bounds.size.height + offset/4;

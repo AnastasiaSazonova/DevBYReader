@@ -46,6 +46,7 @@
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     searchDisplayController.delegate = self;
     searchDisplayController.searchResultsDataSource = self;
+    searchDisplayController.searchResultsDelegate = self;
     self.tableView.tableHeaderView = searchBar;
     searchResults = [[NSMutableArray alloc] init];
 }
@@ -122,7 +123,18 @@ shouldReloadTableForSearchString:(NSString *)searchString
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DetailCompanyViewController * detailCompanyViewController = [[DetailCompanyViewController alloc] init];
-    detailCompanyViewController.companysName = self.companysNames[indexPath.row];
+    NSString * companysName;
+    if (self.searchDisplayController.active)
+    {
+        indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+        companysName = [searchResults objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        indexPath = [self.tableView indexPathForSelectedRow];
+        companysName = [self.companysNames objectAtIndex:indexPath.row];
+    }
+    detailCompanyViewController.companysName = companysName;
     [self.navigationController pushViewController:detailCompanyViewController animated:YES];
 }
 

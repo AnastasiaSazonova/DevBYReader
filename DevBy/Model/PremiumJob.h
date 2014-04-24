@@ -11,7 +11,7 @@
 
 @interface PremiumJob : Job
 
-@property(nonatomic, strong)NSString * title;
+@property(nonatomic, strong)NSString * name;
 @property(nonatomic, strong)NSString * companysName;
 @property(nonatomic, strong)NSString * description;
 @property(nonatomic, strong)NSURL * pictureUrl;

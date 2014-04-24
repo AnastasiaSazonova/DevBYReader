@@ -10,7 +10,7 @@
 #import "StandardJobCell.h"
 @class Job;
 
-@interface MiddleJobCellTableViewCell : StandardJobCell
+@interface MiddleJobCell : StandardJobCell
 
 -(void)setJob:(Job *)job;
 

@@ -24,7 +24,7 @@ NSString * eventCellReuseIdentifier = @"EventCell";
 {
     if (!_events)
     {
-        _events = [[NSMutableArray alloc] initWithArray:@[@"Как правильно составить резюме молодому специалисту",@"Апрельская MLUG 2014", @"Официальный Scrum-тренинг в Минске: Professional Scrum Master. Официальный Scrum-тренинг в Минске: Professional Scrum Master. Официальный Scrum-тренинг в Минске: Professional Scrum Master", @"Встреча сообщества разработчиков WinITby"]];
+        _events = [[NSMutableArray alloc] initWithArray:@[@"Как правильно составить резюме молодому специалисту", @"Как правильно составить резюме молодому специалисту", @"Как правильно составить резюме молодому специалисту", @"Как правильно составить резюме молодому специалисту", @"Как правильно составить резюме молодому специалисту", @"Апрельская MLUG 2014", @"Официальный Scrum-тренинг в Минске: Professional Scrum Master. Официальный Scrum-тренинг в Минске: Professional Scrum Master. Официальный Scrum-тренинг в Минске: Professional Scrum Master", @"Встреча сообщества разработчиков WinITby"]];
     }
     return _events;
 }
@@ -48,14 +48,14 @@ NSString * eventCellReuseIdentifier = @"EventCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EventCell * prototypeCell = [self.tableView dequeueReusableCellWithIdentifier:eventCellReuseIdentifier];
+    EventCell * prototypeCell = [[EventCell alloc] init];
     [self configureCell:prototypeCell forRowAtIndexPath:indexPath];
     return prototypeCell.totalHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:eventCellReuseIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [[EventCell alloc] init];
     [self configureCell:cell forRowAtIndexPath:indexPath];
     return cell;
 }

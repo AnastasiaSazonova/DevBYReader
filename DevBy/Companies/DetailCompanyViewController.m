@@ -8,7 +8,6 @@
 
 #import "DetailCompanyViewController.h"
 #import "CommentsCell.h"
-#import "CommentsTableView.h"
 
 float const offset = 20.0f;
 float const nameLabelFont = 28.0f;
@@ -16,24 +15,41 @@ float const descriptionLabelFont = 15.0f;
 float const employeeNumberFont = 13.0f;
 float const textViewFont = 14.0f;
 float const logoHeight = 45.0;
+static float navBarHeight = 64.0f;
 
 @interface DetailCompanyViewController ()
 {
-    NSString * description;
-    NSString * employeeNumber;
     float totalHeight;
     CGRect textViewFrame;
 }
 
 @property(nonatomic, strong)NSString * companysDescription;
+@property(nonatomic, strong)NSString * description;
+@property(nonatomic, strong)NSString * employeeNumber;
 @property(nonatomic, strong)UITextView * textView;
 @property(nonatomic, strong)UIScrollView * scrollView;
 @property(nonatomic, strong)NSMutableArray * comments;
-@property(nonatomic, strong)CommentsTableView * commentsTable;
 
 @end
 
 @implementation DetailCompanyViewController
+
+-(NSString *)description
+{
+    if (!_description)
+    {
+        _description = @"ИТ-аутсорсинг, Разработка ПО на заказ, Веб-разработка, Разработка мобильных приложений, Разработка встраиваемого ПО, Банковское ПО, Образовательные услуги";
+    }
+    return _description;
+}
+-(NSString *)employeeNumber
+{
+    if (!_employeeNumber)
+    {
+        _employeeNumber = @"45";
+    }
+    return _employeeNumber;
+}
 
 -(UITextView *)textView
 {
@@ -70,11 +86,11 @@ float const logoHeight = 45.0;
 {
     if (!_companysDescription)
     {
-        _companysDescription = [[NSString alloc] init];
         _companysDescription = @"Одним из достоинств нашей компании является полномасштабный спектр инновационных и комплексных проектных решений и услуг в сфере информационных технологий, предлагаемых заказчикам. Высокое качество проектных решений и услуг является стратегической идеей руководства IBA и каждого сотрудника. Это позволило нам за последние годы существенно увеличить объемы работ на рынке стран СНГ, международном рынке и приобрести новых заказчиков во многих странах мира. Мы признательны за интерес к нашей компании и полны решимости развивать наш успех, базируясь на наших принципах, выраженных девизами 'Качество-Надежность-Безопасность' и 'Информационные технологии без границ' Одним из достоинств нашей компании является полномасштабный спектр инновационных и комплексных проектных решений и услуг в сфере информационных технологий, предлагаемых заказчикам. Высокое качество проектных решений и услуг является стратегической идеей руководства IBA и каждого сотрудника. Это позволило нам за последние годы существенно увеличить объемы работ на рынке стран СНГ, международном рынке и приобрести новых заказчиков во многих странах мира. Мы признательны за интерес к нашей компании и полны решимости развивать наш успех, базируясь на наших принципах, выраженных девизами 'Качество-Надежность-Безопасность' и 'Информационные технологии без границ'";
     }
     return _companysDescription;
 }
+
 
 - (void)viewDidLoad
 {
@@ -83,7 +99,11 @@ float const logoHeight = 45.0;
     
     totalHeight = 0;
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
-    totalHeight += offset + navObjectsHeight;
+    if (navObjectsHeight == 0)
+    {
+        navObjectsHeight = navBarHeight;
+    }
+    totalHeight += offset/2 + navObjectsHeight;
     CGRect nameLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset - logoHeight, logoHeight);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
     nameLabel.font = [UIFont systemFontOfSize:nameLabelFont];
@@ -92,27 +112,25 @@ float const logoHeight = 45.0;
     nameLabel.adjustsFontSizeToFitWidth = YES;
     [self.scrollView addSubview:nameLabel];
     
-    employeeNumber = @"45";
-    totalHeight += nameLabel.bounds.size.height + offset/3;
+    totalHeight += nameLabel.bounds.size.height;
     CGRect employeeLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width, logoHeight);
     UILabel * employeeNumberLabel = [[UILabel alloc] initWithFrame:employeeLabelRect];
-    employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", employeeNumber];
+    employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", self.employeeNumber];
     employeeNumberLabel.font = [UIFont systemFontOfSize:employeeNumberFont];
     employeeNumberLabel.textColor = [UIColor grayColor];
     [employeeNumberLabel sizeToFit];
     [self.scrollView addSubview:employeeNumberLabel];
     
-    CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - logoHeight, offset + navObjectsHeight, logoHeight, logoHeight);
+    CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - logoHeight, nameLabelRect.origin.y + offset/3, logoHeight, logoHeight);
     UIImageView * logoView = [[UIImageView alloc] initWithFrame:logoViewRect];
     logoView.backgroundColor = [UIColor grayColor];
     [self.scrollView addSubview:logoView];
     
-    description = @"ИТ-аутсорсинг, Разработка ПО на заказ, Веб-разработка, Разработка мобильных приложений, Разработка встраиваемого ПО, Банковское ПО, Образовательные услуги";
     totalHeight += employeeNumberLabel.bounds.size.height + offset/3;
     CGRect descriptionLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/5);
     UILabel * descriptionLabel = [[UILabel alloc] initWithFrame:descriptionLabelRect];
     descriptionLabel.numberOfLines = 0;
-    descriptionLabel.text = description;
+    descriptionLabel.text = self.description;
     descriptionLabel.font = [UIFont systemFontOfSize:descriptionLabelFont];
     descriptionLabel.textColor = [UIColor grayColor];
     descriptionLabel.adjustsFontSizeToFitWidth = YES;
@@ -149,10 +167,6 @@ float const logoHeight = 45.0;
 
 -(void)addCompanyDescription
 {
-    if (self.commentsTable)
-    {
-        [self.commentsTable removeFromSuperview];
-    }
     self.textView.frame = textViewFrame;
     self.textView.text = self.companysDescription;
     [self.textView sizeToFit];
@@ -173,10 +187,6 @@ float const logoHeight = 45.0;
 
 -(void)addCompanysFeedback
 {
-    if (self.commentsTable)
-    {
-        [self.commentsTable removeFromSuperview];
-    }
     self.textView.frame = textViewFrame;
     self.textView.text = @"Отзывы";
     [self.textView sizeToFit];
@@ -186,26 +196,6 @@ float const logoHeight = 45.0;
 
 -(void)setDiscussionView
 {
-    self.commentsTable = [[CommentsTableView alloc] initWithFrame:textViewFrame comments:self.comments];
-    self.commentsTable.frame = CGRectMake(self.commentsTable.frame.origin.x, self.commentsTable.frame.origin.y, self.commentsTable.frame.size.width, self.commentsTable.tableHeight);
-    [self.textView removeFromSuperview];
-    [self.scrollView addSubview:self.commentsTable];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

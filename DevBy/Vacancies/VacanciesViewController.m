@@ -10,13 +10,17 @@
 #import "DetailVacanciesViewController.h"
 #import "PremiumJobCell.h"
 #import "PremiumJob.h"
-#import "MiddleJobCellTableViewCell.h"
+#import "MiddleJobCell.h"
 #import "Job.h"
 #import "StandardJobCell.h"
 
+NSString * premiumJobIdentifier = @"PremiunJob";
+NSString * middleJobIdentifier = @"MiddleJob";
+NSString * standardJobIdentifier = @"StandardJob";
+
 @interface VacanciesViewController()<UISearchDisplayDelegate>
 {
-    NSMutableArray * searchResults;
+    NSArray * searchResults;
     UISearchBar * searchBar;
     UISearchDisplayController * searchDisplayController;
     BOOL isSearching;
@@ -24,29 +28,50 @@
     float maxCharsPerRow;
 }
 
-@property(nonatomic, strong)NSArray * jobsTitle;
-@property(nonatomic, strong)NSArray * jobsDescription;
+@property(nonatomic, strong)NSArray * jobs;
 
 @end
 
 @implementation VacanciesViewController
 
--(NSArray *)jobsTitle
+-(NSArray *)jobs
 {
-    if (!_jobsTitle)
+    if (!_jobs)
     {
-        _jobsTitle = @[@"An Extraordinary Project for Senior JavaScript Software Engineer", @".Net разработчик со знанием немецкого языка", @"Java developer (eCommerce Hybris)", @"Senior Java Developer (Lucene)", @"Специалист по тестированию", @"Проектировщик интерфейсов", @"Java Web Application Developer"];
-    }
-    return _jobsTitle;
-}
+        PremiumJob * premiumJob1 = [[PremiumJob alloc] init];
+        premiumJob1.name = @"1Руководитель команды аналитиков";
+        premiumJob1.companysName = @"A1QA";
+        premiumJob1.description = @"1Требуется опытный руководитель для организации работы и развития команды системных и бизнес-аналитиков, способный разрабатывать стратегию развития команды, планировать ее работу, эффективно организовывать деятельность.";
+        premiumJob1.pictureUrl = nil;
+        PremiumJob * premiumJob2 = [[PremiumJob alloc] init];
+        premiumJob2.name = @"2An Extraordinary Project for Senior .NET Software Engineer";
+        premiumJob2.companysName = @"NUBIKO";
+        premiumJob2.description = @"2We are looking for a talented senior .NET programmer for developing of innovative, extraordinary software product called TRIGGRE based on the latest Microsoft technologies. Product Description What’s your Triggre?";
+        premiumJob2.pictureUrl = nil;
+        PremiumJob * premiumJob3 = [[PremiumJob alloc] init];
+        premiumJob3.name = @"3.Net разработчик со знанием немецкого языка";
+        premiumJob3.companysName = @"SaM Solutions";
+        premiumJob3.description = @"3Требуется опытный руководитель для организации работы и развития команды системных и бизнес-аналитиков, способный разрабатывать стратегию развития команды, планировать ее работу, эффективно организовывать деятельность.";
+        premiumJob3.pictureUrl = nil;
+        PremiumJob * premiumJob4 = [[PremiumJob alloc] init];
+        premiumJob4.name = @"4Java developer (eCommerce Hybris)";
+        premiumJob4.companysName = @"SaM Solutions";
+        premiumJob4.description = @"4Приглашаяем в SaM Solutions разработчика на платформе Hybris Должностные обязанности: ∙ Разработка интернет- решений на базе платформы Hybris; ∙ Реализация интеграционных проектов на базе платформы Hybris. Требования: ∙ Высшее т ...";
+        premiumJob4.pictureUrl = nil;
+        PremiumJob * premiumJob5 = [[PremiumJob alloc] init];
+        premiumJob5.name = @"5.Net разработчик со знанием немецкого языка";
+        premiumJob5.companysName = @"SaM Solutions";
+        premiumJob5.description = @"5Требуется опытный руководитель для организации работы и развития команды системных и бизнес-аналитиков, способный разрабатывать стратегию развития команды, планировать ее работу, эффективно организовывать деятельность.";
+        premiumJob5.pictureUrl = nil;
+        PremiumJob * premiumJob6 = [[PremiumJob alloc] init];
+        premiumJob6.name = @"6Java developer (eCommerce Hybris)";
+        premiumJob6.companysName = @"SaM Solutions";
+        premiumJob6.description = @"6Приглашаяем в SaM Solutions разработчика на платформе Hybris Должностные обязанности: ∙ Разработка интернет- решений на базе платформы Hybris; ∙ Реализация интеграционных проектов на базе платформы Hybris. Требования: ∙ Высшее т ...";
+        premiumJob6.pictureUrl = nil;
 
--(NSArray *)jobsDescription
-{
-    if (!_jobsDescription)
-    {
-        _jobsDescription = @[@"We are looking for a talented senior JavaScript programmer for developing of innovative, extraordinary software product called TRIGGRE based on the latest Microsoft technologies.", @"Портал об ИТ в Беларуси dev.by приглашает журналиста на полную занятость: Мы предлагаем: - работу в штате; - офис в центре города; - гибкий рабочий график, возможность удаленной работы; - интересную работу;", @"На серьезный проект в области автомобилестроения для одного из крупнейших производителей легковых автомобилей в Германии в связи с переводом существующей части мобильного приложения на новые технологии требуется опытный Веб-разработчик.", @"SaM Solutions search for Senior Java developer with strong experience in Apache Lucene, ideally with the knowledge of (preferably) Elasticsearch or Solr. The ideal candidate will also have: - experience with ANTLR or similar parser", @"Основной вид деятельности:  Функциональное тестирование программного обеспечения  Занесение отчётов об ошибках в баг-трекинг систему ", @"ВНИМАНИЕ!!! Мы ищем способного разработчика для участия в реализации интересных и масштабных коммерческих проектов! Наши заказчики - крупные международные компании Условия работы:     Высокая официальная зарплата", @"ВНИМАНИЕ!!! Мы ищем способного разработчика для участия в реализации интересных и масштабных коммерческих проектов! Наши заказчики - крупные международные компании"];
+        _jobs = @[premiumJob1, premiumJob2, premiumJob3, premiumJob4, premiumJob5, premiumJob6];
     }
-    return _jobsDescription;
+    return _jobs;
 }
 
 - (void)viewDidLoad
@@ -56,10 +81,14 @@
     rowHeight = 40;
     maxCharsPerRow = 30;
     
+    [self.tableView registerClass:[PremiumJobCell class] forCellReuseIdentifier:premiumJobIdentifier];
+    [self.tableView registerClass:[MiddleJobCell class] forCellReuseIdentifier:middleJobIdentifier];
+    [self.tableView registerClass:[StandardJobCell class] forCellReuseIdentifier:standardJobIdentifier];
     searchBar = [[UISearchBar alloc] init];
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     searchDisplayController.delegate = self;
     searchDisplayController.searchResultsDataSource = self;
+    searchDisplayController.searchResultsDelegate = self;
     self.tableView.tableHeaderView = searchBar;
     
     searchResults = [[NSMutableArray alloc] init];
@@ -72,13 +101,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < 3)
-    {
-        float cellContentLength = (float)[self.jobsTitle[indexPath.row] length] + (float)[self.jobsDescription[indexPath.row] length];
-        return rowHeight * cellContentLength/maxCharsPerRow/1.7;
-    }
-    else
-        return 60;
+    return 100;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -95,67 +118,37 @@
     }
     else
     {
-        return [self.jobsTitle count];
+        return [self.jobs count];
     }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * reuseIdentifier = @"Cell";
-    if (indexPath.row < 3)
+    PremiumJobCell *cell = (PremiumJobCell *)[self.tableView dequeueReusableCellWithIdentifier:premiumJobIdentifier];
+    if (cell == nil)
     {
-        StandardJobCell * cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
-        PremiumJob * job = [[PremiumJob alloc] init];
-        job.description = self.jobsDescription[indexPath.row];
-        if (tableView == self.searchDisplayController.searchResultsTableView)
-        {
-            job.title = [searchResults objectAtIndex:indexPath.row];
-        }
-        else
-        {
-            job.title = [self.jobsTitle objectAtIndex:indexPath.row];
-        }
-        job.companysName = @"Epam";
-        [cell setJob:job];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        return cell;
-
+        cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
+    }
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        cell.job = [searchResults objectAtIndex:indexPath.row];
     }
     else
     {
-        MiddleJobCellTableViewCell * cell = [[MiddleJobCellTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
-        Job * job = [[Job alloc] init];
-        if (tableView == self.searchDisplayController.searchResultsTableView)
-        {
-            job.title = [searchResults objectAtIndex:indexPath.row];
-        }
-        else
-        {
-            job.title = [self.jobsTitle objectAtIndex:indexPath.row];
-        }
-        job.companysName = @"Epam";
-        [cell setJob:job];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        return cell;
-
+        cell.job = [self.jobs objectAtIndex:indexPath.row];
     }
-    
+    [cell drawCell];
+    return cell;
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    
-    [searchResults removeAllObjects];
-    
-    NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF contains[cd] %@",
-                                    searchText];
-    
-    searchResults = [NSMutableArray arrayWithArray:[self.jobsTitle filteredArrayUsingPredicate:resultPredicate]];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    searchResults = [self.jobs filteredArrayUsingPredicate:resultPredicate];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller
-shouldReloadTableForSearchString:(NSString *)searchString
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
@@ -164,10 +157,20 @@ shouldReloadTableForSearchString:(NSString *)searchString
     
     return YES;
 }
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Job *job = nil;
+    
+    if (self.searchDisplayController.active)
+    {
+        job = [searchResults objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        job = [self.jobs objectAtIndex:indexPath.row];
+    }
     DetailVacanciesViewController * detailVacanciesVC = [[DetailVacanciesViewController alloc] init];
+    detailVacanciesVC.jobTitle = job.title;
     [self.navigationController pushViewController:detailVacanciesVC animated:YES];
 }
 

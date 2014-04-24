@@ -12,6 +12,9 @@
 
 @interface PremiumJobCell : StandardJobCell
 
--(void)setJob:(PremiumJob *)job;
+@property(nonatomic, assign, readonly)float totalHeight;
+@property(nonatomic, strong)PremiumJob * job;
+
+-(void)drawCell;
 
 @end

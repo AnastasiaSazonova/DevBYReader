@@ -10,4 +10,6 @@
 
 @interface DetailVacanciesViewController : UIViewController
 
+@property(nonatomic, strong)NSString * jobTitle;
+
 @end

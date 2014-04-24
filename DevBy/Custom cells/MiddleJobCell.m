@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 AD. All rights reserved.
 //
 
-#import "MiddleJobCellTableViewCell.h"
+#import "MiddleJobCell.h"
 #import "Job.h"
 
-@implementation MiddleJobCellTableViewCell
+@implementation MiddleJobCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
