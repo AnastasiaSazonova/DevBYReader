@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "StandardJobCell.h"
 @class Job;
+@class MiddleJob;
 
 @interface MiddleJobCell : StandardJobCell
 
--(void)setJob:(Job *)job;
+@property(nonatomic, strong)MiddleJob * job;
+-(void)drawCell;
 
 @end

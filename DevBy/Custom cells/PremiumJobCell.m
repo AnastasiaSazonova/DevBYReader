@@ -27,7 +27,7 @@
     return self;
 }
 
--(void)drawCellVisually:(BOOL)visually
+-(void)drawCell
 {
     float yOffset = 10.0f;
     float xOffset = 20.0f;
@@ -38,7 +38,7 @@
     jobTitle.numberOfLines = 0;
     jobTitle.text = self.job.name;
     [jobTitle sizeToFit];
-   // [self addSubview:jobTitle];
+    [self addSubview:jobTitle];
     self.totalHeight += jobTitle.bounds.size.height + yOffset;
     
     CGRect companysNameFrame = CGRectMake(xOffset, self.totalHeight, self.frame.size.width - 5*yOffset, self.frame.size.height/2);
@@ -47,7 +47,7 @@
     companysName.numberOfLines = 0;
     companysName.text = self.job.companysName;
     [companysName sizeToFit];
-   // [self addSubview:companysName];
+    [self addSubview:companysName];
     self.totalHeight += companysName.bounds.size.height + yOffset;
     
     CGRect jobDescriptionFrame = CGRectMake(xOffset, self.totalHeight, self.frame.size.width - 5*yOffset, self.frame.size.height/2);
@@ -57,16 +57,8 @@
     jobDescription.numberOfLines = 0;
     jobDescription.text = self.job.description;
     [jobDescription sizeToFit];
-   // [self addSubview:jobDescription];
-    self.totalHeight += jobDescription.bounds.size.height + yOffset;
-    if (visually)
-    {
-        [self addSubview:jobTitle];
-        [self addSubview:companysName];
-        [self addSubview:jobDescription];
-        
-        NSLog(@"addsubviews");
-    }
+    [self addSubview:jobDescription];
+    self.totalHeight += jobDescription.bounds.size.height + 1.5*yOffset;
 }
 
 @end

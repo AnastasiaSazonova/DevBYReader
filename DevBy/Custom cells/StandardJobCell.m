@@ -8,6 +8,12 @@
 
 #import "StandardJobCell.h"
 
+@interface StandardJobCell()
+
+@property(nonatomic, assign, readwrite)float totalHeight;
+
+@end
+
 @implementation StandardJobCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -19,16 +25,6 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
+-(void)drawCell{}
 
 @end

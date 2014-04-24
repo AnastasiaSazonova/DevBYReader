@@ -8,6 +8,7 @@
 
 #import "MiddleJobCell.h"
 #import "Job.h"
+#import "MiddleJob.h"
 
 @implementation MiddleJobCell
 
@@ -21,7 +22,7 @@
     return self;
 }
 
--(void)setJob:(Job *)job
+-(void)drawCell
 {
     float offset = 20.0f;
     float totalHeight = 0;
@@ -29,7 +30,7 @@
     UILabel * jobTitle = [[UILabel alloc] initWithFrame:jobTitleFrame];
     jobTitle.font = [UIFont systemFontOfSize:16];
     jobTitle.numberOfLines = 0;
-    jobTitle.text = job.title;
+    jobTitle.text = self.job.name;
     [jobTitle sizeToFit];
     [self addSubview:jobTitle];
     totalHeight += jobTitle.bounds.size.height;
@@ -38,7 +39,7 @@
     UILabel * companysName = [[UILabel alloc] initWithFrame:companysNameFrame];
     companysName.font = [UIFont boldSystemFontOfSize:13];
     companysName.numberOfLines = 0;
-    companysName.text = job.companysName;
+    companysName.text = self.job.companysName;
     [companysName sizeToFit];
     [self addSubview:companysName];
     totalHeight += companysName.bounds.size.height;
