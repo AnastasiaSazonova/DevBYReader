@@ -15,6 +15,6 @@
 @property(nonatomic, assign, readonly)float totalHeight;
 @property(nonatomic, strong)PremiumJob * job;
 
--(void)drawCell;
+-(void)drawCellVisually:(BOOL)visually;
 
 @end

@@ -101,7 +101,17 @@ NSString * standardJobIdentifier = @"StandardJob";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    PremiumJobCell *cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        cell.job = [searchResults objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        cell.job = [self.jobs objectAtIndex:indexPath.row];
+    }
+    [cell drawCellVisually:NO];
+    return cell.totalHeight;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -114,7 +124,6 @@ NSString * standardJobIdentifier = @"StandardJob";
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
         return [searchResults count];
-        
     }
     else
     {
@@ -124,12 +133,7 @@ NSString * standardJobIdentifier = @"StandardJob";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PremiumJobCell *cell = (PremiumJobCell *)[self.tableView dequeueReusableCellWithIdentifier:premiumJobIdentifier];
-    if (cell == nil)
-    {
-        cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
-    }
-    
+    PremiumJobCell *cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
         cell.job = [searchResults objectAtIndex:indexPath.row];
@@ -138,9 +142,10 @@ NSString * standardJobIdentifier = @"StandardJob";
     {
         cell.job = [self.jobs objectAtIndex:indexPath.row];
     }
-    [cell drawCell];
+    [cell drawCellVisually:YES];
     return cell;
 }
+
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
@@ -159,7 +164,7 @@ NSString * standardJobIdentifier = @"StandardJob";
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Job *job = nil;
+    PremiumJob *job = nil;
     
     if (self.searchDisplayController.active)
     {
@@ -170,7 +175,7 @@ NSString * standardJobIdentifier = @"StandardJob";
         job = [self.jobs objectAtIndex:indexPath.row];
     }
     DetailVacanciesViewController * detailVacanciesVC = [[DetailVacanciesViewController alloc] init];
-    detailVacanciesVC.jobTitle = job.title;
+    detailVacanciesVC.jobTitle = job.name;
     [self.navigationController pushViewController:detailVacanciesVC animated:YES];
 }
 
