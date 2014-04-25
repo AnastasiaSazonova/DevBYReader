@@ -33,7 +33,7 @@
         descriptionLabel.font = [UIFont systemFontOfSize:12];
         
         dateLabel = [[UILabel alloc] init];
-        dateLabel.font = [UIFont systemFontOfSize:14];
+        dateLabel.font = [UIFont systemFontOfSize:20];
         dateLabel.textAlignment = NSTextAlignmentCenter;
         
         dateDetLabel = [[UILabel alloc] init];
@@ -41,9 +41,10 @@
         dateDetLabel.textAlignment = NSTextAlignmentCenter;
         dateDetLabel.numberOfLines = 0;
         
-        dateLabel.backgroundColor = [UIColor greenColor];
+        /*dateLabel.backgroundColor = [UIColor greenColor];
         dateDetLabel.backgroundColor = [UIColor brownColor];
         titleLabel.backgroundColor = [UIColor blueColor];
+        descriptionLabel.backgroundColor = [UIColor orangeColor];*/
         
         [self.contentView addSubview:titleLabel];
         [self.contentView addSubview:dateLabel];
@@ -58,30 +59,30 @@
     CGFloat alignmentMarginLeftSide = 0;
     CGFloat alignmentMarginRightSide = 0;
         
-    CGSize dateSize = [dateLabel sizeThatFits:CGSizeMake(CELL_CONTENT_WIDTH / 3 - CELL_CONTENT_MARGIN, NSIntegerMax)];
-    CGSize dateDetSize = [dateDetLabel sizeThatFits:CGSizeMake(CELL_CONTENT_WIDTH / 3 - CELL_CONTENT_MARGIN, NSIntegerMax)];
-    CGSize titleSize = [titleLabel sizeThatFits:CGSizeMake(CELL_CONTENT_WIDTH * 2 / 3 - 2 * CELL_CONTENT_MARGIN, NSIntegerMax)];
-    CGSize descriptionSize = [descriptionLabel sizeThatFits:CGSizeMake(CELL_CONTENT_WIDTH * 2 / 3 - 2 * CELL_CONTENT_MARGIN, NSIntegerMax)];
+    CGSize dateSize = [dateLabel sizeThatFits:CGSizeMake(CONTENT_WIDTH / 4 - MARGIN_SMALL, NSIntegerMax)];
+    CGSize dateDetSize = [dateDetLabel sizeThatFits:CGSizeMake(CONTENT_WIDTH / 4 - MARGIN_SMALL, NSIntegerMax)];
+    CGSize titleSize = [titleLabel sizeThatFits:CGSizeMake(CONTENT_WIDTH * 3 / 4 - 2 * MARGIN_SMALL, NSIntegerMax)];
+    CGSize descriptionSize = [descriptionLabel sizeThatFits:CGSizeMake(CONTENT_WIDTH * 3 / 4 - 2 * MARGIN_SMALL, NSIntegerMax)];
 
-    if(dateSize.height + dateDetSize.height < titleSize.height + descriptionSize.height + CELL_CONTENT_MARGIN)
+    if(dateSize.height + dateDetSize.height < titleSize.height + descriptionSize.height + MARGIN_SMALL)
     {
-        alignmentMarginLeftSide = ((titleSize.height + descriptionSize.height + CELL_CONTENT_MARGIN) - (dateSize.height + dateDetSize.height)) / 2;
-        cellHeight = titleSize.height + descriptionSize.height + 3 * CELL_CONTENT_MARGIN;
+        alignmentMarginLeftSide = ((titleSize.height + descriptionSize.height + MARGIN_SMALL) - (dateSize.height + dateDetSize.height)) / 2;
+        cellHeight = titleSize.height + descriptionSize.height + 3 * MARGIN_SMALL;
     }
-    else if (dateSize.height + dateDetSize.height > titleSize.height + descriptionSize.height + CELL_CONTENT_MARGIN)
+    else if (dateSize.height + dateDetSize.height > titleSize.height + descriptionSize.height + MARGIN_SMALL)
     {
-        alignmentMarginRightSide = ((dateSize.height + dateDetSize.height) - (titleSize.height + descriptionSize.height + CELL_CONTENT_MARGIN)) / 2;
-        cellHeight = dateSize.height + dateDetSize.height + 2 * CELL_CONTENT_MARGIN;
+        alignmentMarginRightSide = ((dateSize.height + dateDetSize.height) - (titleSize.height + descriptionSize.height + MARGIN_SMALL)) / 2;
+        cellHeight = dateSize.height + dateDetSize.height + 2 * MARGIN_SMALL;
     }
     if(cellHeight == 0)
     {
-        cellHeight = dateSize.height + dateDetSize.height + 2 * CELL_CONTENT_MARGIN;
+        cellHeight = dateSize.height + dateDetSize.height + 2 * MARGIN_SMALL;
     }
 
-    dateLabel.frame = CGRectMake(CELL_CONTENT_MARGIN, alignmentMarginLeftSide + CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH / 3 - CELL_CONTENT_MARGIN, dateSize.height);
-    dateDetLabel.frame = CGRectMake(CELL_CONTENT_MARGIN, dateLabel.frame.origin.y + dateLabel.frame.size.height, CELL_CONTENT_WIDTH / 3 - CELL_CONTENT_MARGIN, dateDetSize.height);
-    titleLabel.frame = CGRectMake(dateLabel.frame.size.width + 2 * CELL_CONTENT_MARGIN, alignmentMarginRightSide + CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH * 2 / 3 - 2 * CELL_CONTENT_MARGIN, titleSize.height);
-    descriptionLabel.frame = CGRectMake(dateLabel.frame.size.width + 2 * CELL_CONTENT_MARGIN, titleLabel.frame.origin.y + titleLabel.frame.size.height + CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH * 2 / 3 - 2 * CELL_CONTENT_MARGIN, descriptionSize.height);
+    dateLabel.frame = CGRectMake(MARGIN_SMALL, alignmentMarginLeftSide + MARGIN_SMALL, CONTENT_WIDTH / 4 - MARGIN_SMALL, dateSize.height);
+    dateDetLabel.frame = CGRectMake(MARGIN_SMALL, dateLabel.frame.origin.y + dateLabel.frame.size.height, CONTENT_WIDTH / 4 - MARGIN_SMALL, dateDetSize.height);
+    titleLabel.frame = CGRectMake(dateLabel.frame.size.width + 2 * MARGIN_SMALL, alignmentMarginRightSide + MARGIN_SMALL, CONTENT_WIDTH * 3 / 4 - 2 * MARGIN_SMALL, titleSize.height);
+    descriptionLabel.frame = CGRectMake(dateLabel.frame.size.width + 2 * MARGIN_SMALL, titleLabel.frame.origin.y + titleLabel.frame.size.height + MARGIN_SMALL, CONTENT_WIDTH * 3 / 4 - 2 * MARGIN_SMALL, descriptionSize.height);
 }
 
 - (CGFloat)getHeight

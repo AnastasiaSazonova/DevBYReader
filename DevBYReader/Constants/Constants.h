@@ -15,8 +15,6 @@ typedef enum
 } SectionTypes;
 
 #define CONTENT_WIDTH 320
-#define CELL_CONTENT_MIN_HEIGHT 44
-#define CELL_DETAIL_HEIGHT 20
 
 #define FONT_EXTRABIG_SIZE 24
 #define FONT_BIG_SIZE 20
@@ -26,5 +24,3 @@ typedef enum
 #define MARGIN_SMALL 7
 #define MARGIN_BIG 20
 #define MARGIN_MEDUIM 13
-//#define CELL_CONTENT_MIN_HEIGHT 44
-//#define CELL_DETAIL_HEIGHT 20
