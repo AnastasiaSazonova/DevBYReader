@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *time;
 @property (assign, nonatomic) NSInteger listenersCount;
+@property (assign, nonatomic) NSInteger commentsCount;
 
 @property (strong, nonatomic) NSString *sponsorName;
 @property (strong, nonatomic) NSString *sponsorLogoAddress;

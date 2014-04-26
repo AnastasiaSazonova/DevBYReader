@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EventRepository.h"
 #import "Constants.h"
+#import "CommentsViewController.h"
 
 @interface EventsDetailViewController : UIViewController
 

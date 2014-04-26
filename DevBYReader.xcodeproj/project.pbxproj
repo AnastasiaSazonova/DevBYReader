@@ -42,6 +42,10 @@
 		844A154A1907FD67002EDB2E /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A15481907FD67002EDB2E /* NewsViewController.m */; };
 		844A154D1907FD67002EDB2E /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A154C1907FD67002EDB2E /* MenuViewController.m */; };
 		84ABA6C8190819090087F9E3 /* EventsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ABA6C7190819090087F9E3 /* EventsDetailViewController.m */; };
+		84CFCF3C190B085600D026D6 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CFCF3B190B085600D026D6 /* CommentsViewController.m */; };
+		84CFCF3F190B110000D026D6 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CFCF3E190B110000D026D6 /* Comment.m */; };
+		84CFCF42190B12B200D026D6 /* CommentRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CFCF41190B12B200D026D6 /* CommentRepository.m */; };
+		84CFCF45190B12B200D026D6 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CFCF44190B12B200D026D6 /* CommentTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +118,14 @@
 		844A154C1907FD67002EDB2E /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = ViewControllers/Menu/MenuViewController.m; sourceTree = "<group>"; };
 		84ABA6C6190819090087F9E3 /* EventsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventsDetailViewController.h; path = ViewControllers/Events/EventsDetailViewController.h; sourceTree = "<group>"; };
 		84ABA6C7190819090087F9E3 /* EventsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventsDetailViewController.m; path = ViewControllers/Events/EventsDetailViewController.m; sourceTree = "<group>"; };
+		84CFCF3A190B085600D026D6 /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsViewController.h; path = ViewControllers/Companies/CommentsViewController.h; sourceTree = "<group>"; };
+		84CFCF3B190B085600D026D6 /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsViewController.m; path = ViewControllers/Companies/CommentsViewController.m; sourceTree = "<group>"; };
+		84CFCF3D190B110000D026D6 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = Models/Comment.h; sourceTree = "<group>"; };
+		84CFCF3E190B110000D026D6 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = Models/Comment.m; sourceTree = "<group>"; };
+		84CFCF40190B12B200D026D6 /* CommentRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentRepository.h; path = Repositories/CommentRepository.h; sourceTree = "<group>"; };
+		84CFCF41190B12B200D026D6 /* CommentRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentRepository.m; path = Repositories/CommentRepository.m; sourceTree = "<group>"; };
+		84CFCF43190B12B200D026D6 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentTableViewCell.h; path = CustomViews/CommentTableViewCell.h; sourceTree = "<group>"; };
+		84CFCF44190B12B200D026D6 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentTableViewCell.m; path = CustomViews/CommentTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +264,8 @@
 		844A14D21907FD67002EDB2E /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				84CFCF43190B12B200D026D6 /* CommentTableViewCell.h */,
+				84CFCF44190B12B200D026D6 /* CommentTableViewCell.m */,
 				844A14DB1907FD67002EDB2E /* EventsTableViewCell.h */,
 				844A14DC1907FD67002EDB2E /* EventsTableViewCell.m */,
 				844A14DD1907FD67002EDB2E /* NewsTableViewCell.h */,
@@ -263,6 +277,8 @@
 		844A14E11907FD67002EDB2E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				84CFCF3D190B110000D026D6 /* Comment.h */,
+				84CFCF3E190B110000D026D6 /* Comment.m */,
 				844A14EE1907FD67002EDB2E /* EventDetailModel.h */,
 				844A14EF1907FD67002EDB2E /* EventDetailModel.m */,
 				844A14F01907FD67002EDB2E /* EventModel.h */,
@@ -282,6 +298,8 @@
 				844A15021907FD67002EDB2E /* EventRepository.m */,
 				844A15031907FD67002EDB2E /* NewsRepository.h */,
 				844A15041907FD67002EDB2E /* NewsRepository.m */,
+				84CFCF40190B12B200D026D6 /* CommentRepository.h */,
+				84CFCF41190B12B200D026D6 /* CommentRepository.m */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -318,6 +336,7 @@
 		844A15241907FD67002EDB2E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84CFCF36190B045700D026D6 /* Comments */,
 				844A15291907FD67002EDB2E /* Jobs */,
 				844A15281907FD67002EDB2E /* Events */,
 				844A15271907FD67002EDB2E /* Companies */,
@@ -374,6 +393,15 @@
 				844A153D1907FD67002EDB2E /* JobsViewController.m */,
 			);
 			name = Jobs;
+			sourceTree = "<group>";
+		};
+		84CFCF36190B045700D026D6 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				84CFCF3A190B085600D026D6 /* CommentsViewController.h */,
+				84CFCF3B190B085600D026D6 /* CommentsViewController.m */,
+			);
+			name = Comments;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,11 +508,14 @@
 			files = (
 				844A14CE1907FD67002EDB2E /* UIViewController+JASidePanel.m in Sources */,
 				844A14F61907FD67002EDB2E /* EventDetailModel.m in Sources */,
+				84CFCF3C190B085600D026D6 /* CommentsViewController.m in Sources */,
 				844A14F71907FD67002EDB2E /* EventModel.m in Sources */,
 				844A153E1907FD67002EDB2E /* JobsViewController.m in Sources */,
 				844A14DF1907FD67002EDB2E /* EventsTableViewCell.m in Sources */,
+				84CFCF3F190B110000D026D6 /* Comment.m in Sources */,
 				844A15411907FD67002EDB2E /* EventsViewController.m in Sources */,
 				844A15061907FD67002EDB2E /* NewsRepository.m in Sources */,
+				84CFCF42190B12B200D026D6 /* CommentRepository.m in Sources */,
 				844A14F91907FD67002EDB2E /* NewsModel.m in Sources */,
 				844A14BD1907FD19002EDB2E /* ImageHelper.m in Sources */,
 				5D508A5318F5E7E700ED88FE /* AppDelegate.m in Sources */,
@@ -498,6 +529,7 @@
 				844A154A1907FD67002EDB2E /* NewsViewController.m in Sources */,
 				844A15491907FD67002EDB2E /* NewsDetailViewController.m in Sources */,
 				5D508A6B18F5E95400ED88FE /* main.m in Sources */,
+				84CFCF45190B12B200D026D6 /* CommentTableViewCell.m in Sources */,
 				844A154D1907FD67002EDB2E /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

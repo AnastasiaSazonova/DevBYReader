@@ -58,9 +58,15 @@
     CGSize timeSize = [timeLabel sizeThatFits:CGSizeMake(CONTENT_WIDTH - 2 * MARGIN_SMALL, NSIntegerMax)];
     timeLabel.frame = CGRectMake(MARGIN_BIG, titleLabel.frame.origin.y + titleLabel.frame.size.height + MARGIN_MEDUIM, timeSize.width, timeSize.height);
     
-    /*UIButton *commentsButton = [[UIButton alloc] init];
-    commentsButton.frame = CGRectMake(MARGIN_BIG, timeLabel.frame.origin.y + timeLabel.frame.size.height + MARGIN_BIG, CONTENT_WIDTH - 2 * MARGIN_BIG, 30);*/
-    
+    UIButton *commentsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    commentsButton.frame = CGRectMake(MARGIN_BIG, timeLabel.frame.origin.y + timeLabel.frame.size.height + MARGIN_SMALL, 160, 25);
+    [commentsButton setTitle:[NSString stringWithFormat:@"%d комментариев", model.commentsCount] forState:UIControlStateNormal];
+    [commentsButton addTarget:self action:@selector(gotoComments) forControlEvents:UIControlEventTouchUpInside];
+    [[commentsButton layer] setBorderWidth:1];
+    [[commentsButton layer] setCornerRadius:4];
+    [[commentsButton layer] setBorderColor:[UIColor grayColor].CGColor];
+    //[[[[UIApplication sharedApplication] delegate] window] tintColor];
+
     NSMutableArray *segments = [NSMutableArray arrayWithObjects:@"Описание", @"Цена", nil];
     if(model.address != nil)
        [segments addObject:@"Адрес"];
@@ -68,7 +74,7 @@
        [segments addObject:@"Контакты"];
     
     segmentedControl = [[UISegmentedControl alloc] initWithItems:segments];
-    segmentedControl.frame = CGRectMake(MARGIN_BIG, timeLabel.frame.origin.y + timeLabel.frame.size.height + MARGIN_BIG, CONTENT_WIDTH - 2 * MARGIN_BIG, 30);
+    segmentedControl.frame = CGRectMake(MARGIN_BIG, commentsButton.frame.origin.y + commentsButton.frame.size.height + MARGIN_BIG, CONTENT_WIDTH - 2 * MARGIN_BIG, 30);
     [segmentedControl addTarget:self action:@selector(touchSegmentControl:) forControlEvents:UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
     
@@ -80,6 +86,7 @@
     
     [scrollView addSubview:titleLabel];
     [scrollView addSubview:timeLabel];
+    [scrollView addSubview:commentsButton];
     [scrollView addSubview:segmentedControl];
     [scrollView addSubview:textView];
     
@@ -128,6 +135,11 @@
     scrollView.contentSize = CGSizeMake(CONTENT_WIDTH, textView.frame.origin.y + textView.frame.size.height + MARGIN_MEDUIM);
 }
 
+- (void)gotoComments
+{
+    [self.navigationController pushViewController:[[CommentsViewController alloc] initWithEventId:eventId] animated:YES];
+}
+
 - (void)showContacts
 {
     NSMutableString *result = [[NSMutableString alloc] init];
@@ -151,6 +163,10 @@
     scrollView.contentSize = CGSizeMake(CONTENT_WIDTH, textView.frame.origin.y + textView.frame.size.height + MARGIN_MEDUIM);
 }
 
-
+/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger newsId = [[newsList objectAtIndex:indexPath.row] newsId];
+    [self.navigationController pushViewController:[[NewsDetailViewController alloc] initWithNewsId:newsId] animated:YES];
+}*/
 
 @end

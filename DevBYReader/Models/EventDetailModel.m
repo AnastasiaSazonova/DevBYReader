@@ -10,6 +10,6 @@
 
 @implementation EventDetailModel
 
-@synthesize eventId, title, time, listenersCount, sponsorName, sponsorLogoAddress, sponsorInfo, email, siteAddress,phoneNumber, description, price, address;
+@synthesize eventId, title, time, listenersCount, commentsCount, sponsorName, sponsorLogoAddress, sponsorInfo, email, siteAddress,phoneNumber, description, price, address;
 
 @end

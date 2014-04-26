@@ -41,6 +41,7 @@
             model.sponsorName = @"IT House";
             model.sponsorLogoAddress = @"NoName";
             model.sponsorInfo = @"IT House – центр развития высокотехнологичных проектов. Работает на базе Белорусского государственного университета, располагается в историческом центре Минска. Включает бизнес-акселератор, оказывающий полный спектр услуг по развитию it-стартапов.";
+            model.commentsCount = 10;
             model.email = @"webinars@returnonintelligence.com";
             model.siteAddress = @"http://www.exigenservices.ru/webinars/cv-for-young-specialist";
             model.phoneNumber = @"8(017)2095404";
