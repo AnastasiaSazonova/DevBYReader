@@ -60,7 +60,7 @@
     if (cell == nil)
         cell = [[EventsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     
-    EventModel *currentEvent = [eventList objectAtIndex:indexPath.row];
+    EventModel *currentEvent = eventList[indexPath.row];
     cell.titleLabel.text = currentEvent.title;
     cell.descriptionLabel.text = currentEvent.description;
     cell.dateLabel.text = currentEvent.date;
@@ -74,7 +74,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger eventId = [[eventList objectAtIndex:indexPath.row] eventId];
+    NSInteger eventId = [eventList[indexPath.row] eventId];
     [self.navigationController pushViewController:[[EventsDetailViewController alloc] initWithEventId:eventId] animated:YES];
 }
 

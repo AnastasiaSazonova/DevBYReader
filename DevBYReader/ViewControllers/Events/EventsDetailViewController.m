@@ -66,7 +66,13 @@
     [[commentsButton layer] setCornerRadius:4];
     [[commentsButton layer] setBorderColor:[UIColor grayColor].CGColor];
     //[[[[UIApplication sharedApplication] delegate] window] tintColor];
-
+    
+    UILabel *listenersLabel = [[UILabel alloc] init];
+    listenersLabel.frame = CGRectMake(commentsButton.frame.origin.x + commentsButton.frame.size.width + MARGIN_MEDUIM, commentsButton.frame.origin.y, 105, 25);
+    listenersLabel.font = [UIFont systemFontOfSize:FONT_SMALL_SIZE];
+    listenersLabel.text = [NSString stringWithFormat:@"Слушателей: %d", model.listenersCount];
+    listenersLabel.textAlignment = NSTextAlignmentRight;
+    
     NSMutableArray *segments = [NSMutableArray arrayWithObjects:@"Описание", @"Цена", nil];
     if(model.address != nil)
        [segments addObject:@"Адрес"];
@@ -87,6 +93,7 @@
     [scrollView addSubview:titleLabel];
     [scrollView addSubview:timeLabel];
     [scrollView addSubview:commentsButton];
+    [scrollView addSubview:listenersLabel];
     [scrollView addSubview:segmentedControl];
     [scrollView addSubview:textView];
     
@@ -162,11 +169,5 @@
     [textView sizeToFit];
     scrollView.contentSize = CGSizeMake(CONTENT_WIDTH, textView.frame.origin.y + textView.frame.size.height + MARGIN_MEDUIM);
 }
-
-/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSInteger newsId = [[newsList objectAtIndex:indexPath.row] newsId];
-    [self.navigationController pushViewController:[[NewsDetailViewController alloc] initWithNewsId:newsId] animated:YES];
-}*/
 
 @end
