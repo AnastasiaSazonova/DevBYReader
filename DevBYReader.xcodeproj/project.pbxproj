@@ -41,6 +41,7 @@
 		844A15491907FD67002EDB2E /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A15461907FD67002EDB2E /* NewsDetailViewController.m */; };
 		844A154A1907FD67002EDB2E /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A15481907FD67002EDB2E /* NewsViewController.m */; };
 		844A154D1907FD67002EDB2E /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A154C1907FD67002EDB2E /* MenuViewController.m */; };
+		8467EE84190BC37A00FC156A /* companyLogo in Resources */ = {isa = PBXBuildFile; fileRef = 8467EE83190BC37A00FC156A /* companyLogo */; };
 		84ABA6C8190819090087F9E3 /* EventsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ABA6C7190819090087F9E3 /* EventsDetailViewController.m */; };
 		84CFCF3C190B085600D026D6 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CFCF3B190B085600D026D6 /* CommentsViewController.m */; };
 		84CFCF3F190B110000D026D6 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CFCF3E190B110000D026D6 /* Comment.m */; };
@@ -116,6 +117,7 @@
 		844A15481907FD67002EDB2E /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = ViewControllers/News/NewsViewController.m; sourceTree = "<group>"; };
 		844A154B1907FD67002EDB2E /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = ViewControllers/Menu/MenuViewController.h; sourceTree = "<group>"; };
 		844A154C1907FD67002EDB2E /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = ViewControllers/Menu/MenuViewController.m; sourceTree = "<group>"; };
+		8467EE83190BC37A00FC156A /* companyLogo */ = {isa = PBXFileReference; lastKnownFileType = file; name = companyLogo; path = TempResources/Icons/companyLogo; sourceTree = "<group>"; };
 		84ABA6C6190819090087F9E3 /* EventsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventsDetailViewController.h; path = ViewControllers/Events/EventsDetailViewController.h; sourceTree = "<group>"; };
 		84ABA6C7190819090087F9E3 /* EventsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventsDetailViewController.m; path = ViewControllers/Events/EventsDetailViewController.m; sourceTree = "<group>"; };
 		84CFCF3A190B085600D026D6 /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsViewController.h; path = ViewControllers/Companies/CommentsViewController.h; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 		844A15071907FD67002EDB2E /* TempResources */ = {
 			isa = PBXGroup;
 			children = (
+				8467EE82190BC36100FC156A /* Logos */,
 				844A15081907FD67002EDB2E /* NewsThumbnails */,
 			);
 			name = TempResources;
@@ -393,6 +396,14 @@
 				844A153D1907FD67002EDB2E /* JobsViewController.m */,
 			);
 			name = Jobs;
+			sourceTree = "<group>";
+		};
+		8467EE82190BC36100FC156A /* Logos */ = {
+			isa = PBXGroup;
+			children = (
+				8467EE83190BC37A00FC156A /* companyLogo */,
+			);
+			name = Logos;
 			sourceTree = "<group>";
 		};
 		84CFCF36190B045700D026D6 /* Comments */ = {
@@ -488,6 +499,7 @@
 				844A15201907FD67002EDB2E /* img5.png in Resources */,
 				844A151D1907FD67002EDB2E /* img2.png in Resources */,
 				844A151C1907FD67002EDB2E /* img1.png in Resources */,
+				8467EE84190BC37A00FC156A /* companyLogo in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

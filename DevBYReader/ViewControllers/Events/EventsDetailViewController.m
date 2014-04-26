@@ -115,9 +115,7 @@
     else if ([selectedSegment isEqualToString:@"Контакты"])
         [self showContacts];
 }
-/*
-@property (assign, nonatomic) NSInteger listenersCount; /
-*/
+
 - (void)showDescription
 {
     textView.text = model.description;
@@ -151,8 +149,6 @@
 {
     NSMutableString *result = [[NSMutableString alloc] init];
     
-    if(model.sponsorLogoAddress)
-        [result appendFormat:@"Логотип:%@\n", model.sponsorLogoAddress];
     if(model.sponsorName)
         [result appendFormat:@"Спонсор:%@\n", model.sponsorName];
     if(model.sponsorInfo)
@@ -163,6 +159,12 @@
         [result appendFormat:@"Сайт:%@\n", model.siteAddress];
     if(model.phoneNumber)
         [result appendFormat:@"Телефон:%@\n", model.phoneNumber];
+    
+    if(model.sponsorLogoAddress)
+    {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"companyLogo.png"]];
+        [textView addSubview:imageView];
+    }
     
     textView.text = result;
     textView.frame = contentFrame;
