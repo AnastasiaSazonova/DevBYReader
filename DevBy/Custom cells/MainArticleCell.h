@@ -10,6 +10,10 @@
 
 @interface MainArticleCell : UITableViewCell
 
--(id)initWithHeight:(CGFloat)height title:(NSString *)title reuseIdentifier:(NSString *)identifier;
+@property(nonatomic, strong)NSString * title;
+@property(nonatomic, strong)UIImage * image;
+@property(nonatomic, assign)float height;
+
+-(void)drawCell;
 
 @end

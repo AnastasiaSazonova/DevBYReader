@@ -1,22 +1,22 @@
 //
-//  CommentsCell.m
+//  FeedbackCell.m
 //  DevBy
 //
-//  Created by Anastasia on 4/14/14.
+//  Created by Anastasia on 4/26/14.
 //  Copyright (c) 2014 AD. All rights reserved.
 //
 
-#import "CommentsCell.h"
+#import "FeedbackCell.h"
 
 static float xOffset = 10.0f;
 
-@interface CommentsCell()
+@interface FeedbackCell()
 
 @property(nonatomic, assign, readwrite)float totalHeight;
 
 @end
 
-@implementation CommentsCell
+@implementation FeedbackCell
 
 -(void)drawCellWithOffset:(int)offset
 {
@@ -29,14 +29,6 @@ static float xOffset = 10.0f;
     [self addSubview:usernameLabel];
     self.totalHeight += usernameRect.origin.y +  usernameLabel.bounds.size.height + xOffset/2;
     
-    CGRect dateLabelRect = CGRectMake(xOffset + offset*xOffset, self.totalHeight, 0, 0);
-    UILabel * dateLabel = [[UILabel alloc] initWithFrame:dateLabelRect];
-    dateLabel.font = [UIFont systemFontOfSize:11];
-    dateLabel.textColor = [UIColor grayColor];
-    dateLabel.text = self.date;
-    [dateLabel sizeToFit];
-    [self addSubview:dateLabel];
-    self.totalHeight += dateLabel.bounds.size.height + xOffset;
     
     CGRect commentRect = CGRectMake(xOffset + offset*xOffset, self.totalHeight, self.bounds.size.width - 2*xOffset - offset*xOffset, 0);
     UILabel * commentLabel = [[UILabel alloc] initWithFrame:commentRect];

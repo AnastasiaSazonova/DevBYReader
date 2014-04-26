@@ -8,6 +8,8 @@
 
 #import "DetailEventViewController.h"
 
+static int maxCharsForBigFont = 60;
+
 @interface DetailEventViewController ()
 {
     float totalHeight;
@@ -104,22 +106,29 @@
     [super viewDidLoad];
     offset = 20.0f;
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
-    totalHeight = offset + navObjectsHeight;
+    totalHeight = offset*0.8 + navObjectsHeight;
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    CGRect nameLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, 0);
+  
+    CGRect nameLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, self.view.bounds.size.height/5);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelFrame];
     nameLabel.font = [UIFont systemFontOfSize:21];
     nameLabel.numberOfLines = 0;
     nameLabel.text = self.eventsName;
-    [nameLabel sizeToFit];
+    if ([self.eventsName length] > maxCharsForBigFont)
+    {
+        nameLabel.adjustsFontSizeToFitWidth = YES;
+    }
+    else
+    {
+        [nameLabel sizeToFit];
+    }
     [self.scrollView addSubview:nameLabel];
     totalHeight += nameLabel.bounds.size.height + offset/4;
     
     CGRect dateLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, 0);
     UILabel * dateLabel = [[UILabel alloc] initWithFrame:dateLabelFrame];
-    dateLabel.font = [UIFont systemFontOfSize:15];
-    dateLabel.textColor = [UIColor grayColor];
+    dateLabel.font = [UIFont systemFontOfSize:14];
+    dateLabel.textColor = [UIColor darkGrayColor];
     dateLabel.numberOfLines = 0;
     dateLabel.text = self.eventsDate;
     [dateLabel sizeToFit];

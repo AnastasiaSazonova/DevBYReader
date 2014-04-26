@@ -134,11 +134,6 @@ NSString * standardJobIdentifier = @"StandardJob";
     self.tableView.tableHeaderView = searchBar;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    cell.textLabel.font = [UIFont systemFontOfSize:13];
-}
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StandardJobCell *cell;
@@ -167,7 +162,14 @@ NSString * standardJobIdentifier = @"StandardJob";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StandardJobCell *cell;
-    cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
+    if (indexPath.row < 7)
+    {
+        cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
+    }
+    else
+    {
+        cell = [[MiddleJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:middleJobIdentifier];
+    }
     [self configureCell:cell inTableView:tableView AtIndexPath:indexPath];
     return cell;
 }

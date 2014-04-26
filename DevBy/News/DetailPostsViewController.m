@@ -11,6 +11,8 @@
 
 @interface DetailPostsViewController ()
 
+@property(nonatomic, assign)float totalHeight;
+
 @end
 
 @implementation DetailPostsViewController
@@ -28,12 +30,13 @@
 {
     [super viewDidLoad];
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
+    self.totalHeight = navObjectsHeight;
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width/2, navObjectsHeight)];
     label.numberOfLines = 2;
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont systemFontOfSize:13];
     label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"Новости\n 1 из 10";
+    label.text = @"Новости\n1 из 10";
     self.navigationItem.titleView = label;
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -45,37 +48,45 @@
     float textOffset = 20.0f;
     UITextView * titleView = [[UITextView alloc] initWithFrame:CGRectMake(textOffset, navObjectsHeight, self.view.bounds.size.width - 2 *textOffset, 0)];
     titleView.text = [NSString stringWithFormat:@"%@", self.title];
-    titleView.font = [UIFont systemFontOfSize:20];
+    titleView.font = [UIFont boldSystemFontOfSize:18];
     titleView.userInteractionEnabled = NO;
     [titleView sizeToFit];
-    float titleViewHeight = titleView.bounds.size.height;
     [scrollView addSubview:titleView];
+    self.totalHeight += titleView.bounds.size.height;
     
-    float imageHeight = 150.0f;
-    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, navObjectsHeight + titleViewHeight, self.view.bounds.size.width, imageHeight)];
-    imageView.backgroundColor = [UIColor grayColor];
-    float imageviewHeight = imageView.bounds.size.height;
+    UIButton * commentsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [commentsButton setTitle:@"10 комментариев" forState:UIControlStateNormal];
+    [commentsButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    commentsButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    [commentsButton sizeToFit];
+    [commentsButton addTarget:self action:@selector(touchCommentsButton:) forControlEvents:UIControlEventTouchUpInside];
+    commentsButton.frame = CGRectMake(1.3*textOffset , self.totalHeight - 6, commentsButton.bounds.size.width, commentsButton.bounds.size.height);
+    [scrollView addSubview:commentsButton];
+    
+    CGRect dateLabelRect = CGRectMake(2*textOffset + commentsButton.bounds.size.width, self.totalHeight, 10, 10);
+    UILabel * dateLabel = [[UILabel alloc]initWithFrame:dateLabelRect];
+    dateLabel.textColor = [UIColor darkGrayColor];
+    dateLabel.font = [UIFont systemFontOfSize:12];
+    dateLabel.text = @"25 апреля в 08:26";
+    [dateLabel sizeToFit];
+    [scrollView addSubview:dateLabel];
+    self.totalHeight += commentsButton.bounds.size.height;
+    
+    float imageHeight = 200.0f;
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.totalHeight, self.view.bounds.size.width, imageHeight)];
+    imageView.image = self.image;
     [scrollView addSubview:imageView];
+    self.totalHeight += imageView.bounds.size.height;
     
-    UITextView * textView = [[UITextView alloc] initWithFrame:CGRectMake(textOffset, titleViewHeight + imageviewHeight + navObjectsHeight, self.view.bounds.size.width - 2 * textOffset, 0)];
+    UITextView * textView = [[UITextView alloc] initWithFrame:CGRectMake(textOffset, self.totalHeight, self.view.bounds.size.width - 2 * textOffset, 0)];
     textView.text = [NSString stringWithFormat:@"\t%@", self.text];
     textView.font = [UIFont systemFontOfSize:14];
     textView.userInteractionEnabled = NO;
     [scrollView addSubview:textView];
     [textView sizeToFit];
-    float textViewHeight = textView.bounds.size.height;
+    self.totalHeight += textView.bounds.size.height;
     
-    UIButton * commentsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [commentsButton setTitle:@"Comments(20)" forState:UIControlStateNormal];
-    [commentsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    commentsButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    [commentsButton sizeToFit];
-    [commentsButton addTarget:self action:@selector(touchCommentsButton:) forControlEvents:UIControlEventTouchUpInside];
-    commentsButton.frame = CGRectMake(textOffset, titleViewHeight + imageviewHeight + navObjectsHeight + textView.bounds.size.height + textOffset/2, commentsButton.bounds.size.width, commentsButton.bounds.size.height);
-    float commentsButtonHeight = commentsButton.bounds.size.height;
-    [scrollView addSubview:commentsButton];
-    
-    scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, titleViewHeight + imageviewHeight + textViewHeight + commentsButtonHeight + 4.5 * textOffset);
+    scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.totalHeight);
     [self.view addSubview:scrollView];
 }
 

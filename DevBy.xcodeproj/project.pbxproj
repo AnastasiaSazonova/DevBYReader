@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D12A15218F91366005A5BEE /* DetailCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D12A15118F91365005A5BEE /* DetailCompanyViewController.m */; };
+		5D1630B6190BA510005AEE23 /* FeedbackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1630B5190BA510005AEE23 /* FeedbackCell.m */; };
 		5D26DD6A18FC281900914F06 /* CommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D26DD6918FC281900914F06 /* CommentsCell.m */; };
 		5D26DD7018FC5D8600914F06 /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D26DD6F18FC5D8600914F06 /* EventCell.m */; };
 		5D26DD7318FC674800914F06 /* DetailEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D26DD7218FC674800914F06 /* DetailEventViewController.m */; };
@@ -64,6 +65,8 @@
 /* Begin PBXFileReference section */
 		5D12A15018F91365005A5BEE /* DetailCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCompanyViewController.h; sourceTree = "<group>"; };
 		5D12A15118F91365005A5BEE /* DetailCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCompanyViewController.m; sourceTree = "<group>"; };
+		5D1630B4190BA510005AEE23 /* FeedbackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackCell.h; sourceTree = "<group>"; };
+		5D1630B5190BA510005AEE23 /* FeedbackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackCell.m; sourceTree = "<group>"; };
 		5D26DD6818FC281900914F06 /* CommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsCell.h; sourceTree = "<group>"; };
 		5D26DD6918FC281900914F06 /* CommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsCell.m; sourceTree = "<group>"; };
 		5D26DD6E18FC5D8600914F06 /* EventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCell.h; sourceTree = "<group>"; };
@@ -369,10 +372,12 @@
 				5D26DD6F18FC5D8600914F06 /* EventCell.m */,
 				5D2E28E719059FD200C64769 /* PremiumJobCell.h */,
 				5D2E28E819059FD200C64769 /* PremiumJobCell.m */,
-				5DD088901906319D008601DB /* MiddleJobCell.h */,
 				5DD088911906319D008601DB /* MiddleJobCell.m */,
 				5DD08893190631B2008601DB /* StandardJobCell.h */,
 				5DD08894190631B2008601DB /* StandardJobCell.m */,
+				5DD088901906319D008601DB /* MiddleJobCell.h */,
+				5D1630B4190BA510005AEE23 /* FeedbackCell.h */,
+				5D1630B5190BA510005AEE23 /* FeedbackCell.m */,
 			);
 			path = "Custom cells";
 			sourceTree = "<group>";
@@ -496,6 +501,7 @@
 				5D26DD7018FC5D8600914F06 /* EventCell.m in Sources */,
 				5D82DE0218F8080A009E4D3E /* ArticleCell.m in Sources */,
 				5DD088921906319D008601DB /* MiddleJobCell.m in Sources */,
+				5D1630B6190BA510005AEE23 /* FeedbackCell.m in Sources */,
 				5D28ED9418F8A4E80066011D /* CommentsViewController.m in Sources */,
 				5D29B11918F7CF8F006DCD4F /* main.m in Sources */,
 				5DD08895190631B2008601DB /* StandardJobCell.m in Sources */,

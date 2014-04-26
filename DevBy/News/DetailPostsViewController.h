@@ -10,6 +10,7 @@
 
 @interface DetailPostsViewController : UIViewController
 
-@property(strong, nonatomic)NSString * text;
+@property(nonatomic, strong)NSString * text;
+@property(nonatomic, strong)UIImage * image;
 
 @end

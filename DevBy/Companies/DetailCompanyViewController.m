@@ -8,6 +8,7 @@
 
 #import "DetailCompanyViewController.h"
 #import "CommentsCell.h"
+#import "FeedbackCell.h"
 
 float const offset = 20.0f;
 float const nameLabelFont = 28.0f;
@@ -17,7 +18,7 @@ float const textViewFont = 14.0f;
 float const logoHeight = 45.0;
 static float navBarHeight = 64.0f;
 
-@interface DetailCompanyViewController ()
+@interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
     float totalHeight;
     CGRect textViewFrame;
@@ -29,6 +30,8 @@ static float navBarHeight = 64.0f;
 @property(nonatomic, strong)UITextView * textView;
 @property(nonatomic, strong)UIScrollView * scrollView;
 @property(nonatomic, strong)NSMutableArray * comments;
+@property(nonatomic, strong)UITableView * commentsTableView;
+@property(nonatomic, strong)UITableView * feedBackTableView;
 
 @end
 
@@ -103,7 +106,7 @@ static float navBarHeight = 64.0f;
     {
         navObjectsHeight = navBarHeight;
     }
-    totalHeight += offset/2 + navObjectsHeight;
+    totalHeight += offset*0.8 + navObjectsHeight;
     CGRect nameLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset - logoHeight, logoHeight);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
     nameLabel.font = [UIFont systemFontOfSize:nameLabelFont];
@@ -121,7 +124,7 @@ static float navBarHeight = 64.0f;
     [employeeNumberLabel sizeToFit];
     [self.scrollView addSubview:employeeNumberLabel];
     
-    CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - logoHeight, nameLabelRect.origin.y + offset/3, logoHeight, logoHeight);
+    CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - logoHeight, nameLabelRect.origin.y + 5, logoHeight, logoHeight);
     UIImageView * logoView = [[UIImageView alloc] initWithFrame:logoViewRect];
     logoView.backgroundColor = [UIColor grayColor];
     [self.scrollView addSubview:logoView];
@@ -167,6 +170,7 @@ static float navBarHeight = 64.0f;
 
 -(void)addCompanyDescription
 {
+    [self cleanTextView];
     self.textView.frame = textViewFrame;
     self.textView.text = self.companysDescription;
     [self.textView sizeToFit];
@@ -176,26 +180,179 @@ static float navBarHeight = 64.0f;
 
 -(void)addCompanysDiscussion
 {
-    if (self.textView)
-    {
-        [self.textView removeFromSuperview];
-    }
+    [self cleanTextView];
     [self setDiscussionView];
     [self.scrollView sizeToFit];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.commentsTableView.bounds.size.height);
 }
 
 -(void)addCompanysFeedback
 {
-    self.textView.frame = textViewFrame;
-    self.textView.text = @"Отзывы";
-    [self.textView sizeToFit];
-    [self.scrollView addSubview:self.textView];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
+    [self cleanTextView];
+    [self setFeedbackView];
+    [self.scrollView sizeToFit];
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.feedBackTableView.bounds.size.height);
+}
+
+-(void)cleanTextView
+{
+    if (self.textView)
+    {
+        [self.textView removeFromSuperview];
+    }
+    if (self.commentsTableView)
+    {
+        [self.commentsTableView removeFromSuperview];
+    }
+    if (self.feedBackTableView)
+    {
+        [self.feedBackTableView removeFromSuperview];
+    }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (tableView == self.commentsTableView)
+    {
+        return 10;
+    }
+    else if(tableView == self.feedBackTableView)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.commentsTableView)
+    {
+        CommentsCell * cell = [[CommentsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CommentCell"];
+        [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
+        return cell.totalHeight;
+    }
+    else
+    {
+        FeedbackCell * cell = [[FeedbackCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CommentCell"];
+        [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
+        return cell.totalHeight;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.commentsTableView)
+    {
+        CommentsCell * cell = [[CommentsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CommentCell"];
+        [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
+        return cell;
+    }
+    else
+    {
+        FeedbackCell * cell = [[FeedbackCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FeedbackCell"];
+        [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
+        return cell;
+    }
+}
+
+-(void)configureCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell isKindOfClass:[CommentsCell class]])
+    {
+        CommentsCell * commentCell = (CommentsCell *)cell;
+        commentCell.username = @"Username";
+        commentCell.date = @"24 April 2014, 15:07";
+        commentCell.comment = @"Ответ очень простой: хочу - отвечаю, не хочу - не отвечаю. Ситуация целиком и полностью зависит от мотивации работника, от того считает ли что он ответственен за результат в целом, живет ли он проектом или он просто отрабатывает определенное время за деньги. В моей карьере случалось по разному.";
+        
+        if (indexPath.row > 8)
+        {
+            [commentCell drawCellWithOffset:0];
+        }
+        else if (indexPath.row > 7)
+        {
+            [commentCell drawCellWithOffset:7];
+        }
+        else if (indexPath.row > 6)
+        {
+            [commentCell drawCellWithOffset:6];
+        }
+        else if (indexPath.row > 5)
+        {
+            [commentCell drawCellWithOffset:5];
+        }
+        else if (indexPath.row > 4)
+        {
+            [commentCell drawCellWithOffset:4];
+        }
+        else if (indexPath.row > 3)
+        {
+            [commentCell drawCellWithOffset:3];
+        }
+        else if (indexPath.row > 2)
+        {
+            [commentCell drawCellWithOffset:2];
+        }
+        else if (indexPath.row > 1)
+        {
+            [commentCell drawCellWithOffset:1];
+        }
+        else
+        {
+            [commentCell drawCellWithOffset:0];
+        }
+    }
+    else if ([cell isKindOfClass:[FeedbackCell class]])
+    {
+        CommentsCell * commentCell = (CommentsCell *)cell;
+        commentCell.username = @"Username";
+        commentCell.date = @"24 April 2014, 15:07";
+        commentCell.comment = @"Ответ очень простой: хочу - отвечаю, не хочу - не отвечаю. Ситуация целиком и полностью зависит от мотивации работника, от того считает ли что он ответственен за результат в целом, живет ли он проектом или он просто отрабатывает определенное время за деньги. В моей карьере случалось по разному.";
+        [commentCell drawCellWithOffset:0];
+    }
+        
+}
+
+-(void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    if (indexPath.row < 9)
+//    {
+//        CGRect frame = textViewFrame;
+//        frame.size.height += cell.bounds.size.height;
+//        self.commentsTableView.frame = frame;
+//    }
+//    else
+//    {
+//        CGRect frame = textViewFrame;
+//        frame.size.height += cell.bounds.size.height;
+//        self.commentsTableView.frame = frame;
+//    }
 }
 
 -(void)setDiscussionView
 {
+    CGRect frame = textViewFrame;
+    frame.size.height += self.view.bounds.size.height;
+    self.commentsTableView = [[UITableView alloc]initWithFrame:frame];
+    self.commentsTableView.userInteractionEnabled = NO;
+    self.commentsTableView.delegate = self;
+    self.commentsTableView.dataSource = self;
+    [self.scrollView addSubview:self.commentsTableView];
+}
+
+-(void)setFeedbackView
+{
+    CGRect frame = textViewFrame;
+    frame.size.height += self.view.bounds.size.height/3;
+    self.feedBackTableView = [[UITableView alloc]initWithFrame:frame];
+    self.feedBackTableView.userInteractionEnabled = NO;
+    self.feedBackTableView.delegate = self;
+    self.feedBackTableView.dataSource = self;
+    [self.scrollView addSubview:self.feedBackTableView];
 }
 
 @end

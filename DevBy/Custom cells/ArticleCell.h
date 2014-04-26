@@ -10,6 +10,13 @@
 
 @interface ArticleCell : UITableViewCell
 
--(id)initWithHeight:(CGFloat)height title:(NSString *)title reuseIdentifier:(NSString *)reuseidentifier;
+@property(nonatomic, assign, readonly)float totalHeight;
+
+@property(nonatomic, strong)NSString * title;
+@property(nonatomic, strong)NSString * date;
+@property(nonatomic, strong)UIImage * image;
+@property(nonatomic, assign)float height;
+
+-(void)drawCell;
 
 @end

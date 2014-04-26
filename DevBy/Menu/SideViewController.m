@@ -34,15 +34,6 @@ enum
 {
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
-	UILabel *label  = [[UILabel alloc] init];
-    label.font = [UIFont boldSystemFontOfSize:20.0f];
-    label.textColor = [UIColor blueColor];
-    label.backgroundColor = [UIColor clearColor];
-	label.text = menuStr;
-    label.frame = CGRectMake(94.0f, 30.0f, 200.0f, 40.0f);
-	[label sizeToFit];
-	label.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-    [self.view addSubview:label];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame = CGRectMake(20.0f, 70.0f, 200.0f, 40.0f);

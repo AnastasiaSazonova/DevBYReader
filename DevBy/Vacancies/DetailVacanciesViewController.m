@@ -19,6 +19,7 @@ static float navBarHeight = 64.0f;
 
 @property(nonatomic, strong)UIScrollView * scrollView;
 @property(nonatomic, strong)UITextView * textView;
+@property(nonatomic, strong)NSString * jobDescription;
 
 @end
 
@@ -38,12 +39,21 @@ static float navBarHeight = 64.0f;
 {
     if (!_textView)
     {
-        textViewFrame = CGRectMake(offset * 0.8, totalHeight + offset/3, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/3);
+        textViewFrame = CGRectMake(offset * 0.8, totalHeight + offset/3, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/5);
         _textView = [[UITextView alloc] initWithFrame:textViewFrame];
         _textView.userInteractionEnabled = NO;
         _textView.font = [UIFont systemFontOfSize:14];
     }
     return _textView;
+}
+
+-(NSString *)jobDescription
+{
+    if (!_jobDescription)
+    {
+        _jobDescription = @"Мы ищем способного разработчика для участия в реализации интересных и масштабных коммерческих проектов! Наши заказчики - крупные международные компании \nУсловия работы:Высокая официальная зарплата Спокойный, дружелюбный коллектив Современный офис в Silver Tower, комфортные рабочие места Нормированный восьмичасовой рабочий день Гибкий график работы Полный соцпакет Дополнительные премии по результатам работы Корпоративные праздники и путешествия";
+    }
+    return _jobDescription;
 }
 
 - (void)viewDidLoad
@@ -108,7 +118,7 @@ static float navBarHeight = 64.0f;
 -(void)addDescription
 {
     self.textView.frame = textViewFrame;
-    self.textView.text = @"Мы ищем способного разработчика для участия в реализации интересных и масштабных коммерческих проектов! Наши заказчики - крупные международные компании \nУсловия работы:Высокая официальная зарплата Спокойный, дружелюбный коллектив Современный офис в Silver Tower, комфортные рабочие места Нормированный восьмичасовой рабочий день Гибкий график работы Полный соцпакет Дополнительные премии по результатам работы Корпоративные праздники и путешествия";
+    self.textView.text = self.jobDescription;
     [self.textView sizeToFit];
     [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);

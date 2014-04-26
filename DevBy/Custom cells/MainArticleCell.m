@@ -10,31 +10,26 @@
 
 @implementation MainArticleCell
 
--(id)initWithHeight:(CGFloat)height title:(NSString *)title reuseIdentifier:(NSString *)identifier
+-(void)drawCell
 {
-    self = [super init];
-    if (self)
-    {
-        CGRect imageFrame = CGRectMake(0, 0, self.bounds.size.width, height);
-        float textOffset = 10;
-        UIImageView * imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-        imageView.backgroundColor = [UIColor grayColor];
-        UILabel * titleLabel = [[UILabel alloc] initWithFrame:imageFrame];
-        titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.font = [UIFont  systemFontOfSize:17];
-        titleLabel.numberOfLines = 0;
-        titleLabel.text = title;
-        [titleLabel sizeToFit];
-        titleLabel.frame = CGRectMake(titleLabel.frame.origin.x + textOffset/2, imageFrame.size.height - titleLabel.bounds.size.height - textOffset, self.bounds.size.width - textOffset, titleLabel.frame.size.height);
-        [imageView addSubview:titleLabel];
-        [self addSubview:imageView];
-    }
-    return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
+    float textOffset = 10.0f;
+    CGRect imageFrame = CGRectMake(0, 0, self.bounds.size.width, self.height);
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:imageFrame];
+    imageView.image = self.image;
+    
+    CGRect opacityFrame = CGRectMake(0, self.height*0.65, self.bounds.size.width, self.height*0.35);
+    UIImageView * opacity = [[UIImageView alloc] initWithFrame:opacityFrame];
+    opacity.image = [UIImage imageNamed:@"dark_opacity"];
+    [imageView addSubview:opacity];
+    
+    CGRect titleLabelRect = CGRectMake(textOffset/2, opacityFrame.origin.y, self.bounds.size.width - textOffset, self.height*0.35);
+    UILabel * titleLabel = [[UILabel alloc] initWithFrame:titleLabelRect];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    titleLabel.numberOfLines = 0;
+    titleLabel.text = self.title;
+    [imageView addSubview:titleLabel];
+    [self addSubview:imageView];
 }
 
 @end

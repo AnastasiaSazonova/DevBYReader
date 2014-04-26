@@ -34,7 +34,7 @@
     CGRect descriptionLabelFrame = CGRectMake(offset*4, self.totalHeight, self.bounds.size.width - offset*5, 50);
     UILabel * descriptionLabel = [[UILabel alloc] initWithFrame:descriptionLabelFrame];
     descriptionLabel.font = [UIFont systemFontOfSize:12];
-    descriptionLabel.textColor = [UIColor grayColor];
+    descriptionLabel.textColor = [UIColor darkGrayColor];
     descriptionLabel.numberOfLines = 0;
     descriptionLabel.text = self.description;
     [descriptionLabel sizeToFit];
@@ -51,7 +51,7 @@
     CGRect dayLabelFrame = CGRectMake(offset/2, self.totalHeight/2 - offset/2, 50, 50);
     UILabel * dayLabel = [[UILabel alloc] initWithFrame:dayLabelFrame];
     dayLabel.font = [UIFont systemFontOfSize:17];
-    dayLabel.textColor = [UIColor grayColor];
+    dayLabel.textColor = [UIColor darkGrayColor];
     dayLabel.text = self.month;
     [dayLabel sizeToFit];
     [self addSubview:dayLabel];
@@ -59,7 +59,7 @@
     CGRect weekDayLabelFrame = CGRectMake(offset*1.3, self.totalHeight/2 + offset/2, 50, 50);
     UILabel * weekDayLabel = [[UILabel alloc] initWithFrame:weekDayLabelFrame];
     weekDayLabel.font = [UIFont systemFontOfSize:17];
-    weekDayLabel.textColor = [UIColor grayColor];
+    weekDayLabel.textColor = [UIColor darkGrayColor];
     weekDayLabel.text = self.dayOfWeek;
     [weekDayLabel sizeToFit];
     [self addSubview:weekDayLabel];

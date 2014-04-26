@@ -8,44 +8,49 @@
 
 #import "ArticleCell.h"
 
+@interface ArticleCell()
+
+@property(nonatomic, assign, readwrite)float totalHeight;
+
+@end
+
 @implementation ArticleCell
 
--(id)initWithHeight:(CGFloat)height title:(NSString *)title reuseIdentifier:(NSString *)reuseidentifier
+-(void)drawCell
 {
-    self = [super init];
-    if (self)
+    float offset = 10;
+    self.totalHeight = 0;
+    CGRect imageFrame = CGRectMake(offset, offset, self.bounds.size.width/4,  100 - 2 * offset);
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:imageFrame];
+    imageView.image = self.image;
+    
+    CGRect titleLabelRect = CGRectMake(imageView.bounds.size.width + imageView.bounds.origin.x + offset*1.7, offset*0.9, self.bounds.size.width - imageView.bounds.size.width + imageView.bounds.origin.x - offset * 2.3, self.height * 0.7);
+    UILabel * titleLabel = [[UILabel alloc] initWithFrame:titleLabelRect];
+    titleLabel.font = [UIFont boldSystemFontOfSize:13];
+    titleLabel.numberOfLines = 0;
+    titleLabel.text = self.title;
+    if ([self.title length] < 110)
     {
-        float offset = 10;
-        CGRect imageFrame = CGRectMake(offset, offset, self.bounds.size.width/4, height - 2 * offset);
-        UIImageView * imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-        imageView.backgroundColor = [UIColor yellowColor];
-        
-        float xPosition = imageFrame.origin.x + imageFrame.size.width + offset;
-        CGRect titleLabelRect = CGRectMake(xPosition, 0, self.bounds.size.width - xPosition, self.bounds.size.height - 2 * offset);
-        UILabel * titleLabel = [[UILabel alloc] initWithFrame: titleLabelRect];
-        titleLabel.numberOfLines = 0;
-        titleLabel.text = title;
-        titleLabel.font = [UIFont systemFontOfSize:15];
         [titleLabel sizeToFit];
-        [imageView addSubview:titleLabel];
-        
-        CGRect postedDateRect = CGRectMake(xPosition, titleLabelRect.origin.y + titleLabel.bounds.size.height + offset/2, titleLabelRect.size.width, titleLabelRect.size.height);
-        UILabel * postedDate = [[UILabel alloc] initWithFrame: postedDateRect];
-        postedDate.font = [UIFont systemFontOfSize:12];
-        postedDate.numberOfLines = 0;
-        postedDate.text = @"10 апреля в 15:26";
-        [postedDate sizeToFit];
-        [imageView addSubview:postedDate];
-        
-        [self addSubview:imageView];
+        self.totalHeight += titleLabel.bounds.size.height + titleLabelRect.origin.y + offset/2;
     }
-
-    return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
+    else
+    {
+        CGRect bigTitleLabelRect = CGRectMake(titleLabelRect.origin.x, offset*0.5, titleLabelRect.size.width, titleLabelRect.size.height);
+        titleLabel.frame = bigTitleLabelRect;
+        self.totalHeight += titleLabel.bounds.size.height + titleLabel.bounds.origin.y + offset/2;
+    }
+    [self addSubview:titleLabel];
+    
+    CGRect dateLabelRect = CGRectMake(titleLabelRect.origin.x, self.totalHeight, titleLabel.bounds.size.width, self.height - self.totalHeight- offset/2);
+    UILabel * dateLabel = [[UILabel alloc] initWithFrame:dateLabelRect];
+    dateLabel.font = [UIFont boldSystemFontOfSize:11];
+    dateLabel.textColor = [UIColor darkGrayColor];
+    dateLabel.text = self.date;
+    if ([self.title length] < 110)
+    [dateLabel sizeToFit];
+    [self addSubview:dateLabel];
+    [self addSubview:imageView];
 }
 
 @end
