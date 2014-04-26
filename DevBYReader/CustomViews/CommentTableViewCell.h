@@ -14,6 +14,7 @@
 @property (strong, nonatomic) UILabel *authorLabel;
 @property (strong, nonatomic) UILabel *textLabel;
 @property (strong, nonatomic) UILabel *timeLabel;
+@property (assign, nonatomic) NSInteger depth;
 
 - (CGFloat)getHeight;
 - (void)defineRects;

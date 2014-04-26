@@ -53,6 +53,7 @@
     cell.authorLabel.text = currentComment.author;
     cell.timeLabel.text = currentComment.time;
     cell.textLabel.text = currentComment.text;
+    cell.depth = currentComment.depth;
     
     [commentTableViewCellList addObject:cell];
     [cell defineRects];

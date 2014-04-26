@@ -16,7 +16,7 @@
 
 @implementation CommentTableViewCell
 
-@synthesize authorLabel, textLabel, timeLabel;
+@synthesize authorLabel, textLabel, timeLabel, depth;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -47,15 +47,16 @@
 
 - (void)defineRects
 {
-    CGSize authorSize = [authorLabel sizeThatFits:CGSizeMake(CONTENT_WIDTH / 2 - MARGIN_SMALL, NSIntegerMax)];
-    CGSize timeSize = [timeLabel sizeThatFits:CGSizeMake(CONTENT_WIDTH / 2 - MARGIN_SMALL, NSIntegerMax)];
-    CGSize textSize = [textLabel sizeThatFits:CGSizeMake(CONTENT_WIDTH - 2 * MARGIN_SMALL, NSIntegerMax)];
+    
+    CGSize authorSize = [authorLabel sizeThatFits:CGSizeMake(CONTENT_WIDTH / 2 - MARGIN_SMALL - MARGIN_BIG * depth, NSIntegerMax)];
+    CGSize timeSize = [timeLabel sizeThatFits:CGSizeMake(CONTENT_WIDTH / 2 - MARGIN_SMALL - MARGIN_BIG * depth, NSIntegerMax)];
+    CGSize textSize = [textLabel sizeThatFits:CGSizeMake(CONTENT_WIDTH - 2 * MARGIN_SMALL - MARGIN_BIG * depth, NSIntegerMax)];
     
     cellHeight = authorSize.height + 3 * MARGIN_SMALL + textSize.height;
     
-    authorLabel.frame = CGRectMake(MARGIN_SMALL, MARGIN_SMALL, authorSize.width, authorSize.height);
+    authorLabel.frame = CGRectMake(MARGIN_SMALL + MARGIN_BIG * depth, MARGIN_SMALL, authorSize.width, authorSize.height);
     timeLabel.frame = CGRectMake(CONTENT_WIDTH / 2, MARGIN_SMALL, CONTENT_WIDTH / 2 - MARGIN_SMALL, timeSize.height);
-    textLabel.frame = CGRectMake(MARGIN_SMALL, authorSize.height + 2 * MARGIN_SMALL, textSize.width, textSize.height);
+    textLabel.frame = CGRectMake(MARGIN_SMALL + MARGIN_BIG * depth, authorSize.height + 2 * MARGIN_SMALL, textSize.width, textSize.height);
 }
 
 - (CGFloat)getHeight
