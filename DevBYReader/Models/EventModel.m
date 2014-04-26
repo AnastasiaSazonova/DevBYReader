@@ -21,11 +21,11 @@
     self = [super init];
     if(self)
     {
-        self.eventId = eventId_;
-        self.title = title_;
-        self.date = date_;
-        self.dateDet = dateDet_;
-        self.description = description_;
+        eventId = eventId_;
+        title = title_;
+        date = date_;
+        dateDet = dateDet_;
+        description = description_;
     }
     return self;
 }
