@@ -11,7 +11,4 @@
 
 @interface MiddleJob : Job
 
-@property(nonatomic, strong)NSString * name;
-@property(nonatomic, strong)NSString * companysName;
-
 @end

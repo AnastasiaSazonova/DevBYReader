@@ -29,7 +29,7 @@ NSString * standardJobIdentifier = @"StandardJob";
 }
 
 @property(nonatomic, strong)NSArray * jobs;
-@property(nonatomic, strong)NSArray * middleJobs;
+//@property(nonatomic, strong)NSArray * middleJobs;
 @property(nonatomic, strong)NSArray * searchResults;
 
 @end
@@ -70,13 +70,47 @@ NSString * standardJobIdentifier = @"StandardJob";
         premiumJob6.companysName = @"SaM Solutions";
         premiumJob6.description = @"6Приглашаяем в SaM Solutions разработчика на платформе Hybris Должностные обязанности: ∙ Разработка интернет- решений на базе платформы Hybris; ∙ Реализация интеграционных проектов на базе платформы Hybris. Требования: ∙ Высшее т ...";
         premiumJob6.pictureUrl = nil;
-
-        _jobs = @[premiumJob1, premiumJob2, premiumJob3, premiumJob4, premiumJob5, premiumJob6];
+        
+        Job * standardJob1 = [[Job alloc] init];
+        standardJob1.name = @"1Junior ASP.Net MVC developer";
+        standardJob1.companysName = @"Elilink Consulting";
+        Job * standardJob2 = [[Job alloc] init];
+        standardJob2.name = @"2DACH Business Development Manager";
+        standardJob2.companysName = @"SaM Solutions";
+        Job * standardJob3 = [[Job alloc] init];
+        standardJob3.name = @"3Senior Front-end Developer (Могилев)";
+        standardJob3.companysName = @"EPAM Systems";
+        Job * standardJob4 = [[Job alloc] init];
+        standardJob4.name = @"4Главный тестировщик";
+        standardJob4.companysName = @"Сбербанк-Технологии";
+        
+        MiddleJob * middleJob1 = [[MiddleJob alloc] init];
+        middleJob1.name = @"1Руководитель команды аналитиков";
+        middleJob1.companysName = @"A1QA";
+        MiddleJob * middleJob2 = [[MiddleJob alloc] init];
+        middleJob2.name = @"2An Extraordinary Project for Senior .NET Software Engineer";
+        middleJob2.companysName = @"NUBIKO";
+        MiddleJob * middleJob3 = [[MiddleJob alloc] init];
+        middleJob3.name = @"3.Net разработчик со знанием немецкого языка";
+        middleJob3.companysName = @"SaM Solutions";
+        MiddleJob * middleJob4 = [[MiddleJob alloc] init];
+        middleJob4.name = @"4Java developer (eCommerce Hybris)";
+        middleJob4.companysName = @"SaM Solutions";
+        MiddleJob * middleJob5 = [[MiddleJob alloc] init];
+        middleJob5.name = @"5Ios разработчик со знанием немецкого языка";
+        middleJob5.companysName = @"SaM Solutions";
+        MiddleJob * middleJob6 = [[MiddleJob alloc] init];
+        middleJob6.name = @"6Android developer (eCommerce Hybris)";
+        middleJob6.companysName = @"SaM Solutions";
+        
+        _jobs = @[premiumJob1, premiumJob2, premiumJob3, premiumJob4, premiumJob5, premiumJob6,
+                  middleJob1, standardJob1, standardJob4, middleJob3, standardJob2, middleJob5,
+                  middleJob2, standardJob3, middleJob6];
     }
     return _jobs;
 }
 
--(NSArray *)middleJobs
+/*-(NSArray *)middleJobs
 {
     if (!_middleJobs)
     {
@@ -106,7 +140,7 @@ NSString * standardJobIdentifier = @"StandardJob";
     }
     return _middleJobs;
 }
-
+*/
 -(NSArray *)searchResults
 {
     if (!_searchResults)
@@ -136,15 +170,21 @@ NSString * standardJobIdentifier = @"StandardJob";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < 7)
+    if([self.jobs[indexPath.row] isKindOfClass:[PremiumJob class]])
     {
-       PremiumJobCell * cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
+        PremiumJobCell * cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
+        [self configureCell:cell inTableView:self.tableView AtIndexPath:indexPath];
+        return cell.totalHeight;
+    }
+    else if([self.jobs[indexPath.row] isKindOfClass:[MiddleJob class]])
+    {
+        MiddleJobCell * cell = [[MiddleJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:middleJobIdentifier];
         [self configureCell:cell inTableView:self.tableView AtIndexPath:indexPath];
         return cell.totalHeight;
     }
     else
     {
-       MiddleJobCell * cell = [[MiddleJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:middleJobIdentifier];
+        StandardJobCell * cell = [[StandardJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:standardJobIdentifier];
         [self configureCell:cell inTableView:self.tableView AtIndexPath:indexPath];
         return cell.totalHeight;
     }
@@ -170,13 +210,18 @@ NSString * standardJobIdentifier = @"StandardJob";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    if (indexPath.row < 7)
+    
+    if([self.jobs[indexPath.row] isKindOfClass:[PremiumJob class]])
     {
         cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
     }
-    else
+    else if([self.jobs[indexPath.row] isKindOfClass:[MiddleJob class]])
     {
         cell = [[MiddleJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:middleJobIdentifier];
+    }
+    else
+    {
+        cell = [[StandardJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:standardJobIdentifier];
     }
     [self configureCell:cell inTableView:tableView AtIndexPath:indexPath];
     return cell;
@@ -200,6 +245,19 @@ NSString * standardJobIdentifier = @"StandardJob";
     else if([cell isKindOfClass:[MiddleJobCell class]])
     {
         MiddleJobCell * newCell = (MiddleJobCell *)cell;
+        if (tableView == self.searchDisplayController.searchResultsTableView)
+        {
+            newCell.job = [self.searchResults objectAtIndex:indexPath.row];
+        }
+        else
+        {
+            newCell.job = [self.jobs objectAtIndex:indexPath.row];
+        }
+        [newCell drawCell];
+    }
+    else if([cell isKindOfClass:[StandardJobCell class]])
+    {
+        StandardJobCell * newCell = (StandardJobCell *)cell;
         if (tableView == self.searchDisplayController.searchResultsTableView)
         {
             newCell.job = [self.searchResults objectAtIndex:indexPath.row];

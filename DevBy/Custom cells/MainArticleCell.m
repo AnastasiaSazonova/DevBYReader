@@ -9,6 +9,8 @@
 #import "MainArticleCell.h"
 #import "Constants.h"
 
+#define MAX_ROWS 4
+
 @implementation MainArticleCell
 
 -(void)drawCell
@@ -21,7 +23,7 @@
     UILabel * titleLabel = [[UILabel alloc] initWithFrame:titleLabelRect];
     titleLabel.font = [UIFont boldSystemFontOfSize:MACTitleFont];
     titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.numberOfLines = 4;
+    titleLabel.numberOfLines = MAX_ROWS;
     titleLabel.text = self.title;
     [titleLabel sizeToFit];
     titleLabel.frame = CGRectMake(halfOffset / 2, self.height - titleLabel.frame.size.height - halfOffset, titleLabel.frame.size.width, titleLabel.frame.size.height + halfOffset);

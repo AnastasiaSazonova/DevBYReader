@@ -11,8 +11,9 @@
 
 @interface StandardJobCell : UITableViewCell
 
-@property(nonatomic, strong)Job * job;
--(void)drawCell;
 @property(nonatomic, assign, readonly)float totalHeight;
+@property(nonatomic, strong)Job * job;
+
+-(void)drawCell;
 
 @end
