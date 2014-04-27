@@ -10,8 +10,7 @@
 #import "DetailCompanyViewController.h"
 #import "Constants.h"
 
-
-@interface CompaniesViewController()<UISearchDisplayDelegate>
+@interface CompaniesViewController()<UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     NSMutableArray * searchResults;
     UISearchBar * searchBar;
@@ -38,17 +37,47 @@
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Компании", nil);
     
-    searchBar = [[UISearchBar alloc] init];
+    CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
+    searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
+    searchBar.delegate = self;
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     searchDisplayController.delegate = self;
     searchDisplayController.searchResultsDataSource = self;
     searchDisplayController.searchResultsDelegate = self;
-    self.tableView.tableHeaderView = searchBar;
+    [self.view addSubview:searchBar];
+    
+    CGRect tableViewFrame = CGRectMake(0, navBarHeight + CVCRowHeight + 4, self.view.bounds.size.width, self.view.bounds.size.height - self.view.bounds.origin.y);
+    UITableView * tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    if ([tableView numberOfRowsInSection:0] > 11)
+    {
+        [tableView sizeToFit];
+    }
+    [self.view addSubview:tableView];
     searchResults = [[NSMutableArray alloc] init];
+}
+
+- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar
+{
+    NSLog(@"- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar");
+}
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+}
+
+- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    NSCharacterSet *invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ,-\n"] invertedSet];
+    NSString *filtered = [[text componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
+    return [text isEqualToString:filtered];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0)
+    {
+        return CVCRowHeight;
+    }
     int cellContentLength = (int)[self.companysNames[indexPath.row] length];
     if (cellContentLength > CVCMaxCharsPerRow)
     {
@@ -127,7 +156,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
     }
     else
     {
-        indexPath = [self.tableView indexPathForSelectedRow];
+        indexPath = [tableView indexPathForSelectedRow];
         companysName = [self.companysNames objectAtIndex:indexPath.row];
     }
     detailCompanyViewController.companysName = companysName;

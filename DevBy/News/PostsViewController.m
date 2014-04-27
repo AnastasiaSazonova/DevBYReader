@@ -32,7 +32,7 @@
     mainCellHeight = self.view.bounds.size.height*0.4 - 5;
     articleCellHeight = (self.view.bounds.size.height - mainCellHeight - navBarHeight)/3 + 7;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"devLogo"] scaledToSize:CGSizeMake(100, 35)]];
-    _posts = [[NSMutableArray alloc] initWithArray:@[@"Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.", @"Heartbleed – новое слово в маркетинге багов.", @"Злой гений создал гибрид '2048' и 'Flappy Bird' на погибель вашей продуктивности.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies награждения Belarusian IT Awards и Best IT Companies."]];
+    _posts = [[NSMutableArray alloc] initWithArray:@[@"Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.", @"Heartbleed – новое слово в маркетинге багов.", @"Злой гений создал гибрид '2048' и 'Flappy Bird' на погибель вашей продуктивности.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies награждения Belarusian IT Awards и Best IT Companies."]];
     [self.tableView reloadData];
 }
 

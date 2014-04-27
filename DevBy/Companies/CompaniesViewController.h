@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CompaniesViewController : UITableViewController
+@interface CompaniesViewController : UIViewController
 
 @end
