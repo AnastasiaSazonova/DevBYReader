@@ -21,10 +21,10 @@
     UILabel * titleLabel = [[UILabel alloc] initWithFrame:titleLabelRect];
     titleLabel.font = [UIFont boldSystemFontOfSize:MACTitleFont];
     titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.numberOfLines = 0;
+    titleLabel.numberOfLines = 4;
     titleLabel.text = self.title;
     [titleLabel sizeToFit];
-    titleLabel.frame = CGRectMake(halfOffset / 2, self.height - titleLabel.frame.size.height, titleLabel.frame.size.width, titleLabel.frame.size.height);
+    titleLabel.frame = CGRectMake(halfOffset / 2, self.height - titleLabel.frame.size.height - halfOffset, titleLabel.frame.size.width, titleLabel.frame.size.height + halfOffset);
     
     CGRect opacityFrame = CGRectMake(0, titleLabel.frame.origin.y, self.bounds.size.width, titleLabel.frame.size.height);
     UIImageView * opacity = [[UIImageView alloc] initWithFrame:opacityFrame];
