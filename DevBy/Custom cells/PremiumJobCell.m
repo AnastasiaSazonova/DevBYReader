@@ -8,6 +8,7 @@
 
 #import "PremiumJobCell.h"
 #import "PremiumJob.h"
+#import "Constants.h"
 
 @interface PremiumJobCell()
 
@@ -29,36 +30,34 @@
 
 -(void)drawCell
 {
-    float yOffset = 10.0f;
-    float xOffset = 20.0f;
     self.totalHeight = 0;
-    CGRect jobTitleFrame = CGRectMake(xOffset, yOffset, self.frame.size.width - 5*yOffset, self.frame.size.height/2);
+    CGRect jobTitleFrame = CGRectMake(offset, halfOffset, self.frame.size.width - 5*halfOffset, self.frame.size.height/2);
     UILabel * jobTitle = [[UILabel alloc] initWithFrame:jobTitleFrame];
-    jobTitle.font = [UIFont systemFontOfSize:16];
+    jobTitle.font = [UIFont systemFontOfSize:PJCTitleFont];
     jobTitle.numberOfLines = 0;
     jobTitle.text = self.job.name;
     [jobTitle sizeToFit];
     [self addSubview:jobTitle];
-    self.totalHeight += jobTitle.bounds.size.height + yOffset;
+    self.totalHeight += jobTitle.bounds.size.height + halfOffset;
     
-    CGRect companysNameFrame = CGRectMake(xOffset, self.totalHeight, self.frame.size.width - 5*yOffset, self.frame.size.height/2);
+    CGRect companysNameFrame = CGRectMake(offset, self.totalHeight, self.frame.size.width - 5*halfOffset, self.frame.size.height/2);
     UILabel * companysName = [[UILabel alloc] initWithFrame:companysNameFrame];
-    companysName.font = [UIFont boldSystemFontOfSize:13];
+    companysName.font = [UIFont boldSystemFontOfSize:PJCCompanysNameFont];
     companysName.numberOfLines = 0;
     companysName.text = self.job.companysName;
     [companysName sizeToFit];
     [self addSubview:companysName];
-    self.totalHeight += companysName.bounds.size.height + yOffset;
+    self.totalHeight += companysName.bounds.size.height + halfOffset;
     
-    CGRect jobDescriptionFrame = CGRectMake(xOffset, self.totalHeight, self.frame.size.width - 5*yOffset, self.frame.size.height/2);
+    CGRect jobDescriptionFrame = CGRectMake(offset, self.totalHeight, self.frame.size.width - 5*halfOffset, self.frame.size.height/2);
     UILabel * jobDescription = [[UILabel alloc] initWithFrame:jobDescriptionFrame];
     jobDescription.textColor = [UIColor grayColor];
-    jobDescription.font = [UIFont systemFontOfSize:13];
+    jobDescription.font = [UIFont systemFontOfSize:PJCDescriptionFont];
     jobDescription.numberOfLines = 0;
     jobDescription.text = self.job.description;
     [jobDescription sizeToFit];
     [self addSubview:jobDescription];
-    self.totalHeight += jobDescription.bounds.size.height + 1.5*yOffset;
+    self.totalHeight += jobDescription.bounds.size.height + 1.5*halfOffset;
 }
 
 @end

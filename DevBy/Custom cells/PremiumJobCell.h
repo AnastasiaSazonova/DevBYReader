@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 @class PremiumJob;
-#import "StandardJobCell.h"
 
-@interface PremiumJobCell : StandardJobCell
+@interface PremiumJobCell : UITableViewCell
 
 @property(nonatomic, assign, readonly)float totalHeight;
 @property(nonatomic, strong)PremiumJob * job;

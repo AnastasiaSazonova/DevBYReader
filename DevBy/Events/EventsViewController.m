@@ -19,6 +19,9 @@ NSString * eventCellReuseIdentifier = @"EventCell";
 @end
 
 @implementation EventsViewController
+{
+    EventCell* cellTrial;
+}
 
 -(NSMutableArray *)events
 {

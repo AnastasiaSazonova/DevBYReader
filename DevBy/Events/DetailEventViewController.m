@@ -7,13 +7,11 @@
 //
 
 #import "DetailEventViewController.h"
-
-static int maxCharsForBigFont = 60;
+#import "Constants.h"
 
 @interface DetailEventViewController ()
 {
     float totalHeight;
-    float offset;
     CGRect textViewFrame;
 }
 
@@ -104,7 +102,6 @@ static int maxCharsForBigFont = 60;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    offset = 20.0f;
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     totalHeight = offset*0.8 + navObjectsHeight;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -114,7 +111,7 @@ static int maxCharsForBigFont = 60;
     nameLabel.font = [UIFont systemFontOfSize:21];
     nameLabel.numberOfLines = 0;
     nameLabel.text = self.eventsName;
-    if ([self.eventsName length] > maxCharsForBigFont)
+    if ([self.eventsName length] > DEMaxCharsForBigFont)
     {
         nameLabel.adjustsFontSizeToFitWidth = YES;
     }
@@ -196,7 +193,6 @@ static int maxCharsForBigFont = 60;
     self.textView.frame = textViewFrame;
     self.textView.text = self.eventsPrice;
     [self.textView sizeToFit];
-    [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 
@@ -205,7 +201,6 @@ static int maxCharsForBigFont = 60;
     self.textView.frame = textViewFrame;
     self.textView.text = self.eventsAddress;
     [self.textView sizeToFit];
-    [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 
@@ -214,7 +209,6 @@ static int maxCharsForBigFont = 60;
     self.textView.frame = textViewFrame;
     self.textView.text = self.eventsContacts;
     [self.textView sizeToFit];
-    [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 

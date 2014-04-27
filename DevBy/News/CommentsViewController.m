@@ -50,27 +50,7 @@
     cell.date = @"24 April 2014, 15:07";
     cell.comment = @"Ответ очень простой: хочу - отвечаю, не хочу - не отвечаю. Ситуация целиком и полностью зависит от мотивации работника, от того считает ли что он ответственен за результат в целом, живет ли он проектом или он просто отрабатывает определенное время за деньги. В моей карьере случалось по разному.";
 
-    if (indexPath.row > 8)
-    {
-        [cell drawCellWithOffset:0];
-    }
-    else if (indexPath.row > 7)
-    {
-        [cell drawCellWithOffset:7];
-    }
-    else if (indexPath.row > 6)
-    {
-        [cell drawCellWithOffset:6];
-    }
-    else if (indexPath.row > 5)
-    {
-        [cell drawCellWithOffset:5];
-    }
-    else if (indexPath.row > 4)
-    {
-        [cell drawCellWithOffset:4];
-    }
-    else if (indexPath.row > 3)
+    if (indexPath.row > 3)
     {
         [cell drawCellWithOffset:3];
     }

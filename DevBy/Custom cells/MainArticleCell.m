@@ -7,12 +7,12 @@
 //
 
 #import "MainArticleCell.h"
+#import "Constants.h"
 
 @implementation MainArticleCell
 
 -(void)drawCell
 {
-    float textOffset = 10.0f;
     CGRect imageFrame = CGRectMake(0, 0, self.bounds.size.width, self.height);
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:imageFrame];
     imageView.image = self.image;
@@ -22,10 +22,10 @@
     opacity.image = [UIImage imageNamed:@"dark_opacity"];
     [imageView addSubview:opacity];
     
-    CGRect titleLabelRect = CGRectMake(textOffset/2, opacityFrame.origin.y, self.bounds.size.width - textOffset, self.height*0.35);
+    CGRect titleLabelRect = CGRectMake(halfOffset/2, opacityFrame.origin.y, self.bounds.size.width - halfOffset, self.height*0.35);
     UILabel * titleLabel = [[UILabel alloc] initWithFrame:titleLabelRect];
     titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    titleLabel.font = [UIFont boldSystemFontOfSize:MACTitleFont];
     titleLabel.numberOfLines = 0;
     titleLabel.text = self.title;
     [imageView addSubview:titleLabel];

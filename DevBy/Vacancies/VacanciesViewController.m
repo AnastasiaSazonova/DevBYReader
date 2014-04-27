@@ -136,10 +136,18 @@ NSString * standardJobIdentifier = @"StandardJob";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    StandardJobCell *cell;
-    cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
-    [self configureCell:cell inTableView:self.tableView AtIndexPath:indexPath];
-    return cell.totalHeight;
+    if (indexPath.row < 7)
+    {
+       PremiumJobCell * cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
+        [self configureCell:cell inTableView:self.tableView AtIndexPath:indexPath];
+        return cell.totalHeight;
+    }
+    else
+    {
+       MiddleJobCell * cell = [[MiddleJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:middleJobIdentifier];
+        [self configureCell:cell inTableView:self.tableView AtIndexPath:indexPath];
+        return cell.totalHeight;
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -161,7 +169,7 @@ NSString * standardJobIdentifier = @"StandardJob";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    StandardJobCell *cell;
+    UITableViewCell *cell;
     if (indexPath.row < 7)
     {
         cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
@@ -174,17 +182,34 @@ NSString * standardJobIdentifier = @"StandardJob";
     return cell;
 }
 
--(void)configureCell:(StandardJobCell *)cell inTableView:(UITableView *)tableView AtIndexPath:(NSIndexPath *)indexPath
+-(void)configureCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView AtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView)
+    if ([cell isKindOfClass:[PremiumJobCell class]])
     {
-        cell.job = [self.searchResults objectAtIndex:indexPath.row];
+        PremiumJobCell * newCell = (PremiumJobCell *)cell;
+        if (tableView == self.searchDisplayController.searchResultsTableView)
+        {
+            newCell.job = [self.searchResults objectAtIndex:indexPath.row];
+        }
+        else
+        {
+            newCell.job = [self.jobs objectAtIndex:indexPath.row];
+        }
+        [newCell drawCell];
     }
-    else
+    else if([cell isKindOfClass:[MiddleJobCell class]])
     {
-        cell.job = [self.jobs objectAtIndex:indexPath.row];
+        MiddleJobCell * newCell = (MiddleJobCell *)cell;
+        if (tableView == self.searchDisplayController.searchResultsTableView)
+        {
+            newCell.job = [self.searchResults objectAtIndex:indexPath.row];
+        }
+        else
+        {
+            newCell.job = [self.jobs objectAtIndex:indexPath.row];
+        }
+        [newCell drawCell];
     }
-    [cell drawCell];
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope

@@ -10,8 +10,6 @@
 
 @interface ArticleCell : UITableViewCell
 
-@property(nonatomic, assign, readonly)float totalHeight;
-
 @property(nonatomic, strong)NSString * title;
 @property(nonatomic, strong)NSString * date;
 @property(nonatomic, strong)UIImage * image;
