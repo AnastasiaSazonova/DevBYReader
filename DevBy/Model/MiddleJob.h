@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Job.h"
 
-@interface MiddleJob : Job
-
-@property(nonatomic, strong)NSString * name;
-@property(nonatomic, strong)NSString * companysName;
+@interface MiddleJob : NSObject<Job>
 
 @end

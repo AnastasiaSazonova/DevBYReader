@@ -10,12 +10,14 @@
 #import "DetailCompanyViewController.h"
 #import "Constants.h"
 
+
 @interface CompaniesViewController()<UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 {
     NSMutableArray * searchResults;
     UISearchBar * searchBar;
     UISearchDisplayController * searchDisplayController;
 }
+
 
 @property(nonatomic, strong)UITableView * tableView;
 @property(nonatomic, strong)NSArray * companysNames;
@@ -102,6 +104,9 @@
             self.tableView.frame = CGRectMake(0, navBarHeight + CVCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
         }];
     }
+
+   // searchResults = [[NSMutableArray alloc] init];
+
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

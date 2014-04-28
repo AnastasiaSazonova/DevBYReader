@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Job : NSObject
+
+@protocol Job
 
 @property(nonatomic, strong)NSString * name;
 @property(nonatomic, strong)NSString * companysName;

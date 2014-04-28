@@ -13,6 +13,7 @@
 
 @property(nonatomic, assign, readonly)float totalHeight;
 @property(nonatomic, strong)MiddleJob * job;
+
 -(void)drawCell;
 
 @end
