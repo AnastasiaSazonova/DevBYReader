@@ -14,5 +14,6 @@
 @property(nonatomic, strong)NSString * username;
 @property(nonatomic, strong)NSString * date;
 @property(nonatomic, strong)NSString * comment;
+@property(nonatomic, assign)float color;
 
 @end

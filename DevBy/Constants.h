@@ -6,6 +6,19 @@
 //  Copyright (c) 2014 AD. All rights reserved.
 //
 
+enum
+{
+    redColor,
+    greenColor
+};
+
+enum
+{
+    companysDescription,
+    companysDiscussion,
+    companysFeedback
+};
+
 static const float offset = 20.0f;
 static const float middleOffset = 15.0f;
 static const float halfOffset = 10.0f;
@@ -36,6 +49,7 @@ static const float MJTitleFont = 16;
 static const float MJCompanysNameFont = 13;
 
 static const float FBCUsernameFont = 13;
+static const float FBCLabelFont = 11;
 static const float FBCTextFont = 12;
 
 static const float DVNamelabelFont = 21;

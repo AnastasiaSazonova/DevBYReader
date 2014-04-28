@@ -10,13 +10,14 @@
 #import "DetailCompanyViewController.h"
 #import "Constants.h"
 
-@interface CompaniesViewController()<UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface CompaniesViewController()<UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 {
     NSMutableArray * searchResults;
     UISearchBar * searchBar;
     UISearchDisplayController * searchDisplayController;
 }
 
+@property(nonatomic, strong)UITableView * tableView;
 @property(nonatomic, strong)NSArray * companysNames;
 
 @end
@@ -39,37 +40,68 @@
     
     CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
     searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
-    searchBar.delegate = self;
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     searchDisplayController.delegate = self;
     searchDisplayController.searchResultsDataSource = self;
     searchDisplayController.searchResultsDelegate = self;
     [self.view addSubview:searchBar];
     
-    CGRect tableViewFrame = CGRectMake(0, navBarHeight + CVCRowHeight + 4, self.view.bounds.size.width, self.view.bounds.size.height - self.view.bounds.origin.y);
-    UITableView * tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    if ([tableView numberOfRowsInSection:0] > 11)
+    CGRect tableViewFrame = CGRectMake(0, navBarHeight + CVCRowHeight + 3, self.view.bounds.size.width, self.view.bounds.size.height - self.view.bounds.origin.y);
+    self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    if ([self.tableView numberOfRowsInSection:0] > 11)
     {
-        [tableView sizeToFit];
+        [self.tableView sizeToFit];
     }
-    [self.view addSubview:tableView];
+    //tableView.tableHeaderView = searchBar;
+    [self.view addSubview:self.tableView];
     searchResults = [[NSMutableArray alloc] init];
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillShowNotification object:nil];
+    [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSLog(@"- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar");
-}
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
+    // get the table and search bar bounds
+    //CGRect tableBounds = tableView.bounds;
+    CGRect searchBarFrame = searchBar.frame;
+    
+    // make sure the search bar stays at the table's original x and y as the content moves
+    searchBar.frame = CGRectMake(0,
+                                      navBarHeight,
+                                      searchBarFrame.size.width,
+                                      searchBarFrame.size.height
+                                      );
 }
 
-- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    NSCharacterSet *invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ,-\n"] invertedSet];
-    NSString *filtered = [[text componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
-    return [text isEqualToString:filtered];
+-(void)changeSearchBarPosition:(NSNotification *)notification
+{
+    float statusbarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    if ([notification.name isEqualToString:UIKeyboardWillShowNotification])
+    {
+        [UIView animateWithDuration:0.25 animations:^{
+            searchBar.frame =  CGRectMake(0,
+                                          statusbarHeight,
+                                          searchBar.bounds.size.width,
+                                          searchBar.bounds.size.height
+                                          );
+            self.tableView.frame = CGRectMake(0, statusbarHeight + CVCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+        }];
+    }
+    else if([notification.name isEqualToString:UIKeyboardWillHideNotification])
+    {
+        [UIView animateWithDuration:0.25 animations:^{
+            searchBar.frame =  CGRectMake(0,
+                                          navBarHeight,
+                                          searchBar.bounds.size.width,
+                                          searchBar.bounds.size.height
+                                          );
+            self.tableView.frame = CGRectMake(0, navBarHeight + CVCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+        }];
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

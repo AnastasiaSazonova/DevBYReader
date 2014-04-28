@@ -147,15 +147,15 @@
 
 -(void)touchSegmentedContorol:(UISegmentedControl *)segmentedControl
 {
-    if (segmentedControl.selectedSegmentIndex == 0)
+    if (segmentedControl.selectedSegmentIndex == companysDescription)
     {
         [self addCompanyDescription];
     }
-    else if(segmentedControl.selectedSegmentIndex == 1)
+    else if(segmentedControl.selectedSegmentIndex == companysDiscussion)
     {
         [self addCompanysDiscussion];
     }
-    else if(segmentedControl.selectedSegmentIndex == 2)
+    else if(segmentedControl.selectedSegmentIndex == companysFeedback)
     {
         [self addCompanysFeedback];
     }
