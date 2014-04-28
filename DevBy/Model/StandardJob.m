@@ -1,14 +1,14 @@
 //
-//  MiddleJob.m
+//  StandardJob.m
 //  DevBy
 //
-//  Created by Anastasia on 4/24/14.
+//  Created by Admin on 4/28/14.
 //  Copyright (c) 2014 AD. All rights reserved.
 //
 
-#import "MiddleJob.h"
+#import "StandardJob.h"
 
-@implementation MiddleJob
+@implementation StandardJob
 
 @synthesize name, companysName;
 

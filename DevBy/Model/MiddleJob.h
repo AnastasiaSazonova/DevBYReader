@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Job.h"
 
-@interface MiddleJob : Job
+@interface MiddleJob : NSObject<Job>
 
 @end
