@@ -22,7 +22,6 @@ NSString * standardJobIdentifier = @"StandardJob";
 {
     UISearchBar * searchBar;
     UISearchDisplayController * searchDisplayController;
-    BOOL isSearching;
 }
 
 @property(nonatomic, strong)NSArray * jobs;
@@ -111,7 +110,6 @@ NSString * standardJobIdentifier = @"StandardJob";
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Вакансии", nil);
-    isSearching = NO;
     searchBar = [[UISearchBar alloc] init];
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     searchDisplayController.delegate = self;
@@ -227,7 +225,6 @@ NSString * standardJobIdentifier = @"StandardJob";
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    isSearching = YES;
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
     self.searchResults = [self.jobs filteredArrayUsingPredicate:resultPredicate];
 }
@@ -238,7 +235,6 @@ NSString * standardJobIdentifier = @"StandardJob";
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
                                                      selectedScopeButtonIndex]]];
-    NSLog(@"search results count: %d", [self.searchResults count]);
     return YES;
 }
 

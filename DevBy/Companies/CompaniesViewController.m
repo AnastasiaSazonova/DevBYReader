@@ -13,7 +13,6 @@
 
 @interface CompaniesViewController()<UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 {
-    NSMutableArray * searchResults;
     UISearchBar * searchBar;
     UISearchDisplayController * searchDisplayController;
 }
@@ -21,6 +20,7 @@
 
 @property(nonatomic, strong)UITableView * tableView;
 @property(nonatomic, strong)NSArray * companysNames;
+@property(nonatomic, strong)NSMutableArray * searchResults;
 
 @end
 
@@ -35,11 +35,20 @@
     return _companysNames;
 }
 
+-(NSArray *)searchResults
+{
+    if (!_searchResults)
+    {
+        _searchResults = [[NSMutableArray alloc] init];
+    }
+    return _searchResults;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Компании", nil);
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
     searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
@@ -56,27 +65,12 @@
     {
         [self.tableView sizeToFit];
     }
-    //tableView.tableHeaderView = searchBar;
+
     [self.view addSubview:self.tableView];
-    searchResults = [[NSMutableArray alloc] init];
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillShowNotification object:nil];
     [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillHideNotification object:nil];
-}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    // get the table and search bar bounds
-    //CGRect tableBounds = tableView.bounds;
-    CGRect searchBarFrame = searchBar.frame;
-    
-    // make sure the search bar stays at the table's original x and y as the content moves
-    searchBar.frame = CGRectMake(0,
-                                      navBarHeight,
-                                      searchBarFrame.size.width,
-                                      searchBarFrame.size.height
-                                      );
 }
 
 -(void)changeSearchBarPosition:(NSNotification *)notification
@@ -104,23 +98,40 @@
             self.tableView.frame = CGRectMake(0, navBarHeight + CVCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
         }];
     }
-
-   // searchResults = [[NSMutableArray alloc] init];
-
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0)
+    if (tableView == self.searchDisplayController.searchResultsTableView)
     {
-        return CVCRowHeight;
+        return [self heightForRowFrom:self.searchResults AtIndexPath:indexPath];
     }
-    int cellContentLength = (int)[self.companysNames[indexPath.row] length];
+    else
+    {
+        if (indexPath.row == 0)
+        {
+            return CVCRowHeight;
+        }
+        else
+        {
+            return [self heightForRowFrom:self.companysNames AtIndexPath:indexPath];
+        }
+    }
+    return 0;
+}
+
+-(float)heightForRowFrom:(NSArray *)arrayOfData AtIndexPath:(NSIndexPath *)indexPath
+{
+    int cellContentLength = (int)[arrayOfData[indexPath.row] length];
     if (cellContentLength > CVCMaxCharsPerRow)
     {
         return CVCRowHeight * cellContentLength/CVCMaxCharsPerRow;
     }
-    return CVCRowHeight;
+    else
+    {
+        return CVCRowHeight;
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -132,7 +143,7 @@
 {
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
-        return [searchResults count];
+        return [self.searchResults count];
         
     }
     else
@@ -147,7 +158,7 @@
     NSString *companysName = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
-        companysName = [searchResults objectAtIndex:indexPath.row];
+        companysName = [self.searchResults objectAtIndex:indexPath.row];
     }
     else
     {
@@ -156,19 +167,20 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.text = companysName;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     
-    [searchResults removeAllObjects];
+    [self.searchResults removeAllObjects];
     
     NSPredicate *resultPredicate = [NSPredicate
                                     predicateWithFormat:@"SELF contains[cd] %@",
                                     searchText];
     
-    searchResults = [NSMutableArray arrayWithArray:[self.companysNames filteredArrayUsingPredicate:resultPredicate]];
+    self.searchResults = [NSMutableArray arrayWithArray:[self.companysNames filteredArrayUsingPredicate:resultPredicate]];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
@@ -189,7 +201,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
     if (self.searchDisplayController.active)
     {
         indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-        companysName = [searchResults objectAtIndex:indexPath.row];
+        companysName = [self.searchResults objectAtIndex:indexPath.row];
     }
     else
     {
