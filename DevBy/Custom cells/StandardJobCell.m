@@ -7,6 +7,7 @@
 //
 
 #import "StandardJobCell.h"
+#import "Job.h"
 #import "Constants.h"
 
 @interface StandardJobCell()

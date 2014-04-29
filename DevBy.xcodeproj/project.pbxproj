@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D0EA0D7190E5E5E004FDE9A /* StandardJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0EA0D6190E5E5E004FDE9A /* StandardJob.m */; };
 		5D0EA0D9190E61A2004FDE9A /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0EA0D8190E61A2004FDE9A /* Job.m */; };
 		5D12A15218F91366005A5BEE /* DetailCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D12A15118F91365005A5BEE /* DetailCompanyViewController.m */; };
 		5D1630B6190BA510005AEE23 /* FeedbackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1630B5190BA510005AEE23 /* FeedbackCell.m */; };
@@ -28,7 +27,6 @@
 		5D29B13018F7CF8F006DCD4F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D29B12E18F7CF8F006DCD4F /* InfoPlist.strings */; };
 		5D29B13218F7CF8F006DCD4F /* DevByTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D29B13118F7CF8F006DCD4F /* DevByTests.m */; };
 		5D2E28E919059FD200C64769 /* PremiumJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2E28E819059FD200C64769 /* PremiumJobCell.m */; };
-		5D4BF6B31909713900E0E405 /* MiddleJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BF6B21909713900E0E405 /* MiddleJob.m */; };
 		5D82DDCB18F7D0CE009E4D3E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D82DDAA18F7D0CE009E4D3E /* InfoPlist.strings */; };
 		5D82DDCD18F7D0CE009E4D3E /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDB018F7D0CE009E4D3E /* TFHpple.m */; };
 		5D82DDCE18F7D0CE009E4D3E /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDB218F7D0CE009E4D3E /* TFHppleElement.m */; };
@@ -47,7 +45,6 @@
 		5D82DDF618F7D37E009E4D3E /* VacanciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDF518F7D37E009E4D3E /* VacanciesViewController.m */; };
 		5D82DE0218F8080A009E4D3E /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDFF18F8080A009E4D3E /* ArticleCell.m */; };
 		5D82DE0318F8080A009E4D3E /* MainArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DE0118F8080A009E4D3E /* MainArticleCell.m */; };
-		5DD0888C190624AE008601DB /* PremiumJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0888B190624AE008601DB /* PremiumJob.m */; };
 		5DD0888F1906307E008601DB /* DetailVacanciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0888E1906307E008601DB /* DetailVacanciesViewController.m */; };
 		5DD088921906319D008601DB /* MiddleJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD088911906319D008601DB /* MiddleJobCell.m */; };
 		5DD08895190631B2008601DB /* StandardJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD08894190631B2008601DB /* StandardJobCell.m */; };
@@ -64,8 +61,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5D0EA0D5190E5E5E004FDE9A /* StandardJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardJob.h; sourceTree = "<group>"; };
-		5D0EA0D6190E5E5E004FDE9A /* StandardJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardJob.m; sourceTree = "<group>"; };
 		5D0EA0D8190E61A2004FDE9A /* Job.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Job.m; sourceTree = "<group>"; };
 		5D12A15018F91365005A5BEE /* DetailCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCompanyViewController.h; sourceTree = "<group>"; };
 		5D12A15118F91365005A5BEE /* DetailCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCompanyViewController.m; sourceTree = "<group>"; };
@@ -98,8 +93,6 @@
 		5D29B13118F7CF8F006DCD4F /* DevByTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevByTests.m; sourceTree = "<group>"; };
 		5D2E28E719059FD200C64769 /* PremiumJobCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PremiumJobCell.h; sourceTree = "<group>"; };
 		5D2E28E819059FD200C64769 /* PremiumJobCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PremiumJobCell.m; sourceTree = "<group>"; };
-		5D4BF6B11909713900E0E405 /* MiddleJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiddleJob.h; sourceTree = "<group>"; };
-		5D4BF6B21909713900E0E405 /* MiddleJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiddleJob.m; sourceTree = "<group>"; };
 		5D82DDAB18F7D0CE009E4D3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5D82DDAF18F7D0CE009E4D3E /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
 		5D82DDB018F7D0CE009E4D3E /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
@@ -133,8 +126,6 @@
 		5D82DDFF18F8080A009E4D3E /* ArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleCell.m; sourceTree = "<group>"; };
 		5D82DE0018F8080A009E4D3E /* MainArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainArticleCell.h; sourceTree = "<group>"; };
 		5D82DE0118F8080A009E4D3E /* MainArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainArticleCell.m; sourceTree = "<group>"; };
-		5DD0888A190624AE008601DB /* PremiumJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PremiumJob.h; sourceTree = "<group>"; };
-		5DD0888B190624AE008601DB /* PremiumJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PremiumJob.m; sourceTree = "<group>"; };
 		5DD0888D1906307E008601DB /* DetailVacanciesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVacanciesViewController.h; sourceTree = "<group>"; };
 		5DD0888E1906307E008601DB /* DetailVacanciesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVacanciesViewController.m; sourceTree = "<group>"; };
 		5DD088901906319D008601DB /* MiddleJobCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiddleJobCell.h; sourceTree = "<group>"; };
@@ -336,16 +327,10 @@
 		5D82DDE618F7D312009E4D3E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5DD0889619063238008601DB /* Job.h */,
 				5D0EA0D8190E61A2004FDE9A /* Job.m */,
-				5D0EA0D5190E5E5E004FDE9A /* StandardJob.h */,
-				5D0EA0D6190E5E5E004FDE9A /* StandardJob.m */,
 				5D82DDE718F7D312009E4D3E /* HTMLElement.h */,
 				5D82DDE818F7D312009E4D3E /* HTMLElement.m */,
-				5DD0888A190624AE008601DB /* PremiumJob.h */,
-				5DD0888B190624AE008601DB /* PremiumJob.m */,
-				5DD0889619063238008601DB /* Job.h */,
-				5D4BF6B11909713900E0E405 /* MiddleJob.h */,
-				5D4BF6B21909713900E0E405 /* MiddleJob.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -500,14 +485,12 @@
 				5D82DE0318F8080A009E4D3E /* MainArticleCell.m in Sources */,
 				5D82DDEC18F7D312009E4D3E /* CompaniesViewController.m in Sources */,
 				5D12A15218F91366005A5BEE /* DetailCompanyViewController.m in Sources */,
-				5D4BF6B31909713900E0E405 /* MiddleJob.m in Sources */,
 				5D82DDEF18F7D312009E4D3E /* PostsViewController.m in Sources */,
 				5D82DDD818F7D0CE009E4D3E /* SWRevealViewController.m in Sources */,
 				5D82DDCF18F7D0CE009E4D3E /* XPathQuery.m in Sources */,
 				5DD0888F1906307E008601DB /* DetailVacanciesViewController.m in Sources */,
 				5D82DDCD18F7D0CE009E4D3E /* TFHpple.m in Sources */,
 				5D0EA0D9190E61A2004FDE9A /* Job.m in Sources */,
-				5DD0888C190624AE008601DB /* PremiumJob.m in Sources */,
 				5D82DDD618F7D0CE009E4D3E /* JASidePanelController.m in Sources */,
 				5D26DD6A18FC281900914F06 /* CommentsCell.m in Sources */,
 				5D82DDEE18F7D312009E4D3E /* HTMLElement.m in Sources */,
@@ -517,7 +500,6 @@
 				5D26DD7018FC5D8600914F06 /* EventCell.m in Sources */,
 				5D82DE0218F8080A009E4D3E /* ArticleCell.m in Sources */,
 				5DD088921906319D008601DB /* MiddleJobCell.m in Sources */,
-				5D0EA0D7190E5E5E004FDE9A /* StandardJob.m in Sources */,
 				5D1630B6190BA510005AEE23 /* FeedbackCell.m in Sources */,
 				5D28ED9418F8A4E80066011D /* CommentsViewController.m in Sources */,
 				5D29B11918F7CF8F006DCD4F /* main.m in Sources */,

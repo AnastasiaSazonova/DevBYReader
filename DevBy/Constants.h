@@ -19,6 +19,13 @@ enum
     companysFeedback
 };
 
+enum
+{
+    premiumType = 1,
+    middleType,
+    standardType
+};
+
 static const float offset = 20.0f;
 static const float middleOffset = 15.0f;
 static const float halfOffset = 10.0f;
@@ -65,3 +72,6 @@ static const float DCTextViewFont = 14.0f;
 static const float DCLogoHeight = 45.0;
 
 static const int DEMaxCharsForBigFont = 60;
+
+static const int VCmaxCharsPerRow = 30;
+static const int VCRowHeight = 40;

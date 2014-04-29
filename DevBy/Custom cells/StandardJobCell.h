@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StandardJob.h"
+@class Job;
 
 @interface StandardJobCell : UITableViewCell
 
 @property(nonatomic, assign, readonly)float totalHeight;
-@property(nonatomic, strong)StandardJob * job;
+@property(nonatomic, strong)Job * job;
 
 -(void)drawCell;
 
