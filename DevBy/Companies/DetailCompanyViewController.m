@@ -216,7 +216,7 @@
     }
     else if(tableView == self.feedBackTableView)
     {
-        return 1;
+        return 3;
     }
     return 0;
 }
@@ -266,18 +266,6 @@
         {
             [commentCell drawCellWithOffset:0];
         }
-        else if (indexPath.row > 7)
-        {
-            [commentCell drawCellWithOffset:7];
-        }
-        else if (indexPath.row > 6)
-        {
-            [commentCell drawCellWithOffset:6];
-        }
-        else if (indexPath.row > 5)
-        {
-            [commentCell drawCellWithOffset:5];
-        }
         else if (indexPath.row > 4)
         {
             [commentCell drawCellWithOffset:4];
@@ -301,8 +289,11 @@
     }
     else if ([cell isKindOfClass:[FeedbackCell class]])
     {
-        CommentsCell * commentCell = (CommentsCell *)cell;
+        FeedbackCell * commentCell = (FeedbackCell *)cell;
+        commentCell.color = greenColor;
+        commentCell.jobExperience = @"Проработал в Altoros Development: больше 9 лет 21 августа 2013, 09:19";
         commentCell.username = @"Username";
+        commentCell.rating = @"Оценка: 3.9";
         commentCell.date = @"24 April 2014, 15:07";
         commentCell.comment = @"Ответ очень простой: хочу - отвечаю, не хочу - не отвечаю. Ситуация целиком и полностью зависит от мотивации работника, от того считает ли что он ответственен за результат в целом, живет ли он проектом или он просто отрабатывает определенное время за деньги. В моей карьере случалось по разному.";
         [commentCell drawCellWithOffset:0];

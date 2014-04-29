@@ -44,7 +44,7 @@
     UILabel * jobRateLabel = [[UILabel alloc] initWithFrame:jobRateRect];
     jobRateLabel.font = [UIFont boldSystemFontOfSize:FBCUsernameFont];
     jobRateLabel.numberOfLines = 0;
-    jobRateLabel.text = @"Оценка: 3.9";
+    jobRateLabel.text = self.rating;
     [jobRateLabel sizeToFit];
     [self addSubview:jobRateLabel];
     
@@ -52,7 +52,7 @@
     UILabel * jobExperienceLabel = [[UILabel alloc] initWithFrame:jobExperienceRect];
     jobExperienceLabel.font = [UIFont boldSystemFontOfSize:FBCLabelFont];
     jobExperienceLabel.numberOfLines = 0;
-    jobExperienceLabel.text = @"Проработал в Altoros Development: больше 9 лет 21 августа 2013, 09:19";
+    jobExperienceLabel.text = self.jobExperience;
     [jobExperienceLabel sizeToFit];
     [self addSubview:jobExperienceLabel];
     self.totalHeight += jobExperienceRect.origin.y +  jobExperienceLabel.bounds.size.height;

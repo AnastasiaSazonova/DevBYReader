@@ -132,9 +132,9 @@
     [self.scrollView addSubview:dateLabel];
     totalHeight += dateLabel.bounds.size.height + offset/1.5;
     
-    CGRect imageFrame = CGRectMake(offset, totalHeight, 15, 19.5);
-    UIImageView * image = [[UIImageView alloc] initWithFrame:imageFrame];
-    image.backgroundColor = [UIColor grayColor];
+    //CGRect imageFrame = CGRectMake(offset, totalHeight, 15, 19.5);
+    UIImageView * image = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"man"] scaledToSize:CGSizeMake(35, 35)]];
+    //image.backgroundColor = [UIColor grayColor];
     [self.scrollView addSubview:image];
     
     CGRect countLabelFrame = CGRectMake(1.3 * offset + image.bounds.size.width, totalHeight, self.view.bounds.size.width/3, 0);
@@ -156,6 +156,16 @@
     [self.scrollView addSubview:segmentedControl];
     [self.view addSubview:self.scrollView];
 }
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 
 -(void)touchSegmentedControl:(UISegmentedControl *)segmentedControl
 {

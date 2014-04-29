@@ -14,7 +14,11 @@
 @property(nonatomic, strong)NSString * username;
 @property(nonatomic, strong)NSString * date;
 @property(nonatomic, strong)NSString * comment;
+@property(nonatomic, strong)NSString * jobExperience;
+@property(nonatomic, strong)NSString * rating;
 @property(nonatomic, assign)float color;
+
+-(void)drawCellWithOffset:(int)offset;
 
 
 @end

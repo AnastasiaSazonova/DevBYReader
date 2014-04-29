@@ -126,7 +126,6 @@
     self.textView.frame = textViewFrame;
     self.textView.text = @"Технологии: XML/XSLT, .NET (C#; ASP.NET), sql, HTML/DHTML \nИностранные языки: Английский — Intermediate \nОбразование: Не имеет значения";
     [self.textView sizeToFit];
-    [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 
@@ -135,7 +134,6 @@
     self.textView.frame = textViewFrame;
     self.textView.text = @"Эл. почта: akrasouskaya@viacode.com \nСайт: www.viacode.com";
     [self.textView sizeToFit];
-    [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 
