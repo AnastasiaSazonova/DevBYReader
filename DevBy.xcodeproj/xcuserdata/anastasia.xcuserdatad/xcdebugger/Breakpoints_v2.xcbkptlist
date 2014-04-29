@@ -11,17 +11,23 @@
             continueAfterRunningActions = "No"
             filePath = "DevBy/Companies/CompaniesViewController.m"
 <<<<<<< HEAD
+<<<<<<< HEAD
             timestampString = "420279604.394241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
             endingLineNumber = "52"
 =======
+=======
+>>>>>>> sazonova
             timestampString = "420017717.772222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
             endingLineNumber = "56"
+<<<<<<< HEAD
+>>>>>>> sazonova
+=======
 >>>>>>> sazonova
             landmarkName = "-tableView:heightForRowAtIndexPath:"
             landmarkType = "5">
@@ -45,17 +51,23 @@
             continueAfterRunningActions = "No"
             filePath = "DevBy/Events/EventsViewController.m"
 <<<<<<< HEAD
+<<<<<<< HEAD
             timestampString = "420209299.526099"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
             endingLineNumber = "49"
 =======
+=======
+>>>>>>> sazonova
             timestampString = "420120856.958751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
             endingLineNumber = "46"
+<<<<<<< HEAD
+>>>>>>> sazonova
+=======
 >>>>>>> sazonova
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
@@ -69,17 +81,23 @@
             continueAfterRunningActions = "No"
             filePath = "DevBy/Events/EventsViewController.m"
 <<<<<<< HEAD
+<<<<<<< HEAD
             timestampString = "420209299.526099"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
             endingLineNumber = "74"
 =======
+=======
+>>>>>>> sazonova
             timestampString = "420120856.958751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
             endingLineNumber = "67"
+<<<<<<< HEAD
+>>>>>>> sazonova
+=======
 >>>>>>> sazonova
             landmarkName = "-configureCell:forRowAtIndexPath:"
             landmarkType = "5">
@@ -93,17 +111,23 @@
             continueAfterRunningActions = "No"
             filePath = "DevBy/Custom cells/MiddleJobCell.m"
 <<<<<<< HEAD
+<<<<<<< HEAD
             timestampString = "420281351.532542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
             endingLineNumber = "31"
 =======
+=======
+>>>>>>> sazonova
             timestampString = "420050459.05012"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
             endingLineNumber = "35"
+<<<<<<< HEAD
+>>>>>>> sazonova
+=======
 >>>>>>> sazonova
             landmarkName = "-drawCell"
             landmarkType = "5">
@@ -165,22 +189,29 @@
             continueAfterRunningActions = "No"
             filePath = "DevBy/Events/EventsViewController.m"
 <<<<<<< HEAD
+<<<<<<< HEAD
             timestampString = "420209299.526099"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
             endingLineNumber = "31"
 =======
+=======
+>>>>>>> sazonova
             timestampString = "420120784.808056"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
             endingLineNumber = "28"
+<<<<<<< HEAD
+>>>>>>> sazonova
+=======
 >>>>>>> sazonova
             landmarkName = "-events"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
@@ -214,6 +245,8 @@
             landmarkType = "2">
          </BreakpointContent>
       </BreakpointProxy>
+=======
+>>>>>>> sazonova
 =======
 >>>>>>> sazonova
    </Breakpoints>
