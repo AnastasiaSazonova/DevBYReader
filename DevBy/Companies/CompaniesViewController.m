@@ -8,7 +8,6 @@
 
 #import "CompaniesViewController.h"
 #import "DetailCompanyViewController.h"
-#import "Constants.h"
 
 
 @interface CompaniesViewController()<UISearchDisplayDelegate>
@@ -16,6 +15,9 @@
     NSMutableArray * searchResults;
     UISearchBar * searchBar;
     UISearchDisplayController * searchDisplayController;
+    BOOL isSearching;
+    float rowHeight;
+    float maxCharsPerRow;
 }
 
 @property(nonatomic, strong)NSArray * companysNames;
@@ -37,6 +39,8 @@
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Компании", nil);
+    rowHeight = 40;
+    maxCharsPerRow = 30;
     
     searchBar = [[UISearchBar alloc] init];
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
@@ -50,11 +54,11 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int cellContentLength = (int)[self.companysNames[indexPath.row] length];
-    if (cellContentLength > CVCMaxCharsPerRow)
+    if (cellContentLength > maxCharsPerRow)
     {
-        return CVCRowHeight * cellContentLength/CVCMaxCharsPerRow;
+        return rowHeight * cellContentLength/maxCharsPerRow;
     }
-    return CVCRowHeight;
+    return rowHeight;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -10,6 +10,4 @@
 
 @implementation MiddleJob
 
-@synthesize name, companysName;
-
 @end

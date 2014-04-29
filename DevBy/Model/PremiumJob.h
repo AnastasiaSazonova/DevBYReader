@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "Job.h"
 
-@interface PremiumJob : NSObject<Job>
+@interface PremiumJob : Job
 
+@property(nonatomic, strong)NSString * name;
+@property(nonatomic, strong)NSString * companysName;
 @property(nonatomic, strong)NSString * description;
 @property(nonatomic, strong)NSURL * pictureUrl;
 

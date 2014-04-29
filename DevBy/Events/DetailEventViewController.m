@@ -7,11 +7,13 @@
 //
 
 #import "DetailEventViewController.h"
-#import "Constants.h"
+
+static int maxCharsForBigFont = 60;
 
 @interface DetailEventViewController ()
 {
     float totalHeight;
+    float offset;
     CGRect textViewFrame;
 }
 
@@ -102,6 +104,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    offset = 20.0f;
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     totalHeight = offset*0.8 + navObjectsHeight;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -111,7 +114,7 @@
     nameLabel.font = [UIFont systemFontOfSize:21];
     nameLabel.numberOfLines = 0;
     nameLabel.text = self.eventsName;
-    if ([self.eventsName length] > DEMaxCharsForBigFont)
+    if ([self.eventsName length] > maxCharsForBigFont)
     {
         nameLabel.adjustsFontSizeToFitWidth = YES;
     }
@@ -193,6 +196,7 @@
     self.textView.frame = textViewFrame;
     self.textView.text = self.eventsPrice;
     [self.textView sizeToFit];
+    [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 
@@ -201,6 +205,7 @@
     self.textView.frame = textViewFrame;
     self.textView.text = self.eventsAddress;
     [self.textView sizeToFit];
+    [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 
@@ -209,6 +214,7 @@
     self.textView.frame = textViewFrame;
     self.textView.text = self.eventsContacts;
     [self.textView sizeToFit];
+    [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 

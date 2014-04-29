@@ -1,13 +1,13 @@
 //
-//  StandardJob.h
+//  Job.m
 //  DevBy
 //
-//  Created by Admin on 4/28/14.
+//  Created by Anastasia on 4/22/14.
 //  Copyright (c) 2014 AD. All rights reserved.
 //
 
 #import "Job.h"
 
-@interface StandardJob : NSObject<Job>
+@implementation Job
 
 @end

@@ -10,6 +10,4 @@
 
 @implementation PremiumJob
 
-@synthesize name, companysName;
-
 @end

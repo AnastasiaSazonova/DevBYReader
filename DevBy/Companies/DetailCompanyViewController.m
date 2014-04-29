@@ -9,7 +9,14 @@
 #import "DetailCompanyViewController.h"
 #import "CommentsCell.h"
 #import "FeedbackCell.h"
-#import "Constants.h"
+
+float const offset = 20.0f;
+float const nameLabelFont = 28.0f;
+float const descriptionLabelFont = 15.0f;
+float const employeeNumberFont = 13.0f;
+float const textViewFont = 14.0f;
+float const logoHeight = 45.0;
+static float navBarHeight = 64.0f;
 
 @interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -54,7 +61,7 @@
         textViewFrame = CGRectMake(offset * 0.8, totalHeight, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/5);
         _textView = [[UITextView alloc] initWithFrame:textViewFrame];
         _textView.userInteractionEnabled = NO;
-        _textView.font = [UIFont systemFontOfSize:DCTextViewFont];
+        _textView.font = [UIFont systemFontOfSize:textViewFont];
     }
     return _textView;
 }
@@ -100,24 +107,24 @@
         navObjectsHeight = navBarHeight;
     }
     totalHeight += offset*0.8 + navObjectsHeight;
-    CGRect nameLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset - DCLogoHeight, DCLogoHeight);
+    CGRect nameLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset - logoHeight, logoHeight);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
-    nameLabel.font = [UIFont systemFontOfSize:DCNameLabelFont];
+    nameLabel.font = [UIFont systemFontOfSize:nameLabelFont];
     nameLabel.numberOfLines = 0;
     nameLabel.text = self.companysName;
     nameLabel.adjustsFontSizeToFitWidth = YES;
     [self.scrollView addSubview:nameLabel];
     
     totalHeight += nameLabel.bounds.size.height;
-    CGRect employeeLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width, DCLogoHeight);
+    CGRect employeeLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width, logoHeight);
     UILabel * employeeNumberLabel = [[UILabel alloc] initWithFrame:employeeLabelRect];
     employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", self.employeeNumber];
-    employeeNumberLabel.font = [UIFont systemFontOfSize:DCEmployeeNumberFont];
+    employeeNumberLabel.font = [UIFont systemFontOfSize:employeeNumberFont];
     employeeNumberLabel.textColor = [UIColor grayColor];
     [employeeNumberLabel sizeToFit];
     [self.scrollView addSubview:employeeNumberLabel];
     
-    CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - DCLogoHeight, nameLabelRect.origin.y + 5, DCLogoHeight, DCLogoHeight);
+    CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - logoHeight, nameLabelRect.origin.y + 5, logoHeight, logoHeight);
     UIImageView * logoView = [[UIImageView alloc] initWithFrame:logoViewRect];
     logoView.backgroundColor = [UIColor grayColor];
     [self.scrollView addSubview:logoView];
@@ -127,7 +134,7 @@
     UILabel * descriptionLabel = [[UILabel alloc] initWithFrame:descriptionLabelRect];
     descriptionLabel.numberOfLines = 0;
     descriptionLabel.text = self.description;
-    descriptionLabel.font = [UIFont systemFontOfSize:DCDescriptionLabelFont];
+    descriptionLabel.font = [UIFont systemFontOfSize:descriptionLabelFont];
     descriptionLabel.textColor = [UIColor grayColor];
     descriptionLabel.adjustsFontSizeToFitWidth = YES;
     [self.scrollView addSubview:descriptionLabel];
@@ -208,7 +215,7 @@
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.commentsTableView)
     {

@@ -7,11 +7,13 @@
 //
 
 #import "DetailVacanciesViewController.h"
-#import "Constants.h"
+
+static float navBarHeight = 64.0f;
 
 @interface DetailVacanciesViewController ()
 {
     float totalHeight;
+    float offset;
     CGRect textViewFrame;
 }
 
@@ -57,6 +59,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    offset = 20.0f;
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     if (navObjectsHeight == 0)
     {
@@ -67,7 +70,7 @@
     
     CGRect nameLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, 0);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelFrame];
-    nameLabel.font = [UIFont systemFontOfSize:DVNamelabelFont];
+    nameLabel.font = [UIFont systemFontOfSize:21];
     nameLabel.numberOfLines = 0;
     nameLabel.text = self.jobTitle;
     [nameLabel sizeToFit];
@@ -76,7 +79,7 @@
     
     CGRect dateLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, 0);
     UILabel * dateLabel = [[UILabel alloc] initWithFrame:dateLabelFrame];
-    dateLabel.font = [UIFont systemFontOfSize:DVDatelabelFont];
+    dateLabel.font = [UIFont systemFontOfSize:15];
     dateLabel.textColor = [UIColor grayColor];
     dateLabel.numberOfLines = 0;
     dateLabel.text = @"Epam";
@@ -86,7 +89,7 @@
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"Описание", @"Требования", @"Контакты", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
-    segmentedControl.frame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset, 30);
+    segmentedControl.frame = CGRectMake(20, totalHeight, self.view.bounds.size.width - 2 * offset, 30);
     totalHeight += segmentedControl.bounds.size.height;
     [segmentedControl addTarget:self action:@selector(touchSegmentedControl:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
