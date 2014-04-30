@@ -9,7 +9,6 @@
 #import "MainArticleCell.h"
 #import "Constants.h"
 
-
 #define MAX_ROWS 4
 
 @implementation MainArticleCell

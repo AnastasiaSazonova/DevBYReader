@@ -103,7 +103,7 @@
 {
     [super viewDidLoad];
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
-    totalHeight = offset*0.8 + navObjectsHeight;
+    totalHeight = offset*0.4 + navObjectsHeight;
     self.view.backgroundColor = [UIColor whiteColor];
   
     CGRect nameLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, self.view.bounds.size.height/5);

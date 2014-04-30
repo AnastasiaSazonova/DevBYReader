@@ -18,7 +18,7 @@ NSString * premiumJobIdentifier = @"PremiunJob";
 NSString * middleJobIdentifier = @"MiddleJob";
 NSString * standardJobIdentifier = @"StandardJob";
 
-@interface VacanciesViewController()<UISearchDisplayDelegate>
+@interface VacanciesViewController()<UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     UISearchBar * searchBar;
     UISearchDisplayController * searchDisplayController;
@@ -26,6 +26,7 @@ NSString * standardJobIdentifier = @"StandardJob";
 
 @property(nonatomic, strong)NSArray * jobs;
 @property(nonatomic, strong)NSArray * searchResults;
+@property(nonatomic, strong)UITableView * tableView;
 
 @end
 
@@ -110,12 +111,57 @@ NSString * standardJobIdentifier = @"StandardJob";
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Вакансии", nil);
-    searchBar = [[UISearchBar alloc] init];
+    self.view.backgroundColor = [UIColor whiteColor];
+    CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
+    searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     searchDisplayController.delegate = self;
     searchDisplayController.searchResultsDataSource = self;
     searchDisplayController.searchResultsDelegate = self;
-    self.tableView.tableHeaderView = searchBar;
+    [self.view addSubview:searchBar];
+    
+    CGRect tableViewFrame = CGRectMake(0, navBarHeight + VCRowHeight + 3, self.view.bounds.size.width, self.view.bounds.size.height - self.view.bounds.origin.y);
+    self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    if ([self.tableView numberOfRowsInSection:0] > 11)
+    {
+        [self.tableView sizeToFit];
+    }
+    
+    [self.view addSubview:self.tableView];
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillShowNotification object:nil];
+    [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void)changeSearchBarPosition:(NSNotification *)notification
+{
+    float statusbarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    if ([notification.name isEqualToString:UIKeyboardWillShowNotification])
+    {
+        [UIView animateWithDuration:0.25 animations:^{
+            searchBar.frame =  CGRectMake(0,
+                                          statusbarHeight,
+                                          searchBar.bounds.size.width,
+                                          searchBar.bounds.size.height
+                                          );
+            self.tableView.frame = CGRectMake(0, statusbarHeight + VCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+        }];
+    }
+    else if([notification.name isEqualToString:UIKeyboardWillHideNotification])
+    {
+        [UIView animateWithDuration:0.25 animations:^{
+            searchBar.frame =  CGRectMake(0,
+                                          navBarHeight,
+                                          searchBar.bounds.size.width,
+                                          searchBar.bounds.size.height
+                                          );
+            self.tableView.frame = CGRectMake(0, navBarHeight + VCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+        }];
+    }
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
