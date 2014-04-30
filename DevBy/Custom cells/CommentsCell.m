@@ -45,6 +45,8 @@
     [commentLabel sizeToFit];
     [self addSubview:commentLabel];
     self.totalHeight += commentLabel.bounds.size.height + halfOffset;
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 @end

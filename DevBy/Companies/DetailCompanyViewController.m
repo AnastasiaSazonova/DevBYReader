@@ -10,11 +10,15 @@
 #import "CommentsCell.h"
 #import "FeedbackCell.h"
 #import "Constants.h"
+#import "CommentsViewController.h"
 
 @interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
     float totalHeight;
     CGRect textViewFrame;
+    CommentsViewController *commentsController;
+    CGFloat tableViewHeight;
+    int commentFlag;
 }
 
 @property(nonatomic, strong)NSString * companysDescription;
@@ -93,6 +97,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
+    tableViewHeight = 0;
+    commentFlag = 0;
+    
+    commentsController = [[CommentsViewController alloc] init];
+    
     totalHeight = 0;
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     if (navObjectsHeight == 0)
@@ -143,10 +152,18 @@
     [self addCompanyDescription];
     [self.scrollView addSubview:segmentedControl];
     [self.view addSubview:self.scrollView];
+    
+    
+    self.commentsTableView = [[UITableView alloc]initWithFrame:self.textView.frame];
+    self.commentsTableView.userInteractionEnabled = NO;
+    
+    self.commentsTableView.delegate = self;//commentsController;
+    self.commentsTableView.dataSource = self;//commentsController;
 }
 
 -(void)touchSegmentedContorol:(UISegmentedControl *)segmentedControl
 {
+    NSLog(@"%d",segmentedControl.selectedSegmentIndex);
     if (segmentedControl.selectedSegmentIndex == companysDescription)
     {
         [self addCompanyDescription];
@@ -165,6 +182,7 @@
 {
     [self cleanTextView];
     self.textView.frame = textViewFrame;
+    NSLog(@" 2 %@",NSStringFromCGRect(self.textView.frame));
     self.textView.text = self.companysDescription;
     [self.textView sizeToFit];
     [self.scrollView addSubview:self.textView];
@@ -176,7 +194,23 @@
     [self cleanTextView];
     [self setDiscussionView];
     [self.scrollView sizeToFit];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.commentsTableView.bounds.size.height);
+    self.textView.frame = CGRectMake(textViewFrame.origin.x, textViewFrame.origin.y, textViewFrame.size.width, tableViewHeight);
+    [self.textView setBackgroundColor:[UIColor redColor]];
+    [self.scrollView setBackgroundColor:[UIColor yellowColor]];
+    [self.commentsTableView setBackgroundColor:[UIColor greenColor]];
+    
+    NSLog(@"%@",[self.view subviews]);
+    NSLog(@"%@",[self.scrollView subviews]);
+
+    NSLog(@" 1  %@",NSStringFromCGSize(self.scrollView.contentSize));
+    NSLog(@"%f %f",totalHeight, self.textView.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.frame.size.height);
+     NSLog(@" 2 %@",NSStringFromCGSize(self.scrollView.contentSize));
+    
+    NSLog(@" 2 %@",NSStringFromCGRect(self.textView.frame));
+     NSLog(@"%@",[self.scrollView subviews]);
+    
+    
 }
 
 -(void)addCompanysFeedback
@@ -184,7 +218,13 @@
     [self cleanTextView];
     [self setFeedbackView];
     [self.scrollView sizeToFit];
+    NSLog(@" 1  %@",NSStringFromCGSize(self.scrollView.contentSize));
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.feedBackTableView.bounds.size.height);
+     NSLog(@" 2 %@",NSStringFromCGSize(self.scrollView.contentSize));
+    
+    [self.textView setBackgroundColor:[UIColor redColor]];
+    [self.scrollView setBackgroundColor:[UIColor blueColor]];
+    [self.commentsTableView setBackgroundColor:[UIColor greenColor]];
 }
 
 -(void)cleanTextView
@@ -202,7 +242,7 @@
         [self.feedBackTableView removeFromSuperview];
     }
 }
-
+//////////////////
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -227,6 +267,27 @@
     {
         CommentsCell * cell = [[CommentsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CommentCell"];
         [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor redColor];
+        
+        tableViewHeight += cell.totalHeight;    //
+        NSLog(@"%f", tableViewHeight);
+        
+        if(indexPath.row == [self tableView:tableView numberOfRowsInSection:0] - 1)
+        {
+//            self.textView.frame = CGRectMake(textViewFrame.origin.x, textViewFrame.origin.y, textViewFrame.size.width, tableViewHeight);
+            self.textView.scrollEnabled = NO;
+            self.textView.scrollEnabled = YES;
+            NSLog(@"FUUUUUUUCK %f",tableViewHeight);
+            //self.commentsTableView.frame = self.textView.frame;
+            
+            NSLog(@"textViewHeight %f", self.textView.frame.size.height);
+            
+            //commentFlag++;
+            //self.commentsTableView.frame = CGRectMake(textViewFrame.origin.x, textViewFrame.origin.y, textViewFrame.size.width, tableViewHeight);
+            
+            NSLog(@"TableViewFrame");
+        }
+        
         return cell.totalHeight;
     }
     else
@@ -239,6 +300,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+     self.textView.frame = CGRectMake(textViewFrame.origin.x, textViewFrame.origin.y, textViewFrame.size.width, tableViewHeight);
+    NSLog(@"TAbleView  %@",NSStringFromCGRect( self.textView.frame));
     if (tableView == self.commentsTableView)
     {
         CommentsCell * cell = [[CommentsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CommentCell"];
@@ -325,15 +388,21 @@
 //        self.commentsTableView.frame = frame;
 //    }
 }
+////////////////////////
 
 -(void)setDiscussionView
 {
-    CGRect frame = textViewFrame;
-    frame.size.height += self.view.bounds.size.height;
-    self.commentsTableView = [[UITableView alloc]initWithFrame:frame];
-    self.commentsTableView.userInteractionEnabled = NO;
-    self.commentsTableView.delegate = self;
-    self.commentsTableView.dataSource = self;
+    //[self tableView:<#(UITableView *)#> heightForRowAtIndexPath:<#(NSIndexPath *)#>];
+    //CGRect frame = CGRectMake(textViewFrame.origin.x, textViewFrame.origin.y, textViewFrame.size.width, tableViewHeight);
+    NSLog(@"SetDiscussionView");
+    //textViewFrame;
+    //CGRect frame = CGRectMake(0, textViewFrame.origin.y, self.view.frame.size.width, 2000);//textViewFrame.size.height); //resolving notTrue widthCutting
+    //frame.size.height += self.view.bounds.size.height;
+//    self.commentsTableView = [[UITableView alloc]initWithFrame:self.textView.frame];
+//    self.commentsTableView.userInteractionEnabled = NO;
+//    
+//    self.commentsTableView.delegate = self;//commentsController;
+//    self.commentsTableView.dataSource = self;//commentsController;
     [self.scrollView addSubview:self.commentsTableView];
 }
 
