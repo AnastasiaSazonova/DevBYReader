@@ -17,7 +17,7 @@
 #import "SlideViewController.h"
 
 
-@interface PostsViewController ()
+@interface PostsViewController () <SlideViewDelegate>
 {
     NSMutableArray * _posts;
     float mainCellHeight;
@@ -109,13 +109,19 @@
     return cell;
 }
 
+-(NSInteger)countForPages
+{
+    return [_posts count];
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     SlideViewController* slideViewController = [[SlideViewController alloc]initWithIndex:indexPath.row];
+    slideViewController.delegate = self;
     [self.navigationController pushViewController:slideViewController animated:YES];
     
-//    
+    
 //    DetailPostsViewController * detailViewController = [[DetailPostsViewController alloc] init];
 //    detailViewController.title = _posts[indexPath.row];
 //    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];

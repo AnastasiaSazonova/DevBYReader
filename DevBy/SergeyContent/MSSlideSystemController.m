@@ -80,6 +80,15 @@ float START_MENUVIEW_POINT;
         ((UINavigationController*)centralPanel).delegate = self;
 }
 
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if ([[touches anyObject] view] == menuController.view && leftNavButton.tag == ANIMATION_RIGHT_TAG)
+    {
+        [self fleshAnimationWithIdentifier:TAP_BUTTON_ANIMATION];
+        [self movePanelBack];
+    }
+}
+
 - (void)addViewController:(UIViewController *)addViewController toViewController:(UIViewController*)parentViewController withFrame:(CGRect)frame
 {    
     [parentViewController addChildViewController:addViewController];
@@ -162,7 +171,6 @@ float START_MENUVIEW_POINT;
         {
             menuPanel.view.frame = CGRectMake(0, 0, menuController.view.frame.size.width - OFFSET_POINT, menuController.view.frame.size.height);
             leftNavButton.tag = ANIMATION_LEFT_TAG;
-            NSLog(@"%d",[((UINavigationController*)self.centralPanel).viewControllers count]);
             if ([((UINavigationController*)self.centralPanel).viewControllers count] > 1) 
             {
                 ((UINavigationController*)self.centralPanel).visibleViewController.navigationItem.leftBarButtonItem = nil;
@@ -170,22 +178,22 @@ float START_MENUVIEW_POINT;
         }
     }];
 }
-         
+
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    
     if ([((UINavigationController*)centralPanel) respondsToSelector:@selector(interactivePopGestureRecognizer)])
+    {
         ((UINavigationController*)centralPanel).interactivePopGestureRecognizer.enabled = NO;
+    }
     if (leftNavButton.tag == ANIMATION_RIGHT_TAG)
     {
-//        ((UINavigationController*)centralPanel).visibleViewController.navigationItem.leftBarButtonItem = leftNavButton;
-        
-        
         [self fleshAnimationWithIdentifier:TAP_BUTTON_ANIMATION];
         [self movePanelBack];
         
     } else
+    {
         ((UINavigationController*)centralPanel).visibleViewController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Назад" style:UIBarButtonItemStylePlain target:nil action:nil];
+    }
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)sender

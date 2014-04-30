@@ -11,6 +11,8 @@
 #import "MainArticleCell.h"
 #import "ArticleCell.h"
 
+#import "DetailPostsViewController.h"
+
 @interface SlideViewController () <UIPageViewControllerDelegate, UIPageViewControllerDataSource>
 
 @property(nonatomic, strong) UIPageViewController* pageViewController;
@@ -21,7 +23,6 @@
 @implementation SlideViewController
 {
     NSInteger currentIndex;
-
 }
 
 @synthesize delegate;
@@ -38,14 +39,6 @@
     return self;
 }
 
-- (UIViewController*) addController
-{
-    NewsCellViewController* viewController = [[NewsCellViewController alloc]init];
-    
-//    viewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    return viewController;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,11 +50,10 @@
 
     pageViewController.view.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - [UIApplication sharedApplication].statusBarFrame.size.height);
     
-    NewsCellViewController* viewController = (NewsCellViewController*)[self addController];
-    [viewController.view setTag:currentIndex];
-    viewController.label.text = [delegate contentByIndex:currentIndex];
     
-    NSArray* viewControllersArray = [NSArray arrayWithObject:viewController];
+    DetailPostsViewController * detailViewController = [[DetailPostsViewController alloc] init];
+    
+    NSArray* viewControllersArray = [NSArray arrayWithObject:detailViewController];
     [pageViewController setViewControllers:viewControllersArray direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     
     [self addChildViewController:pageViewController];
@@ -74,22 +66,33 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    NewsCellViewController* controller = (NewsCellViewController*)[self addController];
-
-    return controller;
+    currentIndex--;
+    if(currentIndex <= 0)
+    {
+        return nil;
+    }
+    DetailPostsViewController * detailViewController = [[DetailPostsViewController alloc] init];
+    detailViewController.view.frame = self.pageViewController.view.bounds;
+    return detailViewController;
 }
+
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    NewsCellViewController* controller = (NewsCellViewController*)[self addController];
+    currentIndex++;
 
-    return controller;
+    if (currentIndex >= [delegate countForPages])
+    {
+        return nil;
+    }
 
+    DetailPostsViewController * detailViewController = [[DetailPostsViewController alloc] init];
+    detailViewController.view.frame = self.pageViewController.view.bounds;
+    return detailViewController;
 }
 
 @end

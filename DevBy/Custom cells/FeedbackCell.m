@@ -17,7 +17,7 @@
 
 @implementation FeedbackCell
 
--(void)drawCellWithOffset:(int)offset
+-(void)drawCell
 {
     self.totalHeight = 0;
     
@@ -32,7 +32,7 @@
     }
     [self addSubview:backGroundView];
     
-    CGRect usernameRect = CGRectMake(halfOffset + offset*halfOffset, halfOffset, 0, 0);
+    CGRect usernameRect = CGRectMake(halfOffset, halfOffset, 0, 0);
     UILabel * usernameLabel = [[UILabel alloc] initWithFrame:usernameRect];
     usernameLabel.font = [UIFont boldSystemFontOfSize:FBCUsernameFont];
     usernameLabel.text = self.username;
@@ -40,7 +40,7 @@
     [self addSubview:usernameLabel];
     self.totalHeight += usernameRect.origin.y +  usernameLabel.bounds.size.height;
     
-    CGRect jobRateRect = CGRectMake(12 * halfOffset + usernameLabel.bounds.size.width + offset*halfOffset, halfOffset, self.bounds.size.width*0.8, 0);
+    CGRect jobRateRect = CGRectMake(12 * halfOffset + usernameLabel.bounds.size.width, halfOffset, self.bounds.size.width*0.8, 0);
     UILabel * jobRateLabel = [[UILabel alloc] initWithFrame:jobRateRect];
     jobRateLabel.font = [UIFont boldSystemFontOfSize:FBCUsernameFont];
     jobRateLabel.numberOfLines = 0;
@@ -48,7 +48,7 @@
     [jobRateLabel sizeToFit];
     [self addSubview:jobRateLabel];
     
-    CGRect jobExperienceRect = CGRectMake(halfOffset + offset*halfOffset, 3 * halfOffset, self.bounds.size.width*0.8, 0);
+    CGRect jobExperienceRect = CGRectMake(halfOffset, 3 * halfOffset, self.bounds.size.width*0.8, 0);
     UILabel * jobExperienceLabel = [[UILabel alloc] initWithFrame:jobExperienceRect];
     jobExperienceLabel.font = [UIFont boldSystemFontOfSize:FBCLabelFont];
     jobExperienceLabel.numberOfLines = 0;
@@ -63,7 +63,7 @@
     [backGroundView.layer setBorderColor:[UIColor grayColor].CGColor];
     [backGroundView.layer setBorderWidth:1.5f];
     
-    CGRect commentRect = CGRectMake(halfOffset + offset*halfOffset, self.totalHeight - 1.5 * halfOffset, self.bounds.size.width*0.8, 0);
+    CGRect commentRect = CGRectMake(halfOffset, self.totalHeight - 1.5 * halfOffset, self.bounds.size.width*0.8, 0);
     UILabel * commentLabel = [[UILabel alloc] initWithFrame:commentRect];
     commentLabel.font = [UIFont systemFontOfSize:FBCTextFont];
     commentLabel.numberOfLines = 0;

@@ -15,8 +15,10 @@
 {
     float totalHeight;
     float commentsHeight;
+    float feedbacksHeight;
     CGRect textViewFrame;
     NSMutableArray *commentsCellsArray;
+    NSMutableArray *feedbackCellsArray;
 }
 
 @property(nonatomic, strong)NSString * companysDescription;
@@ -89,7 +91,7 @@
     return _companysDescription;
 }
 
-- (CommentsCell*) initilizeCellwithUsername:(NSString*) username ddte:(NSString*) date commenys:(NSString*)comments offset:(int)offset
+- (CommentsCell*) initilizeCommentsCellwithUsername:(NSString*) username date:(NSString*) date comments :(NSString*)comments offset:(int)offset
 {
     CommentsCell* cell = [[CommentsCell alloc]init];
     cell.username = username;
@@ -99,22 +101,49 @@
     return cell;
 }
 
--(void)calculateTableViewHeights
+-(void)calculateCommentsTableViewHeights
 {
     commentsCellsArray = [NSMutableArray array];
-    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
-    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
-    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
-    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
-    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
-    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
-    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:0]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:2]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:3]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:0]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:0]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:0]];
     
-    for (CommentsCell* cell in commentsCellsArray) {
+    for (CommentsCell* cell in commentsCellsArray)
+    {
         commentsHeight += cell.totalHeight;
     }
 }
 
+- (FeedbackCell*) initilizeFeedbackCellwithUsername:(NSString*) username date:(NSString*) date comment:(NSString*)comments
+{
+    FeedbackCell* cell = [[FeedbackCell alloc]init];
+    cell.username = username;
+    cell.date = date;
+    cell.comment = comments;
+    [cell drawCell];
+    return cell;
+}
+
+-(void)calculateFeedbackTableViewHeights
+{
+    feedbackCellsArray = [NSMutableArray array];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
+    
+    for (FeedbackCell* cell in feedbackCellsArray)
+    {
+        feedbacksHeight += cell.totalHeight;
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -122,11 +151,12 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     commentsHeight = 0;
+    feedbacksHeight = 0;
     
-    [self calculateTableViewHeights];
+    [self calculateCommentsTableViewHeights];
+    [self calculateFeedbackTableViewHeights];
     
     totalHeight = 0;
-//    commentsHeight = 0;
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     if (navObjectsHeight == 0)
     {
@@ -256,20 +286,25 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [commentsCellsArray count];
+    if (tableView == self.commentsTableView)
+    {
+        return [commentsCellsArray count];
+    }
+    else
+    {
+        return [feedbackCellsArray count];
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.commentsTableView)
     {
-        return ((CommentsCell*)[commentsCellsArray objectAtIndex:indexPath.row]).totalHeight;
+        return ((CommentsCell *)[commentsCellsArray objectAtIndex:indexPath.row]).totalHeight;
     }
     else
     {
-        FeedbackCell * cell = [[FeedbackCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CommentCell"];
-        [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
-        return cell.totalHeight;
+        return ((FeedbackCell *)[feedbackCellsArray objectAtIndex:indexPath.row]).totalHeight;
     }
 }
 
@@ -277,13 +312,11 @@
 {
     if (tableView == self.commentsTableView)
     {
-        return (CommentsCell*)[commentsCellsArray objectAtIndex:indexPath.row];
+        return (CommentsCell *)[commentsCellsArray objectAtIndex:indexPath.row];
     }
     else
     {
-        FeedbackCell * cell = [[FeedbackCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FeedbackCell"];
-        [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
-        return cell;
+        return (FeedbackCell *)[feedbackCellsArray objectAtIndex:indexPath.row];
     }
 }
 
@@ -330,7 +363,7 @@
         commentCell.rating = @"Оценка: 3.9";
         commentCell.date = @"24 April 2014, 15:07";
         commentCell.comment = @"Ответ очень простой: хочу - отвечаю, не хочу - не отвечаю. Ситуация целиком и полностью зависит от мотивации работника, от того считает ли что он ответственен за результат в целом, живет ли он проектом или он просто отрабатывает определенное время за деньги. В моей карьере случалось по разному.";
-        [commentCell drawCellWithOffset:0];
+        [commentCell drawCell];
     }
         
 }
@@ -339,7 +372,7 @@
 {
     CGRect frame = textViewFrame;
     frame.size.height += self.view.bounds.size.height/3;
-    self.feedBackTableView = [[UITableView alloc]initWithFrame:frame];
+    self.feedBackTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.center.x - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, feedbacksHeight)];
     self.feedBackTableView.userInteractionEnabled = NO;
     self.feedBackTableView.delegate = self;
     self.feedBackTableView.dataSource = self;

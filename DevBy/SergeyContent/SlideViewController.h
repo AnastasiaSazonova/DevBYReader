@@ -10,8 +10,7 @@
 
 @protocol SlideViewDelegate
 
-- (NSInteger) countForPage;
-- (NSString*) contentByIndex:(NSInteger)index;
+- (NSInteger) countForPages;
 
 @end
 

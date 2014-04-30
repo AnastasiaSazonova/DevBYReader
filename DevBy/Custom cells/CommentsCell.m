@@ -37,7 +37,7 @@
     [self addSubview:dateLabel];
     self.totalHeight += dateLabel.bounds.size.height + halfOffset;
     
-    CGRect commentRect = CGRectMake(halfOffset + offset*halfOffset, self.totalHeight, self.frame.size.width - 2 * halfOffset - 2 * offset*halfOffset - 5, 0);
+    CGRect commentRect = CGRectMake(halfOffset + offset*halfOffset, self.totalHeight, self.frame.size.width - 2 * halfOffset - 2 * offset *halfOffset - 2 * halfOffset, 0);
     UILabel * commentLabel = [[UILabel alloc] initWithFrame:commentRect];
     commentLabel.font = [UIFont systemFontOfSize:CCCommentFont];
     commentLabel.numberOfLines = 0;

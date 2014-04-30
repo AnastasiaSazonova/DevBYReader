@@ -18,7 +18,7 @@
 @property(nonatomic, strong)NSString * rating;
 @property(nonatomic, assign)float color;
 
--(void)drawCellWithOffset:(int)offset;
+-(void)drawCell;
 
 
 @end

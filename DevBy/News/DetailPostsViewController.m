@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     self.totalHeight = navObjectsHeight;
     
@@ -79,6 +80,7 @@
     self.totalHeight += imageView.bounds.size.height;
     
     UITextView * textView = [[UITextView alloc] initWithFrame:CGRectMake(halfOffset, self.totalHeight, self.view.bounds.size.width - 2 * halfOffset, 0)];
+
     textView.text = [NSString stringWithFormat:@"\t%@", self.text];
     textView.font = [UIFont systemFontOfSize:14];
     textView.userInteractionEnabled = NO;

@@ -14,17 +14,17 @@
 #import "StandardJobCell.h"
 #import "Constants.h"
 
-@interface VacanciesViewController()<UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface VacanciesViewController()<UISearchDisplayDelegate, UISearchBarDelegate>
 {
-    UISearchBar * searchBar;
     UISearchDisplayController * searchDisplayController;
     float tableviewOffset;
     BOOL isSearching;
 }
 
 @property(nonatomic, strong)NSArray * jobs;
-@property(nonatomic, strong)NSArray * searchResults;
+@property(nonatomic, strong)NSMutableArray * searchResults;
 @property(nonatomic, strong)UITableView * tableView;
+@property(nonatomic, strong)UISearchBar * searchBar;
 
 @end
 
@@ -111,99 +111,27 @@
     isSearching = NO;
     self.title = NSLocalizedString(@"Вакансии", nil);
     self.view.backgroundColor = [UIColor whiteColor];
-    CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
-    searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
-    searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    self.searchBar = [[UISearchBar alloc] init];
+    searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
     searchDisplayController.delegate = self;
     searchDisplayController.searchResultsDataSource = self;
     searchDisplayController.searchResultsDelegate = self;
-    [self.view addSubview:searchBar];
     
-    tableviewOffset = navBarHeight + VCRowHeight + 3;
-    CGRect tableViewFrame = CGRectMake(0, tableviewOffset, self.view.bounds.size.width, self.view.bounds.size.height - self.view.bounds.origin.y - tableviewOffset);
-    self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    if ([self.tableView numberOfRowsInSection:0] > 11)
-    {
-        [self.tableView sizeToFit];
-    }
+    [self.searchBar setShowsScopeBar:NO];
+    [self.searchBar sizeToFit];
+    self.tableView.tableHeaderView = self.searchBar;
     
-    [self.view addSubview:self.tableView];
+    CGRect newBounds = self.tableView.bounds;
+    newBounds.origin.y = newBounds.origin.y + self.searchBar.bounds.size.height;
+    self.tableView.bounds = newBounds;
     
-//    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillHideNotification object:nil];
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearch:)];
+    self.navigationItem.rightBarButtonItem = searchButton;
 }
 
-
--(void)changeSearchBarPosition:(NSNotification *)notification
+- (IBAction)goToSearch:(id)sender
 {
-    float statusbarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-    if ([notification.name isEqualToString:UIKeyboardWillShowNotification])
-    {
-        [UIView animateWithDuration:0.25 animations:^{
-            searchBar.frame =  CGRectMake(0,
-                                          statusbarHeight,
-                                          searchBar.bounds.size.width,
-                                          searchBar.bounds.size.height
-                                          );
-            self.tableView.frame = CGRectMake(0, statusbarHeight + VCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
-
-            [self.tableView setBackgroundColor:[UIColor redColor]];
-        }];
-    }
-    else if([notification.name isEqualToString:UIKeyboardWillHideNotification])
-    {
-            [UIView animateWithDuration:0.25 animations:^{
-                searchBar.frame =  CGRectMake(0,
-                                              navBarHeight,
-                                              searchBar.bounds.size.width,
-                                              searchBar.bounds.size.height
-                                              );
-                
-                NSLog(@"first   %@",self.view.subviews);
-                searchDisplayController.searchResultsTableView.alpha = 1;
-//                if (isSearching)
-//                {
-//                    UITableView* table = (UITableView*)self.searchDisplayController.searchResultsTableView;
-                    searchDisplayController.searchResultsTableView.frame = CGRectMake(0, 64, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
-                
-                NSLog(@"first   %@",self.view.subviews);
-                
-//                    NSLog(@"%@",self.searchDisplayController.searchResultsTableView);
-//                }
-//                else
-//                {
-                
-                
-                
-                [searchBar bringSubviewToFront:self.view];
-//                self.tableView.alpha = 0;
-                    self.tableView.frame = CGRectMake(0, tableviewOffset, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
-//                }
-            }];
-    }
-    
-}
-
--(void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView
-{
-//    tableView.frame = CGRectMake(0, tableviewOffset, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
-
-    tableView.frame = CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
-    
-    NSLog(@"%@",NSStringFromCGRect(CGRectMake(0, tableviewOffset, self.tableView.bounds.size.width, self.tableView.bounds.size.height)));
-    [tableView setBackgroundColor:[UIColor yellowColor]];
-    NSLog(@"%@",self.view.subviews);
-//    tableView.alpha = 0;
-}
-
-
-
--(void)viewWillAppear:(BOOL)animated
-{
-    isSearching = NO;
+    [self.searchBar becomeFirstResponder];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -313,17 +241,30 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    isSearching = YES;
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
-    self.searchResults = [self.jobs filteredArrayUsingPredicate:resultPredicate];
+    
+    [self.searchResults removeAllObjects];
+    
+    NSPredicate *resultPredicate = [NSPredicate
+                                    predicateWithFormat:@"name contains[cd] %@",
+                                    searchText];
+    
+    self.searchResults = [NSMutableArray arrayWithArray:[self.jobs filteredArrayUsingPredicate:resultPredicate]];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller
+shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
                                                      selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
     return YES;
 }
 

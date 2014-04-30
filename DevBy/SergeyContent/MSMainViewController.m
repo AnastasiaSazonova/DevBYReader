@@ -49,26 +49,50 @@
     UINavigationController* navigation = (UINavigationController*) viewController.centralPanel;
     if ([viewController.centralPanel isKindOfClass:UINavigationController.class])
     {
+        ((UINavigationController*)viewController.centralPanel).visibleViewController.navigationItem.leftBarButtonItem = nil;
         if ([chosenViewController isEqualToString:NEWS])
         {
             if (![navigation.topViewController isKindOfClass:PostsViewController.class])
+            {
                 [navigation pushViewController:[[PostsViewController alloc]init] animated:YES];
+            } else
+            {
+                [navigation popViewControllerAnimated:NO];
+                [navigation pushViewController:[[PostsViewController alloc]init] animated:NO];
+            }
             return;
         } else if ([chosenViewController isEqualToString:COMPANYS])
         {
 
             if(![navigation.topViewController isKindOfClass:CompaniesViewController.class])
+            {
                 [navigation pushViewController:[[CompaniesViewController alloc]init] animated:YES];
+            } else
+            {
+                [navigation popViewControllerAnimated:NO];
+                [navigation pushViewController:[[CompaniesViewController alloc]init] animated:NO];
+            }
             return;
         } else if ([chosenViewController isEqualToString:JOB])
         {
             if(![navigation.topViewController isKindOfClass:VacanciesViewController.class])
+            {
                 [navigation pushViewController:[[VacanciesViewController alloc]init] animated:YES];
+            } else
+            {
+                [navigation popViewControllerAnimated:NO];
+                [navigation pushViewController:[[VacanciesViewController alloc]init] animated:NO];
+            }
             return;
         } else if ([chosenViewController isEqualToString:EVENTS])
         {
             if (![navigation.topViewController isKindOfClass:EventsViewController.class])
                 [navigation pushViewController:[[EventsViewController alloc]init] animated:YES];
+            else
+            {
+                [navigation popViewControllerAnimated:NO];
+                [navigation pushViewController:[[EventsViewController alloc]init] animated:NO];
+            }
             return;
         }
     } 
