@@ -7,13 +7,20 @@
 //
 
 #import "DetailEventViewController.h"
+<<<<<<< HEAD
 
 static int maxCharsForBigFont = 60;
+=======
+#import "Constants.h"
+>>>>>>> sazonova
 
 @interface DetailEventViewController ()
 {
     float totalHeight;
+<<<<<<< HEAD
     float offset;
+=======
+>>>>>>> sazonova
     CGRect textViewFrame;
 }
 
@@ -104,9 +111,12 @@ static int maxCharsForBigFont = 60;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+<<<<<<< HEAD
     offset = 20.0f;
+=======
+>>>>>>> sazonova
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
-    totalHeight = offset*0.8 + navObjectsHeight;
+    totalHeight = offset*0.4 + navObjectsHeight;
     self.view.backgroundColor = [UIColor whiteColor];
   
     CGRect nameLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, self.view.bounds.size.height/5);
@@ -114,7 +124,11 @@ static int maxCharsForBigFont = 60;
     nameLabel.font = [UIFont systemFontOfSize:21];
     nameLabel.numberOfLines = 0;
     nameLabel.text = self.eventsName;
+<<<<<<< HEAD
     if ([self.eventsName length] > maxCharsForBigFont)
+=======
+    if ([self.eventsName length] > DEMaxCharsForBigFont)
+>>>>>>> sazonova
     {
         nameLabel.adjustsFontSizeToFitWidth = YES;
     }
@@ -135,9 +149,9 @@ static int maxCharsForBigFont = 60;
     [self.scrollView addSubview:dateLabel];
     totalHeight += dateLabel.bounds.size.height + offset/1.5;
     
-    CGRect imageFrame = CGRectMake(offset, totalHeight, 15, 19.5);
-    UIImageView * image = [[UIImageView alloc] initWithFrame:imageFrame];
-    image.backgroundColor = [UIColor grayColor];
+    //CGRect imageFrame = CGRectMake(offset, totalHeight, 15, 19.5);
+    UIImageView * image = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"man"] scaledToSize:CGSizeMake(35, 35)]];
+    //image.backgroundColor = [UIColor grayColor];
     [self.scrollView addSubview:image];
     
     CGRect countLabelFrame = CGRectMake(1.3 * offset + image.bounds.size.width, totalHeight, self.view.bounds.size.width/3, 0);
@@ -159,6 +173,16 @@ static int maxCharsForBigFont = 60;
     [self.scrollView addSubview:segmentedControl];
     [self.view addSubview:self.scrollView];
 }
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 
 -(void)touchSegmentedControl:(UISegmentedControl *)segmentedControl
 {
@@ -196,7 +220,10 @@ static int maxCharsForBigFont = 60;
     self.textView.frame = textViewFrame;
     self.textView.text = self.eventsPrice;
     [self.textView sizeToFit];
+<<<<<<< HEAD
     [self.scrollView addSubview:self.textView];
+=======
+>>>>>>> sazonova
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 
@@ -205,7 +232,10 @@ static int maxCharsForBigFont = 60;
     self.textView.frame = textViewFrame;
     self.textView.text = self.eventsAddress;
     [self.textView sizeToFit];
+<<<<<<< HEAD
     [self.scrollView addSubview:self.textView];
+=======
+>>>>>>> sazonova
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 
@@ -214,7 +244,10 @@ static int maxCharsForBigFont = 60;
     self.textView.frame = textViewFrame;
     self.textView.text = self.eventsContacts;
     [self.textView sizeToFit];
+<<<<<<< HEAD
     [self.scrollView addSubview:self.textView];
+=======
+>>>>>>> sazonova
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 

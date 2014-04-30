@@ -9,6 +9,7 @@
 #import "DetailCompanyViewController.h"
 #import "CommentsCell.h"
 #import "FeedbackCell.h"
+<<<<<<< HEAD
 
 float const offset = 20.0f;
 float const nameLabelFont = 28.0f;
@@ -17,6 +18,9 @@ float const employeeNumberFont = 13.0f;
 float const textViewFont = 14.0f;
 float const logoHeight = 45.0;
 static float navBarHeight = 64.0f;
+=======
+#import "Constants.h"
+>>>>>>> sazonova
 
 @interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -61,7 +65,11 @@ static float navBarHeight = 64.0f;
         textViewFrame = CGRectMake(offset * 0.8, totalHeight, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/5);
         _textView = [[UITextView alloc] initWithFrame:textViewFrame];
         _textView.userInteractionEnabled = NO;
+<<<<<<< HEAD
         _textView.font = [UIFont systemFontOfSize:textViewFont];
+=======
+        _textView.font = [UIFont systemFontOfSize:DCTextViewFont];
+>>>>>>> sazonova
     }
     return _textView;
 }
@@ -107,24 +115,41 @@ static float navBarHeight = 64.0f;
         navObjectsHeight = navBarHeight;
     }
     totalHeight += offset*0.8 + navObjectsHeight;
+<<<<<<< HEAD
     CGRect nameLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset - logoHeight, logoHeight);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
     nameLabel.font = [UIFont systemFontOfSize:nameLabelFont];
+=======
+    CGRect nameLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset - DCLogoHeight, DCLogoHeight);
+    UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
+    nameLabel.font = [UIFont systemFontOfSize:DCNameLabelFont];
+>>>>>>> sazonova
     nameLabel.numberOfLines = 0;
     nameLabel.text = self.companysName;
     nameLabel.adjustsFontSizeToFitWidth = YES;
     [self.scrollView addSubview:nameLabel];
     
     totalHeight += nameLabel.bounds.size.height;
+<<<<<<< HEAD
     CGRect employeeLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width, logoHeight);
     UILabel * employeeNumberLabel = [[UILabel alloc] initWithFrame:employeeLabelRect];
     employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", self.employeeNumber];
     employeeNumberLabel.font = [UIFont systemFontOfSize:employeeNumberFont];
+=======
+    CGRect employeeLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width, DCLogoHeight);
+    UILabel * employeeNumberLabel = [[UILabel alloc] initWithFrame:employeeLabelRect];
+    employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", self.employeeNumber];
+    employeeNumberLabel.font = [UIFont systemFontOfSize:DCEmployeeNumberFont];
+>>>>>>> sazonova
     employeeNumberLabel.textColor = [UIColor grayColor];
     [employeeNumberLabel sizeToFit];
     [self.scrollView addSubview:employeeNumberLabel];
     
+<<<<<<< HEAD
     CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - logoHeight, nameLabelRect.origin.y + 5, logoHeight, logoHeight);
+=======
+    CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - DCLogoHeight, nameLabelRect.origin.y + 5, DCLogoHeight, DCLogoHeight);
+>>>>>>> sazonova
     UIImageView * logoView = [[UIImageView alloc] initWithFrame:logoViewRect];
     logoView.backgroundColor = [UIColor grayColor];
     [self.scrollView addSubview:logoView];
@@ -134,7 +159,11 @@ static float navBarHeight = 64.0f;
     UILabel * descriptionLabel = [[UILabel alloc] initWithFrame:descriptionLabelRect];
     descriptionLabel.numberOfLines = 0;
     descriptionLabel.text = self.description;
+<<<<<<< HEAD
     descriptionLabel.font = [UIFont systemFontOfSize:descriptionLabelFont];
+=======
+    descriptionLabel.font = [UIFont systemFontOfSize:DCDescriptionLabelFont];
+>>>>>>> sazonova
     descriptionLabel.textColor = [UIColor grayColor];
     descriptionLabel.adjustsFontSizeToFitWidth = YES;
     [self.scrollView addSubview:descriptionLabel];
@@ -154,15 +183,15 @@ static float navBarHeight = 64.0f;
 
 -(void)touchSegmentedContorol:(UISegmentedControl *)segmentedControl
 {
-    if (segmentedControl.selectedSegmentIndex == 0)
+    if (segmentedControl.selectedSegmentIndex == companysDescription)
     {
         [self addCompanyDescription];
     }
-    else if(segmentedControl.selectedSegmentIndex == 1)
+    else if(segmentedControl.selectedSegmentIndex == companysDiscussion)
     {
         [self addCompanysDiscussion];
     }
-    else if(segmentedControl.selectedSegmentIndex == 2)
+    else if(segmentedControl.selectedSegmentIndex == companysFeedback)
     {
         [self addCompanysFeedback];
     }
@@ -215,7 +244,11 @@ static float navBarHeight = 64.0f;
     return 1;
 }
 
+<<<<<<< HEAD
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+=======
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+>>>>>>> sazonova
 {
     if (tableView == self.commentsTableView)
     {
@@ -223,7 +256,7 @@ static float navBarHeight = 64.0f;
     }
     else if(tableView == self.feedBackTableView)
     {
-        return 1;
+        return 3;
     }
     return 0;
 }
@@ -273,18 +306,6 @@ static float navBarHeight = 64.0f;
         {
             [commentCell drawCellWithOffset:0];
         }
-        else if (indexPath.row > 7)
-        {
-            [commentCell drawCellWithOffset:7];
-        }
-        else if (indexPath.row > 6)
-        {
-            [commentCell drawCellWithOffset:6];
-        }
-        else if (indexPath.row > 5)
-        {
-            [commentCell drawCellWithOffset:5];
-        }
         else if (indexPath.row > 4)
         {
             [commentCell drawCellWithOffset:4];
@@ -308,8 +329,11 @@ static float navBarHeight = 64.0f;
     }
     else if ([cell isKindOfClass:[FeedbackCell class]])
     {
-        CommentsCell * commentCell = (CommentsCell *)cell;
+        FeedbackCell * commentCell = (FeedbackCell *)cell;
+        commentCell.color = greenColor;
+        commentCell.jobExperience = @"Проработал в Altoros Development: больше 9 лет 21 августа 2013, 09:19";
         commentCell.username = @"Username";
+        commentCell.rating = @"Оценка: 3.9";
         commentCell.date = @"24 April 2014, 15:07";
         commentCell.comment = @"Ответ очень простой: хочу - отвечаю, не хочу - не отвечаю. Ситуация целиком и полностью зависит от мотивации работника, от того считает ли что он ответственен за результат в целом, живет ли он проектом или он просто отрабатывает определенное время за деньги. В моей карьере случалось по разному.";
         [commentCell drawCellWithOffset:0];

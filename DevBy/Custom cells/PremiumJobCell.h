@@ -7,13 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+<<<<<<< HEAD
 @class PremiumJob;
 #import "StandardJobCell.h"
 
 @interface PremiumJobCell : StandardJobCell
+=======
+@class Job;
+
+@interface PremiumJobCell : UITableViewCell
+>>>>>>> sazonova
 
 @property(nonatomic, assign, readonly)float totalHeight;
-@property(nonatomic, strong)PremiumJob * job;
+@property(nonatomic, strong)Job * job;
 
 -(void)drawCell;
 

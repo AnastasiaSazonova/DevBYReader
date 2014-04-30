@@ -8,9 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> sazonova
 @interface Job : NSObject
 
+@property(nonatomic, assign)int type;
 @property(nonatomic, strong)NSString * name;
+@property(nonatomic, strong)NSString * url;
 @property(nonatomic, strong)NSString * companysName;
+@property(nonatomic, strong)NSString * pictureUrl;
+@property(nonatomic, strong)NSString * description;
 
 @end

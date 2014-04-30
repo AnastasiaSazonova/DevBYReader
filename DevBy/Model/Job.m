@@ -8,6 +8,6 @@
 
 #import "Job.h"
 
-@implementation Job
+@implementation Job : NSObject 
 
 @end

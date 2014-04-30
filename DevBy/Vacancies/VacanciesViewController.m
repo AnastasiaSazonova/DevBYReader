@@ -9,28 +9,32 @@
 #import "VacanciesViewController.h"
 #import "DetailVacanciesViewController.h"
 #import "PremiumJobCell.h"
-#import "PremiumJob.h"
 #import "MiddleJobCell.h"
 #import "Job.h"
 #import "StandardJobCell.h"
+<<<<<<< HEAD
 #import "MiddleJob.h"
+=======
+#import "Constants.h"
+>>>>>>> sazonova
 
 NSString * premiumJobIdentifier = @"PremiunJob";
 NSString * middleJobIdentifier = @"MiddleJob";
 NSString * standardJobIdentifier = @"StandardJob";
 
-@interface VacanciesViewController()<UISearchDisplayDelegate>
+@interface VacanciesViewController()<UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     UISearchBar * searchBar;
     UISearchDisplayController * searchDisplayController;
-    BOOL isSearching;
-    float rowHeight;
-    float maxCharsPerRow;
 }
 
 @property(nonatomic, strong)NSArray * jobs;
+<<<<<<< HEAD
 @property(nonatomic, strong)NSArray * middleJobs;
+=======
+>>>>>>> sazonova
 @property(nonatomic, strong)NSArray * searchResults;
+@property(nonatomic, strong)UITableView * tableView;
 
 @end
 
@@ -40,21 +44,27 @@ NSString * standardJobIdentifier = @"StandardJob";
 {
     if (!_jobs)
     {
-        PremiumJob * premiumJob1 = [[PremiumJob alloc] init];
+        Job * premiumJob1 = [[Job alloc] init];
+        premiumJob1.type = premiumType;
         premiumJob1.name = @"1Руководитель команды аналитиков";
         premiumJob1.companysName = @"A1QA";
         premiumJob1.description = @"1Требуется опытный руководитель для организации работы и развития команды системных и бизнес-аналитиков, способный разрабатывать стратегию развития команды, планировать ее работу, эффективно организовывать деятельность.";
         premiumJob1.pictureUrl = nil;
-        PremiumJob * premiumJob2 = [[PremiumJob alloc] init];
+        
+        Job * premiumJob2 = [[Job alloc] init];
+        premiumJob2.type = premiumType;
         premiumJob2.name = @"2An Extraordinary Project for Senior .NET Software Engineer";
         premiumJob2.companysName = @"NUBIKO";
         premiumJob2.description = @"2We are looking for a talented senior .NET programmer for developing of innovative, extraordinary software product called TRIGGRE based on the latest Microsoft technologies. Product Description What’s your Triggre?";
         premiumJob2.pictureUrl = nil;
-        PremiumJob * premiumJob3 = [[PremiumJob alloc] init];
+        
+        Job * premiumJob3 = [[Job alloc] init];
+        premiumJob3.type = premiumType;
         premiumJob3.name = @"3.Net разработчик со знанием немецкого языка";
         premiumJob3.companysName = @"SaM Solutions";
         premiumJob3.description = @"3Требуется опытный руководитель для организации работы и развития команды системных и бизнес-аналитиков, способный разрабатывать стратегию развития команды, планировать ее работу, эффективно организовывать деятельность.";
         premiumJob3.pictureUrl = nil;
+<<<<<<< HEAD
         PremiumJob * premiumJob4 = [[PremiumJob alloc] init];
         premiumJob4.name = @"4Java developer (eCommerce Hybris)";
         premiumJob4.companysName = @"SaM Solutions";
@@ -105,6 +115,48 @@ NSString * standardJobIdentifier = @"StandardJob";
         _middleJobs = @[premiumJob1, premiumJob2, premiumJob3, premiumJob4, premiumJob5, premiumJob6];
     }
     return _middleJobs;
+=======
+        
+        Job * standardJob1 = [[Job alloc] init];
+        standardJob1.type = standardType;
+        standardJob1.name = @"1Junior ASP.Net MVC developer";
+        standardJob1.companysName = @"Elilink Consulting";
+        
+        Job * standardJob2 = [[Job alloc] init];
+        standardJob2.type = standardType;
+        standardJob2.name = @"2DACH Business Development Manager";
+        standardJob2.companysName = @"SaM Solutions";
+        
+        Job * standardJob3 = [[Job alloc] init];
+        standardJob3.type = standardType;
+        standardJob3.name = @"3Senior Front-end Developer (Могилев)";
+        standardJob3.companysName = @"EPAM Systems";
+        
+        Job * standardJob4 = [[Job alloc] init];
+        standardJob4.type = standardType;
+        standardJob4.name = @"4Главный тестировщик";
+        standardJob4.companysName = @"Сбербанк-Технологии";
+      
+        Job * middleJob1 = [[Job alloc] init];
+        middleJob1.type = middleType;
+        middleJob1.name = @"1Руководитель команды аналитиков";
+        middleJob1.companysName = @"A1QA";
+        
+        Job * middleJob2 = [[Job alloc] init];
+        middleJob2.type = middleType;
+        middleJob2.name = @"2An Extraordinary Project for Senior .NET Software Engineer";
+        middleJob2.companysName = @"NUBIKO";
+        
+        Job * middleJob3 = [[Job alloc] init];
+        middleJob3.type = middleType;
+        middleJob3.name = @"3.Net разработчик со знанием немецкого языка";
+        middleJob3.companysName = @"SaM Solutions";
+        
+        _jobs = @[premiumJob1, premiumJob2, premiumJob3, standardJob1, standardJob4, middleJob3, standardJob2, middleJob1,
+                  middleJob2, standardJob3];
+    }
+    return _jobs;
+>>>>>>> sazonova
 }
 
 -(NSArray *)searchResults
@@ -120,26 +172,69 @@ NSString * standardJobIdentifier = @"StandardJob";
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Вакансии", nil);
-    rowHeight = 40;
-    maxCharsPerRow = 30;
-    
-    [self.tableView registerClass:[PremiumJobCell class] forCellReuseIdentifier:premiumJobIdentifier];
-    [self.tableView registerClass:[MiddleJobCell class] forCellReuseIdentifier:middleJobIdentifier];
-    [self.tableView registerClass:[StandardJobCell class] forCellReuseIdentifier:standardJobIdentifier];
-    searchBar = [[UISearchBar alloc] init];
+    self.view.backgroundColor = [UIColor whiteColor];
+    CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
+    searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     searchDisplayController.delegate = self;
     searchDisplayController.searchResultsDataSource = self;
     searchDisplayController.searchResultsDelegate = self;
-    self.tableView.tableHeaderView = searchBar;
+    [self.view addSubview:searchBar];
+    
+    CGRect tableViewFrame = CGRectMake(0, navBarHeight + VCRowHeight + 3, self.view.bounds.size.width, self.view.bounds.size.height - self.view.bounds.origin.y);
+    self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    if ([self.tableView numberOfRowsInSection:0] > 11)
+    {
+        [self.tableView sizeToFit];
+    }
+    
+    [self.view addSubview:self.tableView];
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillShowNotification object:nil];
+    [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillHideNotification object:nil];
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)changeSearchBarPosition:(NSNotification *)notification
 {
+<<<<<<< HEAD
     StandardJobCell *cell;
     cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
     [self configureCell:cell inTableView:self.tableView AtIndexPath:indexPath];
     return cell.totalHeight;
+=======
+    float statusbarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    if ([notification.name isEqualToString:UIKeyboardWillShowNotification])
+    {
+        [UIView animateWithDuration:0.25 animations:^{
+            searchBar.frame =  CGRectMake(0,
+                                          statusbarHeight,
+                                          searchBar.bounds.size.width,
+                                          searchBar.bounds.size.height
+                                          );
+            self.tableView.frame = CGRectMake(0, statusbarHeight + VCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+        }];
+    }
+    else if([notification.name isEqualToString:UIKeyboardWillHideNotification])
+    {
+        [UIView animateWithDuration:0.25 animations:^{
+            searchBar.frame =  CGRectMake(0,
+                                          navBarHeight,
+                                          searchBar.bounds.size.width,
+                                          searchBar.bounds.size.height
+                                          );
+            self.tableView.frame = CGRectMake(0, navBarHeight + VCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+        }];
+    }
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self rowHeightinTableView:tableView ForIndexPath:indexPath];
+>>>>>>> sazonova
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -161,30 +256,102 @@ NSString * standardJobIdentifier = @"StandardJob";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+<<<<<<< HEAD
     StandardJobCell *cell;
     if (indexPath.row < 7)
+=======
+    UITableViewCell *cell;
+    cell = [self configureCell:cell inTableView:tableView AtIndexPath:indexPath];
+    return cell;
+}
+
+-(UITableViewCell *)configureCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView AtIndexPath:(NSIndexPath *)indexPath
+{
+    Job * currentJob;
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+>>>>>>> sazonova
     {
-        cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
+        currentJob = self.searchResults[indexPath.row];
     }
     else
     {
-        cell = [[MiddleJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:middleJobIdentifier];
+        currentJob = self.jobs[indexPath.row];
     }
+<<<<<<< HEAD
     [self configureCell:cell inTableView:tableView AtIndexPath:indexPath];
     return cell;
 }
 
 -(void)configureCell:(StandardJobCell *)cell inTableView:(UITableView *)tableView AtIndexPath:(NSIndexPath *)indexPath
+=======
+    if (currentJob.type == premiumType)
+    {
+        cell = [[PremiumJobCell alloc] init];
+        PremiumJobCell * newCell = (PremiumJobCell *)cell;
+        newCell.job = currentJob;
+        [newCell drawCell];
+    }
+    else if(currentJob.type == middleType)
+    {
+        cell = [[MiddleJobCell alloc] init];
+        MiddleJobCell * newCell = (MiddleJobCell *)cell;
+        newCell.job = currentJob;
+        [newCell drawCell];
+    }
+    else if (currentJob.type == standardType)
+    {
+        cell = [[StandardJobCell alloc] init];
+        StandardJobCell * newCell = (StandardJobCell *)cell;
+        newCell.job = currentJob;
+        [newCell drawCell];
+    }
+
+    return cell;
+}
+
+-(float)rowHeightinTableView:(UITableView *)tableView ForIndexPath:(NSIndexPath *)indexPath
+>>>>>>> sazonova
 {
+    UITableViewCell *cell;
+    Job * currentJob;
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
-        cell.job = [self.searchResults objectAtIndex:indexPath.row];
+        currentJob = self.searchResults[indexPath.row];
     }
     else
     {
-        cell.job = [self.jobs objectAtIndex:indexPath.row];
+        currentJob = self.jobs[indexPath.row];
     }
+<<<<<<< HEAD
     [cell drawCell];
+=======
+    if (currentJob.type == premiumType)
+    {
+        cell = [[PremiumJobCell alloc] init];
+        PremiumJobCell * newCell = (PremiumJobCell *)cell;
+        newCell.job = currentJob;
+        [newCell drawCell];
+        return newCell.totalHeight;
+    }
+    else if(currentJob.type == middleType)
+    {
+        cell = [[MiddleJobCell alloc] init];
+        MiddleJobCell * newCell = (MiddleJobCell *)cell;
+        newCell.job = currentJob;
+        [newCell drawCell];
+        return newCell.totalHeight;
+    }
+    else if (currentJob.type == standardType)
+    {
+        cell = [[StandardJobCell alloc] init];
+        StandardJobCell * newCell = (StandardJobCell *)cell;
+        newCell.job = currentJob;
+        [newCell drawCell];
+        return newCell.totalHeight;
+    }
+
+    return 0;
+>>>>>>> sazonova
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
@@ -199,24 +366,30 @@ NSString * standardJobIdentifier = @"StandardJob";
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
                                                      selectedScopeButtonIndex]]];
-    
     return YES;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+<<<<<<< HEAD
     Job *job = nil;
     
+=======
+    DetailVacanciesViewController * detailVacancyViewController = [[DetailVacanciesViewController alloc] init];
+    Job * job;
+>>>>>>> sazonova
     if (self.searchDisplayController.active)
     {
+        indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
         job = [self.searchResults objectAtIndex:indexPath.row];
     }
     else
     {
+        indexPath = [tableView indexPathForSelectedRow];
         job = [self.jobs objectAtIndex:indexPath.row];
     }
-    DetailVacanciesViewController * detailVacanciesVC = [[DetailVacanciesViewController alloc] init];
-    detailVacanciesVC.jobTitle = job.name;
-    [self.navigationController pushViewController:detailVacanciesVC animated:YES];
+    detailVacancyViewController.jobTitle = job.name;
+    [self.navigationController pushViewController:detailVacancyViewController animated:YES];
 }
 
 @end

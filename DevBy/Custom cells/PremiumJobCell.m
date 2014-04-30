@@ -7,7 +7,12 @@
 //
 
 #import "PremiumJobCell.h"
+<<<<<<< HEAD
 #import "PremiumJob.h"
+=======
+#import "Job.h"
+#import "Constants.h"
+>>>>>>> sazonova
 
 @interface PremiumJobCell()
 
@@ -29,36 +34,64 @@
 
 -(void)drawCell
 {
+<<<<<<< HEAD
     float yOffset = 10.0f;
     float xOffset = 20.0f;
     self.totalHeight = 0;
     CGRect jobTitleFrame = CGRectMake(xOffset, yOffset, self.frame.size.width - 5*yOffset, self.frame.size.height/2);
     UILabel * jobTitle = [[UILabel alloc] initWithFrame:jobTitleFrame];
     jobTitle.font = [UIFont systemFontOfSize:16];
+=======
+    self.totalHeight = 0;
+    CGRect jobTitleFrame = CGRectMake(offset, halfOffset, self.frame.size.width - 5*halfOffset, self.frame.size.height/2);
+    UILabel * jobTitle = [[UILabel alloc] initWithFrame:jobTitleFrame];
+    jobTitle.font = [UIFont systemFontOfSize:PJCTitleFont];
+>>>>>>> sazonova
     jobTitle.numberOfLines = 0;
     jobTitle.text = self.job.name;
     [jobTitle sizeToFit];
     [self addSubview:jobTitle];
+<<<<<<< HEAD
     self.totalHeight += jobTitle.bounds.size.height + yOffset;
     
     CGRect companysNameFrame = CGRectMake(xOffset, self.totalHeight, self.frame.size.width - 5*yOffset, self.frame.size.height/2);
     UILabel * companysName = [[UILabel alloc] initWithFrame:companysNameFrame];
     companysName.font = [UIFont boldSystemFontOfSize:13];
+=======
+    self.totalHeight += jobTitle.bounds.size.height + halfOffset;
+    
+    CGRect companysNameFrame = CGRectMake(offset, self.totalHeight, self.frame.size.width - 5*halfOffset, self.frame.size.height/2);
+    UILabel * companysName = [[UILabel alloc] initWithFrame:companysNameFrame];
+    companysName.font = [UIFont boldSystemFontOfSize:PJCCompanysNameFont];
+>>>>>>> sazonova
     companysName.numberOfLines = 0;
     companysName.text = self.job.companysName;
     [companysName sizeToFit];
     [self addSubview:companysName];
+<<<<<<< HEAD
     self.totalHeight += companysName.bounds.size.height + yOffset;
     
     CGRect jobDescriptionFrame = CGRectMake(xOffset, self.totalHeight, self.frame.size.width - 5*yOffset, self.frame.size.height/2);
     UILabel * jobDescription = [[UILabel alloc] initWithFrame:jobDescriptionFrame];
     jobDescription.textColor = [UIColor grayColor];
     jobDescription.font = [UIFont systemFontOfSize:13];
+=======
+    self.totalHeight += companysName.bounds.size.height + halfOffset;
+    
+    CGRect jobDescriptionFrame = CGRectMake(offset, self.totalHeight, self.frame.size.width - 5*halfOffset, self.frame.size.height/2);
+    UILabel * jobDescription = [[UILabel alloc] initWithFrame:jobDescriptionFrame];
+    jobDescription.textColor = [UIColor grayColor];
+    jobDescription.font = [UIFont systemFontOfSize:PJCDescriptionFont];
+>>>>>>> sazonova
     jobDescription.numberOfLines = 0;
     jobDescription.text = self.job.description;
     [jobDescription sizeToFit];
     [self addSubview:jobDescription];
+<<<<<<< HEAD
     self.totalHeight += jobDescription.bounds.size.height + 1.5*yOffset;
+=======
+    self.totalHeight += jobDescription.bounds.size.height + 1.5*halfOffset;
+>>>>>>> sazonova
 }
 
 @end

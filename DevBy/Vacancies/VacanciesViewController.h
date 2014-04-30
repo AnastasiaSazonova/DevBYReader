@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VacanciesViewController : UITableViewController
+@interface VacanciesViewController : UIViewController
 
 @end

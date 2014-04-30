@@ -35,14 +35,8 @@
 		5D82DDD618F7D0CE009E4D3E /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDC118F7D0CE009E4D3E /* JASidePanelController.m */; };
 		5D82DDD718F7D0CE009E4D3E /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDC318F7D0CE009E4D3E /* UIViewController+JASidePanel.m */; };
 		5D82DDD818F7D0CE009E4D3E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDC618F7D0CE009E4D3E /* SWRevealViewController.m */; };
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 		5D82DDDB18F7D106009E4D3E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D82DDDA18F7D106009E4D3E /* libxml2.dylib */; };
->>>>>>> sazonova
-=======
 		5D82DDDB18F7D106009E4D3E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D82DDDA18F7D106009E4D3E /* libxml2.dylib */; };
->>>>>>> sazonova
 		5D82DDDF18F7D305009E4D3E /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDDE18F7D305009E4D3E /* EventsViewController.m */; };
 		5D82DDEC18F7D312009E4D3E /* CompaniesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDE218F7D312009E4D3E /* CompaniesViewController.m */; };
 		5D82DDED18F7D312009E4D3E /* SideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDE518F7D312009E4D3E /* SideViewController.m */; };
@@ -57,13 +51,7 @@
 		5DD088921906319D008601DB /* MiddleJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD088911906319D008601DB /* MiddleJobCell.m */; };
 		5DD08895190631B2008601DB /* StandardJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD08894190631B2008601DB /* StandardJobCell.m */; };
 		5DD0889819063238008601DB /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0889719063238008601DB /* Job.m */; };
-<<<<<<< HEAD
-<<<<<<< HEAD
 		8425E42B190D218700BB966E /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8425E42A190D218700BB966E /* libxml2.2.dylib */; };
-=======
->>>>>>> sazonova
-=======
->>>>>>> sazonova
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,13 +75,7 @@
 		5D26DD6F18FC5D8600914F06 /* EventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCell.m; sourceTree = "<group>"; };
 		5D26DD7118FC674800914F06 /* DetailEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailEventViewController.h; sourceTree = "<group>"; };
 		5D26DD7218FC674800914F06 /* DetailEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailEventViewController.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
-<<<<<<< HEAD
 		5D26EAE7190BD56F00ED47FC /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-=======
->>>>>>> sazonova
-=======
->>>>>>> sazonova
 		5D28ED9218F8A4E80066011D /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
 		5D28ED9318F8A4E80066011D /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		5D29B10918F7CF8F006DCD4F /* DevBy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevBy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,14 +112,8 @@
 		5D82DDC318F7D0CE009E4D3E /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
 		5D82DDC518F7D0CE009E4D3E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		5D82DDC618F7D0CE009E4D3E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 		5D82DDDA18F7D106009E4D3E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
->>>>>>> sazonova
-=======
 		5D82DDDA18F7D106009E4D3E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
->>>>>>> sazonova
 		5D82DDDD18F7D305009E4D3E /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
 		5D82DDDE18F7D305009E4D3E /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
 		5D82DDE118F7D312009E4D3E /* CompaniesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompaniesViewController.h; sourceTree = "<group>"; };
@@ -166,13 +142,7 @@
 		5DD08894190631B2008601DB /* StandardJobCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardJobCell.m; sourceTree = "<group>"; };
 		5DD0889619063238008601DB /* Job.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
 		5DD0889719063238008601DB /* Job.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Job.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
-<<<<<<< HEAD
 		8425E42A190D218700BB966E /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../Desktop/Storage/Resources/libxml2.2.dylib; sourceTree = "<group>"; };
-=======
->>>>>>> sazonova
-=======
->>>>>>> sazonova
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,15 +150,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
-<<<<<<< HEAD
 				8425E42B190D218700BB966E /* libxml2.2.dylib in Frameworks */,
-=======
 				5D82DDDB18F7D106009E4D3E /* libxml2.dylib in Frameworks */,
->>>>>>> sazonova
-=======
 				5D82DDDB18F7D106009E4D3E /* libxml2.dylib in Frameworks */,
->>>>>>> sazonova
 				5D29B10F18F7CF8F006DCD4F /* CoreGraphics.framework in Frameworks */,
 				5D29B11118F7CF8F006DCD4F /* UIKit.framework in Frameworks */,
 				5D29B10D18F7CF8F006DCD4F /* Foundation.framework in Frameworks */,
@@ -208,8 +172,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-<<<<<<< HEAD
-<<<<<<< HEAD
 		5D26EAE6190BD54E00ED47FC /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,10 +180,6 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
-=======
->>>>>>> sazonova
-=======
->>>>>>> sazonova
 		5D29B10018F7CF8F006DCD4F = {
 			isa = PBXGroup;
 			children = (
@@ -244,15 +202,9 @@
 		5D29B10B18F7CF8F006DCD4F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-<<<<<<< HEAD
 				8425E42A190D218700BB966E /* libxml2.2.dylib */,
-=======
 				5D82DDDA18F7D106009E4D3E /* libxml2.dylib */,
->>>>>>> sazonova
-=======
 				5D82DDDA18F7D106009E4D3E /* libxml2.dylib */,
->>>>>>> sazonova
 				5D29B10C18F7CF8F006DCD4F /* Foundation.framework */,
 				5D29B10E18F7CF8F006DCD4F /* CoreGraphics.framework */,
 				5D29B11018F7CF8F006DCD4F /* UIKit.framework */,
@@ -264,13 +216,7 @@
 		5D29B11218F7CF8F006DCD4F /* DevBy */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-<<<<<<< HEAD
 				5D26EAE6190BD54E00ED47FC /* Constants */,
-=======
->>>>>>> sazonova
-=======
->>>>>>> sazonova
 				5D82DDFD18F8080A009E4D3E /* Custom cells */,
 				5D82DDF318F7D37E009E4D3E /* Vacancies */,
 				5D82DDE018F7D312009E4D3E /* Companies */,
@@ -444,23 +390,14 @@
 				5D26DD6F18FC5D8600914F06 /* EventCell.m */,
 				5D2E28E719059FD200C64769 /* PremiumJobCell.h */,
 				5D2E28E819059FD200C64769 /* PremiumJobCell.m */,
-<<<<<<< HEAD
-<<<<<<< HEAD
 				5DD088901906319D008601DB /* MiddleJobCell.h */,
 				5DD088911906319D008601DB /* MiddleJobCell.m */,
 				5DD08893190631B2008601DB /* StandardJobCell.h */,
 				5DD08894190631B2008601DB /* StandardJobCell.m */,
-=======
-=======
->>>>>>> sazonova
 				5DD088911906319D008601DB /* MiddleJobCell.m */,
 				5DD08893190631B2008601DB /* StandardJobCell.h */,
 				5DD08894190631B2008601DB /* StandardJobCell.m */,
 				5DD088901906319D008601DB /* MiddleJobCell.h */,
-<<<<<<< HEAD
->>>>>>> sazonova
-=======
->>>>>>> sazonova
 				5D1630B4190BA510005AEE23 /* FeedbackCell.h */,
 				5D1630B5190BA510005AEE23 /* FeedbackCell.m */,
 			);
@@ -514,15 +451,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = AD;
 				TargetAttributes = {
-<<<<<<< HEAD
-<<<<<<< HEAD
 					5D29B10818F7CF8F006DCD4F = {
 						DevelopmentTeam = S6T4VJ437P;
 					};
-=======
->>>>>>> sazonova
-=======
->>>>>>> sazonova
 					5D29B12318F7CF8F006DCD4F = {
 						TestTargetID = 5D29B10818F7CF8F006DCD4F;
 					};
@@ -668,16 +599,10 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
-=======
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
->>>>>>> sazonova
-=======
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
->>>>>>> sazonova
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -695,13 +620,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				PROVISIONING_PROFILE = "E5F2E7E8-F5C4-46DE-8E68-05A1AF81088E";
-=======
->>>>>>> sazonova
-=======
->>>>>>> sazonova
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -722,16 +641,10 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
-=======
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
->>>>>>> sazonova
-=======
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
->>>>>>> sazonova
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -742,13 +655,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				PROVISIONING_PROFILE = "E5F2E7E8-F5C4-46DE-8E68-05A1AF81088E";
-=======
->>>>>>> sazonova
-=======
->>>>>>> sazonova
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -759,20 +666,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
-=======
->>>>>>> sazonova
-=======
->>>>>>> sazonova
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DevBy/DevBy-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "DevBy/DevBy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Desktop,
@@ -780,12 +679,8 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E5F2E7E8-F5C4-46DE-8E68-05A1AF81088E";
-=======
 				PRODUCT_NAME = "$(TARGET_NAME)";
->>>>>>> sazonova
-=======
 				PRODUCT_NAME = "$(TARGET_NAME)";
->>>>>>> sazonova
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -797,20 +692,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
-=======
->>>>>>> sazonova
-=======
->>>>>>> sazonova
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DevBy/DevBy-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "DevBy/DevBy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Desktop,
@@ -818,12 +705,8 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E5F2E7E8-F5C4-46DE-8E68-05A1AF81088E";
-=======
 				PRODUCT_NAME = "$(TARGET_NAME)";
->>>>>>> sazonova
-=======
 				PRODUCT_NAME = "$(TARGET_NAME)";
->>>>>>> sazonova
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

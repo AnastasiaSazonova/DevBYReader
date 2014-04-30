@@ -7,13 +7,20 @@
 //
 
 #import "DetailVacanciesViewController.h"
+<<<<<<< HEAD
 
 static float navBarHeight = 64.0f;
+=======
+#import "Constants.h"
+>>>>>>> sazonova
 
 @interface DetailVacanciesViewController ()
 {
     float totalHeight;
+<<<<<<< HEAD
     float offset;
+=======
+>>>>>>> sazonova
     CGRect textViewFrame;
 }
 
@@ -59,7 +66,10 @@ static float navBarHeight = 64.0f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+<<<<<<< HEAD
     offset = 20.0f;
+=======
+>>>>>>> sazonova
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     if (navObjectsHeight == 0)
     {
@@ -70,7 +80,11 @@ static float navBarHeight = 64.0f;
     
     CGRect nameLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, 0);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelFrame];
+<<<<<<< HEAD
     nameLabel.font = [UIFont systemFontOfSize:21];
+=======
+    nameLabel.font = [UIFont systemFontOfSize:DVNamelabelFont];
+>>>>>>> sazonova
     nameLabel.numberOfLines = 0;
     nameLabel.text = self.jobTitle;
     [nameLabel sizeToFit];
@@ -79,7 +93,11 @@ static float navBarHeight = 64.0f;
     
     CGRect dateLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, 0);
     UILabel * dateLabel = [[UILabel alloc] initWithFrame:dateLabelFrame];
+<<<<<<< HEAD
     dateLabel.font = [UIFont systemFontOfSize:15];
+=======
+    dateLabel.font = [UIFont systemFontOfSize:DVDatelabelFont];
+>>>>>>> sazonova
     dateLabel.textColor = [UIColor grayColor];
     dateLabel.numberOfLines = 0;
     dateLabel.text = @"Epam";
@@ -89,7 +107,11 @@ static float navBarHeight = 64.0f;
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"Описание", @"Требования", @"Контакты", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
+<<<<<<< HEAD
     segmentedControl.frame = CGRectMake(20, totalHeight, self.view.bounds.size.width - 2 * offset, 30);
+=======
+    segmentedControl.frame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset, 30);
+>>>>>>> sazonova
     totalHeight += segmentedControl.bounds.size.height;
     [segmentedControl addTarget:self action:@selector(touchSegmentedControl:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
@@ -129,7 +151,6 @@ static float navBarHeight = 64.0f;
     self.textView.frame = textViewFrame;
     self.textView.text = @"Технологии: XML/XSLT, .NET (C#; ASP.NET), sql, HTML/DHTML \nИностранные языки: Английский — Intermediate \nОбразование: Не имеет значения";
     [self.textView sizeToFit];
-    [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 
@@ -138,7 +159,6 @@ static float navBarHeight = 64.0f;
     self.textView.frame = textViewFrame;
     self.textView.text = @"Эл. почта: akrasouskaya@viacode.com \nСайт: www.viacode.com";
     [self.textView sizeToFit];
-    [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 

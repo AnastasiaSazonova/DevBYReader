@@ -3,14 +3,11 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "devImage2.png"
-<<<<<<< HEAD
-=======
+      "filename" : "devLogo.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x"
->>>>>>> sazonova
     }
   ],
   "info" : {
