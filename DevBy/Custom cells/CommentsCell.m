@@ -37,7 +37,7 @@
     [self addSubview:dateLabel];
     self.totalHeight += dateLabel.bounds.size.height + halfOffset;
     
-    CGRect commentRect = CGRectMake(halfOffset + offset*halfOffset, self.totalHeight, self.bounds.size.width - 2*halfOffset - offset*halfOffset, 0);
+    CGRect commentRect = CGRectMake(halfOffset + offset*halfOffset, self.totalHeight, self.frame.size.width - 2 * halfOffset - 2 * offset*halfOffset - 5, 0);
     UILabel * commentLabel = [[UILabel alloc] initWithFrame:commentRect];
     commentLabel.font = [UIFont systemFontOfSize:CCCommentFont];
     commentLabel.numberOfLines = 0;
@@ -45,6 +45,8 @@
     [commentLabel sizeToFit];
     [self addSubview:commentLabel];
     self.totalHeight += commentLabel.bounds.size.height + halfOffset;
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 @end

@@ -14,6 +14,8 @@
 #import "ArticleCell.h"
 #import "Constants.h"
 
+#import "SlideViewController.h"
+
 
 @interface PostsViewController ()
 {
@@ -34,6 +36,8 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"devLogo"] scaledToSize:CGSizeMake(100, 35)]];
     _posts = [[NSMutableArray alloc] initWithArray:@[@"Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.", @"Heartbleed – новое слово в маркетинге багов.", @"Злой гений создал гибрид '2048' и 'Flappy Bird' на погибель вашей продуктивности.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies награждения Belarusian IT Awards и Best IT Companies."]];
     [self.tableView reloadData];
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Назад" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
@@ -107,20 +111,25 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailPostsViewController * detailViewController = [[DetailPostsViewController alloc] init];
-    detailViewController.title = _posts[indexPath.row];
-    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (indexPath == 0)
-    {
-        MainArticleCell * articleCell = (MainArticleCell *)cell;
-        detailViewController.image = articleCell.image;
-    }
-    else
-    {
-        ArticleCell * articleCell = (ArticleCell *)cell;
-        detailViewController.image = articleCell.image;
-    }
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    
+    SlideViewController* slideViewController = [[SlideViewController alloc]initWithIndex:indexPath.row];
+    [self.navigationController pushViewController:slideViewController animated:YES];
+    
+//    
+//    DetailPostsViewController * detailViewController = [[DetailPostsViewController alloc] init];
+//    detailViewController.title = _posts[indexPath.row];
+//    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+//    if (indexPath == 0)
+//    {
+//        MainArticleCell * articleCell = (MainArticleCell *)cell;
+//        detailViewController.image = articleCell.image;
+//    }
+//    else
+//    {
+//        ArticleCell * articleCell = (ArticleCell *)cell;
+//        detailViewController.image = articleCell.image;
+//    }
+//    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 @end

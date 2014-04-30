@@ -14,14 +14,12 @@
 #import "StandardJobCell.h"
 #import "Constants.h"
 
-NSString * premiumJobIdentifier = @"PremiunJob";
-NSString * middleJobIdentifier = @"MiddleJob";
-NSString * standardJobIdentifier = @"StandardJob";
-
 @interface VacanciesViewController()<UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     UISearchBar * searchBar;
     UISearchDisplayController * searchDisplayController;
+    float tableviewOffset;
+    BOOL isSearching;
 }
 
 @property(nonatomic, strong)NSArray * jobs;
@@ -110,6 +108,7 @@ NSString * standardJobIdentifier = @"StandardJob";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    isSearching = NO;
     self.title = NSLocalizedString(@"Вакансии", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
@@ -120,7 +119,8 @@ NSString * standardJobIdentifier = @"StandardJob";
     searchDisplayController.searchResultsDelegate = self;
     [self.view addSubview:searchBar];
     
-    CGRect tableViewFrame = CGRectMake(0, navBarHeight + VCRowHeight + 3, self.view.bounds.size.width, self.view.bounds.size.height - self.view.bounds.origin.y);
+    tableviewOffset = navBarHeight + VCRowHeight + 3;
+    CGRect tableViewFrame = CGRectMake(0, tableviewOffset, self.view.bounds.size.width, self.view.bounds.size.height - self.view.bounds.origin.y - tableviewOffset);
     self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -131,10 +131,11 @@ NSString * standardJobIdentifier = @"StandardJob";
     
     [self.view addSubview:self.tableView];
     
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillShowNotification object:nil];
-    [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillHideNotification object:nil];
+//    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillHideNotification object:nil];
 }
+
 
 -(void)changeSearchBarPosition:(NSNotification *)notification
 {
@@ -148,20 +149,61 @@ NSString * standardJobIdentifier = @"StandardJob";
                                           searchBar.bounds.size.height
                                           );
             self.tableView.frame = CGRectMake(0, statusbarHeight + VCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+
+            [self.tableView setBackgroundColor:[UIColor redColor]];
         }];
     }
     else if([notification.name isEqualToString:UIKeyboardWillHideNotification])
     {
-        [UIView animateWithDuration:0.25 animations:^{
-            searchBar.frame =  CGRectMake(0,
-                                          navBarHeight,
-                                          searchBar.bounds.size.width,
-                                          searchBar.bounds.size.height
-                                          );
-            self.tableView.frame = CGRectMake(0, navBarHeight + VCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
-        }];
+            [UIView animateWithDuration:0.25 animations:^{
+                searchBar.frame =  CGRectMake(0,
+                                              navBarHeight,
+                                              searchBar.bounds.size.width,
+                                              searchBar.bounds.size.height
+                                              );
+                
+                NSLog(@"first   %@",self.view.subviews);
+                searchDisplayController.searchResultsTableView.alpha = 1;
+//                if (isSearching)
+//                {
+//                    UITableView* table = (UITableView*)self.searchDisplayController.searchResultsTableView;
+                    searchDisplayController.searchResultsTableView.frame = CGRectMake(0, 64, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+                
+                NSLog(@"first   %@",self.view.subviews);
+                
+//                    NSLog(@"%@",self.searchDisplayController.searchResultsTableView);
+//                }
+//                else
+//                {
+                
+                
+                
+                [searchBar bringSubviewToFront:self.view];
+//                self.tableView.alpha = 0;
+                    self.tableView.frame = CGRectMake(0, tableviewOffset, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+//                }
+            }];
     }
     
+}
+
+-(void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView
+{
+//    tableView.frame = CGRectMake(0, tableviewOffset, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+
+    tableView.frame = CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+    
+    NSLog(@"%@",NSStringFromCGRect(CGRectMake(0, tableviewOffset, self.tableView.bounds.size.width, self.tableView.bounds.size.height)));
+    [tableView setBackgroundColor:[UIColor yellowColor]];
+    NSLog(@"%@",self.view.subviews);
+//    tableView.alpha = 0;
+}
+
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    isSearching = NO;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -271,6 +313,7 @@ NSString * standardJobIdentifier = @"StandardJob";
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
+    isSearching = YES;
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
     self.searchResults = [self.jobs filteredArrayUsingPredicate:resultPredicate];
 }

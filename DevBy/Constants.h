@@ -6,6 +6,12 @@
 //  Copyright (c) 2014 AD. All rights reserved.
 //
 
+
+#define NEWS @"Novosti"
+#define COMPANYS @"Kompanii"
+#define JOB @"Rabota"
+#define EVENTS @"Sobitia"
+
 enum
 {
     redColor,

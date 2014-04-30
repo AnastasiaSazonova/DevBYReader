@@ -88,6 +88,8 @@
     
     scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.totalHeight);
     [self.view addSubview:scrollView];
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Назад" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 -(void)touchCommentsButton:(UIButton *)sender

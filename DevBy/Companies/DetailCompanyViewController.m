@@ -14,7 +14,9 @@
 @interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
     float totalHeight;
+    float commentsHeight;
     CGRect textViewFrame;
+    NSMutableArray *commentsCellsArray;
 }
 
 @property(nonatomic, strong)NSString * companysDescription;
@@ -51,7 +53,7 @@
 {
     if (!_textView)
     {
-        textViewFrame = CGRectMake(offset * 0.8, totalHeight, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/5);
+        textViewFrame = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, self.view.bounds.size.height/5);
         _textView = [[UITextView alloc] initWithFrame:textViewFrame];
         _textView.userInteractionEnabled = NO;
         _textView.font = [UIFont systemFontOfSize:DCTextViewFont];
@@ -87,20 +89,51 @@
     return _companysDescription;
 }
 
+- (CommentsCell*) initilizeCellwithUsername:(NSString*) username ddte:(NSString*) date commenys:(NSString*)comments offset:(int)offset
+{
+    CommentsCell* cell = [[CommentsCell alloc]init];
+    cell.username = username;
+    cell.date = date;
+    cell.comment = comments;
+    [cell drawCellWithOffset:offset];
+    return cell;
+}
+
+-(void)calculateTableViewHeights
+{
+    commentsCellsArray = [NSMutableArray array];
+    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
+    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
+    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
+    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
+    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
+    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
+    [commentsCellsArray addObject:[self initilizeCellwithUsername:@"FirstUser" ddte:@"01.01.01" commenys:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
+    
+    for (CommentsCell* cell in commentsCellsArray) {
+        commentsHeight += cell.totalHeight;
+    }
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
+    commentsHeight = 0;
+    
+    [self calculateTableViewHeights];
+    
     totalHeight = 0;
+//    commentsHeight = 0;
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     if (navObjectsHeight == 0)
     {
         navObjectsHeight = navBarHeight;
     }
     totalHeight += offset*0.8 + navObjectsHeight;
-    CGRect nameLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset - DCLogoHeight, DCLogoHeight);
+    CGRect nameLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset - DCLogoHeight, DCLogoHeight);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
     nameLabel.font = [UIFont systemFontOfSize:DCNameLabelFont];
     nameLabel.numberOfLines = 0;
@@ -109,7 +142,7 @@
     [self.scrollView addSubview:nameLabel];
     
     totalHeight += nameLabel.bounds.size.height;
-    CGRect employeeLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width, DCLogoHeight);
+    CGRect employeeLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width, DCLogoHeight);
     UILabel * employeeNumberLabel = [[UILabel alloc] initWithFrame:employeeLabelRect];
     employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", self.employeeNumber];
     employeeNumberLabel.font = [UIFont systemFontOfSize:DCEmployeeNumberFont];
@@ -123,7 +156,7 @@
     [self.scrollView addSubview:logoView];
     
     totalHeight += employeeNumberLabel.bounds.size.height + offset/3;
-    CGRect descriptionLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/5);
+    CGRect descriptionLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, self.view.bounds.size.height/5);
     UILabel * descriptionLabel = [[UILabel alloc] initWithFrame:descriptionLabelRect];
     descriptionLabel.numberOfLines = 0;
     descriptionLabel.text = self.description;
@@ -136,7 +169,7 @@
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"О компании", @"Обсуждение", @"Отзывы", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
-    segmentedControl.frame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset, 30);
+    segmentedControl.frame = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, 30);
     totalHeight += segmentedControl.bounds.size.height + offset/3;
     [segmentedControl addTarget:self action:@selector(touchSegmentedContorol:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
@@ -176,7 +209,20 @@
     [self cleanTextView];
     [self setDiscussionView];
     [self.scrollView sizeToFit];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.commentsTableView.bounds.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.commentsTableView.bounds.size.height );
+}
+
+
+-(void)setDiscussionView
+{
+    CGRect frame = self.textView.frame;
+    frame.size.height += self.view.bounds.size.height;
+    self.commentsTableView = [[UITableView alloc]initWithFrame:frame];
+    self.commentsTableView.userInteractionEnabled = NO;
+    self.commentsTableView.delegate = self;
+    self.commentsTableView.dataSource = self;
+    self.commentsTableView.frame = CGRectMake(self.scrollView.center.x - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, commentsHeight);
+    [self.scrollView addSubview:self.commentsTableView];
 }
 
 -(void)addCompanysFeedback
@@ -210,24 +256,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.commentsTableView)
-    {
-        return 10;
-    }
-    else if(tableView == self.feedBackTableView)
-    {
-        return 3;
-    }
-    return 0;
+    return [commentsCellsArray count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.commentsTableView)
     {
-        CommentsCell * cell = [[CommentsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CommentCell"];
-        [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
-        return cell.totalHeight;
+        return ((CommentsCell*)[commentsCellsArray objectAtIndex:indexPath.row]).totalHeight;
     }
     else
     {
@@ -241,9 +277,7 @@
 {
     if (tableView == self.commentsTableView)
     {
-        CommentsCell * cell = [[CommentsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CommentCell"];
-        [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
-        return cell;
+        return (CommentsCell*)[commentsCellsArray objectAtIndex:indexPath.row];
     }
     else
     {
@@ -299,33 +333,6 @@
         [commentCell drawCellWithOffset:0];
     }
         
-}
-
--(void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    if (indexPath.row < 9)
-//    {
-//        CGRect frame = textViewFrame;
-//        frame.size.height += cell.bounds.size.height;
-//        self.commentsTableView.frame = frame;
-//    }
-//    else
-//    {
-//        CGRect frame = textViewFrame;
-//        frame.size.height += cell.bounds.size.height;
-//        self.commentsTableView.frame = frame;
-//    }
-}
-
--(void)setDiscussionView
-{
-    CGRect frame = textViewFrame;
-    frame.size.height += self.view.bounds.size.height;
-    self.commentsTableView = [[UITableView alloc]initWithFrame:frame];
-    self.commentsTableView.userInteractionEnabled = NO;
-    self.commentsTableView.delegate = self;
-    self.commentsTableView.dataSource = self;
-    [self.scrollView addSubview:self.commentsTableView];
 }
 
 -(void)setFeedbackView

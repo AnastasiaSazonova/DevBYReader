@@ -57,7 +57,8 @@
     searchDisplayController.searchResultsDelegate = self;
     [self.view addSubview:searchBar];
     
-    CGRect tableViewFrame = CGRectMake(0, navBarHeight + CVCRowHeight + 3, self.view.bounds.size.width, self.view.bounds.size.height - self.view.bounds.origin.y);
+    float tableOffset = navBarHeight + CVCRowHeight + 3;
+    CGRect tableViewFrame = CGRectMake(0, tableOffset, self.view.bounds.size.width, self.view.frame.size.height - self.view.bounds.origin.y - tableOffset);
     self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -95,7 +96,7 @@
                                           searchBar.bounds.size.width,
                                           searchBar.bounds.size.height
                                           );
-            self.tableView.frame = CGRectMake(0, navBarHeight + CVCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+            self.tableView.frame = CGRectMake(0, (navBarHeight + CVCRowHeight + 3), self.tableView.bounds.size.width, self.tableView.bounds.size.height);
         }];
     }
     
