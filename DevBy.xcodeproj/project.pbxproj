@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D0B8C3819115DA500A62318 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B8C2719115DA500A62318 /* MenuTableViewController.m */; };
 		5D0B8C3919115DA500A62318 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B8C2919115DA500A62318 /* MenuViewController.m */; };
 		5D0B8C3A19115DA500A62318 /* MSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B8C2B19115DA500A62318 /* MSMainViewController.m */; };
 		5D0B8C3B19115DA500A62318 /* MSSlideSystemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B8C2D19115DA500A62318 /* MSSlideSystemController.m */; };
-		5D0B8C3C19115DA500A62318 /* MyAppAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B8C2F19115DA500A62318 /* MyAppAppDelegate.m */; };
 		5D0B8C3F19115DA500A62318 /* SlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B8C3519115DA500A62318 /* SlideViewController.m */; };
 		5D0EA0D9190E61A2004FDE9A /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0EA0D8190E61A2004FDE9A /* Job.m */; };
 		5D12A15218F91366005A5BEE /* DetailCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D12A15118F91365005A5BEE /* DetailCompanyViewController.m */; };
@@ -67,16 +65,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5D0B8C2619115DA500A62318 /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
-		5D0B8C2719115DA500A62318 /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
 		5D0B8C2819115DA500A62318 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		5D0B8C2919115DA500A62318 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		5D0B8C2A19115DA500A62318 /* MSMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSMainViewController.h; sourceTree = "<group>"; };
 		5D0B8C2B19115DA500A62318 /* MSMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSMainViewController.m; sourceTree = "<group>"; };
 		5D0B8C2C19115DA500A62318 /* MSSlideSystemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSlideSystemController.h; sourceTree = "<group>"; };
 		5D0B8C2D19115DA500A62318 /* MSSlideSystemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSlideSystemController.m; sourceTree = "<group>"; };
-		5D0B8C2E19115DA500A62318 /* MyAppAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAppAppDelegate.h; sourceTree = "<group>"; };
-		5D0B8C2F19115DA500A62318 /* MyAppAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAppAppDelegate.m; sourceTree = "<group>"; };
 		5D0B8C3419115DA500A62318 /* SlideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideViewController.h; sourceTree = "<group>"; };
 		5D0B8C3519115DA500A62318 /* SlideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideViewController.m; sourceTree = "<group>"; };
 		5D0EA0D8190E61A2004FDE9A /* Job.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Job.m; sourceTree = "<group>"; };
@@ -181,16 +175,12 @@
 		5D0B8C2019115DA500A62318 /* SergeyContent */ = {
 			isa = PBXGroup;
 			children = (
-				5D0B8C2619115DA500A62318 /* MenuTableViewController.h */,
-				5D0B8C2719115DA500A62318 /* MenuTableViewController.m */,
 				5D0B8C2819115DA500A62318 /* MenuViewController.h */,
 				5D0B8C2919115DA500A62318 /* MenuViewController.m */,
 				5D0B8C2A19115DA500A62318 /* MSMainViewController.h */,
 				5D0B8C2B19115DA500A62318 /* MSMainViewController.m */,
 				5D0B8C2C19115DA500A62318 /* MSSlideSystemController.h */,
 				5D0B8C2D19115DA500A62318 /* MSSlideSystemController.m */,
-				5D0B8C2E19115DA500A62318 /* MyAppAppDelegate.h */,
-				5D0B8C2F19115DA500A62318 /* MyAppAppDelegate.m */,
 				5D0B8C3419115DA500A62318 /* SlideViewController.h */,
 				5D0B8C3519115DA500A62318 /* SlideViewController.m */,
 			);
@@ -518,13 +508,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D29B11D18F7CF8F006DCD4F /* AppDelegate.m in Sources */,
-				5D0B8C3819115DA500A62318 /* MenuTableViewController.m in Sources */,
 				5D82DDCE18F7D0CE009E4D3E /* TFHppleElement.m in Sources */,
 				5D0B8C3919115DA500A62318 /* MenuViewController.m in Sources */,
 				5D82DDF618F7D37E009E4D3E /* VacanciesViewController.m in Sources */,
 				5D82DE0318F8080A009E4D3E /* MainArticleCell.m in Sources */,
 				5D82DDEC18F7D312009E4D3E /* CompaniesViewController.m in Sources */,
-				5D0B8C3C19115DA500A62318 /* MyAppAppDelegate.m in Sources */,
 				5D12A15218F91366005A5BEE /* DetailCompanyViewController.m in Sources */,
 				5D82DDEF18F7D312009E4D3E /* PostsViewController.m in Sources */,
 				5D0B8C3A19115DA500A62318 /* MSMainViewController.m in Sources */,

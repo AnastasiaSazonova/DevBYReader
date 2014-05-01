@@ -47,7 +47,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.title = NSLocalizedString(@"Компании", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
     self.searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
@@ -70,11 +69,6 @@
 - (IBAction)goToSearch:(id)sender
 {
     [self.searchBar becomeFirstResponder];
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    self.searchBar.frame = CGRectMake(0, 0, self.searchBar.bounds.size.width, self.searchBar.bounds.size.height);
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

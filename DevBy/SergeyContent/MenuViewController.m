@@ -39,7 +39,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//     self.view.frame = viewFrame;
     NSLog(@"%@   %@",NSStringFromCGRect(self.view.frame),NSStringFromCGRect(self.view.bounds));
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 70, 100, 35) andTitle:NEWS];

@@ -45,11 +45,13 @@
     [super viewDidLoad];
 
     array = [[NSMutableArray alloc] init];
-    [self fillArrayWith:@"Post 1" andImage:[UIImage imageNamed:@"devImage"]];
-    [self fillArrayWith:@"Post 2" andImage:[UIImage imageNamed:@"devImage2"]];
-    [self fillArrayWith:@"Post 3" andImage:[UIImage imageNamed:@"devImage3"]];
-    [self fillArrayWith:@"Post 4" andImage:[UIImage imageNamed:@"devImage2"]];
-    NSLog(@"array %@", array);
+    [self fillArrayWith:@"Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения." andImage:[UIImage imageNamed:@"devImage"]];
+    [self fillArrayWith:@"Heartbleed – новое слово в маркетинге багов." andImage:[UIImage imageNamed:@"devImage3"]];
+    [self fillArrayWith:@"Злой гений создал гибрид '2048' и 'Flappy Bird' на погибель вашей продуктивности." andImage:[UIImage imageNamed:@"devImage3"]];
+    [self fillArrayWith:@"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies." andImage:[UIImage imageNamed:@"devImage3"]];
+    
+    [self addArticleNumber: currentIndex + 1];
+
     pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:50.0] forKey:UIPageViewControllerOptionSpineLocationKey]];
     
     pageViewController.dataSource = self;
@@ -58,7 +60,7 @@
     pageViewController.view.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - [UIApplication sharedApplication].statusBarFrame.size.height);
 
     DetailPostsViewController * detailViewController1 = array[currentIndex];
-    self.navigationItem.title = [NSString stringWithFormat:@"%d/%d", currentIndex + 1, [delegate countForPages]];
+    
     NSArray* viewControllersArray = @[detailViewController1];
     [pageViewController setViewControllers:viewControllersArray direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     
@@ -78,6 +80,23 @@
     [array addObject:detail];
 }
 
+-(void)addArticleNumber:(int)number
+{
+    UILabel * numberOfArticle = [[UILabel alloc] init];
+    numberOfArticle.font = [UIFont boldSystemFontOfSize:12];
+    numberOfArticle.textColor = [UIColor grayColor];
+    numberOfArticle.numberOfLines = 2;
+    if (number < 10)
+    {
+        numberOfArticle.text = [NSString stringWithFormat:@"Новость \n  %d из %d", number, [delegate countForPages]];;
+    }
+    else
+    {
+        numberOfArticle.text = [NSString stringWithFormat:@"Новость \n %d из %d", number, [delegate countForPages]];;
+    }
+    [numberOfArticle sizeToFit];
+    self.navigationItem.titleView = numberOfArticle;
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -93,12 +112,9 @@
     {
         return nil;
     }
-
-    NSLog(@"%@", self.pageViewController.viewControllers);
-    NSLog(@"index %d", index);
-    index -= 1;
-    self.navigationItem.title = [NSString stringWithFormat:@"%d/%d", index + 1, [delegate countForPages]];
+    index--;
     
+   // [self addArticleNumber: index];
     DetailPostsViewController * detailViewController = array[index];
     return detailViewController;
 }
@@ -107,21 +123,16 @@
 {
     DetailPostsViewController * controller = (DetailPostsViewController *)viewController;
     int index = [array indexOfObject:controller];
-    //NSLog(@"1   %d",index);
+    
     if (index == [delegate countForPages] - 1)
     {
-        self.navigationItem.title = [NSString stringWithFormat:@"%d/%d", index + 1 , [delegate countForPages]];
+        [self addArticleNumber: index + 1];
         return nil;
     }
-    index += 1;
+    index++;
     DetailPostsViewController * detailViewController = array[index];
-    self.navigationItem.title = [NSString stringWithFormat:@"%d/%d", index , [delegate countForPages]];
+    [self addArticleNumber: index];
     return detailViewController;
-}
-
-- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
-{
-
 }
 
 
