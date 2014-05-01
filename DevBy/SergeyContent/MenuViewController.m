@@ -7,11 +7,7 @@
 //
 
 #import "MenuViewController.h"
-#define NEWS @"Novosti"
-#define COMPANYS @"Kompanii"
-#define SALARY @"Zarplati"
-#define JOB @"Rabota"
-#define EVENTS @"Sobitia"
+#import "Constants.h"
 
 @interface MenuViewController ()
 

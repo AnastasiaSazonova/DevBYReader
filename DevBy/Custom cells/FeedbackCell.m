@@ -57,13 +57,12 @@
     [self addSubview:jobExperienceLabel];
     self.totalHeight += jobExperienceRect.origin.y +  jobExperienceLabel.bounds.size.height;
     
-    CGRect backgroundViewRect = CGRectMake(halfOffset/2, 0, self.bounds.size.width*0.86, self.totalHeight - 2 * halfOffset);
+    CGRect backgroundViewRect = CGRectMake(0, 0, self.bounds.size.width*0.935, self.totalHeight - 2 * halfOffset);
     backGroundView.frame = backgroundViewRect;
-    [backGroundView.layer setCornerRadius:9.0f];
     [backGroundView.layer setBorderColor:[UIColor grayColor].CGColor];
     [backGroundView.layer setBorderWidth:1.5f];
     
-    CGRect commentRect = CGRectMake(halfOffset, self.totalHeight - 1.5 * halfOffset, self.bounds.size.width*0.8, 0);
+    CGRect commentRect = CGRectMake(halfOffset, self.totalHeight - 1.5 * halfOffset, self.bounds.size.width*0.9, 0);
     UILabel * commentLabel = [[UILabel alloc] initWithFrame:commentRect];
     commentLabel.font = [UIFont systemFontOfSize:FBCTextFont];
     commentLabel.numberOfLines = 0;

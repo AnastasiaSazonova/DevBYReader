@@ -47,7 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"Компании", nil);
+    //self.title = NSLocalizedString(@"Компании", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
     self.searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];

@@ -39,63 +39,54 @@
 
     //put chosen viewController
     viewController.centralPanel = [[UINavigationController alloc] initWithRootViewController:[[PostsViewController alloc] init]];
-//    viewController.centralPanel = [[UINavigationController alloc] initWithRootViewController:[[NewsViewController alloc] init]];
     
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)showChosenCategory:(NSString *)chosenViewController
 {
-    UINavigationController* navigation = (UINavigationController*) viewController.centralPanel;
+    UINavigationController* navigation = ((UINavigationController*) viewController.centralPanel);
+   
     if ([viewController.centralPanel isKindOfClass:UINavigationController.class])
     {
-        ((UINavigationController*)viewController.centralPanel).visibleViewController.navigationItem.leftBarButtonItem = nil;
         if ([chosenViewController isEqualToString:NEWS])
         {
             if (![navigation.topViewController isKindOfClass:PostsViewController.class])
             {
                 [navigation pushViewController:[[PostsViewController alloc]init] animated:YES];
-            } else
-            {
-                [navigation popViewControllerAnimated:NO];
-                [navigation pushViewController:[[PostsViewController alloc]init] animated:NO];
             }
-            return;
-        } else if ([chosenViewController isEqualToString:COMPANYS])
+        }
+        else if ([chosenViewController isEqualToString:COMPANYS])
         {
-
             if(![navigation.topViewController isKindOfClass:CompaniesViewController.class])
             {
                 [navigation pushViewController:[[CompaniesViewController alloc]init] animated:YES];
-            } else
-            {
-                [navigation popViewControllerAnimated:NO];
-                [navigation pushViewController:[[CompaniesViewController alloc]init] animated:NO];
             }
-            return;
-        } else if ([chosenViewController isEqualToString:JOB])
+        }
+        else if ([chosenViewController isEqualToString:JOB])
         {
             if(![navigation.topViewController isKindOfClass:VacanciesViewController.class])
             {
                 [navigation pushViewController:[[VacanciesViewController alloc]init] animated:YES];
-            } else
-            {
-                [navigation popViewControllerAnimated:NO];
-                [navigation pushViewController:[[VacanciesViewController alloc]init] animated:NO];
             }
-            return;
-        } else if ([chosenViewController isEqualToString:EVENTS])
+        }
+        else if ([chosenViewController isEqualToString:EVENTS])
         {
             if (![navigation.topViewController isKindOfClass:EventsViewController.class])
                 [navigation pushViewController:[[EventsViewController alloc]init] animated:YES];
-            else
-            {
-                [navigation popViewControllerAnimated:NO];
-                [navigation pushViewController:[[EventsViewController alloc]init] animated:NO];
-            }
-            return;
         }
-    } 
+        navigation.topViewController.navigationItem.titleView = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"devLogo"] scaledToSize:CGSizeMake(100, 35)]];
+        [viewController hideMenu];
+    }
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

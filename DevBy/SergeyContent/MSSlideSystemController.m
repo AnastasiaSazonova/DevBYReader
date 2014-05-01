@@ -146,6 +146,10 @@ float START_MENUVIEW_POINT;
 
 - (void) movePanelToRight
 {
+    if ([((UINavigationController*)self.centralPanel).viewControllers count] == 1)
+    {
+        ((UINavigationController*)self.centralPanel).visibleViewController.navigationItem.leftBarButtonItem = nil;
+    }
     [UIView animateWithDuration:ANIMATION_DURATION delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^
     {
         menuController.view.frame = CGRectMake( 0, NAVIGATION_BAR_HEIGHT, self.view.frame.size.width , self.view.frame.size.height - NAVIGATION_BAR_HEIGHT);
@@ -156,13 +160,16 @@ float START_MENUVIEW_POINT;
         {
             menuPanel.view.frame = CGRectMake( menuController.view.bounds.origin.x, menuController.view.bounds.origin.y, menuController.view.bounds.size.width / 2 , menuController.view.bounds.size.height);
             leftNavButton.tag = ANIMATION_RIGHT_TAG;
-            ((UINavigationController*)self.centralPanel).visibleViewController.navigationItem.leftBarButtonItem = leftNavButton;
         }
     }];
 }
 
 - (void) movePanelBack
 {
+    if ([((UINavigationController*)self.centralPanel).viewControllers count] == 1)
+    {
+        ((UINavigationController*)self.centralPanel).visibleViewController.navigationItem.leftBarButtonItem = leftNavButton;
+    }
     [UIView animateWithDuration:ANIMATION_DURATION delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^
     {
          menuController.view.frame = CGRectMake(START_MENUVIEW_POINT, NAVIGATION_BAR_HEIGHT, self.view.frame.size.width / 2, self.view.frame.size.height - NAVIGATION_BAR_HEIGHT);
@@ -171,26 +178,21 @@ float START_MENUVIEW_POINT;
         {
             menuPanel.view.frame = CGRectMake(0, 0, menuController.view.frame.size.width - OFFSET_POINT, menuController.view.frame.size.height);
             leftNavButton.tag = ANIMATION_LEFT_TAG;
-            if ([((UINavigationController*)self.centralPanel).viewControllers count] > 1) 
-            {
-                ((UINavigationController*)self.centralPanel).visibleViewController.navigationItem.leftBarButtonItem = nil;
-            }
         }
     }];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+    if ([((UINavigationController*)self.centralPanel).viewControllers count] == 1)
+    {
+        ((UINavigationController*)self.centralPanel).visibleViewController.navigationItem.leftBarButtonItem = leftNavButton;
+    }
     if ([((UINavigationController*)centralPanel) respondsToSelector:@selector(interactivePopGestureRecognizer)])
     {
         ((UINavigationController*)centralPanel).interactivePopGestureRecognizer.enabled = NO;
     }
-    if (leftNavButton.tag == ANIMATION_RIGHT_TAG)
-    {
-        [self fleshAnimationWithIdentifier:TAP_BUTTON_ANIMATION];
-        [self movePanelBack];
-        
-    } else
+    if (leftNavButton.tag != ANIMATION_RIGHT_TAG)
     {
         ((UINavigationController*)centralPanel).visibleViewController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Назад" style:UIBarButtonItemStylePlain target:nil action:nil];
     }
@@ -267,10 +269,16 @@ float START_MENUVIEW_POINT;
     }
     if (!buttonController.navigationItem.leftBarButtonItem)
     {   
-        leftNavButton = [[UIBarButtonItem alloc]initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(menuAction)];
+        leftNavButton = [[UIBarButtonItem alloc]initWithTitle:@"Меню" style:UIBarButtonItemStylePlain target:self action:@selector(menuAction)];
         leftNavButton.tag = ANIMATION_LEFT_TAG;
         buttonController.navigationItem.leftBarButtonItem = leftNavButton;
     }
+}
+
+- (void)hideMenu
+{
+    [self fleshAnimationWithIdentifier:TAP_BUTTON_ANIMATION];
+    [self movePanelBack];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

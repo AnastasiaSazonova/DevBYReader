@@ -7,10 +7,10 @@
 //
 
 
-#define NEWS @"Novosti"
-#define COMPANYS @"Kompanii"
-#define JOB @"Rabota"
-#define EVENTS @"Sobitia"
+#define NEWS @"Новости"
+#define COMPANYS @"Компании"
+#define JOB @"Вакансии"
+#define EVENTS @"События"
 
 enum
 {

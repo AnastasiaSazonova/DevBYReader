@@ -13,4 +13,6 @@
 @property(nonatomic, strong)UIViewController* menuPanel;
 @property(nonatomic, strong)UIViewController* centralPanel;
 
+- (void)hideMenu;
+
 @end
