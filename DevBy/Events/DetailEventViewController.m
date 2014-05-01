@@ -139,7 +139,7 @@
     
     CGRect countLabelFrame = CGRectMake(1.3 * offset + image.bounds.size.width, totalHeight, self.view.bounds.size.width/3, 0);
     UILabel * countLabel = [[UILabel alloc] initWithFrame:countLabelFrame];
-    countLabel.font = [UIFont systemFontOfSize:20];
+    countLabel.font = [UIFont systemFontOfSize:18];
     countLabel.numberOfLines = 0;
     countLabel.text = @"4";
     [countLabel sizeToFit];
@@ -156,16 +156,6 @@
     [self.scrollView addSubview:segmentedControl];
     [self.view addSubview:self.scrollView];
 }
-
-- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
-{
-    UIGraphicsBeginImageContext(newSize);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
 
 -(void)touchSegmentedControl:(UISegmentedControl *)segmentedControl
 {
