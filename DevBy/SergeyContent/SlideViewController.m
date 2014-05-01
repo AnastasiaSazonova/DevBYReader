@@ -114,7 +114,6 @@
     }
     index--;
     
-   // [self addArticleNumber: index];
     DetailPostsViewController * detailViewController = array[index];
     return detailViewController;
 }
@@ -126,12 +125,10 @@
     
     if (index == [delegate countForPages] - 1)
     {
-        [self addArticleNumber: index + 1];
         return nil;
     }
     index++;
     DetailPostsViewController * detailViewController = array[index];
-    [self addArticleNumber: index];
     return detailViewController;
 }
 

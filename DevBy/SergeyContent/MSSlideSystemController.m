@@ -269,7 +269,7 @@ float START_MENUVIEW_POINT;
     }
     if (!buttonController.navigationItem.leftBarButtonItem)
     {   
-        leftNavButton = [[UIBarButtonItem alloc]initWithTitle:@"Меню" style:UIBarButtonItemStylePlain target:self action:@selector(menuAction)];
+        leftNavButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menuIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(menuAction)];
         leftNavButton.tag = ANIMATION_LEFT_TAG;
         buttonController.navigationItem.leftBarButtonItem = leftNavButton;
     }

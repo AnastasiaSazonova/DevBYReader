@@ -49,6 +49,7 @@
 		5D82DDF618F7D37E009E4D3E /* VacanciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDF518F7D37E009E4D3E /* VacanciesViewController.m */; };
 		5D82DE0218F8080A009E4D3E /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDFF18F8080A009E4D3E /* ArticleCell.m */; };
 		5D82DE0318F8080A009E4D3E /* MainArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DE0118F8080A009E4D3E /* MainArticleCell.m */; };
+		5DA2BEA21912DB3400833C6E /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2BEA11912DB3400833C6E /* Comment.m */; };
 		5DD0888F1906307E008601DB /* DetailVacanciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0888E1906307E008601DB /* DetailVacanciesViewController.m */; };
 		5DD088921906319D008601DB /* MiddleJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD088911906319D008601DB /* MiddleJobCell.m */; };
 		5DD08895190631B2008601DB /* StandardJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD08894190631B2008601DB /* StandardJobCell.m */; };
@@ -138,6 +139,8 @@
 		5D82DDFF18F8080A009E4D3E /* ArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleCell.m; sourceTree = "<group>"; };
 		5D82DE0018F8080A009E4D3E /* MainArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainArticleCell.h; sourceTree = "<group>"; };
 		5D82DE0118F8080A009E4D3E /* MainArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainArticleCell.m; sourceTree = "<group>"; };
+		5DA2BEA01912DB3400833C6E /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		5DA2BEA11912DB3400833C6E /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		5DD0888D1906307E008601DB /* DetailVacanciesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVacanciesViewController.h; sourceTree = "<group>"; };
 		5DD0888E1906307E008601DB /* DetailVacanciesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVacanciesViewController.m; sourceTree = "<group>"; };
 		5DD088901906319D008601DB /* MiddleJobCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiddleJobCell.h; sourceTree = "<group>"; };
@@ -359,6 +362,8 @@
 				5D0EA0D8190E61A2004FDE9A /* Job.m */,
 				5D82DDE718F7D312009E4D3E /* HTMLElement.h */,
 				5D82DDE818F7D312009E4D3E /* HTMLElement.m */,
+				5DA2BEA01912DB3400833C6E /* Comment.h */,
+				5DA2BEA11912DB3400833C6E /* Comment.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -532,6 +537,7 @@
 				5DD088921906319D008601DB /* MiddleJobCell.m in Sources */,
 				5D1630B6190BA510005AEE23 /* FeedbackCell.m in Sources */,
 				5D28ED9418F8A4E80066011D /* CommentsViewController.m in Sources */,
+				5DA2BEA21912DB3400833C6E /* Comment.m in Sources */,
 				5D29B11918F7CF8F006DCD4F /* main.m in Sources */,
 				5D0B8C3B19115DA500A62318 /* MSSlideSystemController.m in Sources */,
 				5D0B8C3F19115DA500A62318 /* SlideViewController.m in Sources */,

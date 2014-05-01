@@ -32,6 +32,12 @@ enum
     standardType
 };
 
+enum
+{
+    commentType,
+    feedBackType
+};
+
 static const float offset = 20.0f;
 static const float middleOffset = 15.0f;
 static const float halfOffset = 10.0f;
