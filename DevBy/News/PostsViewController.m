@@ -119,6 +119,22 @@
     SlideViewController* slideViewController = [[SlideViewController alloc]initWithIndex:indexPath.row];
     slideViewController.delegate = self;
     [self.navigationController pushViewController:slideViewController animated:YES];
+    
+    
+//    DetailPostsViewController * detailViewController = [[DetailPostsViewController alloc] init];
+//    detailViewController.title = _posts[indexPath.row];
+//    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+//    if (indexPath == 0)
+//    {
+//        MainArticleCell * articleCell = (MainArticleCell *)cell;
+//        detailViewController.image = articleCell.image;
+//    }
+//    else
+//    {
+//        ArticleCell * articleCell = (ArticleCell *)cell;
+//        detailViewController.image = articleCell.image;
+//    }
+//    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 @end

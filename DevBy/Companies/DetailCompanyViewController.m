@@ -104,13 +104,14 @@
 -(void)calculateCommentsTableViewHeights
 {
     commentsCellsArray = [NSMutableArray array];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:0]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:1]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:2]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:3]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:0]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:0]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA" offset:0]];
+    NSString * comment = @"Не могу согласится. Мысли в рамках одной User story без мыслей на будущее замедляют внедрение новых фич, которые будут зависеть от данной US. Есть же замечательная пословица: \"7 раз отмерь - 1 отрежь\". Почему не следовать ей и в программировании? Кода с неприятным запахом было куда бы меньше.P.S. общался с людьми, пишущих на Java в vim-е ;)";
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:1]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:2]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:3]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
     
     for (CommentsCell* cell in commentsCellsArray)
     {
@@ -118,12 +119,17 @@
     }
 }
 
-- (FeedbackCell*) initilizeFeedbackCellwithUsername:(NSString*) username date:(NSString*) date comment:(NSString*)comments
+- (FeedbackCell*) initilizeFeedbackCellwithUsername:(NSString*) username
+                                               date:(NSString*) date
+                                            comment:(NSString*)comments
 {
     FeedbackCell* cell = [[FeedbackCell alloc]init];
     cell.username = username;
     cell.date = date;
     cell.comment = comments;
+    cell.jobExperience = @"Работает в Altoros Development: больше 5 лет 26 июня 2013, 17:08";
+    cell.rating = @"Оценка: 3.9 ";
+    cell.color = greenColor;
     [cell drawCell];
     return cell;
 }
@@ -131,13 +137,14 @@
 -(void)calculateFeedbackTableViewHeights
 {
     feedbackCellsArray = [NSMutableArray array];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:@"BLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLABLA"]];
+    NSString * comment = @"Не могу согласится. Мысли в рамках одной User story без мыслей на будущее замедляют внедрение новых фич, которые будут зависеть от данной US. Есть же замечательная пословица: \"7 раз отмерь - 1 отрежь\". Почему не следовать ей и в программировании? Кода с неприятным запахом было куда бы меньше.P.S. общался с людьми, пишущих на Java в vim-е ;)";
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
     
     for (FeedbackCell* cell in feedbackCellsArray)
     {

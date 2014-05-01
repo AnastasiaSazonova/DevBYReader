@@ -64,6 +64,7 @@
     
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearch:)];
     self.navigationItem.rightBarButtonItem = searchButton;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Компании" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (IBAction)goToSearch:(id)sender
