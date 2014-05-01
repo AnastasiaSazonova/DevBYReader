@@ -114,7 +114,6 @@
     }
     index--;
     
-   // [self addArticleNumber: index];
     DetailPostsViewController * detailViewController = array[index];
     return detailViewController;
 }
@@ -126,13 +125,18 @@
     
     if (index == [delegate countForPages] - 1)
     {
-        [self addArticleNumber: index + 1];
         return nil;
     }
     index++;
     DetailPostsViewController * detailViewController = array[index];
-    [self addArticleNumber: index];
     return detailViewController;
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
+{
+    DetailPostsViewController * controller = (DetailPostsViewController *)pendingViewControllers[0];
+    int index = [array indexOfObject:controller] + 1;
+    [self addArticleNumber: index];
 }
 
 
