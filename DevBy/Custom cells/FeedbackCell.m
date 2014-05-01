@@ -40,7 +40,7 @@
     [self addSubview:usernameLabel];
     self.totalHeight += usernameRect.origin.y +  usernameLabel.bounds.size.height;
     
-    CGRect jobRateRect = CGRectMake(12 * halfOffset + usernameLabel.bounds.size.width, halfOffset, self.bounds.size.width*0.8, 0);
+    CGRect jobRateRect = CGRectMake(15.5 * halfOffset + usernameLabel.bounds.size.width, halfOffset, self.bounds.size.width*0.8, 0);
     UILabel * jobRateLabel = [[UILabel alloc] initWithFrame:jobRateRect];
     jobRateLabel.font = [UIFont boldSystemFontOfSize:FBCUsernameFont];
     jobRateLabel.numberOfLines = 0;
