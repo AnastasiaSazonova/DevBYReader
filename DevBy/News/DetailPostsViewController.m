@@ -30,13 +30,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     self.totalHeight = navObjectsHeight;
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width/2, navObjectsHeight)];
     label.numberOfLines = 2;
     label.font = [UIFont systemFontOfSize:13];
-    label.textAlignment = NSTextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentLeft;
     label.text = @"Новости\n1 из 10";
     self.navigationItem.titleView = label;
     
@@ -46,7 +47,7 @@
     scrollView.showsVerticalScrollIndicator = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    UITextView * titleView = [[UITextView alloc] initWithFrame:CGRectMake(halfOffset, navObjectsHeight, self.view.bounds.size.width - 2 *halfOffset, 0)];
+    UITextView * titleView = [[UITextView alloc] initWithFrame:CGRectMake(halfOffset * 0.3, navObjectsHeight, self.view.bounds.size.width - 0.6 *halfOffset, 0)];
     titleView.text = [NSString stringWithFormat:@"%@", self.title];
     titleView.font = [UIFont boldSystemFontOfSize:18];
     titleView.userInteractionEnabled = NO;
@@ -60,7 +61,7 @@
     commentsButton.titleLabel.font = [UIFont systemFontOfSize:12];
     [commentsButton sizeToFit];
     [commentsButton addTarget:self action:@selector(touchCommentsButton:) forControlEvents:UIControlEventTouchUpInside];
-    commentsButton.frame = CGRectMake(middleOffset , self.totalHeight - 6, commentsButton.bounds.size.width, commentsButton.bounds.size.height);
+    commentsButton.frame = CGRectMake(halfOffset * 0.7 , self.totalHeight - 6, commentsButton.bounds.size.width, commentsButton.bounds.size.height);
     [scrollView addSubview:commentsButton];
     
     CGRect dateLabelRect = CGRectMake(2*middleOffset + commentsButton.bounds.size.width, self.totalHeight, 10, 10);
@@ -78,13 +79,14 @@
     [scrollView addSubview:imageView];
     self.totalHeight += imageView.bounds.size.height;
     
-    UITextView * textView = [[UITextView alloc] initWithFrame:CGRectMake(halfOffset, self.totalHeight, self.view.bounds.size.width - 2 * halfOffset, 0)];
+    UITextView * textView = [[UITextView alloc] initWithFrame:CGRectMake(offset * 0.3, self.totalHeight, self.view.bounds.size.width - 0.6 * halfOffset, 0)];
+
     textView.text = [NSString stringWithFormat:@"\t%@", self.text];
     textView.font = [UIFont systemFontOfSize:14];
     textView.userInteractionEnabled = NO;
     [scrollView addSubview:textView];
     [textView sizeToFit];
-    self.totalHeight += textView.bounds.size.height;
+    self.totalHeight += textView.bounds.size.height + 3 * offset;
     
     scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.totalHeight);
     [self.view addSubview:scrollView];

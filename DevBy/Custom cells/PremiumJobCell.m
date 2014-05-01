@@ -7,7 +7,7 @@
 //
 
 #import "PremiumJobCell.h"
-#import "PremiumJob.h"
+#import "Job.h"
 #import "Constants.h"
 
 @interface PremiumJobCell()

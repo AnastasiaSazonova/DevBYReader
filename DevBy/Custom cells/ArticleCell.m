@@ -20,7 +20,7 @@
 -(void)drawCell
 {
     self.totalHeight = 0;
-    CGRect imageFrame = CGRectMake(halfOffset, halfOffset, self.bounds.size.width/4,  ACImageHeight - 2 * halfOffset);
+    CGRect imageFrame = CGRectMake(halfOffset, halfOffset, self.bounds.size.width/4,  self.height - 2 * halfOffset);
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:imageFrame];
     imageView.image = self.image;
     

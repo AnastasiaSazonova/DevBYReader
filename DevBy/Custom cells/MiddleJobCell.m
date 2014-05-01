@@ -8,7 +8,6 @@
 
 #import "MiddleJobCell.h"
 #import "Job.h"
-#import "MiddleJob.h"
 #import "Constants.h"
 
 @interface MiddleJobCell()

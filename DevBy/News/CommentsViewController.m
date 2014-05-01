@@ -69,9 +69,4 @@
     
 }
 
-- (void)log
-{
-    NSLog(@"blabla");
-}
-
 @end

@@ -37,7 +37,7 @@
 {
     if (!_textView)
     {
-        textViewFrame = CGRectMake(offset * 0.8, totalHeight + offset/3, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/5);
+        textViewFrame = CGRectMake(offset * 0.3, totalHeight + offset/3, self.view.bounds.size.width - 0.6 * offset, self.view.bounds.size.height/5);
         _textView = [[UITextView alloc] initWithFrame:textViewFrame];
         _textView.userInteractionEnabled = NO;
         _textView.font = [UIFont systemFontOfSize:14];
@@ -65,7 +65,7 @@
     totalHeight = offset + navObjectsHeight;
     self.view.backgroundColor = [UIColor whiteColor];
     
-    CGRect nameLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, 0);
+    CGRect nameLabelFrame = CGRectMake(offset / 2, totalHeight, self.view.bounds.size.width - offset, 0);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelFrame];
     nameLabel.font = [UIFont systemFontOfSize:DVNamelabelFont];
     nameLabel.numberOfLines = 0;
@@ -74,7 +74,7 @@
     [self.scrollView addSubview:nameLabel];
     totalHeight += nameLabel.bounds.size.height + offset/4;
     
-    CGRect dateLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, 0);
+    CGRect dateLabelFrame = CGRectMake(offset / 2, totalHeight, self.view.bounds.size.width - offset, 0);
     UILabel * dateLabel = [[UILabel alloc] initWithFrame:dateLabelFrame];
     dateLabel.font = [UIFont systemFontOfSize:DVDatelabelFont];
     dateLabel.textColor = [UIColor grayColor];
@@ -86,7 +86,7 @@
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"Описание", @"Требования", @"Контакты", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
-    segmentedControl.frame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset, 30);
+    segmentedControl.frame = CGRectMake(offset / 2, totalHeight, self.view.bounds.size.width - offset, 30);
     totalHeight += segmentedControl.bounds.size.height;
     [segmentedControl addTarget:self action:@selector(touchSegmentedControl:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
@@ -126,7 +126,6 @@
     self.textView.frame = textViewFrame;
     self.textView.text = @"Технологии: XML/XSLT, .NET (C#; ASP.NET), sql, HTML/DHTML \nИностранные языки: Английский — Intermediate \nОбразование: Не имеет значения";
     [self.textView sizeToFit];
-    [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 
@@ -135,7 +134,6 @@
     self.textView.frame = textViewFrame;
     self.textView.text = @"Эл. почта: akrasouskaya@viacode.com \nСайт: www.viacode.com";
     [self.textView sizeToFit];
-    [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
 
