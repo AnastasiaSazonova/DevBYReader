@@ -135,5 +135,12 @@
     return detailViewController;
 }
 
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
+{
+    DetailPostsViewController * controller = (DetailPostsViewController *)pendingViewControllers[0];
+    int index = [array indexOfObject:controller] + 1;
+    [self addArticleNumber: index];
+}
+
 
 @end
