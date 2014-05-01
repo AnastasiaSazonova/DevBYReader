@@ -109,7 +109,6 @@
 {
     [super viewDidLoad];
     isSearching = NO;
-    self.title = NSLocalizedString(@"Вакансии", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     self.searchBar = [[UISearchBar alloc] init];
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
@@ -127,6 +126,7 @@
     
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearch:)];
     self.navigationItem.rightBarButtonItem = searchButton;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Вакансии" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (IBAction)goToSearch:(id)sender
