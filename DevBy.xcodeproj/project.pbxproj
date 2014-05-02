@@ -42,7 +42,6 @@
 		5D82DDDB18F7D106009E4D3E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D82DDDA18F7D106009E4D3E /* libxml2.dylib */; };
 		5D82DDDF18F7D305009E4D3E /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDDE18F7D305009E4D3E /* EventsViewController.m */; };
 		5D82DDEC18F7D312009E4D3E /* CompaniesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDE218F7D312009E4D3E /* CompaniesViewController.m */; };
-		5D82DDED18F7D312009E4D3E /* SideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDE518F7D312009E4D3E /* SideViewController.m */; };
 		5D82DDEE18F7D312009E4D3E /* HTMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDE818F7D312009E4D3E /* HTMLElement.m */; };
 		5D82DDEF18F7D312009E4D3E /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDEB18F7D312009E4D3E /* PostsViewController.m */; };
 		5D82DDF218F7D368009E4D3E /* DetailPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDF118F7D368009E4D3E /* DetailPostsViewController.m */; };
@@ -125,8 +124,6 @@
 		5D82DDDE18F7D305009E4D3E /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
 		5D82DDE118F7D312009E4D3E /* CompaniesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompaniesViewController.h; sourceTree = "<group>"; };
 		5D82DDE218F7D312009E4D3E /* CompaniesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompaniesViewController.m; sourceTree = "<group>"; };
-		5D82DDE418F7D312009E4D3E /* SideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideViewController.h; sourceTree = "<group>"; };
-		5D82DDE518F7D312009E4D3E /* SideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideViewController.m; sourceTree = "<group>"; };
 		5D82DDE718F7D312009E4D3E /* HTMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLElement.h; sourceTree = "<group>"; };
 		5D82DDE818F7D312009E4D3E /* HTMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLElement.m; sourceTree = "<group>"; };
 		5D82DDEA18F7D312009E4D3E /* PostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsViewController.h; sourceTree = "<group>"; };
@@ -175,7 +172,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5D0B8C2019115DA500A62318 /* SergeyContent */ = {
+		5D0B8C2019115DA500A62318 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
 				5D0B8C2819115DA500A62318 /* MenuViewController.h */,
@@ -187,6 +184,7 @@
 				5D0B8C3419115DA500A62318 /* SlideViewController.h */,
 				5D0B8C3519115DA500A62318 /* SlideViewController.m */,
 			);
+			name = Navigation;
 			path = SergeyContent;
 			sourceTree = "<group>";
 		};
@@ -232,12 +230,11 @@
 		5D29B11218F7CF8F006DCD4F /* DevBy */ = {
 			isa = PBXGroup;
 			children = (
-				5D0B8C2019115DA500A62318 /* SergeyContent */,
+				5D0B8C2019115DA500A62318 /* Navigation */,
 				5D26EAE6190BD54E00ED47FC /* Constants */,
 				5D82DDFD18F8080A009E4D3E /* Custom cells */,
 				5D82DDF318F7D37E009E4D3E /* Vacancies */,
 				5D82DDE018F7D312009E4D3E /* Companies */,
-				5D82DDE318F7D312009E4D3E /* Menu */,
 				5D82DDE618F7D312009E4D3E /* Model */,
 				5D82DDE918F7D312009E4D3E /* News */,
 				5D82DDDC18F7D305009E4D3E /* Events */,
@@ -344,15 +341,6 @@
 				5D12A15118F91365005A5BEE /* DetailCompanyViewController.m */,
 			);
 			path = Companies;
-			sourceTree = "<group>";
-		};
-		5D82DDE318F7D312009E4D3E /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-				5D82DDE418F7D312009E4D3E /* SideViewController.h */,
-				5D82DDE518F7D312009E4D3E /* SideViewController.m */,
-			);
-			path = Menu;
 			sourceTree = "<group>";
 		};
 		5D82DDE618F7D312009E4D3E /* Model */ = {
@@ -531,7 +519,6 @@
 				5D82DDEE18F7D312009E4D3E /* HTMLElement.m in Sources */,
 				5D82DDF218F7D368009E4D3E /* DetailPostsViewController.m in Sources */,
 				5D26DD7318FC674800914F06 /* DetailEventViewController.m in Sources */,
-				5D82DDED18F7D312009E4D3E /* SideViewController.m in Sources */,
 				5D26DD7018FC5D8600914F06 /* EventCell.m in Sources */,
 				5D82DE0218F8080A009E4D3E /* ArticleCell.m in Sources */,
 				5DD088921906319D008601DB /* MiddleJobCell.m in Sources */,
