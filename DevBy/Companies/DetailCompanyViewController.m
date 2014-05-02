@@ -10,7 +10,6 @@
 #import "CommentsCell.h"
 #import "FeedbackCell.h"
 #import "Constants.h"
-#import "CustomCell.h"
 
 @interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -94,7 +93,7 @@
 
 - (CommentsCell*) initilizeCommentsCellwithUsername:(NSString*) username date:(NSString*) date comments :(NSString*)comments offset:(int)offset
 {
-    CommentsCell* cell = (CommentsCell *)[CustomCell customCellWithType:commentCellType];
+    CommentsCell* cell = [[CommentsCell alloc]init];
     cell.username = username;
     cell.date = date;
     cell.comment = comments;
@@ -124,7 +123,7 @@
                                                date:(NSString*) date
                                             comment:(NSString*)comments
 {
-    FeedbackCell* cell = (FeedbackCell *)[CustomCell customCellWithType:feedBackCellType];
+    FeedbackCell* cell = [[FeedbackCell alloc]init];
     cell.username = username;
     cell.date = date;
     cell.comment = comments;

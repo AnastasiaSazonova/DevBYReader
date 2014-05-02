@@ -38,16 +38,6 @@ enum
     feedBackType
 };
 
-static NSString * articleCellIdentifier = @"ArticleCell";
-static NSString * mainArticleCellIdentifier = @"MainArticleCell";
-static NSString * eventCellIdentifier = @"EventCell";
-static NSString * commentCellIdentifier = @"CommentCell";
-static NSString * feedbackCellIdentifier = @"FeedbackCell";
-static NSString * premiumJobCellIdentifier = @"PremiumJobCellCell";
-static NSString * middleJobCellIdentifier = @"MiddleJobCellCell";
-static NSString * standardJobCellIdentifier = @"StandardJobCellCell";
-
-
 static const float offset = 20.0f;
 static const float middleOffset = 15.0f;
 static const float halfOffset = 10.0f;

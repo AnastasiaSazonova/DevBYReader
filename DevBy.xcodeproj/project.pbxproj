@@ -31,7 +31,6 @@
 		5D29B13018F7CF8F006DCD4F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D29B12E18F7CF8F006DCD4F /* InfoPlist.strings */; };
 		5D29B13218F7CF8F006DCD4F /* DevByTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D29B13118F7CF8F006DCD4F /* DevByTests.m */; };
 		5D2E28E919059FD200C64769 /* PremiumJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2E28E819059FD200C64769 /* PremiumJobCell.m */; };
-		5D67A3251913861E007B6A25 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D67A3241913861E007B6A25 /* CustomCell.m */; };
 		5D82DDCB18F7D0CE009E4D3E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D82DDAA18F7D0CE009E4D3E /* InfoPlist.strings */; };
 		5D82DDCD18F7D0CE009E4D3E /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDB018F7D0CE009E4D3E /* TFHpple.m */; };
 		5D82DDCE18F7D0CE009E4D3E /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDB218F7D0CE009E4D3E /* TFHppleElement.m */; };
@@ -106,8 +105,6 @@
 		5D29B13118F7CF8F006DCD4F /* DevByTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevByTests.m; sourceTree = "<group>"; };
 		5D2E28E719059FD200C64769 /* PremiumJobCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PremiumJobCell.h; sourceTree = "<group>"; };
 		5D2E28E819059FD200C64769 /* PremiumJobCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PremiumJobCell.m; sourceTree = "<group>"; };
-		5D67A3231913861E007B6A25 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
-		5D67A3241913861E007B6A25 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		5D82DDAB18F7D0CE009E4D3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5D82DDAF18F7D0CE009E4D3E /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
 		5D82DDB018F7D0CE009E4D3E /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
@@ -175,7 +172,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5D0B8C2019115DA500A62318 /* SergeyContent */ = {
+		5D0B8C2019115DA500A62318 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
 				5D0B8C2819115DA500A62318 /* MenuViewController.h */,
@@ -187,6 +184,7 @@
 				5D0B8C3419115DA500A62318 /* SlideViewController.h */,
 				5D0B8C3519115DA500A62318 /* SlideViewController.m */,
 			);
+			name = Navigation;
 			path = SergeyContent;
 			sourceTree = "<group>";
 		};
@@ -232,7 +230,7 @@
 		5D29B11218F7CF8F006DCD4F /* DevBy */ = {
 			isa = PBXGroup;
 			children = (
-				5D0B8C2019115DA500A62318 /* SergeyContent */,
+				5D0B8C2019115DA500A62318 /* Navigation */,
 				5D26EAE6190BD54E00ED47FC /* Constants */,
 				5D82DDFD18F8080A009E4D3E /* Custom cells */,
 				5D82DDF318F7D37E009E4D3E /* Vacancies */,
@@ -401,8 +399,6 @@
 				5DD08894190631B2008601DB /* StandardJobCell.m */,
 				5D1630B4190BA510005AEE23 /* FeedbackCell.h */,
 				5D1630B5190BA510005AEE23 /* FeedbackCell.m */,
-				5D67A3231913861E007B6A25 /* CustomCell.h */,
-				5D67A3241913861E007B6A25 /* CustomCell.m */,
 			);
 			path = "Custom cells";
 			sourceTree = "<group>";
@@ -520,7 +516,6 @@
 				5D0EA0D9190E61A2004FDE9A /* Job.m in Sources */,
 				5D82DDD618F7D0CE009E4D3E /* JASidePanelController.m in Sources */,
 				5D26DD6A18FC281900914F06 /* CommentsCell.m in Sources */,
-				5D67A3251913861E007B6A25 /* CustomCell.m in Sources */,
 				5D82DDEE18F7D312009E4D3E /* HTMLElement.m in Sources */,
 				5D82DDF218F7D368009E4D3E /* DetailPostsViewController.m in Sources */,
 				5D26DD7318FC674800914F06 /* DetailEventViewController.m in Sources */,

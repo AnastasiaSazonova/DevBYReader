@@ -13,7 +13,7 @@
 #import "MainArticleCell.h"
 #import "ArticleCell.h"
 #import "Constants.h"
-#import "CustomCell.h"
+
 #import "SlideViewController.h"
 
 
@@ -74,13 +74,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell;
     if (indexPath.row == 0)
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:mainArticleCellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil)
         {
-            cell = [CustomCell customCellWithType:mainArticleCellType];
+            cell = [[MainArticleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             MainArticleCell * articleCell = (MainArticleCell *)cell;
             articleCell.title = _posts[indexPath.row];
             articleCell.image = [UIImage imageNamed:@"devImage"];
@@ -91,10 +92,10 @@
     
     else
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:articleCellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil)
         {
-            cell = [CustomCell customCellWithType:articleCellType];
+            cell = [[ArticleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             ArticleCell * articleCell = (ArticleCell *)cell;
             articleCell.title = _posts[indexPath.row];
             articleCell.date = @"25 апреля в 08:26";
@@ -114,9 +115,26 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     SlideViewController* slideViewController = [[SlideViewController alloc]initWithIndex:indexPath.row];
     slideViewController.delegate = self;
     [self.navigationController pushViewController:slideViewController animated:YES];
+    
+    
+//    DetailPostsViewController * detailViewController = [[DetailPostsViewController alloc] init];
+//    detailViewController.title = _posts[indexPath.row];
+//    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+//    if (indexPath == 0)
+//    {
+//        MainArticleCell * articleCell = (MainArticleCell *)cell;
+//        detailViewController.image = articleCell.image;
+//    }
+//    else
+//    {
+//        ArticleCell * articleCell = (ArticleCell *)cell;
+//        detailViewController.image = articleCell.image;
+//    }
+//    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 @end

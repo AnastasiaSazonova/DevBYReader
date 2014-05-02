@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DevBy/Vacancies/VacanciesViewController.m"
-            timestampString = "420712553.065537"
+            timestampString = "420562713.491539"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "-rowHeightinTableView:ForIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DevBy/Vacancies/VacanciesViewController.m"
-            timestampString = "420712553.065537"
+            timestampString = "420558574.240795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
             <Locations>
@@ -146,11 +146,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DevBy/Vacancies/VacanciesViewController.m"
-            timestampString = "420712553.065537"
+            timestampString = "420558574.240795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "-numberOfSectionsInTableView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -162,11 +162,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DevBy/Vacancies/VacanciesViewController.m"
-            timestampString = "420712553.065537"
+            timestampString = "420548455.914797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DevBy/Vacancies/VacanciesViewController.m"
+            timestampString = "420562713.491539"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "-configureCell:inTableView:AtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -178,11 +194,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DevBy/Vacancies/VacanciesViewController.m"
-            timestampString = "420712553.065537"
+            timestampString = "420562713.491539"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-configureCell:inTableView:AtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>

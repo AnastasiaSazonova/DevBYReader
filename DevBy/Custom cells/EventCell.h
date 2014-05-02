@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomCell.h"
 
-@interface EventCell : CustomCell
+@interface EventCell : UITableViewCell
 
 @property(nonatomic, assign, readonly)float totalHeight;
 @property(nonatomic, strong)NSString * title;
@@ -17,5 +16,6 @@
 @property(nonatomic, strong)NSString * day;
 @property(nonatomic, strong)NSString * description;
 @property(nonatomic, strong)NSString * dayOfWeek;
+-(void)drawCell;
 
 @end

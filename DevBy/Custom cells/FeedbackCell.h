@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomCell.h"
 
-@interface FeedbackCell : CustomCell
+@interface FeedbackCell : UITableViewCell
 
 @property(nonatomic, assign, readonly)float totalHeight;
 @property(nonatomic, strong)NSString * username;
@@ -18,5 +17,8 @@
 @property(nonatomic, strong)NSString * jobExperience;
 @property(nonatomic, strong)NSString * rating;
 @property(nonatomic, assign)float color;
+
+-(void)drawCell;
+
 
 @end
