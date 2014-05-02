@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomCell.h"
 
-@interface ArticleCell : UITableViewCell
+@interface ArticleCell : CustomCell
 
 @property(nonatomic, strong)NSString * title;
 @property(nonatomic, strong)NSString * date;
 @property(nonatomic, strong)UIImage * image;
 @property(nonatomic, assign)float height;
-
--(void)drawCell;
 
 @end

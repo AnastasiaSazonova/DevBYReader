@@ -13,12 +13,12 @@
 #import "Job.h"
 #import "StandardJobCell.h"
 #import "Constants.h"
+#import "CustomCell.h"
 
 @interface VacanciesViewController()<UISearchDisplayDelegate, UISearchBarDelegate>
 {
     UISearchDisplayController * searchDisplayController;
     float tableviewOffset;
-    BOOL isSearching;
 }
 
 @property(nonatomic, strong)NSArray * jobs;
@@ -108,7 +108,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    isSearching = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     self.searchBar = [[UISearchBar alloc] init];
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
@@ -176,21 +175,21 @@
     }
     if (currentJob.type == premiumType)
     {
-        cell = [[PremiumJobCell alloc] init];
+        cell = [CustomCell customCellWithType:premiumJobCellType];
         PremiumJobCell * newCell = (PremiumJobCell *)cell;
         newCell.job = currentJob;
         [newCell drawCell];
     }
     else if(currentJob.type == middleType)
     {
-        cell = [[MiddleJobCell alloc] init];
+        cell = [CustomCell customCellWithType:middleJobCellType];
         MiddleJobCell * newCell = (MiddleJobCell *)cell;
         newCell.job = currentJob;
         [newCell drawCell];
     }
     else if (currentJob.type == standardType)
     {
-        cell = [[StandardJobCell alloc] init];
+        cell = [CustomCell customCellWithType:standardJobCellType];
         StandardJobCell * newCell = (StandardJobCell *)cell;
         newCell.job = currentJob;
         [newCell drawCell];
@@ -241,7 +240,6 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    
     [self.searchResults removeAllObjects];
     
     NSPredicate *resultPredicate = [NSPredicate

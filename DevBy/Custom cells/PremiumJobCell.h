@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomCell.h"
 @class Job;
 
-@interface PremiumJobCell : UITableViewCell
+@interface PremiumJobCell : CustomCell
 
 @property(nonatomic, assign, readonly)float totalHeight;
 @property(nonatomic, strong)Job * job;
-
--(void)drawCell;
 
 @end

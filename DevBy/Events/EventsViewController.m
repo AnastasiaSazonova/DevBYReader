@@ -8,6 +8,7 @@
 
 #import "EventsViewController.h"
 #import "EventCell.h"
+#import "CustomCell.h"
 #import "DetailEventViewController.h"
 
 NSString * eventCellReuseIdentifier = @"EventCell";
@@ -51,14 +52,14 @@ NSString * eventCellReuseIdentifier = @"EventCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EventCell * prototypeCell = [[EventCell alloc] init];
+    EventCell * prototypeCell = (EventCell *)[CustomCell customCellWithType:eventCellType];
     [self configureCell:prototypeCell forRowAtIndexPath:indexPath];
     return prototypeCell.totalHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[EventCell alloc] init];
+    UITableViewCell *cell = (EventCell *)[CustomCell customCellWithType:eventCellType];
     [self configureCell:cell forRowAtIndexPath:indexPath];
     return cell;
 }

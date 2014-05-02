@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomCell.h"
 
-@interface CommentsCell : UITableViewCell
+@interface CommentsCell : CustomCell
 
 @property(nonatomic, assign, readonly)float totalHeight;
 @property(nonatomic, strong)NSString * username;
 @property(nonatomic, strong)NSString * date;
 @property(nonatomic, strong)NSString * comment;
-
--(void)drawCellWithOffset:(int)offset;
 
 @end
