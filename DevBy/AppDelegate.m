@@ -9,13 +9,18 @@
 #import "AppDelegate.h"
 #import "PostsViewController.h"
 #import "JASidePanelController.h"
-#import "SideViewController.h"
+#import "SlideViewController.h"
 #import "MSMainViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
+                                                         diskCapacity:20 * 1024 * 1024
+                                                             diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -27,6 +32,9 @@
     self.window.rootViewController = navigationController;
     
     [self.window makeKeyAndVisible];
+    
+    
+    
     return YES;
 //    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    self.viewController = [[JASidePanelController alloc] init];

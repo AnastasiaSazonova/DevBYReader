@@ -53,7 +53,7 @@
 {
     if (!_eventsDescription)
     {
-        _eventsDescription = @"По сложившейся традиции в последнюю пятницу месяца в Минске проходит Python Meetup – неформальная встреча белорусских питонистов. Время и место встречи уже хорошо всем знакомы  – это клуб «Центр» во Дворце Республики, начало в 19.00.Программа апрельской встречи:Доклад №1. Дмитрий Овчинников, Wargaming \"Разработка мобильных приложений на Python \"О чем: 1. Python для мобильных девайсов. 2. Фреймворк Kivy. Птица или фрукт? 3. Один код на разных платформах (Не Java!!!) Доклад №2. Никита Гришко, Wargaming \"Python для ленивых или как сделать свою жизнь проще \"О чем: Рассмотрим, что в мире Python’а поможет сделать разработку проще на всех ее этапах: создание проекта, настройка окружения, отладка, тестирование, профилирование, публикация на PyPI. Доклад №3. Максим Барышников, WG \"Wargaming: тыл — фронту! \"О чем: Полагаю, что не открою секрет Полишинеля, если скажу следующее: чтобы игра стала успешной (а из успешной превратилась в легендарную), недостаточно  самой игры, сколь бы хороша она ни была. Помимо всего прочего, действительно массовой игре нужна очень развитая веб-часть. О ней и пойдет речь. Как обычно будет работать \"свободный микрофон\", а это значит, что любой желающий сможет выступить с блиц-докладом, не требующим предварительно подготовленной презентации. Главное – желание поделиться чем-то интересным и полезным.";
+        _eventsDescription = @"По сложившейся традиции в последнюю пятницу месяца в Минске проходит Python Meetup – неформальная встреча белорусских питонистов. Время и место встречи уже хорошо всем знакомы  – это клуб «Центр» во Дворце Республики, начало в 19.00.Программа апрельской встречи:Доклад №1. Дмитрий Овчинников, Wargaming \"Разработка мобильных приложений на Python \"О чем: 1. Python для мобильных девайсов. 2. Фреймворк Kivy. Птица или фрукт? 3. Один код на разных платформах (Не Java!!!) Доклад №2. Никита Гришко, Wargaming \"Python для ленивых или как сделать свою жизнь проще \"О чем: Рассмотрим, что в мире Python’а поможет сделать разработку проще на всех ее этапах: создание проекта, настройка окружения, отладка, тестирование, профилирование, публикация на PyPI. Доклад №3. Максим Барышников, WG \"Wargaming: тыл — фронту! \"О чем: Полагаю, что не открою секрет Полишинеля, если скажу следующее: чтобы игра стала успешной (а из успешной превратилась в легендарную), недостаточно  самой игры, сколь бы хороша она ни была. Помимо всего прочего, действительно массовой игре нужна очень развитая веб-часть. О ней и пойдет речь. Как обычно будет работать \"свободный микрофон\", а это значит, что любой желающий сможет выступить с блиц-докладом, не требующим предварительно подготовленной презентации. Главное – желание поделиться чем-то интересным и полезным.    Одним из достоинств нашей компании является полномасштабный спектр инновационных и комплексных проектных решений и услуг в сфере информационных технологий, предлагаемых заказчикам. Высокое качество проектных решений и услуг является стратегической идеей руководства IBA и каждого сотрудника. Это позволило нам за последние годы существенно увеличить объемы работ на рынке стран СНГ, международном рынке и приобрести новых заказчиков во многих странах мира. Мы признательны за интерес к нашей компании и полны решимости развивать наш успех, базируясь на наших принципах, выраженных девизами 'Качество-Надежность-Безопасность' и 'Информационные технологии без границ' Одним из достоинств нашей компании является полномасштабный спектр инновационных и комплексных проектных решений и услуг в сфере информационных технологий, предлагаемых заказчикам. Высокое качество проектных решений и услуг является стратегической идеей руководства IBA и каждого сотрудника. Это позволило нам за последние годы существенно увеличить объемы работ на рынке стран СНГ, международном рынке и приобрести новых заказчиков во многих странах мира. Мы признательны за интерес к нашей компании и полны решимости развивать наш успех, базируясь на наших принципах, выраженных девизами 'Качество-Надежность-Безопасность' и 'Информационные технологии без границ   Технологии: XML/XSLT, .NET (C#; ASP.NET), sql, HTML/DHTML         Мы ищем способного разработчика для участия в реализации интересных и масштабных коммерческих проектов! Наши заказчики - крупные международные компании \nУсловия работы:Высокая официальная зарплата Спокойный, дружелюбный коллектив Современный офис в Silver Tower, комфортные рабочие места Нормированный восьмичасовой рабочий день Гибкий график работы Полный соцпакет Дополнительные премии по результатам работы Корпоративные праздники и путешествияierjgpiwejgijqeoirgjoierjgijer[gijeoigj]peirjg[iergprrm;ogritm4ljhgoirjgurhgiijerbuv'npqbv[oq4n[vi[ptin3[tup4opjoearg'jasrooijjtoajg'iuuepogjqiugporejgpjrqepighqeg'igrdg[ijq'ghoaaooerhgohehoia'gheriohgoierhaio'hg'aerhiorhrguhdrfuhgauarhiughaurhgpurejgjhohgughreepuhagpusrhgpuheruhgahpfohaoghroehjagoiaerj[oigaja[oriojgtiajerigjiarjg'aijer'igjairjgiarjg'ija'kkreщем способного разработчика для участия в реализации интересных и масштабных коммерческих проектов! Наши заказчики - крупные международные компании \nУсловия работы:Высокая официальная зарплата Спокойный, дружелюбный коллектив Современный офис в Silver Tower, комфортные рабочие места Нормированный восьмичасовой рабочий день Гибкий график работы Полный соцпакет Дополнительные премии по результатам работы Корпоративные праздники и путешествияierjgpiwejgijqeoirgjoierjgijer[gijeoigj]peirjg[iergprrm;ogritm4ljhgoirjgurhgiijerbuv'npqbv[oq4n[vi[ptin3[tup4opjoearg'jasrooijjtoajg'iuu";
     }
     return _eventsDescription;
 }
@@ -152,7 +152,8 @@
     totalHeight += segmentedControl.bounds.size.height;
     [segmentedControl addTarget:self action:@selector(touchSegmentedControl:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
-    [self addDescription];
+    [self.scrollView addSubview:self.textView];
+    [self addTextContentToTextView:self.eventsDescription];
     [self.scrollView addSubview:segmentedControl];
     [self.view addSubview:self.scrollView];
 }
@@ -171,55 +172,36 @@
 {
     if (segmentedControl.selectedSegmentIndex == 0)
     {
-        [self addDescription];
+        [self addTextContentToTextView:self.eventsDescription];
     }
     else if(segmentedControl.selectedSegmentIndex == 1)
     {
-        [self addPrice];
+        [self addTextContentToTextView:self.eventsPrice];
     }
     else if(segmentedControl.selectedSegmentIndex == 2)
     {
-        [self addAddress];
+        [self addTextContentToTextView:self.eventsAddress];
     }
     else if(segmentedControl.selectedSegmentIndex == 3)
     {
-        [self addContacts];
+        [self addTextContentToTextView:self.eventsContacts];
     }
-
-    
 }
 
--(void)addDescription
+- (CGFloat)textViewHeightForAttributedText:(NSAttributedString *)text andWidth:(CGFloat)width
 {
-    self.textView.frame = textViewFrame;
-    self.textView.text = self.eventsDescription;
-    [self.textView sizeToFit];
-    [self.scrollView addSubview:self.textView];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
+    UITextView *textView = [[UITextView alloc] init];
+    [textView setAttributedText:text];
+    CGSize size = [textView sizeThatFits:CGSizeMake(width, FLT_MAX)];
+    return size.height;
 }
 
--(void)addPrice
+-(void)addTextContentToTextView:(NSString*) content
 {
-    self.textView.frame = textViewFrame;
-    self.textView.text = self.eventsPrice;
-    [self.textView sizeToFit];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
-}
-
--(void)addAddress
-{
-    self.textView.frame = textViewFrame;
-    self.textView.text = self.eventsAddress;
-    [self.textView sizeToFit];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
-}
-
--(void)addContacts
-{
-    self.textView.frame = textViewFrame;
-    self.textView.text = self.eventsContacts;
-    [self.textView sizeToFit];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
+    self.textView.text = content;
+    CGFloat height = [self textViewHeightForAttributedText:self.textView.attributedText andWidth:textViewFrame.size.width];
+    self.textView.frame = CGRectMake(textViewFrame.origin.x, textViewFrame.origin.y, textViewFrame.size.width, height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.frame.size.height);
 }
 
 @end
