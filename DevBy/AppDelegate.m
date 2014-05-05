@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "PostsViewController.h"
 #import "JASidePanelController.h"
-#import "SideViewController.h"
+#import "SlideViewController.h"
 #import "MSMainViewController.h"
 
 @implementation AppDelegate
