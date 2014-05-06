@@ -14,9 +14,8 @@
 >>>>>>> sazonova
 
 
-@interface CompaniesViewController()<UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface CompaniesViewController()<UISearchDisplayDelegate, UISearchBarDelegate>
 {
-    UISearchBar * searchBar;
     UISearchDisplayController * searchDisplayController;
 <<<<<<< HEAD
     BOOL isSearching;
@@ -30,6 +29,7 @@
 @property(nonatomic, strong)UITableView * tableView;
 @property(nonatomic, strong)NSArray * companysNames;
 @property(nonatomic, strong)NSMutableArray * searchResults;
+@property(nonatomic, strong)UISearchBar * searchBar;
 
 @end
 
@@ -56,6 +56,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+<<<<<<< HEAD
     self.title = NSLocalizedString(@"Компании", nil);
 <<<<<<< HEAD
     rowHeight = 40;
@@ -68,53 +69,31 @@
     searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
 >>>>>>> sazonova
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+=======
+    self.view.backgroundColor = [UIColor whiteColor];
+    CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
+    self.searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
+    searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+>>>>>>> sazonova
     searchDisplayController.delegate = self;
     searchDisplayController.searchResultsDataSource = self;
     searchDisplayController.searchResultsDelegate = self;
-    [self.view addSubview:searchBar];
+    self.tableView.tableHeaderView = self.searchBar;
+    [self.searchBar setShowsScopeBar:NO];
+    [self.searchBar sizeToFit];
     
-    CGRect tableViewFrame = CGRectMake(0, navBarHeight + CVCRowHeight + 3, self.view.bounds.size.width, self.view.bounds.size.height - self.view.bounds.origin.y);
-    self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    if ([self.tableView numberOfRowsInSection:0] > 11)
-    {
-        [self.tableView sizeToFit];
-    }
-
-    [self.view addSubview:self.tableView];
+    CGRect newBounds = self.tableView.bounds;
+    newBounds.origin.y = newBounds.origin.y + self.searchBar.bounds.size.height;
+    self.tableView.bounds = newBounds;
     
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillShowNotification object:nil];
-    [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillHideNotification object:nil];
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearch:)];
+    self.navigationItem.rightBarButtonItem = searchButton;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Компании" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
--(void)changeSearchBarPosition:(NSNotification *)notification
+- (IBAction)goToSearch:(id)sender
 {
-    float statusbarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-    if ([notification.name isEqualToString:UIKeyboardWillShowNotification])
-    {
-        [UIView animateWithDuration:0.25 animations:^{
-            searchBar.frame =  CGRectMake(0,
-                                          statusbarHeight,
-                                          searchBar.bounds.size.width,
-                                          searchBar.bounds.size.height
-                                          );
-            self.tableView.frame = CGRectMake(0, statusbarHeight + CVCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
-        }];
-    }
-    else if([notification.name isEqualToString:UIKeyboardWillHideNotification])
-    {
-        [UIView animateWithDuration:0.25 animations:^{
-            searchBar.frame =  CGRectMake(0,
-                                          navBarHeight,
-                                          searchBar.bounds.size.width,
-                                          searchBar.bounds.size.height
-                                          );
-            self.tableView.frame = CGRectMake(0, navBarHeight + CVCRowHeight + 4, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
-        }];
-    }
-    
+    [self.searchBar becomeFirstResponder];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -218,6 +197,13 @@ shouldReloadTableForSearchString:(NSString *)searchString
     
     return YES;
 }
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    return YES;
+}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

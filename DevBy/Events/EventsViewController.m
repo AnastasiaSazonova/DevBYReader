@@ -38,8 +38,8 @@ NSString * eventCellReuseIdentifier = @"EventCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"События", nil);
     [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:eventCellReuseIdentifier];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"События" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

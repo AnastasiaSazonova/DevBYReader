@@ -6,6 +6,12 @@
 //  Copyright (c) 2014 AD. All rights reserved.
 //
 
+
+#define NEWS @"Новости"
+#define COMPANYS @"Компании"
+#define JOB @"Вакансии"
+#define EVENTS @"События"
+
 enum
 {
     redColor,
@@ -24,6 +30,12 @@ enum
     premiumType = 1,
     middleType,
     standardType
+};
+
+enum
+{
+    commentType,
+    feedBackType
 };
 
 static const float offset = 20.0f;

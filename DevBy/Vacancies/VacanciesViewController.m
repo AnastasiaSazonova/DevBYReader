@@ -18,23 +18,25 @@
 #import "Constants.h"
 >>>>>>> sazonova
 
-NSString * premiumJobIdentifier = @"PremiunJob";
-NSString * middleJobIdentifier = @"MiddleJob";
-NSString * standardJobIdentifier = @"StandardJob";
-
-@interface VacanciesViewController()<UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface VacanciesViewController()<UISearchDisplayDelegate, UISearchBarDelegate>
 {
-    UISearchBar * searchBar;
     UISearchDisplayController * searchDisplayController;
+    float tableviewOffset;
+    BOOL isSearching;
 }
 
 @property(nonatomic, strong)NSArray * jobs;
+<<<<<<< HEAD
 <<<<<<< HEAD
 @property(nonatomic, strong)NSArray * middleJobs;
 =======
 >>>>>>> sazonova
 @property(nonatomic, strong)NSArray * searchResults;
+=======
+@property(nonatomic, strong)NSMutableArray * searchResults;
+>>>>>>> sazonova
 @property(nonatomic, strong)UITableView * tableView;
+@property(nonatomic, strong)UISearchBar * searchBar;
 
 @end
 
@@ -171,34 +173,30 @@ NSString * standardJobIdentifier = @"StandardJob";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"Вакансии", nil);
+    isSearching = NO;
     self.view.backgroundColor = [UIColor whiteColor];
-    CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
-    searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
-    searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    self.searchBar = [[UISearchBar alloc] init];
+    searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
     searchDisplayController.delegate = self;
     searchDisplayController.searchResultsDataSource = self;
     searchDisplayController.searchResultsDelegate = self;
-    [self.view addSubview:searchBar];
     
-    CGRect tableViewFrame = CGRectMake(0, navBarHeight + VCRowHeight + 3, self.view.bounds.size.width, self.view.bounds.size.height - self.view.bounds.origin.y);
-    self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    if ([self.tableView numberOfRowsInSection:0] > 11)
-    {
-        [self.tableView sizeToFit];
-    }
+    [self.searchBar setShowsScopeBar:NO];
+    [self.searchBar sizeToFit];
+    self.tableView.tableHeaderView = self.searchBar;
     
-    [self.view addSubview:self.tableView];
+    CGRect newBounds = self.tableView.bounds;
+    newBounds.origin.y = newBounds.origin.y + self.searchBar.bounds.size.height;
+    self.tableView.bounds = newBounds;
     
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillShowNotification object:nil];
-    [notificationCenter addObserver:self selector:@selector(changeSearchBarPosition:) name:UIKeyboardWillHideNotification object:nil];
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearch:)];
+    self.navigationItem.rightBarButtonItem = searchButton;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Вакансии" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
--(void)changeSearchBarPosition:(NSNotification *)notification
+- (IBAction)goToSearch:(id)sender
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
     StandardJobCell *cell;
     cell = [[PremiumJobCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:premiumJobIdentifier];
@@ -229,6 +227,9 @@ NSString * standardJobIdentifier = @"StandardJob";
         }];
     }
     
+=======
+    [self.searchBar becomeFirstResponder];
+>>>>>>> sazonova
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -356,16 +357,30 @@ NSString * standardJobIdentifier = @"StandardJob";
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
-    self.searchResults = [self.jobs filteredArrayUsingPredicate:resultPredicate];
+    
+    [self.searchResults removeAllObjects];
+    
+    NSPredicate *resultPredicate = [NSPredicate
+                                    predicateWithFormat:@"name contains[cd] %@",
+                                    searchText];
+    
+    self.searchResults = [NSMutableArray arrayWithArray:[self.jobs filteredArrayUsingPredicate:resultPredicate]];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller
+shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
                                                      selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
     return YES;
 }
 

@@ -9,7 +9,11 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
+<<<<<<< HEAD
 	<string>by.bsuir.${PRODUCT_NAME:rfc1034identifier}</string>
+=======
+	<string>com.fcg.ioscourse.${PRODUCT_NAME:rfc1034identifier}</string>
+>>>>>>> sazonova
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

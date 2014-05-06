@@ -100,7 +100,7 @@ static int maxCharsForBigFont = 60;
 {
     if (!_textView)
     {
-        textViewFrame = CGRectMake(offset * 0.8, totalHeight + offset/3, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/5);
+        textViewFrame = CGRectMake(offset * 0.3, totalHeight + offset/3, self.view.bounds.size.width - 0.6 * offset, self.view.bounds.size.height/5);
         _textView = [[UITextView alloc] initWithFrame:textViewFrame];
         _textView.userInteractionEnabled = NO;
         _textView.font = [UIFont systemFontOfSize:14];
@@ -119,7 +119,7 @@ static int maxCharsForBigFont = 60;
     totalHeight = offset*0.4 + navObjectsHeight;
     self.view.backgroundColor = [UIColor whiteColor];
   
-    CGRect nameLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, self.view.bounds.size.height/5);
+    CGRect nameLabelFrame = CGRectMake(offset / 2, totalHeight, self.view.bounds.size.width - offset, self.view.bounds.size.height/5);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelFrame];
     nameLabel.font = [UIFont systemFontOfSize:21];
     nameLabel.numberOfLines = 0;
@@ -139,7 +139,7 @@ static int maxCharsForBigFont = 60;
     [self.scrollView addSubview:nameLabel];
     totalHeight += nameLabel.bounds.size.height + offset/4;
     
-    CGRect dateLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, 0);
+    CGRect dateLabelFrame = CGRectMake(offset / 2, totalHeight, self.view.bounds.size.width - offset, 0);
     UILabel * dateLabel = [[UILabel alloc] initWithFrame:dateLabelFrame];
     dateLabel.font = [UIFont systemFontOfSize:14];
     dateLabel.textColor = [UIColor darkGrayColor];
@@ -149,14 +149,14 @@ static int maxCharsForBigFont = 60;
     [self.scrollView addSubview:dateLabel];
     totalHeight += dateLabel.bounds.size.height + offset/1.5;
     
-    //CGRect imageFrame = CGRectMake(offset, totalHeight, 15, 19.5);
-    UIImageView * image = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"man"] scaledToSize:CGSizeMake(35, 35)]];
-    //image.backgroundColor = [UIColor grayColor];
+    CGRect imageFrame = CGRectMake(offset, totalHeight + 2, 15, 19);
+    UIImageView * image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"man"]];
+    image.frame = imageFrame;
     [self.scrollView addSubview:image];
     
     CGRect countLabelFrame = CGRectMake(1.3 * offset + image.bounds.size.width, totalHeight, self.view.bounds.size.width/3, 0);
     UILabel * countLabel = [[UILabel alloc] initWithFrame:countLabelFrame];
-    countLabel.font = [UIFont systemFontOfSize:14.5];
+    countLabel.font = [UIFont systemFontOfSize:20];
     countLabel.numberOfLines = 0;
     countLabel.text = @"4";
     [countLabel sizeToFit];
@@ -165,7 +165,7 @@ static int maxCharsForBigFont = 60;
     totalHeight += image.bounds.size.height + offset/1.5;
     NSArray *itemArray = [NSArray arrayWithObjects: @"Описание", @"Цена", @"Адрес", @"Контакты", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
-    segmentedControl.frame = CGRectMake(20, totalHeight, self.view.bounds.size.width - 2 * offset, 30);
+    segmentedControl.frame = CGRectMake(offset / 2, totalHeight, self.view.bounds.size.width - offset, 30);
     totalHeight += segmentedControl.bounds.size.height;
     [segmentedControl addTarget:self action:@selector(touchSegmentedControl:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;

@@ -25,7 +25,11 @@ static float navBarHeight = 64.0f;
 @interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
     float totalHeight;
+    float commentsHeight;
+    float feedbacksHeight;
     CGRect textViewFrame;
+    NSMutableArray *commentsCellsArray;
+    NSMutableArray *feedbackCellsArray;
 }
 
 @property(nonatomic, strong)NSString * companysDescription;
@@ -62,7 +66,7 @@ static float navBarHeight = 64.0f;
 {
     if (!_textView)
     {
-        textViewFrame = CGRectMake(offset * 0.8, totalHeight, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/5);
+        textViewFrame = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, self.view.bounds.size.height/5);
         _textView = [[UITextView alloc] initWithFrame:textViewFrame];
         _textView.userInteractionEnabled = NO;
 <<<<<<< HEAD
@@ -102,11 +106,77 @@ static float navBarHeight = 64.0f;
     return _companysDescription;
 }
 
+- (CommentsCell*) initilizeCommentsCellwithUsername:(NSString*) username date:(NSString*) date comments :(NSString*)comments offset:(int)offset
+{
+    CommentsCell* cell = [[CommentsCell alloc]init];
+    cell.username = username;
+    cell.date = date;
+    cell.comment = comments;
+    [cell drawCellWithOffset:offset];
+    return cell;
+}
+
+-(void)calculateCommentsTableViewHeights
+{
+    commentsCellsArray = [NSMutableArray array];
+    NSString * comment = @"Не могу согласится. Мысли в рамках одной User story без мыслей на будущее замедляют внедрение новых фич, которые будут зависеть от данной US. Есть же замечательная пословица: \"7 раз отмерь - 1 отрежь\". Почему не следовать ей и в программировании? Кода с неприятным запахом было куда бы меньше.P.S. общался с людьми, пишущих на Java в vim-е ;)";
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:1]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:2]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:3]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
+    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
+    
+    for (CommentsCell* cell in commentsCellsArray)
+    {
+        commentsHeight += cell.totalHeight;
+    }
+}
+
+- (FeedbackCell*) initilizeFeedbackCellwithUsername:(NSString*) username
+                                               date:(NSString*) date
+                                            comment:(NSString*)comments
+{
+    FeedbackCell* cell = [[FeedbackCell alloc]init];
+    cell.username = username;
+    cell.date = date;
+    cell.comment = comments;
+    cell.jobExperience = @"Работает в Altoros Development: больше 5 лет 26 июня 2013, 17:08";
+    cell.rating = @"Оценка: 3.9 ";
+    cell.color = greenColor;
+    [cell drawCell];
+    return cell;
+}
+
+-(void)calculateFeedbackTableViewHeights
+{
+    feedbackCellsArray = [NSMutableArray array];
+    NSString * comment = @"Не могу согласится. Мысли в рамках одной User story без мыслей на будущее замедляют внедрение новых фич, которые будут зависеть от данной US. Есть же замечательная пословица: \"7 раз отмерь - 1 отрежь\". Почему не следовать ей и в программировании? Кода с неприятным запахом было куда бы меньше.P.S. общался с людьми, пишущих на Java в vim-е ;)";
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    
+    for (FeedbackCell* cell in feedbackCellsArray)
+    {
+        feedbacksHeight += cell.totalHeight;
+    }
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    commentsHeight = 0;
+    feedbacksHeight = 0;
+    
+    [self calculateCommentsTableViewHeights];
+    [self calculateFeedbackTableViewHeights];
     
     totalHeight = 0;
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
@@ -116,11 +186,15 @@ static float navBarHeight = 64.0f;
     }
     totalHeight += offset*0.8 + navObjectsHeight;
 <<<<<<< HEAD
+<<<<<<< HEAD
     CGRect nameLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset - logoHeight, logoHeight);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
     nameLabel.font = [UIFont systemFontOfSize:nameLabelFont];
 =======
     CGRect nameLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset - DCLogoHeight, DCLogoHeight);
+=======
+    CGRect nameLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset - DCLogoHeight, DCLogoHeight);
+>>>>>>> sazonova
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
     nameLabel.font = [UIFont systemFontOfSize:DCNameLabelFont];
 >>>>>>> sazonova
@@ -131,12 +205,16 @@ static float navBarHeight = 64.0f;
     
     totalHeight += nameLabel.bounds.size.height;
 <<<<<<< HEAD
+<<<<<<< HEAD
     CGRect employeeLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width, logoHeight);
     UILabel * employeeNumberLabel = [[UILabel alloc] initWithFrame:employeeLabelRect];
     employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", self.employeeNumber];
     employeeNumberLabel.font = [UIFont systemFontOfSize:employeeNumberFont];
 =======
     CGRect employeeLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width, DCLogoHeight);
+=======
+    CGRect employeeLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width, DCLogoHeight);
+>>>>>>> sazonova
     UILabel * employeeNumberLabel = [[UILabel alloc] initWithFrame:employeeLabelRect];
     employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", self.employeeNumber];
     employeeNumberLabel.font = [UIFont systemFontOfSize:DCEmployeeNumberFont];
@@ -155,7 +233,7 @@ static float navBarHeight = 64.0f;
     [self.scrollView addSubview:logoView];
     
     totalHeight += employeeNumberLabel.bounds.size.height + offset/3;
-    CGRect descriptionLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/5);
+    CGRect descriptionLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, self.view.bounds.size.height/5);
     UILabel * descriptionLabel = [[UILabel alloc] initWithFrame:descriptionLabelRect];
     descriptionLabel.numberOfLines = 0;
     descriptionLabel.text = self.description;
@@ -172,7 +250,7 @@ static float navBarHeight = 64.0f;
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"О компании", @"Обсуждение", @"Отзывы", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
-    segmentedControl.frame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset, 30);
+    segmentedControl.frame = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, 30);
     totalHeight += segmentedControl.bounds.size.height + offset/3;
     [segmentedControl addTarget:self action:@selector(touchSegmentedContorol:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
@@ -212,7 +290,20 @@ static float navBarHeight = 64.0f;
     [self cleanTextView];
     [self setDiscussionView];
     [self.scrollView sizeToFit];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.commentsTableView.bounds.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.commentsTableView.bounds.size.height );
+}
+
+
+-(void)setDiscussionView
+{
+    CGRect frame = self.textView.frame;
+    frame.size.height += self.view.bounds.size.height;
+    self.commentsTableView = [[UITableView alloc]initWithFrame:frame];
+    self.commentsTableView.userInteractionEnabled = NO;
+    self.commentsTableView.delegate = self;
+    self.commentsTableView.dataSource = self;
+    self.commentsTableView.frame = CGRectMake(self.scrollView.center.x - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, commentsHeight);
+    [self.scrollView addSubview:self.commentsTableView];
 }
 
 -(void)addCompanysFeedback
@@ -252,28 +343,23 @@ static float navBarHeight = 64.0f;
 {
     if (tableView == self.commentsTableView)
     {
-        return 10;
+        return [commentsCellsArray count];
     }
-    else if(tableView == self.feedBackTableView)
+    else
     {
-        return 3;
+        return [feedbackCellsArray count];
     }
-    return 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.commentsTableView)
     {
-        CommentsCell * cell = [[CommentsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CommentCell"];
-        [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
-        return cell.totalHeight;
+        return ((CommentsCell *)[commentsCellsArray objectAtIndex:indexPath.row]).totalHeight;
     }
     else
     {
-        FeedbackCell * cell = [[FeedbackCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CommentCell"];
-        [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
-        return cell.totalHeight;
+        return ((FeedbackCell *)[feedbackCellsArray objectAtIndex:indexPath.row]).totalHeight;
     }
 }
 
@@ -281,15 +367,11 @@ static float navBarHeight = 64.0f;
 {
     if (tableView == self.commentsTableView)
     {
-        CommentsCell * cell = [[CommentsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CommentCell"];
-        [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
-        return cell;
+        return (CommentsCell *)[commentsCellsArray objectAtIndex:indexPath.row];
     }
     else
     {
-        FeedbackCell * cell = [[FeedbackCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FeedbackCell"];
-        [self configureCell:cell inTableView:tableView forIndexPath:indexPath];
-        return cell;
+        return (FeedbackCell *)[feedbackCellsArray objectAtIndex:indexPath.row];
     }
 }
 
@@ -336,43 +418,16 @@ static float navBarHeight = 64.0f;
         commentCell.rating = @"Оценка: 3.9";
         commentCell.date = @"24 April 2014, 15:07";
         commentCell.comment = @"Ответ очень простой: хочу - отвечаю, не хочу - не отвечаю. Ситуация целиком и полностью зависит от мотивации работника, от того считает ли что он ответственен за результат в целом, живет ли он проектом или он просто отрабатывает определенное время за деньги. В моей карьере случалось по разному.";
-        [commentCell drawCellWithOffset:0];
+        [commentCell drawCell];
     }
         
-}
-
--(void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    if (indexPath.row < 9)
-//    {
-//        CGRect frame = textViewFrame;
-//        frame.size.height += cell.bounds.size.height;
-//        self.commentsTableView.frame = frame;
-//    }
-//    else
-//    {
-//        CGRect frame = textViewFrame;
-//        frame.size.height += cell.bounds.size.height;
-//        self.commentsTableView.frame = frame;
-//    }
-}
-
--(void)setDiscussionView
-{
-    CGRect frame = textViewFrame;
-    frame.size.height += self.view.bounds.size.height;
-    self.commentsTableView = [[UITableView alloc]initWithFrame:frame];
-    self.commentsTableView.userInteractionEnabled = NO;
-    self.commentsTableView.delegate = self;
-    self.commentsTableView.dataSource = self;
-    [self.scrollView addSubview:self.commentsTableView];
 }
 
 -(void)setFeedbackView
 {
     CGRect frame = textViewFrame;
     frame.size.height += self.view.bounds.size.height/3;
-    self.feedBackTableView = [[UITableView alloc]initWithFrame:frame];
+    self.feedBackTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.center.x - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, feedbacksHeight)];
     self.feedBackTableView.userInteractionEnabled = NO;
     self.feedBackTableView.delegate = self;
     self.feedBackTableView.dataSource = self;

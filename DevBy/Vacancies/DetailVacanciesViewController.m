@@ -46,7 +46,7 @@ static float navBarHeight = 64.0f;
 {
     if (!_textView)
     {
-        textViewFrame = CGRectMake(offset * 0.8, totalHeight + offset/3, self.view.bounds.size.width - 2 * offset, self.view.bounds.size.height/5);
+        textViewFrame = CGRectMake(offset * 0.3, totalHeight + offset/3, self.view.bounds.size.width - 0.6 * offset, self.view.bounds.size.height/5);
         _textView = [[UITextView alloc] initWithFrame:textViewFrame];
         _textView.userInteractionEnabled = NO;
         _textView.font = [UIFont systemFontOfSize:14];
@@ -78,7 +78,7 @@ static float navBarHeight = 64.0f;
     totalHeight = offset + navObjectsHeight;
     self.view.backgroundColor = [UIColor whiteColor];
     
-    CGRect nameLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, 0);
+    CGRect nameLabelFrame = CGRectMake(offset / 2, totalHeight, self.view.bounds.size.width - offset, 0);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelFrame];
 <<<<<<< HEAD
     nameLabel.font = [UIFont systemFontOfSize:21];
@@ -91,7 +91,7 @@ static float navBarHeight = 64.0f;
     [self.scrollView addSubview:nameLabel];
     totalHeight += nameLabel.bounds.size.height + offset/4;
     
-    CGRect dateLabelFrame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - offset * 2, 0);
+    CGRect dateLabelFrame = CGRectMake(offset / 2, totalHeight, self.view.bounds.size.width - offset, 0);
     UILabel * dateLabel = [[UILabel alloc] initWithFrame:dateLabelFrame];
 <<<<<<< HEAD
     dateLabel.font = [UIFont systemFontOfSize:15];
@@ -108,9 +108,13 @@ static float navBarHeight = 64.0f;
     NSArray *itemArray = [NSArray arrayWithObjects: @"Описание", @"Требования", @"Контакты", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
 <<<<<<< HEAD
+<<<<<<< HEAD
     segmentedControl.frame = CGRectMake(20, totalHeight, self.view.bounds.size.width - 2 * offset, 30);
 =======
     segmentedControl.frame = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset, 30);
+>>>>>>> sazonova
+=======
+    segmentedControl.frame = CGRectMake(offset / 2, totalHeight, self.view.bounds.size.width - offset, 30);
 >>>>>>> sazonova
     totalHeight += segmentedControl.bounds.size.height;
     [segmentedControl addTarget:self action:@selector(touchSegmentedControl:) forControlEvents: UIControlEventValueChanged];

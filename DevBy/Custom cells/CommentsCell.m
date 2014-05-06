@@ -63,7 +63,7 @@ static float xOffset = 10.0f;
 =======
     self.totalHeight += dateLabel.bounds.size.height + halfOffset;
     
-    CGRect commentRect = CGRectMake(halfOffset + offset*halfOffset, self.totalHeight, self.bounds.size.width - 2*halfOffset - offset*halfOffset, 0);
+    CGRect commentRect = CGRectMake(halfOffset + offset*halfOffset, self.totalHeight, self.frame.size.width - 2 * halfOffset - 2 * offset *halfOffset - 2 * halfOffset, 0);
     UILabel * commentLabel = [[UILabel alloc] initWithFrame:commentRect];
     commentLabel.font = [UIFont systemFontOfSize:CCCommentFont];
 >>>>>>> sazonova
@@ -75,6 +75,11 @@ static float xOffset = 10.0f;
     self.totalHeight += commentLabel.bounds.size.height + xOffset;
 =======
     self.totalHeight += commentLabel.bounds.size.height + halfOffset;
+<<<<<<< HEAD
+>>>>>>> sazonova
+=======
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 >>>>>>> sazonova
 }
 
