@@ -19,12 +19,9 @@ NSString * eventCellReuseIdentifier = @"EventCell";
 @end
 
 @implementation EventsViewController
-<<<<<<< HEAD
-=======
 {
     EventCell* cellTrial;
 }
->>>>>>> sazonova
 
 -(NSMutableArray *)events
 {

@@ -9,18 +9,7 @@
 #import "DetailCompanyViewController.h"
 #import "CommentsCell.h"
 #import "FeedbackCell.h"
-<<<<<<< HEAD
-
-float const offset = 20.0f;
-float const nameLabelFont = 28.0f;
-float const descriptionLabelFont = 15.0f;
-float const employeeNumberFont = 13.0f;
-float const textViewFont = 14.0f;
-float const logoHeight = 45.0;
-static float navBarHeight = 64.0f;
-=======
 #import "Constants.h"
->>>>>>> sazonova
 
 @interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -69,11 +58,7 @@ static float navBarHeight = 64.0f;
         textViewFrame = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, self.view.bounds.size.height/5);
         _textView = [[UITextView alloc] initWithFrame:textViewFrame];
         _textView.userInteractionEnabled = NO;
-<<<<<<< HEAD
-        _textView.font = [UIFont systemFontOfSize:textViewFont];
-=======
         _textView.font = [UIFont systemFontOfSize:DCTextViewFont];
->>>>>>> sazonova
     }
     return _textView;
 }
@@ -185,49 +170,24 @@ static float navBarHeight = 64.0f;
         navObjectsHeight = navBarHeight;
     }
     totalHeight += offset*0.8 + navObjectsHeight;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    CGRect nameLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset - logoHeight, logoHeight);
-    UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
-    nameLabel.font = [UIFont systemFontOfSize:nameLabelFont];
-=======
-    CGRect nameLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width - 2 * offset - DCLogoHeight, DCLogoHeight);
-=======
     CGRect nameLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset - DCLogoHeight, DCLogoHeight);
->>>>>>> sazonova
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
     nameLabel.font = [UIFont systemFontOfSize:DCNameLabelFont];
->>>>>>> sazonova
     nameLabel.numberOfLines = 0;
     nameLabel.text = self.companysName;
     nameLabel.adjustsFontSizeToFitWidth = YES;
     [self.scrollView addSubview:nameLabel];
     
     totalHeight += nameLabel.bounds.size.height;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    CGRect employeeLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width, logoHeight);
-    UILabel * employeeNumberLabel = [[UILabel alloc] initWithFrame:employeeLabelRect];
-    employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", self.employeeNumber];
-    employeeNumberLabel.font = [UIFont systemFontOfSize:employeeNumberFont];
-=======
-    CGRect employeeLabelRect = CGRectMake(offset, totalHeight, self.view.bounds.size.width, DCLogoHeight);
-=======
     CGRect employeeLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width, DCLogoHeight);
->>>>>>> sazonova
     UILabel * employeeNumberLabel = [[UILabel alloc] initWithFrame:employeeLabelRect];
     employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", self.employeeNumber];
     employeeNumberLabel.font = [UIFont systemFontOfSize:DCEmployeeNumberFont];
->>>>>>> sazonova
     employeeNumberLabel.textColor = [UIColor grayColor];
     [employeeNumberLabel sizeToFit];
     [self.scrollView addSubview:employeeNumberLabel];
     
-<<<<<<< HEAD
-    CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - logoHeight, nameLabelRect.origin.y + 5, logoHeight, logoHeight);
-=======
     CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - DCLogoHeight, nameLabelRect.origin.y + 5, DCLogoHeight, DCLogoHeight);
->>>>>>> sazonova
     UIImageView * logoView = [[UIImageView alloc] initWithFrame:logoViewRect];
     logoView.backgroundColor = [UIColor grayColor];
     [self.scrollView addSubview:logoView];
@@ -237,11 +197,7 @@ static float navBarHeight = 64.0f;
     UILabel * descriptionLabel = [[UILabel alloc] initWithFrame:descriptionLabelRect];
     descriptionLabel.numberOfLines = 0;
     descriptionLabel.text = self.description;
-<<<<<<< HEAD
-    descriptionLabel.font = [UIFont systemFontOfSize:descriptionLabelFont];
-=======
     descriptionLabel.font = [UIFont systemFontOfSize:DCDescriptionLabelFont];
->>>>>>> sazonova
     descriptionLabel.textColor = [UIColor grayColor];
     descriptionLabel.adjustsFontSizeToFitWidth = YES;
     [self.scrollView addSubview:descriptionLabel];
@@ -335,11 +291,7 @@ static float navBarHeight = 64.0f;
     return 1;
 }
 
-<<<<<<< HEAD
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-=======
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
->>>>>>> sazonova
 {
     if (tableView == self.commentsTableView)
     {

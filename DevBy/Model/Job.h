@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> sazonova
 @interface Job : NSObject
 
 @property(nonatomic, assign)int type;

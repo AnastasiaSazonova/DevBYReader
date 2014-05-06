@@ -12,18 +12,8 @@
 #import "DetailPostsViewController.h"
 #import "MainArticleCell.h"
 #import "ArticleCell.h"
-<<<<<<< HEAD
-
-static float navBarHeight = 64.0;
-=======
 #import "Constants.h"
-
-<<<<<<< HEAD
->>>>>>> sazonova
-=======
 #import "SlideViewController.h"
->>>>>>> sazonova
-
 
 @interface PostsViewController () <SlideViewDelegate>
 {
@@ -41,19 +31,10 @@ static float navBarHeight = 64.0;
     [super viewDidLoad];
     mainCellHeight = self.view.bounds.size.height*0.4 - halfOffset/2;
     articleCellHeight = (self.view.bounds.size.height - mainCellHeight - navBarHeight)/3 + 7;
-<<<<<<< HEAD
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"logo"] scaledToSize:CGSizeMake(100, 35)]];
-=======
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"devLogo"] scaledToSize:CGSizeMake(100, 35)]];
-<<<<<<< HEAD
->>>>>>> sazonova
-    _posts = [[NSMutableArray alloc] initWithArray:@[@"Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.", @"Heartbleed – новое слово в маркетинге багов.", @"Злой гений создал гибрид '2048' и 'Flappy Bird' на погибель вашей продуктивности.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies награждения Belarusian IT Awards и Best IT Companies."]];
-    [self.tableView reloadData];
-=======
     _posts = [[NSMutableArray alloc] initWithArray:@[@"Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.", @"Heartbleed – новое слово в маркетинге багов.", @"Злой гений создал гибрид '2048' и 'Flappy Bird' на погибель вашей продуктивности.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies."]];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Новости" style:UIBarButtonItemStylePlain target:nil action:nil];
->>>>>>> sazonova
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize

@@ -46,16 +46,8 @@
     UIScrollView * scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     scrollView.showsVerticalScrollIndicator = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-<<<<<<< HEAD
-
-    float textOffset = 20.0f;
-    UITextView * titleView = [[UITextView alloc] initWithFrame:CGRectMake(textOffset, navObjectsHeight, self.view.bounds.size.width - 2 *textOffset, 0)];
-
-    UITextView * titleView = [[UITextView alloc] initWithFrame:CGRectMake(halfOffset, navObjectsHeight, self.view.bounds.size.width - 2 *halfOffset, 0)];
-=======
     
     UITextView * titleView = [[UITextView alloc] initWithFrame:CGRectMake(halfOffset * 0.3, navObjectsHeight, self.view.bounds.size.width - 0.6 *halfOffset, 0)];
->>>>>>> sazonova
     titleView.text = [NSString stringWithFormat:@"%@", self.title];
     titleView.font = [UIFont boldSystemFontOfSize:18];
     titleView.userInteractionEnabled = NO;
@@ -69,21 +61,10 @@
     commentsButton.titleLabel.font = [UIFont systemFontOfSize:12];
     [commentsButton sizeToFit];
     [commentsButton addTarget:self action:@selector(touchCommentsButton:) forControlEvents:UIControlEventTouchUpInside];
-<<<<<<< HEAD
-
-    commentsButton.frame = CGRectMake(1.3*textOffset , self.totalHeight - 6, commentsButton.bounds.size.width, commentsButton.bounds.size.height);
-    [scrollView addSubview:commentsButton];
-    
-    CGRect dateLabelRect = CGRectMake(2*textOffset + commentsButton.bounds.size.width, self.totalHeight, 10, 10);
-=======
-    commentsButton.frame = CGRectMake(middleOffset , self.totalHeight - 6, commentsButton.bounds.size.width, commentsButton.bounds.size.height);
-=======
     commentsButton.frame = CGRectMake(halfOffset * 0.7 , self.totalHeight - 6, commentsButton.bounds.size.width, commentsButton.bounds.size.height);
->>>>>>> sazonova
     [scrollView addSubview:commentsButton];
     
     CGRect dateLabelRect = CGRectMake(2*middleOffset + commentsButton.bounds.size.width, self.totalHeight, 10, 10);
->>>>>>> sazonova
     UILabel * dateLabel = [[UILabel alloc]initWithFrame:dateLabelRect];
     dateLabel.textColor = [UIColor darkGrayColor];
     dateLabel.font = [UIFont systemFontOfSize:12];
@@ -98,16 +79,8 @@
     [scrollView addSubview:imageView];
     self.totalHeight += imageView.bounds.size.height;
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-    UITextView * textView = [[UITextView alloc] initWithFrame:CGRectMake(textOffset, self.totalHeight, self.view.bounds.size.width - 2 * textOffset, 0)];
-=======
-    UITextView * textView = [[UITextView alloc] initWithFrame:CGRectMake(halfOffset, self.totalHeight, self.view.bounds.size.width - 2 * halfOffset, 0)];
->>>>>>> sazonova
-=======
     UITextView * textView = [[UITextView alloc] initWithFrame:CGRectMake(offset * 0.3, self.totalHeight, self.view.bounds.size.width - 0.6 * halfOffset, 0)];
 
->>>>>>> sazonova
     textView.text = [NSString stringWithFormat:@"\t%@", self.text];
     textView.font = [UIFont systemFontOfSize:14];
     textView.userInteractionEnabled = NO;

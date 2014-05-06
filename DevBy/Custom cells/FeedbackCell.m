@@ -7,12 +7,8 @@
 //
 
 #import "FeedbackCell.h"
-<<<<<<< HEAD
-
-static float xOffset = 10.0f;
-=======
 #import "constants.h"
->>>>>>> sazonova
+
 
 @interface FeedbackCell()
 
@@ -25,17 +21,6 @@ static float xOffset = 10.0f;
 -(void)drawCell
 {
     self.totalHeight = 0;
-<<<<<<< HEAD
-    CGRect usernameRect = CGRectMake(xOffset + offset*xOffset, xOffset, 0, 0);
-    UILabel * usernameLabel = [[UILabel alloc] initWithFrame:usernameRect];
-    usernameLabel.font = [UIFont systemFontOfSize:13];
-    usernameLabel.text = self.username;
-    [usernameLabel sizeToFit];
-    [self addSubview:usernameLabel];
-    self.totalHeight += usernameRect.origin.y +  usernameLabel.bounds.size.height + xOffset/2;
-=======
->>>>>>> sazonova
-    
     UIView * backGroundView = [[UIView alloc] init];
     if (self.color == redColor)
     {
@@ -47,16 +32,7 @@ static float xOffset = 10.0f;
     }
     [self addSubview:backGroundView];
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-    CGRect commentRect = CGRectMake(xOffset + offset*xOffset, self.totalHeight, self.bounds.size.width - 2*xOffset - offset*xOffset, 0);
-    UILabel * commentLabel = [[UILabel alloc] initWithFrame:commentRect];
-    commentLabel.font = [UIFont systemFontOfSize:12];
-=======
-    CGRect usernameRect = CGRectMake(halfOffset + offset*halfOffset, halfOffset, 0, 0);
-=======
     CGRect usernameRect = CGRectMake(halfOffset, halfOffset, 0, 0);
->>>>>>> sazonova
     UILabel * usernameLabel = [[UILabel alloc] initWithFrame:usernameRect];
     usernameLabel.font = [UIFont boldSystemFontOfSize:FBCUsernameFont];
     usernameLabel.text = self.username;
@@ -89,16 +65,11 @@ static float xOffset = 10.0f;
     CGRect commentRect = CGRectMake(halfOffset, self.totalHeight - 1.5 * halfOffset, self.bounds.size.width*0.9, 0);
     UILabel * commentLabel = [[UILabel alloc] initWithFrame:commentRect];
     commentLabel.font = [UIFont systemFontOfSize:FBCTextFont];
->>>>>>> sazonova
     commentLabel.numberOfLines = 0;
     commentLabel.text = self.comment;
     [commentLabel sizeToFit];
     [self addSubview:commentLabel];
-<<<<<<< HEAD
-    self.totalHeight += commentLabel.bounds.size.height + xOffset;
-=======
     self.totalHeight += commentLabel.bounds.size.height;
->>>>>>> sazonova
 }
 
 @end

@@ -12,11 +12,8 @@
 @interface StandardJobCell : UITableViewCell
 
 @property(nonatomic, assign, readonly)float totalHeight;
-<<<<<<< HEAD
-=======
 @property(nonatomic, strong)Job * job;
 
 -(void)drawCell;
->>>>>>> sazonova
 
 @end

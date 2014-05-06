@@ -7,11 +7,8 @@
 //
 
 #import "StandardJobCell.h"
-<<<<<<< HEAD
-=======
 #import "Job.h"
 #import "Constants.h"
->>>>>>> sazonova
 
 @interface StandardJobCell()
 
@@ -21,19 +18,6 @@
 
 @implementation StandardJobCell
 
-<<<<<<< HEAD
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
--(void)drawCell{}
-
-=======
 -(void)drawCell
 {
     self.totalHeight = 0;
@@ -56,5 +40,4 @@
     self.totalHeight += companysName.bounds.size.height + halfOffset;
 }
 
->>>>>>> sazonova
 @end

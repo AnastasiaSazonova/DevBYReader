@@ -7,21 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
-=======
 		5D0B8C3919115DA500A62318 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B8C2919115DA500A62318 /* MenuViewController.m */; };
 		5D0B8C3A19115DA500A62318 /* MSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B8C2B19115DA500A62318 /* MSMainViewController.m */; };
 		5D0B8C3B19115DA500A62318 /* MSSlideSystemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B8C2D19115DA500A62318 /* MSSlideSystemController.m */; };
 		5D0B8C3F19115DA500A62318 /* SlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B8C3519115DA500A62318 /* SlideViewController.m */; };
-		5D0EA0D9190E61A2004FDE9A /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0EA0D8190E61A2004FDE9A /* Job.m */; };
->>>>>>> sazonova
 		5D12A15218F91366005A5BEE /* DetailCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D12A15118F91365005A5BEE /* DetailCompanyViewController.m */; };
 		5D1630B6190BA510005AEE23 /* FeedbackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1630B5190BA510005AEE23 /* FeedbackCell.m */; };
 		5D26DD6A18FC281900914F06 /* CommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D26DD6918FC281900914F06 /* CommentsCell.m */; };
 		5D26DD7018FC5D8600914F06 /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D26DD6F18FC5D8600914F06 /* EventCell.m */; };
 		5D26DD7318FC674800914F06 /* DetailEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D26DD7218FC674800914F06 /* DetailEventViewController.m */; };
 		5D28ED9418F8A4E80066011D /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D28ED9318F8A4E80066011D /* CommentsViewController.m */; };
-		5D29B10D18F7CF8F006DCD4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D29B10C18F7CF8F006DCD4F /* Foundation.framework */; };
 		5D29B10F18F7CF8F006DCD4F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D29B10E18F7CF8F006DCD4F /* CoreGraphics.framework */; };
 		5D29B11118F7CF8F006DCD4F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D29B11018F7CF8F006DCD4F /* UIKit.framework */; };
 		5D29B11718F7CF8F006DCD4F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D29B11518F7CF8F006DCD4F /* InfoPlist.strings */; };
@@ -29,7 +24,6 @@
 		5D29B11D18F7CF8F006DCD4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D29B11C18F7CF8F006DCD4F /* AppDelegate.m */; };
 		5D29B11F18F7CF8F006DCD4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D29B11E18F7CF8F006DCD4F /* Images.xcassets */; };
 		5D29B12618F7CF8F006DCD4F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D29B12518F7CF8F006DCD4F /* XCTest.framework */; };
-		5D29B12718F7CF8F006DCD4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D29B10C18F7CF8F006DCD4F /* Foundation.framework */; };
 		5D29B12818F7CF8F006DCD4F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D29B11018F7CF8F006DCD4F /* UIKit.framework */; };
 		5D29B13018F7CF8F006DCD4F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D29B12E18F7CF8F006DCD4F /* InfoPlist.strings */; };
 		5D29B13218F7CF8F006DCD4F /* DevByTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D29B13118F7CF8F006DCD4F /* DevByTests.m */; };
@@ -43,8 +37,6 @@
 		5D82DDD618F7D0CE009E4D3E /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDC118F7D0CE009E4D3E /* JASidePanelController.m */; };
 		5D82DDD718F7D0CE009E4D3E /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDC318F7D0CE009E4D3E /* UIViewController+JASidePanel.m */; };
 		5D82DDD818F7D0CE009E4D3E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDC618F7D0CE009E4D3E /* SWRevealViewController.m */; };
-		5D82DDDB18F7D106009E4D3E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D82DDDA18F7D106009E4D3E /* libxml2.dylib */; };
-		5D82DDDB18F7D106009E4D3E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D82DDDA18F7D106009E4D3E /* libxml2.dylib */; };
 		5D82DDDF18F7D305009E4D3E /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDDE18F7D305009E4D3E /* EventsViewController.m */; };
 		5D82DDEC18F7D312009E4D3E /* CompaniesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDE218F7D312009E4D3E /* CompaniesViewController.m */; };
 		5D82DDEE18F7D312009E4D3E /* HTMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDE818F7D312009E4D3E /* HTMLElement.m */; };
@@ -53,11 +45,8 @@
 		5D82DDF618F7D37E009E4D3E /* VacanciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDF518F7D37E009E4D3E /* VacanciesViewController.m */; };
 		5D82DE0218F8080A009E4D3E /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDFF18F8080A009E4D3E /* ArticleCell.m */; };
 		5D82DE0318F8080A009E4D3E /* MainArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DE0118F8080A009E4D3E /* MainArticleCell.m */; };
-<<<<<<< HEAD
-		5DD0888C190624AE008601DB /* PremiumJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0888B190624AE008601DB /* PremiumJob.m */; };
-=======
 		5DA2BEA21912DB3400833C6E /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2BEA11912DB3400833C6E /* Comment.m */; };
->>>>>>> sazonova
+		5DD0888C190624AE008601DB /* PremiumJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0888B190624AE008601DB /* PremiumJob.m */; };
 		5DD0888F1906307E008601DB /* DetailVacanciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0888E1906307E008601DB /* DetailVacanciesViewController.m */; };
 		5DD088921906319D008601DB /* MiddleJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD088911906319D008601DB /* MiddleJobCell.m */; };
 		5DD08895190631B2008601DB /* StandardJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD08894190631B2008601DB /* StandardJobCell.m */; };
@@ -76,8 +65,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-<<<<<<< HEAD
-=======
 		5D0B8C2819115DA500A62318 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		5D0B8C2919115DA500A62318 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		5D0B8C2A19115DA500A62318 /* MSMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSMainViewController.h; sourceTree = "<group>"; };
@@ -86,8 +73,6 @@
 		5D0B8C2D19115DA500A62318 /* MSSlideSystemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSlideSystemController.m; sourceTree = "<group>"; };
 		5D0B8C3419115DA500A62318 /* SlideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideViewController.h; sourceTree = "<group>"; };
 		5D0B8C3519115DA500A62318 /* SlideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideViewController.m; sourceTree = "<group>"; };
-		5D0EA0D8190E61A2004FDE9A /* Job.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Job.m; sourceTree = "<group>"; };
->>>>>>> sazonova
 		5D12A15018F91365005A5BEE /* DetailCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCompanyViewController.h; sourceTree = "<group>"; };
 		5D12A15118F91365005A5BEE /* DetailCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCompanyViewController.m; sourceTree = "<group>"; };
 		5D1630B4190BA510005AEE23 /* FeedbackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackCell.h; sourceTree = "<group>"; };
@@ -102,7 +87,6 @@
 		5D28ED9218F8A4E80066011D /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
 		5D28ED9318F8A4E80066011D /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		5D29B10918F7CF8F006DCD4F /* DevBy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevBy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D29B10C18F7CF8F006DCD4F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5D29B10E18F7CF8F006DCD4F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5D29B11018F7CF8F006DCD4F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5D29B11418F7CF8F006DCD4F /* DevBy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DevBy-Info.plist"; sourceTree = "<group>"; };
@@ -135,8 +119,6 @@
 		5D82DDC318F7D0CE009E4D3E /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
 		5D82DDC518F7D0CE009E4D3E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		5D82DDC618F7D0CE009E4D3E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		5D82DDDA18F7D106009E4D3E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		5D82DDDA18F7D106009E4D3E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		5D82DDDD18F7D305009E4D3E /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
 		5D82DDDE18F7D305009E4D3E /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
 		5D82DDE118F7D312009E4D3E /* CompaniesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompaniesViewController.h; sourceTree = "<group>"; };
@@ -153,13 +135,10 @@
 		5D82DDFF18F8080A009E4D3E /* ArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleCell.m; sourceTree = "<group>"; };
 		5D82DE0018F8080A009E4D3E /* MainArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainArticleCell.h; sourceTree = "<group>"; };
 		5D82DE0118F8080A009E4D3E /* MainArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainArticleCell.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		5DD0888A190624AE008601DB /* PremiumJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PremiumJob.h; sourceTree = "<group>"; };
-		5DD0888B190624AE008601DB /* PremiumJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PremiumJob.m; sourceTree = "<group>"; };
-=======
 		5DA2BEA01912DB3400833C6E /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		5DA2BEA11912DB3400833C6E /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
->>>>>>> sazonova
+		5DD0888A190624AE008601DB /* PremiumJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PremiumJob.h; sourceTree = "<group>"; };
+		5DD0888B190624AE008601DB /* PremiumJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PremiumJob.m; sourceTree = "<group>"; };
 		5DD0888D1906307E008601DB /* DetailVacanciesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVacanciesViewController.h; sourceTree = "<group>"; };
 		5DD0888E1906307E008601DB /* DetailVacanciesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVacanciesViewController.m; sourceTree = "<group>"; };
 		5DD088901906319D008601DB /* MiddleJobCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiddleJobCell.h; sourceTree = "<group>"; };
@@ -177,11 +156,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8425E42B190D218700BB966E /* libxml2.2.dylib in Frameworks */,
-				5D82DDDB18F7D106009E4D3E /* libxml2.dylib in Frameworks */,
-				5D82DDDB18F7D106009E4D3E /* libxml2.dylib in Frameworks */,
 				5D29B10F18F7CF8F006DCD4F /* CoreGraphics.framework in Frameworks */,
 				5D29B11118F7CF8F006DCD4F /* UIKit.framework in Frameworks */,
-				5D29B10D18F7CF8F006DCD4F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,7 +167,6 @@
 			files = (
 				5D29B12618F7CF8F006DCD4F /* XCTest.framework in Frameworks */,
 				5D29B12818F7CF8F006DCD4F /* UIKit.framework in Frameworks */,
-				5D29B12718F7CF8F006DCD4F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,9 +220,6 @@
 			isa = PBXGroup;
 			children = (
 				8425E42A190D218700BB966E /* libxml2.2.dylib */,
-				5D82DDDA18F7D106009E4D3E /* libxml2.dylib */,
-				5D82DDDA18F7D106009E4D3E /* libxml2.dylib */,
-				5D29B10C18F7CF8F006DCD4F /* Foundation.framework */,
 				5D29B10E18F7CF8F006DCD4F /* CoreGraphics.framework */,
 				5D29B11018F7CF8F006DCD4F /* UIKit.framework */,
 				5D29B12518F7CF8F006DCD4F /* XCTest.framework */,
@@ -376,17 +348,14 @@
 			children = (
 				5D82DDE718F7D312009E4D3E /* HTMLElement.h */,
 				5D82DDE818F7D312009E4D3E /* HTMLElement.m */,
-<<<<<<< HEAD
 				5DD0888A190624AE008601DB /* PremiumJob.h */,
 				5DD0888B190624AE008601DB /* PremiumJob.m */,
 				5DD0889619063238008601DB /* Job.h */,
 				5DD0889719063238008601DB /* Job.m */,
 				5D4BF6B11909713900E0E405 /* MiddleJob.h */,
 				5D4BF6B21909713900E0E405 /* MiddleJob.m */,
-=======
 				5DA2BEA01912DB3400833C6E /* Comment.h */,
 				5DA2BEA11912DB3400833C6E /* Comment.m */,
->>>>>>> sazonova
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -642,8 +611,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -684,8 +651,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -712,9 +677,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DevBy/DevBy-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
-				INFOPLIST_FILE = "DevBy/DevBy-Info.plist";
-<<<<<<< HEAD
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				INFOPLIST_FILE = "$(SRCROOT)/DevBy/DevBy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Desktop,
@@ -722,11 +686,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E5F2E7E8-F5C4-46DE-8E68-05A1AF81088E";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-=======
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
->>>>>>> sazonova
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -742,9 +701,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DevBy/DevBy-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
-				INFOPLIST_FILE = "DevBy/DevBy-Info.plist";
-<<<<<<< HEAD
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				INFOPLIST_FILE = "$(SRCROOT)/DevBy/DevBy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Desktop,
@@ -752,11 +710,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E5F2E7E8-F5C4-46DE-8E68-05A1AF81088E";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-=======
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
->>>>>>> sazonova
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

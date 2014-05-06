@@ -8,21 +8,12 @@
 
 #import "CompaniesViewController.h"
 #import "DetailCompanyViewController.h"
-<<<<<<< HEAD
-=======
 #import "Constants.h"
->>>>>>> sazonova
 
 
 @interface CompaniesViewController()<UISearchDisplayDelegate, UISearchBarDelegate>
 {
     UISearchDisplayController * searchDisplayController;
-<<<<<<< HEAD
-    BOOL isSearching;
-    float rowHeight;
-    float maxCharsPerRow;
-=======
->>>>>>> sazonova
 }
 
 
@@ -56,25 +47,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-<<<<<<< HEAD
-    self.title = NSLocalizedString(@"Компании", nil);
-<<<<<<< HEAD
-    rowHeight = 40;
-    maxCharsPerRow = 30;
-    
-    searchBar = [[UISearchBar alloc] init];
-=======
-    self.view.backgroundColor = [UIColor whiteColor];
-    CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
-    searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
->>>>>>> sazonova
-    searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
-=======
     self.view.backgroundColor = [UIColor whiteColor];
     CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
     self.searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
->>>>>>> sazonova
     searchDisplayController.delegate = self;
     searchDisplayController.searchResultsDataSource = self;
     searchDisplayController.searchResultsDelegate = self;
@@ -98,18 +74,10 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-<<<<<<< HEAD
-    int cellContentLength = (int)[self.companysNames[indexPath.row] length];
-    if (cellContentLength > maxCharsPerRow)
-=======
     if (tableView == self.searchDisplayController.searchResultsTableView)
->>>>>>> sazonova
     {
         return [self heightForRowFrom:self.searchResults AtIndexPath:indexPath];
     }
-<<<<<<< HEAD
-    return rowHeight;
-=======
     else
     {
         if (indexPath.row == 0)
@@ -135,7 +103,6 @@
     {
         return CVCRowHeight;
     }
->>>>>>> sazonova
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
