@@ -52,6 +52,7 @@
 		5DD08895190631B2008601DB /* StandardJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD08894190631B2008601DB /* StandardJobCell.m */; };
 		5DD0889819063238008601DB /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0889719063238008601DB /* Job.m */; };
 		8425E42B190D218700BB966E /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8425E42A190D218700BB966E /* libxml2.2.dylib */; };
+		8488425519194D7B00DF54D4 /* DevBy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8488425419194D7B00DF54D4 /* DevBy-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +90,6 @@
 		5D29B10918F7CF8F006DCD4F /* DevBy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevBy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D29B10E18F7CF8F006DCD4F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5D29B11018F7CF8F006DCD4F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		5D29B11418F7CF8F006DCD4F /* DevBy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DevBy-Info.plist"; sourceTree = "<group>"; };
 		5D29B11618F7CF8F006DCD4F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5D29B11818F7CF8F006DCD4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5D29B11A18F7CF8F006DCD4F /* DevBy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DevBy-Prefix.pch"; sourceTree = "<group>"; };
@@ -148,6 +148,7 @@
 		5DD0889619063238008601DB /* Job.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
 		5DD0889719063238008601DB /* Job.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Job.m; sourceTree = "<group>"; };
 		8425E42A190D218700BB966E /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../Desktop/Storage/Resources/libxml2.2.dylib; sourceTree = "<group>"; };
+		8488425419194D7B00DF54D4 /* DevBy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DevBy-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +247,7 @@
 		5D29B11318F7CF8F006DCD4F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8488425419194D7B00DF54D4 /* DevBy-Info.plist */,
 				5D29B11B18F7CF8F006DCD4F /* AppDelegate.h */,
 				5D29B11C18F7CF8F006DCD4F /* AppDelegate.m */,
 				5D82DDA918F7D0CE009E4D3E /* en.lproj */,
@@ -254,7 +256,6 @@
 				5D82DDC418F7D0CE009E4D3E /* SWRevealViewController */,
 				5D29B11E18F7CF8F006DCD4F /* Images.xcassets */,
 				5D82DDAE18F7D0CE009E4D3E /* hpple */,
-				5D29B11418F7CF8F006DCD4F /* DevBy-Info.plist */,
 				5D29B11518F7CF8F006DCD4F /* InfoPlist.strings */,
 				5D29B11818F7CF8F006DCD4F /* main.m */,
 				5D29B11A18F7CF8F006DCD4F /* DevBy-Prefix.pch */,
@@ -492,6 +493,7 @@
 				5D29B11718F7CF8F006DCD4F /* InfoPlist.strings in Resources */,
 				5D82DDCB18F7D0CE009E4D3E /* InfoPlist.strings in Resources */,
 				5D29B11F18F7CF8F006DCD4F /* Images.xcassets in Resources */,
+				8488425519194D7B00DF54D4 /* DevBy-Info.plist in Resources */,
 				5D82DDD418F7D0CE009E4D3E /* reveal-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -611,7 +613,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -651,7 +653,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
