@@ -13,6 +13,8 @@
 {
     float totalHeight;
     CGRect textViewFrame;
+    EventsParser *eventsParser;
+    EventDetail *eventDetail;
 }
 
 @property(nonatomic, strong)UIScrollView * scrollView;
@@ -22,7 +24,7 @@
 
 @implementation DetailEventViewController
 
--(NSString *)eventsName
+/*-(NSString *)eventsName
 {
     if (!_eventsName)
     {
@@ -75,7 +77,7 @@
     }
     return _eventsAddress;
 }
-
+*/
 
 -(UIScrollView *)scrollView
 {
@@ -103,6 +105,9 @@
 {
     [super viewDidLoad];
 
+    eventsParser = [[EventsParser alloc] init];
+    eventDetail = [eventsParser getDetailInfoOf:@"lazertag-na-it-cup-cobiraem-sportsmenov-v-it-boy"];
+    
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     totalHeight = offset*0.4 + navObjectsHeight;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -111,9 +116,9 @@
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelFrame];
     nameLabel.font = [UIFont systemFontOfSize:21];
     nameLabel.numberOfLines = 0;
-    nameLabel.text = self.eventsName;
+    nameLabel.text = eventDetail.title;//self.eventsName;
 
-    if ([self.eventsName length] > DEMaxCharsForBigFont)
+    if ([eventDetail.title length] > DEMaxCharsForBigFont)
     {
         nameLabel.adjustsFontSizeToFitWidth = YES;
     }
@@ -129,7 +134,7 @@
     dateLabel.font = [UIFont systemFontOfSize:14];
     dateLabel.textColor = [UIColor darkGrayColor];
     dateLabel.numberOfLines = 0;
-    dateLabel.text = self.eventsDate;
+    dateLabel.text = eventDetail.time;//self.eventsDate;
     [dateLabel sizeToFit];
     [self.scrollView addSubview:dateLabel];
     totalHeight += dateLabel.bounds.size.height + offset/1.5;
@@ -143,7 +148,7 @@
     UILabel * countLabel = [[UILabel alloc] initWithFrame:countLabelFrame];
     countLabel.font = [UIFont systemFontOfSize:20];
     countLabel.numberOfLines = 0;
-    countLabel.text = @"4";
+    countLabel.text = [[NSString alloc] initWithFormat:@"%d", eventDetail.listenersCount];
     [countLabel sizeToFit];
     [self.scrollView addSubview:countLabel];
     
@@ -194,7 +199,7 @@
 -(void)addDescription
 {
     self.textView.frame = textViewFrame;
-    self.textView.text = self.eventsDescription;
+    self.textView.text = eventDetail.description;//self.eventsDescription;
     [self.textView sizeToFit];
     [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
@@ -203,7 +208,7 @@
 -(void)addPrice
 {
     self.textView.frame = textViewFrame;
-    self.textView.text = self.eventsPrice;
+    self.textView.text = eventDetail.price;//self.eventsPrice;
     [self.textView sizeToFit];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
@@ -211,7 +216,7 @@
 -(void)addAddress
 {
     self.textView.frame = textViewFrame;
-    self.textView.text = self.eventsAddress;
+    self.textView.text = eventDetail.address;//self.eventsAddress;
     [self.textView sizeToFit];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
@@ -219,7 +224,17 @@
 -(void)addContacts
 {
     self.textView.frame = textViewFrame;
-    self.textView.text = self.eventsContacts;
+    NSMutableString *contacts = [[NSMutableString alloc] init];
+    if(eventDetail.sponsorInfo)
+        [contacts appendFormat:@"Спонсор: %@\n", eventDetail.sponsorInfo];
+    if(eventDetail.email)
+        [contacts appendFormat:@"Эл.почта: %@\n", eventDetail.email];
+    if(eventDetail.siteAddress)
+        [contacts appendFormat:@"Сайт: %@\n", eventDetail.siteAddress];
+    if(eventDetail.phoneNumber)
+        [contacts appendFormat:@"Телефон: %@\n", eventDetail.phoneNumber];
+    self.textView.text = contacts;
+
     [self.textView sizeToFit];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }

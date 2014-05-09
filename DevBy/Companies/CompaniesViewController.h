@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CompaniesParser.h"
 
 @interface CompaniesViewController : UITableViewController
 

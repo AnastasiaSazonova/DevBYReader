@@ -51,6 +51,8 @@
     CGRect dayLabelFrame = CGRectMake(halfOffset, self.totalHeight/2 - halfOffset, 0, 0);
     UILabel * dayLabel = [[UILabel alloc] initWithFrame:dayLabelFrame];
     dayLabel.font = [UIFont systemFontOfSize:ECDayLabeFont];
+    dayLabel.textAlignment = NSTextAlignmentCenter;
+    dayLabel.backgroundColor = [UIColor redColor];
     dayLabel.textColor = [UIColor darkGrayColor];
     dayLabel.text = self.month;
     [dayLabel sizeToFit];

@@ -19,11 +19,11 @@
     CGRect textViewFrame;
     NSMutableArray *commentsCellsArray;
     NSMutableArray *feedbackCellsArray;
+    
+    CompaniesParser *companiesParser;
+    CompanyDetail *companyDetail;
 }
 
-@property(nonatomic, strong)NSString * companysDescription;
-@property(nonatomic, strong)NSString * description;
-@property(nonatomic, strong)NSString * employeeNumber;
 @property(nonatomic, strong)UITextView * textView;
 @property(nonatomic, strong)UIScrollView * scrollView;
 @property(nonatomic, strong)NSMutableArray * comments;
@@ -33,23 +33,6 @@
 @end
 
 @implementation DetailCompanyViewController
-
--(NSString *)description
-{
-    if (!_description)
-    {
-        _description = @"ИТ-аутсорсинг, Разработка ПО на заказ, Веб-разработка, Разработка мобильных приложений, Разработка встраиваемого ПО, Банковское ПО, Образовательные услуги";
-    }
-    return _description;
-}
--(NSString *)employeeNumber
-{
-    if (!_employeeNumber)
-    {
-        _employeeNumber = @"45";
-    }
-    return _employeeNumber;
-}
 
 -(UITextView *)textView
 {
@@ -73,53 +56,28 @@
     return _scrollView;
 }
 
--(NSMutableArray *)comments
-{
-    if (!_comments)
-    {
-        _comments = [[NSMutableArray alloc] initWithArray:@[@"Comment 1", @"Одним из достоинств нашей компании является полномасштабный спектр инновационных и комплексных проектных решений и услуг в сфере информационных технологий, предлагаемых заказчикам. Высокое качество проектных решений и услуг является стратегической идеей руководства IBA и каждого сотрудника"]];
-    }
-    return _comments;
-}
-
--(NSString *)companysDescription
-{
-    if (!_companysDescription)
-    {
-        _companysDescription = @"Одним из достоинств нашей компании является полномасштабный спектр инновационных и комплексных проектных решений и услуг в сфере информационных технологий, предлагаемых заказчикам. Высокое качество проектных решений и услуг является стратегической идеей руководства IBA и каждого сотрудника. Это позволило нам за последние годы существенно увеличить объемы работ на рынке стран СНГ, международном рынке и приобрести новых заказчиков во многих странах мира. Мы признательны за интерес к нашей компании и полны решимости развивать наш успех, базируясь на наших принципах, выраженных девизами 'Качество-Надежность-Безопасность' и 'Информационные технологии без границ' Одним из достоинств нашей компании является полномасштабный спектр инновационных и комплексных проектных решений и услуг в сфере информационных технологий, предлагаемых заказчикам. Высокое качество проектных решений и услуг является стратегической идеей руководства IBA и каждого сотрудника. Это позволило нам за последние годы существенно увеличить объемы работ на рынке стран СНГ, международном рынке и приобрести новых заказчиков во многих странах мира. Мы признательны за интерес к нашей компании и полны решимости развивать наш успех, базируясь на наших принципах, выраженных девизами 'Качество-Надежность-Безопасность' и 'Информационные технологии без границ'";
-    }
-    return _companysDescription;
-}
-
-- (CommentsCell*) initilizeCommentsCellwithUsername:(NSString*) username date:(NSString*) date comments :(NSString*)comments offset:(int)offset
-{
-    CommentsCell* cell = [[CommentsCell alloc]init];
-    cell.username = username;
-    cell.date = date;
-    cell.comment = comments;
-    [cell drawCellWithOffset:offset];
-    return cell;
-}
-
 -(void)calculateCommentsTableViewHeights
 {
     commentsCellsArray = [NSMutableArray array];
-    NSString * comment = @"Не могу согласится. Мысли в рамках одной User story без мыслей на будущее замедляют внедрение новых фич, которые будут зависеть от данной US. Есть же замечательная пословица: \"7 раз отмерь - 1 отрежь\". Почему не следовать ей и в программировании? Кода с неприятным запахом было куда бы меньше.P.S. общался с людьми, пишущих на Java в vim-е ;)";
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:1]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:2]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:3]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
     
-    for (CommentsCell* cell in commentsCellsArray)
+    for(Comment *item in companyDetail.comments)
+    {
+        CommentsCell *cell = [[CommentsCell alloc] init];
+        cell.username = item.username;
+        cell.date = item.date;
+        cell.comment = item.comment;
+        [cell drawCellWithOffset:item.level];
+        
+        [commentsCellsArray addObject:cell];
+    }
+        
+    for (CommentsCell* cell in commentsCellsArray)  //must be in couple
     {
         commentsHeight += cell.totalHeight;
     }
 }
 
-- (FeedbackCell*) initilizeFeedbackCellwithUsername:(NSString*) username
+/*- (FeedbackCell*) initilizeFeedbackCellwithUsername:(NSString*) username
                                                date:(NSString*) date
                                             comment:(NSString*)comments
 {
@@ -132,21 +90,27 @@
     cell.color = greenColor;
     [cell drawCell];
     return cell;
-}
+}*/
 
 -(void)calculateFeedbackTableViewHeights
 {
     feedbackCellsArray = [NSMutableArray array];
-    NSString * comment = @"Не могу согласится. Мысли в рамках одной User story без мыслей на будущее замедляют внедрение новых фич, которые будут зависеть от данной US. Есть же замечательная пословица: \"7 раз отмерь - 1 отрежь\". Почему не следовать ей и в программировании? Кода с неприятным запахом было куда бы меньше.P.S. общался с людьми, пишущих на Java в vim-е ;)";
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
     
-    for (FeedbackCell* cell in feedbackCellsArray)
+    for(Review *item in companyDetail.reviews)
+    {
+        FeedbackCell* cell = [[FeedbackCell alloc]init];
+        cell.username = item.author;
+        cell.date = item.date;
+        cell.comment = item.text;
+        //cell.jobExperience = @"Работает в Altoros Development: больше 5 лет 26 июня 2013, 17:08";
+        //cell.rating = @"Оценка: 3.9 ";    //!!!
+        cell.color = greenColor;
+        [cell drawCell];
+        
+        [feedbackCellsArray addObject:cell];
+    }
+    
+    for (FeedbackCell* cell in feedbackCellsArray)  //must be in couple
     {
         feedbacksHeight += cell.totalHeight;
     }
@@ -156,6 +120,9 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    companiesParser = [[CompaniesParser alloc] init];
+    companyDetail = [companiesParser getDetailInfoOf:@"wargaming-net-geym-strim"];
     
     commentsHeight = 0;
     feedbacksHeight = 0;
@@ -174,14 +141,14 @@
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
     nameLabel.font = [UIFont systemFontOfSize:DCNameLabelFont];
     nameLabel.numberOfLines = 0;
-    nameLabel.text = self.companysName;
+    nameLabel.text = companyDetail.name;
     nameLabel.adjustsFontSizeToFitWidth = YES;
     [self.scrollView addSubview:nameLabel];
     
     totalHeight += nameLabel.bounds.size.height;
     CGRect employeeLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width, DCLogoHeight);
     UILabel * employeeNumberLabel = [[UILabel alloc] initWithFrame:employeeLabelRect];
-    employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", self.employeeNumber];
+    employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", companyDetail.workersCount];
     employeeNumberLabel.font = [UIFont systemFontOfSize:DCEmployeeNumberFont];
     employeeNumberLabel.textColor = [UIColor grayColor];
     [employeeNumberLabel sizeToFit];
@@ -235,7 +202,7 @@
 {
     [self cleanTextView];
     self.textView.frame = textViewFrame;
-    self.textView.text = self.companysDescription;
+    self.textView.text = companyDetail.about;
     [self.textView sizeToFit];
     [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
@@ -246,7 +213,7 @@
     [self cleanTextView];
     [self setDiscussionView];
     [self.scrollView sizeToFit];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.commentsTableView.bounds.size.height );
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.commentsTableView.bounds.size.height);
 }
 
 
@@ -330,7 +297,7 @@
 -(void)configureCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath
 {
     if ([cell isKindOfClass:[CommentsCell class]])
-    {
+    {   //?
         CommentsCell * commentCell = (CommentsCell *)cell;
         commentCell.username = @"Username";
         commentCell.date = @"24 April 2014, 15:07";

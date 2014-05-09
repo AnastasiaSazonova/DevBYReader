@@ -21,22 +21,26 @@ NSString * eventCellReuseIdentifier = @"EventCell";
 @implementation EventsViewController
 {
     EventCell* cellTrial;
+    EventsParser *eventsParser;
 }
 
--(NSMutableArray *)events
+/*-(NSMutableArray *)events
 {
     if (!_events)
     {
         _events = [[NSMutableArray alloc] initWithArray:@[@"Как правильно составить резюме молодому специалисту", @"Как правильно составить резюме молодому специалисту", @"Как правильно составить резюме молодому специалисту", @"Как правильно составить резюме молодому специалисту", @"Как правильно составить резюме молодому специалисту", @"Апрельская MLUG 2014", @"Официальный Scrum-тренинг в Минске: Professional Scrum Master.", @"Встреча сообщества разработчиков WinITby"]];
     }
     return _events;
-}
+}*/
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:eventCellReuseIdentifier];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"События" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    eventsParser = [[EventsParser alloc] init];
+    self.events = [eventsParser getEvents];     //must async!!!
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -67,12 +71,14 @@ NSString * eventCellReuseIdentifier = @"EventCell";
 {
     if ([cell isKindOfClass:[EventCell class]])
     {
+        Event *event = self.events[indexPath.row];
         EventCell *textCell = (EventCell *)cell;
-        textCell.title = self.events[indexPath.row];
-        textCell.description = @"18 апреля 16:00";
-        textCell.day = @"15";
-        textCell.month = @"апрель";
-        textCell.dayOfWeek = @"ВТ";
+        textCell.title = event.title;
+        textCell.description = event.description;
+        textCell.day = event.day;
+        textCell.month = event.month;
+        textCell.dayOfWeek = event.dayOfWeek;
+        
         [textCell drawCell];
     }
 }
@@ -80,7 +86,7 @@ NSString * eventCellReuseIdentifier = @"EventCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DetailEventViewController * detailEventViewController = [[DetailEventViewController alloc] init];
-    detailEventViewController.eventsName = self.events[indexPath.row];
+    //detailEventViewController.eventsName = self.events[indexPath.row];    //?
     [self.navigationController pushViewController:detailEventViewController animated:YES];
 }
 

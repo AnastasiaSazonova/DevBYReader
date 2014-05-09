@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CompaniesParser.h"
 
 @interface DetailCompanyViewController : UIViewController
 
-@property(nonatomic, strong)NSString * companysName;
+//@property(nonatomic, strong)NSString * companysName;
 
 @end

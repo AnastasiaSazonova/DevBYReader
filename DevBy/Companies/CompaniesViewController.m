@@ -14,6 +14,7 @@
 @interface CompaniesViewController()<UISearchDisplayDelegate, UISearchBarDelegate>
 {
     UISearchDisplayController * searchDisplayController;
+    CompaniesParser *companiesParser;
 }
 
 
@@ -26,14 +27,14 @@
 
 @implementation CompaniesViewController
 
--(NSArray *)companysNames
+/*-(NSArray *)companysNames
 {
     if (!_companysNames)
     {
         _companysNames = @[@"Altoros", @"BPMobile", @"Cib Software", @"ISSoft", @"IT-Max (ASBIS, бренд Prestigio)", @"Представительство PamConsult Gmbh в Минске", @"EPAM", @"Exadel", @"Quilix Systems", @"WarGaming", @"Altoros", @"BPMobile", @"Cib Software", @"ISSoft", @"IT-Max (ASBIS, бренд Prestigio)", @"Представительство PamConsult Gmbh в Минске", @"EPAM", @"Exadel"];
     }
     return _companysNames;
-}
+}*/
 
 -(NSArray *)searchResults
 {
@@ -47,6 +48,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    companiesParser = [[CompaniesParser alloc] init];
+    self.companysNames = [companiesParser getCompanies];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
     self.searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
@@ -94,7 +99,7 @@
 
 -(float)heightForRowFrom:(NSArray *)arrayOfData AtIndexPath:(NSIndexPath *)indexPath
 {
-    int cellContentLength = (int)[arrayOfData[indexPath.row] length];
+    int cellContentLength = (int)[[arrayOfData[indexPath.row] name] length];
     if (cellContentLength > CVCMaxCharsPerRow)
     {
         return CVCRowHeight * cellContentLength/CVCMaxCharsPerRow;
@@ -129,11 +134,11 @@
     NSString *companysName = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
-        companysName = [self.searchResults objectAtIndex:indexPath.row];
+        companysName = [[self.searchResults objectAtIndex:indexPath.row] name];
     }
     else
     {
-        companysName = [self.companysNames objectAtIndex:indexPath.row];
+        companysName = [[self.companysNames objectAtIndex:indexPath.row] name];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.numberOfLines = 0;
@@ -151,7 +156,7 @@
                                     predicateWithFormat:@"SELF contains[cd] %@",
                                     searchText];
     
-    self.searchResults = [NSMutableArray arrayWithArray:[self.companysNames filteredArrayUsingPredicate:resultPredicate]];
+    self.searchResults = [NSMutableArray arrayWithArray:[self.companysNames filteredArrayUsingPredicate:resultPredicate]];  //? search bug after adding a customArray
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
@@ -179,14 +184,14 @@ shouldReloadTableForSearchString:(NSString *)searchString
     if (self.searchDisplayController.active)
     {
         indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-        companysName = [self.searchResults objectAtIndex:indexPath.row];
+        companysName = [[self.searchResults objectAtIndex:indexPath.row] name];
     }
     else
     {
         indexPath = [tableView indexPathForSelectedRow];
-        companysName = [self.companysNames objectAtIndex:indexPath.row];
+        companysName = [[self.companysNames objectAtIndex:indexPath.row] name];
     }
-    detailCompanyViewController.companysName = companysName;
+    //detailCompanyViewController.companysName = companysName;  //!
     [self.navigationController pushViewController:detailCompanyViewController animated:YES];
 }
 
