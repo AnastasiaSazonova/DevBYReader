@@ -19,6 +19,12 @@
     CGRect textViewFrame;
     NSMutableArray *commentsCellsArray;
     NSMutableArray *feedbackCellsArray;
+    
+    UIView* backView;
+    
+    int previousSelectedSegment;
+    UISegmentedControl *segmentControl;
+    UIView* moveView;
 }
 
 @property(nonatomic, strong)NSString * companysDescription;
@@ -108,10 +114,10 @@
     [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
     [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:1]];
     [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:2]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:3]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
-    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
+    //    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:3]];
+    //    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
+    //    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
+    //    [commentsCellsArray addObject:[self initilizeCommentsCellwithUsername:@"FirstUser" date:@"01.01.01" comments:comment offset:0]];
     
     for (CommentsCell* cell in commentsCellsArray)
     {
@@ -119,9 +125,7 @@
     }
 }
 
-- (FeedbackCell*) initilizeFeedbackCellwithUsername:(NSString*) username
-                                               date:(NSString*) date
-                                            comment:(NSString*)comments
+- (FeedbackCell*) initilizeFeedbackCellwithUsername:(NSString*) username date:(NSString*) date comment:(NSString*)comments
 {
     FeedbackCell* cell = [[FeedbackCell alloc]init];
     cell.username = username;
@@ -139,12 +143,12 @@
     feedbackCellsArray = [NSMutableArray array];
     NSString * comment = @"Не могу согласится. Мысли в рамках одной User story без мыслей на будущее замедляют внедрение новых фич, которые будут зависеть от данной US. Есть же замечательная пословица: \"7 раз отмерь - 1 отрежь\". Почему не следовать ей и в программировании? Кода с неприятным запахом было куда бы меньше.P.S. общался с людьми, пишущих на Java в vim-е ;)";
     [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
-    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    //    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    //    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    //    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    //    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    //    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
+    //    [feedbackCellsArray addObject:[self initilizeFeedbackCellwithUsername:@"FirstUser" date:@"01.01.01" comment:comment]];
     
     for (FeedbackCell* cell in feedbackCellsArray)
     {
@@ -156,6 +160,8 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview:self.scrollView];
     
     commentsHeight = 0;
     feedbacksHeight = 0;
@@ -205,30 +211,40 @@
     totalHeight += descriptionLabel.bounds.size.height + offset/2;
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"О компании", @"Обсуждение", @"Отзывы", nil];
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
-    segmentedControl.frame = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, 30);
-    totalHeight += segmentedControl.bounds.size.height + offset/3;
-    [segmentedControl addTarget:self action:@selector(touchSegmentedContorol:) forControlEvents: UIControlEventValueChanged];
-    segmentedControl.selectedSegmentIndex = 0;
+    segmentControl = [[UISegmentedControl alloc] initWithItems:itemArray];
+    segmentControl.frame = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, 30);
+    totalHeight += segmentControl.bounds.size.height + offset/3;
+    [segmentControl addTarget:self action:@selector(touchSegmentedControl:) forControlEvents: UIControlEventValueChanged];
+    segmentControl.selectedSegmentIndex = 0;
+    previousSelectedSegment = 0;
+    [self.scrollView addSubview:segmentControl];
+    
     [self addCompanyDescription];
-    [self.scrollView addSubview:segmentedControl];
-    [self.view addSubview:self.scrollView];
+    
+    backView = [[UIView alloc]initWithFrame:self.textView.frame];
+    self.textView.frame = backView.bounds;
+    
+    [backView addSubview:self.textView];
+    [self.scrollView addSubview:backView];
+    
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [swipeRight setDirection:(UISwipeGestureRecognizerDirectionRight )];
+    [backView addGestureRecognizer:swipeRight];
+    
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [swipeLeft setDirection:(UISwipeGestureRecognizerDirectionLeft )];
+    [backView addGestureRecognizer:swipeLeft];
 }
 
--(void)touchSegmentedContorol:(UISegmentedControl *)segmentedControl
+
+-(void)addCompanyDescription
 {
-    if (segmentedControl.selectedSegmentIndex == companysDescription)
-    {
-        [self addCompanyDescription];
-    }
-    else if(segmentedControl.selectedSegmentIndex == companysDiscussion)
-    {
-        [self addCompanysDiscussion];
-    }
-    else if(segmentedControl.selectedSegmentIndex == companysFeedback)
-    {
-        [self addCompanysFeedback];
-    }
+    self.textView.text = self.companysDescription;
+    CGFloat height = [self textViewHeightForAttributedText:self.textView.attributedText andWidth:textViewFrame.size.width];
+    self.textView.frame = CGRectMake(textViewFrame.origin.x, textViewFrame.origin.y, textViewFrame.size.width, height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.frame.size.height);
+    moveView = self.textView;
 }
 
 - (CGFloat)textViewHeightForAttributedText:(NSAttributedString *)text andWidth:(CGFloat)width
@@ -239,60 +255,123 @@
     return size.height;
 }
 
--(void)addCompanyDescription
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer
 {
-    [self cleanTextView];
-    
-    self.textView.text = self.companysDescription;
-    CGFloat height = [self textViewHeightForAttributedText:self.textView.attributedText andWidth:textViewFrame.size.width];
-    self.textView.frame = CGRectMake(textViewFrame.origin.x, textViewFrame.origin.y, textViewFrame.size.width, height);
-    [self.scrollView addSubview:self.textView];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.frame.size.height);
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionRight && previousSelectedSegment == 1)
+    {
+        [self moveTextView:self.textView toDirection:MOVE_RIGHT];
+        segmentControl.selectedSegmentIndex = previousSelectedSegment =  0;
+        return;
+    }
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionLeft && previousSelectedSegment == 0)
+    {
+        [self setDiscussionView];
+        [self moveTextView:self.commentsTableView toDirection:MOVE_LEFT];
+        segmentControl.selectedSegmentIndex = previousSelectedSegment = 1;
+        return;
+    }
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionRight && previousSelectedSegment == 2)
+    {
+        [self setDiscussionView];
+        [self moveTextView:self.commentsTableView toDirection:MOVE_RIGHT];
+        segmentControl.selectedSegmentIndex = previousSelectedSegment = 1;
+        return;
+    }
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionLeft && previousSelectedSegment == 1)
+    {
+        [self setFeedbackView];
+        [self moveTextView:self.feedBackTableView toDirection:MOVE_LEFT];
+        segmentControl.selectedSegmentIndex = previousSelectedSegment = 2;
+        return;
+    }
 }
 
--(void)addCompanysDiscussion
+
+-(void)touchSegmentedControl:(UISegmentedControl *)segmentedControl
 {
-    [self cleanTextView];
-    [self setDiscussionView];
-    [self.scrollView sizeToFit];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.commentsTableView.bounds.size.height );
+    if (segmentedControl.selectedSegmentIndex == 0)
+    {
+        [self moveTextView:self.textView toDirection:MOVE_RIGHT];
+    }
+    else if (segmentedControl.selectedSegmentIndex == 1 && previousSelectedSegment == 2)
+    {
+        [self setDiscussionView];
+        [self moveTextView:self.commentsTableView toDirection:MOVE_RIGHT];
+    }
+    else if (segmentedControl.selectedSegmentIndex == 1 && previousSelectedSegment == 0)
+    {
+        [self setDiscussionView];
+        [self moveTextView:self.commentsTableView toDirection:MOVE_LEFT];
+    }
+    else if (segmentedControl.selectedSegmentIndex == 2)
+    {
+        [self setFeedbackView];
+        [self moveTextView:self.feedBackTableView toDirection:MOVE_LEFT];
+    }
+    previousSelectedSegment = segmentedControl.selectedSegmentIndex;
 }
+
+#pragma mark - Companys Discussion
+
 
 -(void)setDiscussionView
 {
-    CGRect frame = self.textView.frame;
-    frame.size.height += self.view.bounds.size.height;
-    self.commentsTableView = [[UITableView alloc]initWithFrame:frame];
+    self.commentsTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.center.x - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, commentsHeight)];
     self.commentsTableView.userInteractionEnabled = NO;
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
-    self.commentsTableView.frame = CGRectMake(self.scrollView.center.x - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, commentsHeight);
-    [self.scrollView addSubview:self.commentsTableView];
 }
 
--(void)addCompanysFeedback
+#pragma mark - Companys Fedback
+
+
+-(void)setFeedbackView
 {
-    [self cleanTextView];
-    [self setFeedbackView];
-    [self.scrollView sizeToFit];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.feedBackTableView.bounds.size.height);
+    self.feedBackTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.center.x - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, feedbacksHeight)];
+    self.feedBackTableView.userInteractionEnabled = NO;
+    self.feedBackTableView.delegate = self;
+    self.feedBackTableView.dataSource = self;
 }
 
--(void)cleanTextView
+- (void)moveTextView:(UIView *)view toDirection:(NSString *)direction
 {
-    if (self.textView)
-    {
-        [self.textView removeFromSuperview];
-    }
-    if (self.commentsTableView)
-    {
-        [self.commentsTableView removeFromSuperview];
-    }
-    if (self.feedBackTableView)
-    {
-        [self.feedBackTableView removeFromSuperview];
-    }
+    
+    if ([direction isEqualToString:MOVE_LEFT])
+        view.frame = CGRectMake(backView.bounds.origin.x + backView.bounds.size.width, backView.bounds.origin.y,backView.frame.size.width, view.frame.size.height);
+    else
+        view.frame = CGRectMake(backView.bounds.origin.x - backView.bounds.size.width, backView.bounds.origin.y,backView.frame.size.width, view.frame.size.height);
+    
+    [backView addSubview:view];
+    
+    [UIView animateWithDuration:.23 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+        if ([direction isEqualToString:MOVE_LEFT])
+            moveView.frame = CGRectMake(backView.bounds.origin.x - backView.bounds.size.width, backView.bounds.origin.y, backView.bounds.size.width, backView.bounds.size.height);
+        else
+            moveView.frame = CGRectMake(backView.bounds.origin.x + backView.bounds.size.width, backView.bounds.origin.y, backView.bounds.size.width, backView.bounds.size.height);
+        view.frame = CGRectMake(backView.bounds.origin.x, backView.bounds.origin.y, backView.bounds.size.width, view.bounds.size.height);
+    } completion:^(BOOL finished) {
+        if(finished)
+        {
+            [moveView removeFromSuperview];
+            moveView = view;
+            if(self.view.frame.size.height - totalHeight <= view.frame.size.height)
+            {
+                backView.frame = CGRectMake(backView.frame.origin.x, backView.frame.origin.y, backView.frame.size.width, view.bounds.size.height);
+                [self.scrollView setContentOffset:CGPointZero animated:YES];
+            }
+            else
+                backView.frame = CGRectMake(backView.frame.origin.x, backView.frame.origin.y, backView.frame.size.width, self.view.frame.size.height - totalHeight);
+        }
+    }];
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + view.frame.size.height);
 }
+
+
+
+
+
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -380,18 +459,7 @@
         commentCell.comment = @"Ответ очень простой: хочу - отвечаю, не хочу - не отвечаю. Ситуация целиком и полностью зависит от мотивации работника, от того считает ли что он ответственен за результат в целом, живет ли он проектом или он просто отрабатывает определенное время за деньги. В моей карьере случалось по разному.";
         [commentCell drawCell];
     }
-        
-}
-
--(void)setFeedbackView
-{
-    CGRect frame = textViewFrame;
-    frame.size.height += self.view.bounds.size.height/3;
-    self.feedBackTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.center.x - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, feedbacksHeight)];
-    self.feedBackTableView.userInteractionEnabled = NO;
-    self.feedBackTableView.delegate = self;
-    self.feedBackTableView.dataSource = self;
-    [self.scrollView addSubview:self.feedBackTableView];
+    
 }
 
 @end

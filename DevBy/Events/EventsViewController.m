@@ -70,7 +70,7 @@ NSString * eventCellReuseIdentifier = @"EventCell";
         EventCell *textCell = (EventCell *)cell;
         textCell.title = self.events[indexPath.row];
         textCell.description = @"18 апреля 16:00";
-        textCell.day = @"15";
+        textCell.day = @"01";
         textCell.month = @"апрель";
         textCell.dayOfWeek = @"ВТ";
         [textCell drawCell];

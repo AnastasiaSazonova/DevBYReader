@@ -45,11 +45,10 @@
     [super viewDidLoad];
 
     array = [[NSMutableArray alloc] init];
-    [self fillArrayWith:@"Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения." andImage:[UIImage imageNamed:@"devImage"]];
-    [self fillArrayWith:@"Heartbleed – новое слово в маркетинге багов." andImage:[UIImage imageNamed:@"devImage3"]];
-    [self fillArrayWith:@"Злой гений создал гибрид '2048' и 'Flappy Bird' на погибель вашей продуктивности." andImage:[UIImage imageNamed:@"devImage3"]];
-    [self fillArrayWith:@"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies." andImage:[UIImage imageNamed:@"devImage3"]];
-    
+    int count = [delegate countForPages];
+    for(int i = 0; i < count; i++)
+        [self fillArray];
+
     [self addArticleNumber: currentIndex + 1];
 
     pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:50.0] forKey:UIPageViewControllerOptionSpineLocationKey]];
@@ -71,11 +70,9 @@
     self.view.gestureRecognizers = pageViewController.gestureRecognizers;
 }
 
--(void)fillArrayWith:(NSString *)title andImage:(UIImage *)image
+-(void)fillArray
 {
     DetailPostsViewController * detail = [[DetailPostsViewController alloc] init];
-    detail.title = title;
-    detail.image = image;
     detail.view.backgroundColor = [UIColor whiteColor];
     [array addObject:detail];
 }

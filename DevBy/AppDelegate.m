@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "PostsViewController.h"
-#import "JASidePanelController.h"
 #import "SlideViewController.h"
 #import "MSMainViewController.h"
 

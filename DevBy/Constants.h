@@ -12,6 +12,9 @@
 #define JOB @"Вакансии"
 #define EVENTS @"События"
 
+#define MOVE_RIGHT @"moveRight"
+#define MOVE_LEFT @"moveLeft"
+
 enum
 {
     redColor,

@@ -36,11 +36,24 @@
     return self;
 }
 
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)]; UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext(); UIGraphicsEndImageContext();
+    return newImage;
+}
+
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
-    NSLog(@"%@   %@",NSStringFromCGRect(self.view.frame),NSStringFromCGRect(self.view.bounds));
+    
+    UIImageView* logoImageView =  [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"devLogo"] scaledToSize:CGSizeMake(100, 35)]];
+    logoImageView.frame = CGRectMake(self.view.bounds.size.width / 4 - 50, 10, 100, 35);
+    [self.view addSubview:logoImageView];
+    
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
     [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 70, 100, 35) andTitle:NEWS];
     [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 130, 100, 35) andTitle:COMPANYS];
     [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 190, 100, 35) andTitle:JOB];

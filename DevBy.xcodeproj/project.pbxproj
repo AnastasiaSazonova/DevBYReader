@@ -36,8 +36,6 @@
 		5D82DDCE18F7D0CE009E4D3E /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDB218F7D0CE009E4D3E /* TFHppleElement.m */; };
 		5D82DDCF18F7D0CE009E4D3E /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDB418F7D0CE009E4D3E /* XPathQuery.m */; };
 		5D82DDD418F7D0CE009E4D3E /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D82DDBC18F7D0CE009E4D3E /* reveal-icon.png */; };
-		5D82DDD618F7D0CE009E4D3E /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDC118F7D0CE009E4D3E /* JASidePanelController.m */; };
-		5D82DDD718F7D0CE009E4D3E /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDC318F7D0CE009E4D3E /* UIViewController+JASidePanel.m */; };
 		5D82DDD818F7D0CE009E4D3E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDC618F7D0CE009E4D3E /* SWRevealViewController.m */; };
 		5D82DDDB18F7D106009E4D3E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D82DDDA18F7D106009E4D3E /* libxml2.dylib */; };
 		5D82DDDF18F7D305009E4D3E /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDDE18F7D305009E4D3E /* EventsViewController.m */; };
@@ -52,6 +50,7 @@
 		5DD0888F1906307E008601DB /* DetailVacanciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0888E1906307E008601DB /* DetailVacanciesViewController.m */; };
 		5DD088921906319D008601DB /* MiddleJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD088911906319D008601DB /* MiddleJobCell.m */; };
 		5DD08895190631B2008601DB /* StandardJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD08894190631B2008601DB /* StandardJobCell.m */; };
+		8499BCEE191AB08600239F84 /* DevBy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8499BCED191AB08600239F84 /* DevBy-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,7 +90,6 @@
 		5D29B10C18F7CF8F006DCD4F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5D29B10E18F7CF8F006DCD4F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5D29B11018F7CF8F006DCD4F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		5D29B11418F7CF8F006DCD4F /* DevBy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DevBy-Info.plist"; sourceTree = "<group>"; };
 		5D29B11618F7CF8F006DCD4F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5D29B11818F7CF8F006DCD4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5D29B11A18F7CF8F006DCD4F /* DevBy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DevBy-Prefix.pch"; sourceTree = "<group>"; };
@@ -113,10 +111,6 @@
 		5D82DDB318F7D0CE009E4D3E /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		5D82DDB418F7D0CE009E4D3E /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		5D82DDBC18F7D0CE009E4D3E /* reveal-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon.png"; sourceTree = "<group>"; };
-		5D82DDC018F7D0CE009E4D3E /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
-		5D82DDC118F7D0CE009E4D3E /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
-		5D82DDC218F7D0CE009E4D3E /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
-		5D82DDC318F7D0CE009E4D3E /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
 		5D82DDC518F7D0CE009E4D3E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		5D82DDC618F7D0CE009E4D3E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		5D82DDDA18F7D106009E4D3E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -145,6 +139,7 @@
 		5DD08893190631B2008601DB /* StandardJobCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardJobCell.h; sourceTree = "<group>"; };
 		5DD08894190631B2008601DB /* StandardJobCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardJobCell.m; sourceTree = "<group>"; };
 		5DD0889619063238008601DB /* Job.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
+		8499BCED191AB08600239F84 /* DevBy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DevBy-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,13 +243,12 @@
 		5D29B11318F7CF8F006DCD4F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8499BCED191AB08600239F84 /* DevBy-Info.plist */,
 				5D82DDA918F7D0CE009E4D3E /* en.lproj */,
 				5D82DDBC18F7D0CE009E4D3E /* reveal-icon.png */,
-				5D82DDBF18F7D0CE009E4D3E /* Source */,
 				5D82DDC418F7D0CE009E4D3E /* SWRevealViewController */,
 				5D29B11E18F7CF8F006DCD4F /* Images.xcassets */,
 				5D82DDAE18F7D0CE009E4D3E /* hpple */,
-				5D29B11418F7CF8F006DCD4F /* DevBy-Info.plist */,
 				5D29B11518F7CF8F006DCD4F /* InfoPlist.strings */,
 				5D29B11818F7CF8F006DCD4F /* main.m */,
 				5D29B11A18F7CF8F006DCD4F /* DevBy-Prefix.pch */,
@@ -299,17 +293,6 @@
 				5D82DDB418F7D0CE009E4D3E /* XPathQuery.m */,
 			);
 			path = hpple;
-			sourceTree = "<group>";
-		};
-		5D82DDBF18F7D0CE009E4D3E /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				5D82DDC018F7D0CE009E4D3E /* JASidePanelController.h */,
-				5D82DDC118F7D0CE009E4D3E /* JASidePanelController.m */,
-				5D82DDC218F7D0CE009E4D3E /* UIViewController+JASidePanel.h */,
-				5D82DDC318F7D0CE009E4D3E /* UIViewController+JASidePanel.m */,
-			);
-			path = Source;
 			sourceTree = "<group>";
 		};
 		5D82DDC418F7D0CE009E4D3E /* SWRevealViewController */ = {
@@ -481,6 +464,7 @@
 				5D29B11718F7CF8F006DCD4F /* InfoPlist.strings in Resources */,
 				5D82DDCB18F7D0CE009E4D3E /* InfoPlist.strings in Resources */,
 				5D29B11F18F7CF8F006DCD4F /* Images.xcassets in Resources */,
+				8499BCEE191AB08600239F84 /* DevBy-Info.plist in Resources */,
 				5D82DDD418F7D0CE009E4D3E /* reveal-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,7 +498,6 @@
 				5DD0888F1906307E008601DB /* DetailVacanciesViewController.m in Sources */,
 				5D82DDCD18F7D0CE009E4D3E /* TFHpple.m in Sources */,
 				5D0EA0D9190E61A2004FDE9A /* Job.m in Sources */,
-				5D82DDD618F7D0CE009E4D3E /* JASidePanelController.m in Sources */,
 				5D26DD6A18FC281900914F06 /* CommentsCell.m in Sources */,
 				5D82DDEE18F7D312009E4D3E /* HTMLElement.m in Sources */,
 				5D82DDF218F7D368009E4D3E /* DetailPostsViewController.m in Sources */,
@@ -531,7 +514,6 @@
 				5DD08895190631B2008601DB /* StandardJobCell.m in Sources */,
 				5D2E28E919059FD200C64769 /* PremiumJobCell.m in Sources */,
 				5D82DDDF18F7D305009E4D3E /* EventsViewController.m in Sources */,
-				5D82DDD718F7D0CE009E4D3E /* UIViewController+JASidePanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

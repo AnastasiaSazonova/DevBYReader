@@ -46,7 +46,8 @@
         viewController.centralPanel = [[UINavigationController alloc] initWithRootViewController: [[EventsViewController alloc] init]];
     }
     [self.navigationController pushViewController:viewController animated:YES];
-    ((UINavigationController*) viewController.centralPanel).topViewController.navigationItem.titleView = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"devLogo"] scaledToSize:CGSizeMake(100, 35)]];
+//     ((UINavigationController*) viewController.centralPanel).navigationBar.barTintColor = [UIColor colorWithRed:0 green:150 / 255.0 blue:228/ 255.0 alpha:0.7];
+    ((UINavigationController*) viewController.centralPanel).topViewController.navigationItem.title = type; //[[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"devLogo"] scaledToSize:CGSizeMake(100, 35)]];
 }
 
 - (void) showChosenCategory:(NSString*) chosenViewController

@@ -38,12 +38,12 @@
         premiumJob1.type = premiumType;
         premiumJob1.name = @"1Руководитель команды аналитиков";
         premiumJob1.companysName = @"A1QA";
-        premiumJob1.description = @"1Требуется опытный руководитель для организации работы и развития команды системных и бизнес-аналитиков, способный разрабатывать стратегию развития команды, планировать ее работу, эффективно организовывать деятельность.";
+        premiumJob1.description = @"1Требуется опытный руководитель для организации работы и развития команды системных и бизнес-аналитиков, способный разрабатывать стратегию развития команды, планировать ее работу, эффективно организовывать деятельностьbvjhvjhvjhbjhbjhbjhbhjbhbh,jb,jhb,hb,hjb,hb,b,hj.";
         premiumJob1.pictureUrl = nil;
         
         Job * premiumJob2 = [[Job alloc] init];
         premiumJob2.type = premiumType;
-        premiumJob2.name = @"2An Extraordinary Project for Senior .NET Software Engineer";
+        premiumJob2.name = @"2An Extraordinary Project for Senior .NET Software Engineer  kdfjolkfdmnblksdfmlkbfmdslkbnmdf;l;kdmlksfmdlkmlbkfdmlkbmsdlkfmblkdsfmbk'msd'bmdf";
         premiumJob2.companysName = @"NUBIKO";
         premiumJob2.description = @"2We are looking for a talented senior .NET programmer for developing of innovative, extraordinary software product called TRIGGRE based on the latest Microsoft technologies. Product Description What’s your Triggre?";
         premiumJob2.pictureUrl = nil;
@@ -82,8 +82,8 @@
         
         Job * middleJob2 = [[Job alloc] init];
         middleJob2.type = middleType;
-        middleJob2.name = @"2An Extraordinary Project for Senior .NET Software Engineer";
-        middleJob2.companysName = @"NUBIKO";
+        middleJob2.name = @"2An Extraordinary Project for Senior .NET Software Engineerggfgjygkhgjkghjkgjkgjkgjkhgjhgjgkgkuygyugkhgjh";
+        middleJob2.companysName = @"NUBIKOhggiliugigygotfft6ftftyyftufhggfhjtfvhjgfjhtfhfjthfjtfhj";
         
         Job * middleJob3 = [[Job alloc] init];
         middleJob3.type = middleType;

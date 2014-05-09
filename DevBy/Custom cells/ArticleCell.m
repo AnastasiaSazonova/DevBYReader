@@ -9,49 +9,53 @@
 #import "ArticleCell.h"
 #import "Constants.h"
 
-@interface ArticleCell()
-
-@property(nonatomic, assign, readwrite)float totalHeight;
-
-@end
-
 @implementation ArticleCell
+
+
+- (CGFloat)textViewHeightForAttributedText:(NSAttributedString *)text andWidth:(CGFloat)width
+{
+    UITextView *textView = [[UITextView alloc] init];
+    [textView setAttributedText:text];
+    CGSize size = [textView sizeThatFits:CGSizeMake(width, FLT_MAX)];
+    return size.height;
+}
 
 -(void)drawCell
 {
-    self.totalHeight = 0;
-    CGRect imageFrame = CGRectMake(halfOffset, halfOffset, self.bounds.size.width/4,  self.height - 2 * halfOffset);
-    UIImageView * imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-    imageView.image = self.image;
+    float padding = 3.0f;
     
-    CGRect titleLabelRect = CGRectMake(imageView.bounds.size.width + imageView.bounds.origin.x + halfOffset*1.7, halfOffset*0.9, self.bounds.size.width - imageView.bounds.size.width + imageView.bounds.origin.x - halfOffset * 2.3, self.height * 0.7);
-    UILabel * titleLabel = [[UILabel alloc] initWithFrame:titleLabelRect];
-    titleLabel.font = [UIFont boldSystemFontOfSize:ACTitleFont];
-    titleLabel.numberOfLines = 0;
-    titleLabel.text = self.title;
-    if ([self.title length] < ACTitleLabelMaxLength)
-    {
-        [titleLabel sizeToFit];
-        self.totalHeight += titleLabel.bounds.size.height + titleLabelRect.origin.y + halfOffset/2;
-    }
-    else
-    {
-        CGRect bigTitleLabelRect = CGRectMake(titleLabelRect.origin.x, halfOffset*0.5, titleLabelRect.size.width, titleLabelRect.size.height);
-        titleLabel.frame = bigTitleLabelRect;
-        self.totalHeight += titleLabel.bounds.size.height + titleLabel.bounds.origin.y + halfOffset/2;
-    }
-    [self addSubview:titleLabel];
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 80);
     
-    CGRect dateLabelRect = CGRectMake(titleLabelRect.origin.x, self.totalHeight, titleLabel.bounds.size.width, self.height - self.totalHeight- halfOffset/2);
-    UILabel * dateLabel = [[UILabel alloc] initWithFrame:dateLabelRect];
+    UITextView* titleView = [[UITextView alloc]initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width - 80, 80)];
+    titleView.font = [UIFont boldSystemFontOfSize:ACTitleFont];
+    titleView.text = self.title;
+    titleView.editable = NO;
+    titleView.userInteractionEnabled = NO;
+    
+    
+    CGFloat heightTitle = [self textViewHeightForAttributedText:titleView.attributedText andWidth:titleView.bounds.size.width];
+    titleView.frame = CGRectMake(titleView.frame.origin.x, titleView.frame.origin.y, titleView.frame.size.width, heightTitle);
+    titleView.scrollEnabled = NO;
+    
+    [self addSubview:titleView];
+    
+    UILabel * dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 6, titleView.frame.origin.y + titleView.frame.size.height, titleView.frame.size.width - 6, 15)];
     dateLabel.font = [UIFont boldSystemFontOfSize:ACDateLabelFont];
     dateLabel.textColor = [UIColor darkGrayColor];
     dateLabel.text = self.date;
-    if ([self.title length] < ACTitleLabelMaxLength)
-    {
-        [dateLabel sizeToFit];
-    }
+    
     [self addSubview:dateLabel];
+    
+    self.height =  titleView.frame.size.height + dateLabel.frame.size.height + padding;
+    
+    if(self.height < 70)
+        self.height = 70;
+        
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.bounds.size.width, self.height);
+    
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.origin.x + self.frame.size.width - 10 - 60, self.center.y - 30, 60,  60)];
+    [imageView setBackgroundColor:[UIColor yellowColor]];
+    imageView.image = self.image;
     [self addSubview:imageView];
 }
 

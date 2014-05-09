@@ -22,6 +22,7 @@
     NSMutableArray * _posts;
     float mainCellHeight;
     float articleCellHeight;
+    NSMutableArray* cellsArray;
 }
 
 @end
@@ -31,12 +32,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    cellsArray = [NSMutableArray array];
     mainCellHeight = self.view.bounds.size.height*0.4 - halfOffset/2;
     articleCellHeight = (self.view.bounds.size.height - mainCellHeight - navBarHeight)/3 + 7;
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"devLogo"] scaledToSize:CGSizeMake(100, 35)]];
-    _posts = [[NSMutableArray alloc] initWithArray:@[@"Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.", @"Heartbleed – новое слово в маркетинге багов.", @"Злой гений создал гибрид '2048' и 'Flappy Bird' на погибель вашей продуктивности.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies."]];
+    _posts = [[NSMutableArray alloc] initWithArray:@[@"Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.", @"Heartbleed .", @"Злой гений создал гибрид '2048' и 'Flappy Bird' на погибель вашей продуктивности.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companiesdufhvuidshviufdhvuihadsioufvhaiusdhviuasdhviuoadshiuvhadsiuvhiuasdhviuadshviuhasivuhsadiuvhisad."]];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Новости" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self fillCellArray];
+}
+
+- (void)fillCellArray
+{
+    [_posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if(idx == 0)
+            [cellsArray addObject:[self createMainCellWithTitle:(NSString*)obj image:[UIImage imageNamed:@"devImage3"]]];
+        else
+            [cellsArray addObject:[self createArticleCellWithTitle:(NSString*) obj date:@"25 апреля в 08:26" image:[UIImage imageNamed:@"devImage3"]]];
+    }];
+
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
@@ -48,6 +61,26 @@
     return newImage;
 }
 
+- (MainArticleCell*) createMainCellWithTitle:(NSString *)title image:(UIImage*)image
+{
+    MainArticleCell * cell = [[MainArticleCell alloc] init];
+    cell.title = title;
+    cell.image = image;
+    cell.height = mainCellHeight;
+    [cell drawCell];
+    return cell;
+}
+
+- (ArticleCell*)createArticleCellWithTitle:(NSString *)title date:(NSString*) date image:(UIImage*)image
+{
+    ArticleCell * cell = [[ArticleCell alloc] init];
+    cell.title = title;
+    cell.date = date;
+    cell.image = image;
+    [cell drawCell];
+    return cell;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -57,7 +90,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_posts count];
+    return [cellsArray count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,44 +101,13 @@
     }
     else
     {
-        return articleCellHeight;
+        return ((ArticleCell*) [cellsArray objectAtIndex:indexPath.row]).height;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell;
-    if (indexPath.row == 0)
-    {
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil)
-        {
-            cell = [[MainArticleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            MainArticleCell * articleCell = (MainArticleCell *)cell;
-            articleCell.title = _posts[indexPath.row];
-            articleCell.image = [UIImage imageNamed:@"devImage"];
-            articleCell.height = mainCellHeight;
-            [articleCell drawCell];
-        }
-    }
-    
-    else
-    {
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil)
-        {
-            cell = [[ArticleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            ArticleCell * articleCell = (ArticleCell *)cell;
-            articleCell.title = _posts[indexPath.row];
-            articleCell.date = @"25 апреля в 08:26";
-            articleCell.image = [UIImage imageNamed:@"devImage3"];
-            articleCell.height = articleCellHeight;
-            [articleCell drawCell];
-        }
-    }
-    
-    return cell;
+    return [cellsArray objectAtIndex:indexPath.row];
 }
 
 -(NSInteger)countForPages
@@ -115,26 +117,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     SlideViewController* slideViewController = [[SlideViewController alloc]initWithIndex:indexPath.row];
     slideViewController.delegate = self;
     [self.navigationController pushViewController:slideViewController animated:YES];
-    
-    
-//    DetailPostsViewController * detailViewController = [[DetailPostsViewController alloc] init];
-//    detailViewController.title = _posts[indexPath.row];
-//    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-//    if (indexPath == 0)
-//    {
-//        MainArticleCell * articleCell = (MainArticleCell *)cell;
-//        detailViewController.image = articleCell.image;
-//    }
-//    else
-//    {
-//        ArticleCell * articleCell = (ArticleCell *)cell;
-//        detailViewController.image = articleCell.image;
-//    }
-//    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 @end
