@@ -77,21 +77,6 @@
     }
 }
 
-/*- (FeedbackCell*) initilizeFeedbackCellwithUsername:(NSString*) username
-                                               date:(NSString*) date
-                                            comment:(NSString*)comments
-{
-    FeedbackCell* cell = [[FeedbackCell alloc]init];
-    cell.username = username;
-    cell.date = date;
-    cell.comment = comments;
-    cell.jobExperience = @"Работает в Altoros Development: больше 5 лет 26 июня 2013, 17:08";
-    cell.rating = @"Оценка: 3.9 ";
-    cell.color = greenColor;
-    [cell drawCell];
-    return cell;
-}*/
-
 -(void)calculateFeedbackTableViewHeights
 {
     feedbackCellsArray = [NSMutableArray array];
@@ -163,7 +148,7 @@
     CGRect descriptionLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, self.view.bounds.size.height/5);
     UILabel * descriptionLabel = [[UILabel alloc] initWithFrame:descriptionLabelRect];
     descriptionLabel.numberOfLines = 0;
-    descriptionLabel.text = self.description;
+    descriptionLabel.text = companyDetail.fullName;
     descriptionLabel.font = [UIFont systemFontOfSize:DCDescriptionLabelFont];
     descriptionLabel.textColor = [UIColor grayColor];
     descriptionLabel.adjustsFontSizeToFitWidth = YES;
@@ -292,54 +277,6 @@
     {
         return (FeedbackCell *)[feedbackCellsArray objectAtIndex:indexPath.row];
     }
-}
-
--(void)configureCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath
-{
-    if ([cell isKindOfClass:[CommentsCell class]])
-    {   //?
-        CommentsCell * commentCell = (CommentsCell *)cell;
-        commentCell.username = @"Username";
-        commentCell.date = @"24 April 2014, 15:07";
-        commentCell.comment = @"Ответ очень простой: хочу - отвечаю, не хочу - не отвечаю. Ситуация целиком и полностью зависит от мотивации работника, от того считает ли что он ответственен за результат в целом, живет ли он проектом или он просто отрабатывает определенное время за деньги. В моей карьере случалось по разному.";
-        
-        if (indexPath.row > 8)
-        {
-            [commentCell drawCellWithOffset:0];
-        }
-        else if (indexPath.row > 4)
-        {
-            [commentCell drawCellWithOffset:4];
-        }
-        else if (indexPath.row > 3)
-        {
-            [commentCell drawCellWithOffset:3];
-        }
-        else if (indexPath.row > 2)
-        {
-            [commentCell drawCellWithOffset:2];
-        }
-        else if (indexPath.row > 1)
-        {
-            [commentCell drawCellWithOffset:1];
-        }
-        else
-        {
-            [commentCell drawCellWithOffset:0];
-        }
-    }
-    else if ([cell isKindOfClass:[FeedbackCell class]])
-    {
-        FeedbackCell * commentCell = (FeedbackCell *)cell;
-        commentCell.color = greenColor;
-        commentCell.jobExperience = @"Проработал в Altoros Development: больше 9 лет 21 августа 2013, 09:19";
-        commentCell.username = @"Username";
-        commentCell.rating = @"Оценка: 3.9";
-        commentCell.date = @"24 April 2014, 15:07";
-        commentCell.comment = @"Ответ очень простой: хочу - отвечаю, не хочу - не отвечаю. Ситуация целиком и полностью зависит от мотивации работника, от того считает ли что он ответственен за результат в целом, живет ли он проектом или он просто отрабатывает определенное время за деньги. В моей карьере случалось по разному.";
-        [commentCell drawCell];
-    }
-        
 }
 
 -(void)setFeedbackView

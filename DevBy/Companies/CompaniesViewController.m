@@ -153,10 +153,14 @@
     [self.searchResults removeAllObjects];
     
     NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF contains[cd] %@",
+                                    predicateWithFormat:@"SELF.NAME contains[cd] %@",
                                     searchText];
     
-    self.searchResults = [NSMutableArray arrayWithArray:[self.companysNames filteredArrayUsingPredicate:resultPredicate]];  //? search bug after adding a customArray
+    //self.searchResults = [NSMutableArray arrayWithArray:[self.companysNames filteredArrayUsingPredicate:resultPredicate]];  //? search bug after adding a customArray
+    ////
+    NSArray *new = [self.companysNames filteredArrayUsingPredicate:resultPredicate];
+    self.searchResults = [NSMutableArray arrayWithArray:new];
+    
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller

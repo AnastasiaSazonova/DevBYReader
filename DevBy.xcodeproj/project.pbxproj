@@ -61,6 +61,7 @@
 		841EDE41191C17580041923B /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 841EDE3C191C17580041923B /* Review.m */; };
 		8425E42B190D218700BB966E /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8425E42A190D218700BB966E /* libxml2.2.dylib */; };
 		8488425519194D7B00DF54D4 /* DevBy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8488425419194D7B00DF54D4 /* DevBy-Info.plist */; };
+		84EDD06C191D2BD700D33585 /* js.html in Resources */ = {isa = PBXBuildFile; fileRef = 84EDD06B191D2BD700D33585 /* js.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +177,7 @@
 		841EDE3C191C17580041923B /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
 		8425E42A190D218700BB966E /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../Desktop/Storage/Resources/libxml2.2.dylib; sourceTree = "<group>"; };
 		8488425419194D7B00DF54D4 /* DevBy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DevBy-Info.plist"; sourceTree = "<group>"; };
+		84EDD06B191D2BD700D33585 /* js.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = js.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 		5D29B11218F7CF8F006DCD4F /* DevBy */ = {
 			isa = PBXGroup;
 			children = (
+				84EDD06B191D2BD700D33585 /* js.html */,
 				841EDE1E191C171A0041923B /* Helpers */,
 				5D0B8C2019115DA500A62318 /* Navigation */,
 				5D26EAE6190BD54E00ED47FC /* Constants */,
@@ -588,6 +591,7 @@
 				5D29B11718F7CF8F006DCD4F /* InfoPlist.strings in Resources */,
 				8488425519194D7B00DF54D4 /* DevBy-Info.plist in Resources */,
 				5D82DDD418F7D0CE009E4D3E /* reveal-icon.png in Resources */,
+				84EDD06C191D2BD700D33585 /* js.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

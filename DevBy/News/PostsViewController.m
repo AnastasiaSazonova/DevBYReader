@@ -35,6 +35,23 @@
     _posts = [[NSMutableArray alloc] initWithArray:@[@"Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.", @"Heartbleed – новое слово в маркетинге багов.", @"Злой гений создал гибрид '2048' и 'Flappy Bird' на погибель вашей продуктивности.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies."]];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Новости" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    //////
+    /*NSString *path = [[NSBundle mainBundle] pathForResource:@"js" ofType:@"html"];
+     [view loadRequest:[NSURL fileURLWithPath:path]];
+     
+     //NSString *html = [view stringByEvaluatingJavaScriptFromString:@"(function(){var elem = \"dfdfvdfvdfdfvd\"; return elem.length;})();"];
+     NSString *html = [view stringByEvaluatingJavaScriptFromString:@"(function(){var elem = \"dfdfvdfvdfdfvd\"; return elem.length;})();"];
+     */
+    ///last
+    /*UIWebView *view = [[UIWebView alloc] init];
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://companies.dev.by/show_replies?id=6091&time=2014-05-07+20%3A21%3A26+%2B0300"]];
+    NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSRange r = [html rangeOfString:@"root.append("];
+    NSString *x = [html substringFromIndex:r.location + r.length];
+    [view loadHTMLString:x baseURL:nil];
+    [self.view addSubview:view];*/
+    //////cccc
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
