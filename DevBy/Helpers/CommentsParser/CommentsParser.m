@@ -38,12 +38,12 @@ NSInteger const DepthLimitation = 6;
     return self;
 }
 
-- (NSString *)getCommentsHtmlStringFromJS
+- (NSString *)getCommentsHtmlStringFromJS:(NSString *)jsString
 {
     //////
     //UIWebView *view = [[UIWebView alloc] init];
     
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://companies.dev.by/show_replies?id=6091&time=2014-05-07+20%3A21%3A26+%2B0300"]];
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://companies.dev.by%@", jsString]]];
     NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSRange r = [html rangeOfString:@"root.append("];
     NSString *x = [html substringFromIndex:r.location + r.length + 1];
@@ -91,10 +91,10 @@ NSInteger const DepthLimitation = 6;
         if(commentWrap == nil)
         {
             commentWrap = [element firstChildWithClassName:@"comment-wrap negative"];
-            comment.color = [UIColor redColor];   //?
+            comment.color = [UIColor redColor];
         }
         NSString *username = [[[[commentWrap firstChildWithClassName:@"comment-content"] firstChildWithClassName:@"comment-info"] firstChildWithTagName:@"a"] text];
-        comment.username = username;      //?
+        comment.username = username;
         NSString *date = [[[[[commentWrap firstChildWithClassName:@"comment-content"] firstChildWithClassName:@"comment-info"] firstChildWithTagName:@"time"] firstChildWithTagName:@"a"] text];
         comment.date = date;
         
@@ -114,6 +114,14 @@ NSInteger const DepthLimitation = 6;
         
         if(currentChildrenArray.count != 0)
             [self getCommentsWithArray:currentChildrenArray];
+        ///////jsReply
+        else if([element firstChildWithClassName:@"comment-show-replies"])
+        {
+            NSString *jsAddress = [[[element firstChildWithClassName:@"comment-show-replies"]firstChildWithTagName:@"a"] objectForKey:@"href"];
+            NSString *htmlString = [self getCommentsHtmlStringFromJS:jsAddress];
+            ///NSData *data = [NSData alloc] init;  ////////!!!!!!!!
+        }
+        //////
         
         currentLevel--;        
     }
