@@ -366,13 +366,6 @@
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + view.frame.size.height);
 }
 
-
-
-
-
-
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

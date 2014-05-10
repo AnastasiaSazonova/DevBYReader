@@ -299,7 +299,7 @@
         }
         [self moveTextView:descriptTextView toDirection:MOVE_RIGHT];
     }
-    else if (segmentedControl.selectedSegmentIndex == 1 && previousSelectedSegment == 2)
+    else if (segmentedControl.selectedSegmentIndex == 1 && (previousSelectedSegment == 2 || previousSelectedSegment == 3))
     {
         if(!priceTextView)
         {
@@ -317,7 +317,7 @@
         }
         [self moveTextView:priceTextView toDirection:MOVE_LEFT];
     }
-    else if (segmentedControl.selectedSegmentIndex == 2 && previousSelectedSegment == 1)
+    else if (segmentedControl.selectedSegmentIndex == 2 && (previousSelectedSegment == 1 || previousSelectedSegment == 0))
     {
         if (!addressTextView)
         {
