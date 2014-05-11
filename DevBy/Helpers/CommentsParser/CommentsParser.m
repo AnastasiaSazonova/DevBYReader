@@ -17,11 +17,15 @@ NSInteger const DepthLimitation = 6;
     TextConverter *textConverter;
         
     NSArray *nodes;
-    NSMutableArray *btnLinks;
+    NSMutableArray *buttonLinks;
 }
 
 - (NSMutableArray *)getCommentsWithArray:(NSArray *)commentsNodes;
 - (void)depthLimitting;
+
+- (NSMutableArray *)getButtonLinks:(NSData *)data;
+- (NSString *)getHtmlWithJSContent:(NSData *)data;
+- (NSString *)getHtmlStringFromJS:(NSString *)link;
 
 @end
 
@@ -41,74 +45,40 @@ NSInteger const DepthLimitation = 6;
 
 - (NSMutableArray *)getCommentsWithUrl:(NSURL *)url andAddress:(NSString *)address;
 {
-    /*NSData *commentsHtmlData = [NSData dataWithContentsOfURL:url];
-    TFHpple *commentsParser = [TFHpple hppleWithHTMLData:[textConverter clearHtmlData:commentsHtmlData]];
-    nodes = [commentsParser searchWithXPathQuery:address];*/
-    
-    ////////////////
-    /*NSString *jsAddress = [[[element firstChildWithClassName:@"comment-show-replies"]firstChildWithTagName:@"a"] objectForKey:@"href"];
-    NSString *htmlString = [self getCommentsHtmlStringFromJS:jsAddress];
-    NSData *data = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
-    
-    TFHpple *commentsParser = [TFHpple hppleWithHTMLData:data];
-    NSArray *nodesJS = [commentsParser searchWithXPathQuery:@"div[@class='clearfix comment']"];
-    
-    NSMutableArray *objectsJS = [[NSMutableArray alloc] init];
-    objectsJS = [self getCommentsWithArray:nodesJS];*/
-    
-    //NSURL *urlRes = [NSURL URLWithString:url];
-    //NSString *strRes = [NSString stringWithContentsOfURL:url];
-    
     NSData *commentsHtmlData = [NSData dataWithContentsOfURL:url];
-    btnLinks = [self getBtnLinks:commentsHtmlData]; //!
+    buttonLinks = [self getButtonLinks:commentsHtmlData];
     
-    //TFHpple *commentsParser = [TFHpple hppleWithHTMLData:[textConverter clearHtmlData:commentsHtmlData]];
-    //NSArray *btns = [commentsParser searchWithXPathQuery:@"//div[@class='comment-show-replies']/a"];
+    NSString *updatedString = [self getHtmlWithJSContent:commentsHtmlData];
+    NSData *updatedData = [updatedString dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSString *result = [self changeButtons:url];
-    NSData *dataResult = [result dataUsingEncoding:NSUTF8StringEncoding];
-    ////////////////
-    TFHpple *er = [TFHpple hppleWithHTMLData:dataResult];
-    nodes = [er searchWithXPathQuery:address];
-    ////
-    
+    TFHpple *parser = [TFHpple hppleWithHTMLData:[textConverter clearHtmlData:updatedData]];
+    nodes = [parser searchWithXPathQuery:address];
+
     objects = [self getCommentsWithArray:nodes];
     [self depthLimitting];
     
     return objects;
 }
-- (NSString *)changeButtons:(NSURL *)url
-{
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *htmlResult = [[NSString alloc] initWithString:html];
-    
-    for(int i = 0; i < btnLinks.count; i++)
-    {
-        NSRange startRange = [htmlResult rangeOfString:@"<div class='comment-show-replies'>"];
 
-        NSString *htmlStart = [htmlResult substringToIndex:startRange.location];
-        NSString *htmlEnd = [htmlResult substringFromIndex:(startRange.location + startRange.length)];
-        htmlResult = [NSString stringWithFormat:@"%@%@<div>%@", htmlStart, [self getHtmlStringFromJS:(NSString *)btnLinks[i]], htmlEnd];
+- (NSString *)getHtmlWithJSContent:(NSData *)data
+{
+    NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    for(int i = 0; i < buttonLinks.count; i++)
+    {
+        NSRange startRange = [html rangeOfString:@"<div class='comment-show-replies'>"];
+
+        NSString *htmlStart = [html substringToIndex:startRange.location];
+        NSString *htmlEnd = [html substringFromIndex:(startRange.location + startRange.length)];
+        html = [NSString stringWithFormat:@"%@%@<div>%@", htmlStart, [self getHtmlStringFromJS:(NSString *)buttonLinks[i]], htmlEnd];
     }
     
-    return htmlResult;
-    //NSRange endRange = [html rangeOfString:@"<div class='loading'></div></div>"];
-    
-    
-    //
-    /*NSRange r = [html rangeOfString:@"root.append("];
-    NSString *x = [html substringFromIndex:r.location + r.length + 1];
-    
-    NSRange t = [x rangeOfString:@"root.find("];
-    NSString *y = [x substringToIndex:t.location];
-    
-    NSRange i = [y rangeOfString:@");" options:NSBackwardsSearch];
-    NSString *getString = [y substringToIndex:i.location - 1];*/
+    return html;
 }
-- (NSMutableArray *)getBtnLinks:(NSData *)data
+
+- (NSMutableArray *)getButtonLinks:(NSData *)data
 {
-    TFHpple *commentsParser = [TFHpple hppleWithHTMLData:[textConverter clearHtmlData:data]];
+    TFHpple *commentsParser = [TFHpple hppleWithHTMLData:data];
     NSArray *btns = [commentsParser searchWithXPathQuery:@"//div[@class='comment-show-replies']/a"];
     
     NSMutableArray *links = [[NSMutableArray alloc] init];
@@ -118,33 +88,24 @@ NSInteger const DepthLimitation = 6;
     }
     return links;
 }
+
 - (NSString *)getHtmlStringFromJS:(NSString *)link
 {
-    //////
-    //UIWebView *view = [[UIWebView alloc] init];
+    NSData *jsData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://companies.dev.by%@", link]]];
+    NSString *jsHtml = [[NSString alloc] initWithData:jsData encoding:NSUTF8StringEncoding];
+    NSRange startCuttingRange = [jsHtml rangeOfString:@"root.append("];
+    NSString *startCuttingHtml = [jsHtml substringFromIndex:startCuttingRange.location + startCuttingRange.length + 1];
     
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://companies.dev.by%@", link]]];
-    NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSRange r = [html rangeOfString:@"root.append("];
-    NSString *x = [html substringFromIndex:r.location + r.length + 1];
+    NSRange nextCuttingRange = [startCuttingHtml rangeOfString:@"root.find("];
+    NSString *nextCuttingHtml = [startCuttingHtml substringToIndex:nextCuttingRange.location];
     
-    NSRange t = [x rangeOfString:@"root.find("];
-    NSString *y = [x substringToIndex:t.location];
+    NSRange resultRange = [nextCuttingHtml rangeOfString:@");" options:NSBackwardsSearch];
+    NSString *resultHtml = [nextCuttingHtml substringToIndex:resultRange.location - 1];
     
-    NSRange i = [y rangeOfString:@");" options:NSBackwardsSearch];
-    NSString *getString = [y substringToIndex:i.location - 1];
+    resultHtml = [resultHtml stringByReplacingOccurrencesOfString:@"\\n" withString:@""];
+    resultHtml = [resultHtml stringByReplacingOccurrencesOfString:@"\\" withString:@""];
     
-    NSMutableString *newGetString = [getString mutableCopy];
-    getString = [newGetString stringByReplacingOccurrencesOfString:@"\\n" withString:@""];
-    
-    NSMutableString *newGetString1 = [getString mutableCopy];
-    getString = [newGetString1 stringByReplacingOccurrencesOfString:@"\\" withString:@""];
-    
-    //[view loadHTMLString:getString baseURL:nil];
-    //[self.view addSubview:view];
-    
-    //////
-    return getString;
+    return resultHtml;
 }
 
 - (NSMutableArray *)getCommentsWithArray:(NSArray *)commentsNodes
@@ -182,20 +143,6 @@ NSInteger const DepthLimitation = 6;
         
         if(currentChildrenArray.count != 0)
             [self getCommentsWithArray:currentChildrenArray];
-        ///////jsREPLY
-        /*else if([element firstChildWithClassName:@"comment-show-replies"])
-        {
-            NSString *jsAddress = [[[element firstChildWithClassName:@"comment-show-replies"]firstChildWithTagName:@"a"] objectForKey:@"href"];
-            NSString *htmlString = [self getCommentsHtmlStringFromJS:jsAddress];
-            NSData *data = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
-            
-            TFHpple *commentsParser = [TFHpple hppleWithHTMLData:data];
-            NSArray *nodesJS = [commentsParser searchWithXPathQuery:@"div[@class='clearfix comment']"];
-            
-            NSMutableArray *objectsJS = [[NSMutableArray alloc] init];
-            objectsJS = [self getCommentsWithArray:nodesJS];
-        }*/
-        //////
         
         currentLevel--;        
     }

@@ -10,9 +10,9 @@
 
 @interface Review : NSObject
 
-@property (strong, nonatomic) NSString *author;
+@property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *date;
-@property (strong, nonatomic) NSString *text;
+@property (strong, nonatomic) NSString *comment;
 
 @property (assign, nonatomic) NSInteger level;
 @property (strong, nonatomic) UIColor *color;

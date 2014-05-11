@@ -59,15 +59,15 @@
             review.color = [UIColor redColor];
         }
         
-        NSString *author = [[[[reviewHead firstChildWithClassName:@"block data-user"] firstChildWithTagName:@"div"] firstChildWithTagName:@"a"] text];
-        review.author = author;
+        NSString *username = [[[[reviewHead firstChildWithClassName:@"block data-user"] firstChildWithTagName:@"div"] firstChildWithTagName:@"a"] text];
+        review.username = username;
         
         NSString *date = [[[reviewHead firstChildWithClassName:@"block data-time"] firstChildWithTagName:@"time"] text];
         review.date = date;
         
         TFHppleElement *textElement = [[[element firstChildWithClassName:@"review-body clearfix"] firstChildWithTagName:@"div"] firstChildWithClassName:@"text"];
-        NSString *text = [textConverter getText:textElement.children];
-        review.text = text;
+        NSString *comment = [textConverter getText:textElement.children];
+        review.comment = comment;
         
     }
     return objects;

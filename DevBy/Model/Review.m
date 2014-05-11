@@ -10,14 +10,14 @@
 
 @implementation Review
 
-@synthesize author, date, text, level, color;
+//@synthesize author, date, text, level, color;
 
 - (id)init
 {
     self = [super init];
     if(self)
     {
-        color = [UIColor blackColor];
+        self.color = [UIColor blackColor];
     }
     return self;
 }

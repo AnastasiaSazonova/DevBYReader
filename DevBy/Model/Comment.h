@@ -10,12 +10,12 @@
 
 @interface Comment : NSObject
 
-@property(nonatomic, assign)int type;   //?
+//@property(nonatomic, assign)int type;   //?
 @property(nonatomic, strong)NSString * username;
 @property(nonatomic, strong)NSString * date;
 @property(nonatomic, strong)NSString * comment;
-@property(nonatomic, strong)NSString * jobExperience;   //none
-@property(nonatomic, strong)NSString * rating;      //none
+//@property(nonatomic, strong)NSString * jobExperience;   //none
+//@property(nonatomic, strong)NSString * rating;      //none
 
 @property(nonatomic, strong)UIColor * color;
 @property(nonatomic, assign)NSInteger level;

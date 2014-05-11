@@ -84,9 +84,9 @@
     for(Review *item in companyDetail.reviews)
     {
         FeedbackCell* cell = [[FeedbackCell alloc]init];
-        cell.username = item.author;
+        cell.username = item.username;
         cell.date = item.date;
-        cell.comment = item.text;
+        cell.comment = item.comment;
         //cell.jobExperience = @"Работает в Altoros Development: больше 5 лет 26 июня 2013, 17:08";
         //cell.rating = @"Оценка: 3.9 ";    //!!!
         cell.color = greenColor;
