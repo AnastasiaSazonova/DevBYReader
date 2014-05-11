@@ -56,8 +56,8 @@
         if(reviewHead == nil)
         {
             reviewHead = [element firstChildWithClassName:@"clearfix red review-header"];
-            review.color = [UIColor redColor];
-        }
+            review.color = redColor;
+        }        
         
         NSString *username = [[[[reviewHead firstChildWithClassName:@"block data-user"] firstChildWithTagName:@"div"] firstChildWithTagName:@"a"] text];
         review.username = username;
@@ -69,6 +69,21 @@
         NSString *comment = [textConverter getText:textElement.children];
         review.comment = comment;
         
+        NSString *rating = [[[[reviewHead firstChildWithClassName:@"block data-rating"] firstChildWithTagName:@"span"] firstChildWithTagName:@"a"] text];
+        review.rating = rating;
+        
+        TFHppleElement *jobExperienceElement = [reviewHead firstChildWithClassName:@"block data-time"];
+        NSString *jobExperience = [textConverter getText:jobExperienceElement.children];
+        review.jobExperience = jobExperience;
+        
+        //////get commentsCount
+        NSString *commentsCount = [[[[[element firstChildWithClassName:@"review-body clearfix"] firstChildWithClassName:@"review-menu clearfix"] firstChildWithClassName:@"left"] firstChildWithTagName:@"span"] text];
+        review.commentsCount = [commentsCount integerValue];
+        /*if([commentsCount integerValue] > 0)
+        {            
+            NSString *btnLink = [[[[[element firstChildWithClassName:@"review-body clearfix"] firstChildWithClassName:@"review-menu clearfix"] firstChildWithClassName:@"left"] firstChildWithTagName:@"a"] objectForKey:@"href"];
+        }*/
+        //////////////////
     }
     return objects;
 }

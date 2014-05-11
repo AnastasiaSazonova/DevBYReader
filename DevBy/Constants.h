@@ -12,11 +12,11 @@
 #define JOB @"Вакансии"
 #define EVENTS @"События"
 
-enum
+typedef enum
 {
     redColor,
     greenColor
-};
+} Color;
 
 enum
 {

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 
 @interface Review : NSObject
 
@@ -14,7 +15,12 @@
 @property (strong, nonatomic) NSString *date;
 @property (strong, nonatomic) NSString *comment;
 
+@property(nonatomic, strong) NSString * jobExperience;
+@property(nonatomic, strong)NSString * rating;      
+
 @property (assign, nonatomic) NSInteger level;
-@property (strong, nonatomic) UIColor *color;
+@property (assign, nonatomic) Color color;
+
+@property (assign, nonatomic) NSInteger commentsCount;
 
 @end

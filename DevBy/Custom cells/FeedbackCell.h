@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
 @interface FeedbackCell : UITableViewCell
 
@@ -16,7 +17,8 @@
 @property(nonatomic, strong)NSString * comment;
 @property(nonatomic, strong)NSString * jobExperience;
 @property(nonatomic, strong)NSString * rating;
-@property(nonatomic, assign)float color;
+@property(nonatomic, assign)Color color;
+@property(nonatomic, assign)NSInteger commentsCount;
 
 -(void)drawCell;
 

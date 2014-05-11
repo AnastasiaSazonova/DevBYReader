@@ -37,10 +37,11 @@
     usernameLabel.font = [UIFont boldSystemFontOfSize:FBCUsernameFont];
     usernameLabel.text = self.username;
     [usernameLabel sizeToFit];
+    usernameLabel.frame = CGRectMake(usernameLabel.frame.origin.x, usernameLabel.frame.origin.y, self.frame.size.width - 70, usernameLabel.frame.size.height);
     [self addSubview:usernameLabel];
     self.totalHeight += usernameRect.origin.y +  usernameLabel.bounds.size.height;
-    
-    CGRect jobRateRect = CGRectMake(15.5 * halfOffset + usernameLabel.bounds.size.width, halfOffset, self.bounds.size.width*0.8, 0);
+
+    CGRect jobRateRect = CGRectMake(2 * halfOffset + usernameLabel.bounds.size.width, halfOffset, self.bounds.size.width*0.8, 0);
     UILabel * jobRateLabel = [[UILabel alloc] initWithFrame:jobRateRect];
     jobRateLabel.font = [UIFont boldSystemFontOfSize:FBCUsernameFont];
     jobRateLabel.numberOfLines = 0;
@@ -70,6 +71,30 @@
     [commentLabel sizeToFit];
     [self addSubview:commentLabel];
     self.totalHeight += commentLabel.bounds.size.height;
+    
+    if(self.commentsCount > 0)
+    {
+        /*CGRect buttonRect = CGRectMake(halfOffset, self.totalHeight - 1.5 * halfOffset, self.bounds.size.width*0.9, 0);
+        UILabel * button = [[UILabel alloc] initWithFrame:buttonRect];
+        button.font = [UIFont systemFontOfSize:FBCTextFont];
+        button.numberOfLines = 0;
+        button.text = @"sdfsdfsd";
+        [button sizeToFit];
+        [self addSubview:button];
+        self.totalHeight += button.bounds.size.height;
+        button.backgroundColor = [UIColor blueColor];*/
+        UIButton *commentsButton = [[UIButton alloc] init];
+        commentsButton.frame = CGRectMake(halfOffset, self.totalHeight - 0.5 * halfOffset, self.bounds.size.width*0.9 - halfOffset, 30);
+        [commentsButton setTitle:@"Comments: 454" forState:UIControlStateNormal];
+        commentsButton.titleLabel.font = [UIFont systemFontOfSize:FBCTextFont];
+        commentsButton.titleLabel.textColor = [UIColor grayColor];
+        [commentsButton layer].borderWidth = 1;
+        [commentsButton layer].borderColor = [UIColor grayColor].CGColor;
+        [[commentsButton layer] setCornerRadius:4];
+        
+        [self addSubview:commentsButton];
+        self.totalHeight += commentsButton.bounds.size.height + halfOffset;
+    }
 }
 
 @end

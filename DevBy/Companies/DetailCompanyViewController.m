@@ -87,9 +87,10 @@
         cell.username = item.username;
         cell.date = item.date;
         cell.comment = item.comment;
-        //cell.jobExperience = @"Работает в Altoros Development: больше 5 лет 26 июня 2013, 17:08";
-        //cell.rating = @"Оценка: 3.9 ";    //!!!
-        cell.color = greenColor;
+        cell.jobExperience = item.jobExperience;
+        cell.rating = item.rating;
+        cell.color = item.color;
+        cell.commentsCount = item.commentsCount;
         [cell drawCell];
         
         [feedbackCellsArray addObject:cell];

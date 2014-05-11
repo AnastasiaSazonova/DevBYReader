@@ -69,10 +69,14 @@
                     [result appendFormat:@"%@", [child content]];
             }
         }
+        else if([item.tagName isEqualToString:@"a"])
+        {
+            [result appendFormat:@"%@", [item text]];
+        }
         else if([item.tagName isEqualToString:@"br"])
             [result appendString:@"\n"];
         else if([item.tagName isEqualToString:@"time"])
-            [result appendFormat:@"%@", [item text]];
+            [result appendFormat:@" %@", [item text]];  //especially for reviewsHead
         
     }
     
