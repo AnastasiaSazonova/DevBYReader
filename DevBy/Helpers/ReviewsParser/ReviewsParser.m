@@ -76,14 +76,14 @@
         NSString *jobExperience = [textConverter getText:jobExperienceElement.children];
         review.jobExperience = jobExperience;
         
-        //////get commentsCount
         NSString *commentsCount = [[[[[element firstChildWithClassName:@"review-body clearfix"] firstChildWithClassName:@"review-menu clearfix"] firstChildWithClassName:@"left"] firstChildWithTagName:@"span"] text];
         review.commentsCount = [commentsCount integerValue];
-        /*if([commentsCount integerValue] > 0)
+        
+        if([commentsCount integerValue] > 0)
         {            
             NSString *btnLink = [[[[[element firstChildWithClassName:@"review-body clearfix"] firstChildWithClassName:@"review-menu clearfix"] firstChildWithClassName:@"left"] firstChildWithTagName:@"a"] objectForKey:@"href"];
-        }*/
-        //////////////////
+            review.btnLink = btnLink;
+        }
     }
     return objects;
 }

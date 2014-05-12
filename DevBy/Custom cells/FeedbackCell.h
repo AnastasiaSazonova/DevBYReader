@@ -19,6 +19,7 @@
 @property(nonatomic, strong)NSString * rating;
 @property(nonatomic, assign)Color color;
 @property(nonatomic, assign)NSInteger commentsCount;
+@property(nonatomic, strong)NSString *btnLink;
 
 -(void)drawCell;
 

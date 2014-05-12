@@ -13,13 +13,13 @@
 @interface FeedbackCell()
 
 @property(nonatomic, assign, readwrite)float totalHeight;
-
+//- (void)gotoC:(id)sender;
 @end
 
 @implementation FeedbackCell
 
 -(void)drawCell
-{
+{    
     self.totalHeight = 0;
     UIView * backGroundView = [[UIView alloc] init];
     if (self.color == redColor)
@@ -73,28 +73,25 @@
     self.totalHeight += commentLabel.bounds.size.height;
     
     if(self.commentsCount > 0)
-    {
-        /*CGRect buttonRect = CGRectMake(halfOffset, self.totalHeight - 1.5 * halfOffset, self.bounds.size.width*0.9, 0);
-        UILabel * button = [[UILabel alloc] initWithFrame:buttonRect];
-        button.font = [UIFont systemFontOfSize:FBCTextFont];
-        button.numberOfLines = 0;
-        button.text = @"sdfsdfsd";
-        [button sizeToFit];
-        [self addSubview:button];
-        self.totalHeight += button.bounds.size.height;
-        button.backgroundColor = [UIColor blueColor];*/
+    {        
         UIButton *commentsButton = [[UIButton alloc] init];
         commentsButton.frame = CGRectMake(halfOffset, self.totalHeight - 0.5 * halfOffset, self.bounds.size.width*0.9 - halfOffset, 30);
-        [commentsButton setTitle:@"Comments: 454" forState:UIControlStateNormal];
+        [commentsButton setTitle:[NSString stringWithFormat:@"Комментариев: %d", self.commentsCount] forState:UIControlStateNormal];
         commentsButton.titleLabel.font = [UIFont systemFontOfSize:FBCTextFont];
         commentsButton.titleLabel.textColor = [UIColor grayColor];
         [commentsButton layer].borderWidth = 1;
         [commentsButton layer].borderColor = [UIColor grayColor].CGColor;
         [[commentsButton layer] setCornerRadius:4];
+        [commentsButton addTarget:self action:@selector(gotoComments) forControlEvents:UIControlEventTouchUpInside];
         
         [self addSubview:commentsButton];
         self.totalHeight += commentsButton.bounds.size.height + halfOffset;
     }
+}
+
+- (void)gotoComments
+{
+    NSLog(@"%@", self.username);
 }
 
 @end

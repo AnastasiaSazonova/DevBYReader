@@ -22,5 +22,6 @@
 @property (assign, nonatomic) Color color;
 
 @property (assign, nonatomic) NSInteger commentsCount;
+@property (strong, nonatomic) NSString *btnLink;
 
 @end

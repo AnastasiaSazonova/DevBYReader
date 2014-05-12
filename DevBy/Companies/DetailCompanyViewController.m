@@ -91,6 +91,7 @@
         cell.rating = item.rating;
         cell.color = item.color;
         cell.commentsCount = item.commentsCount;
+        cell.btnLink = item.btnLink;
         [cell drawCell];
         
         [feedbackCellsArray addObject:cell];
@@ -285,7 +286,7 @@
     CGRect frame = textViewFrame;
     frame.size.height += self.view.bounds.size.height/3;
     self.feedBackTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.center.x - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, feedbacksHeight)];
-    self.feedBackTableView.userInteractionEnabled = NO;
+    self.feedBackTableView.userInteractionEnabled = YES;//NO;
     self.feedBackTableView.delegate = self;
     self.feedBackTableView.dataSource = self;
     [self.scrollView addSubview:self.feedBackTableView];
