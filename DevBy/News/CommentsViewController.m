@@ -8,12 +8,25 @@
 
 #import "CommentsViewController.h"
 #import "CommentsCell.h"
+#import "Comment.h"
 
 @interface CommentsViewController ()
-
+{
+    NSArray *objects;
+}
 @end
 
 @implementation CommentsViewController
+
+- (id)initWithComments:(NSArray *)comments
+{
+    self = [super init];
+    if(self)
+    {
+        objects = comments;
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -27,6 +40,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if(objects != nil)
+        return objects.count;
+
     return 10;
 }
 
@@ -46,25 +62,36 @@
 
 -(void)configureCell:(CommentsCell *)cell inTableView:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath
 {
-    cell.username = @"Username";
-    cell.date = @"24 April 2014, 15:07";
-    cell.comment = @"Ответ очень простой: хочу - отвечаю, не хочу - не отвечаю. Ситуация целиком и полностью зависит от мотивации работника, от того считает ли что он ответственен за результат в целом, живет ли он проектом или он просто отрабатывает определенное время за деньги. В моей карьере случалось по разному.";
-
-    if (indexPath.row > 3)
+    if(objects == nil)
     {
-        [cell drawCellWithOffset:3];
-    }
-    else if (indexPath.row > 2)
-    {
-        [cell drawCellWithOffset:2];
-    }
-    else if (indexPath.row > 1)
-    {
-        [cell drawCellWithOffset:1];
+        cell.username = @"Username";
+        cell.date = @"24 April 2014, 15:07";
+        cell.comment = @"Ответ очень простой: хочу - отвечаю, не хочу - не отвечаю. Ситуация целиком и полностью зависит от мотивации работника, от того считает ли что он ответственен за результат в целом, живет ли он проектом или он просто отрабатывает определенное время за деньги. В моей карьере случалось по разному.";
+        
+        if (indexPath.row > 3)
+        {
+            [cell drawCellWithOffset:3];
+        }
+        else if (indexPath.row > 2)
+        {
+            [cell drawCellWithOffset:2];
+        }
+        else if (indexPath.row > 1)
+        {
+            [cell drawCellWithOffset:1];
+        }
+        else
+        {
+            [cell drawCellWithOffset:0];
+        }
     }
     else
     {
-        [cell drawCellWithOffset:0];
+        Comment *comment = (Comment *)objects[indexPath.row];
+        cell.username = comment.username;
+        cell.date = comment.date;
+        cell.comment = comment.comment;
+        [cell drawCellWithOffset:comment.level];
     }
     
 }

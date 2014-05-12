@@ -176,6 +176,7 @@
 		841EDE3C191C17580041923B /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
 		8425E42A190D218700BB966E /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../Desktop/Storage/Resources/libxml2.2.dylib; sourceTree = "<group>"; };
 		84B1ED4D191E131E006603FC /* DevBy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DevBy-Info.plist"; sourceTree = "<group>"; };
+		84D6FCB119213F9800AFA81D /* Protocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protocols.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				5D26EAE7190BD56F00ED47FC /* Constants.h */,
+				84D6FCB119213F9800AFA81D /* Protocols.h */,
 			);
 			name = Constants;
 			sourceTree = "<group>";

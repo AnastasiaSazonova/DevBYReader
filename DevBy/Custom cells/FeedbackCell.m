@@ -7,13 +7,12 @@
 //
 
 #import "FeedbackCell.h"
-#import "constants.h"
-
+#import "CommentsParser.h"
 
 @interface FeedbackCell()
 
 @property(nonatomic, assign, readwrite)float totalHeight;
-//- (void)gotoC:(id)sender;
+
 @end
 
 @implementation FeedbackCell
@@ -82,16 +81,10 @@
         [commentsButton layer].borderWidth = 1;
         [commentsButton layer].borderColor = [UIColor grayColor].CGColor;
         [[commentsButton layer] setCornerRadius:4];
-        [commentsButton addTarget:self action:@selector(gotoComments) forControlEvents:UIControlEventTouchUpInside];
-        
+        [commentsButton addTarget:self.delegate action:@selector(gotoComments:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:commentsButton];
         self.totalHeight += commentsButton.bounds.size.height + halfOffset;
     }
-}
-
-- (void)gotoComments
-{
-    NSLog(@"%@", self.username);
 }
 
 @end

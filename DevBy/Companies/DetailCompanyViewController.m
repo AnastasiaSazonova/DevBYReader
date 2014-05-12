@@ -10,8 +10,9 @@
 #import "CommentsCell.h"
 #import "FeedbackCell.h"
 #import "Constants.h"
+#import "Protocols.h"
 
-@interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate, CommentsProtocol>
 {
     float totalHeight;
     float commentsHeight;
@@ -92,6 +93,7 @@
         cell.color = item.color;
         cell.commentsCount = item.commentsCount;
         cell.btnLink = item.btnLink;
+        cell.delegate = self;
         [cell drawCell];
         
         [feedbackCellsArray addObject:cell];
@@ -168,6 +170,17 @@
     [self.scrollView addSubview:segmentedControl];
     [self.view addSubview:self.scrollView];
 }
+
+- (void)gotoComments:(id)sender
+{
+    CommentsParser *parser = [[CommentsParser alloc] init];
+    NSMutableArray *comments = [parser getCommentsWithUrl:[NSURL URLWithString:@"http://companies.dev.by/wargaming-net-geym-strim/reviews/114"] andAddress:@"//div[@class='comments-list list-more']/div[@class='clearfix comment']"];
+    NSArray *result = [NSArray arrayWithArray:comments];
+    CommentsViewController *commentsController = [[CommentsViewController alloc] initWithComments:result];
+    
+    [self.navigationController pushViewController:commentsController animated:YES];
+}
+
 
 -(void)touchSegmentedContorol:(UISegmentedControl *)segmentedControl
 {
@@ -286,7 +299,7 @@
     CGRect frame = textViewFrame;
     frame.size.height += self.view.bounds.size.height/3;
     self.feedBackTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.center.x - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, feedbacksHeight)];
-    self.feedBackTableView.userInteractionEnabled = YES;//NO;
+    self.feedBackTableView.userInteractionEnabled = YES;
     self.feedBackTableView.delegate = self;
     self.feedBackTableView.dataSource = self;
     [self.scrollView addSubview:self.feedBackTableView];

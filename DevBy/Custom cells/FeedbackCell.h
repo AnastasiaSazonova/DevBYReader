@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "CommentsViewController.h"
+#import "Protocols.h"
 
 @interface FeedbackCell : UITableViewCell
 
@@ -20,6 +22,7 @@
 @property(nonatomic, assign)Color color;
 @property(nonatomic, assign)NSInteger commentsCount;
 @property(nonatomic, strong)NSString *btnLink;
+@property(nonatomic, strong)id<CommentsProtocol> delegate;
 
 -(void)drawCell;
 
