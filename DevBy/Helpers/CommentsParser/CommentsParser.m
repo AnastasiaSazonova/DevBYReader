@@ -47,7 +47,7 @@ NSInteger const DepthLimitation = 6;
 {
     NSData *commentsHtmlData = [NSData dataWithContentsOfURL:url];
     buttonLinks = [self getButtonLinks:commentsHtmlData];
-    
+
     NSString *updatedString = [self getHtmlWithJSContent:commentsHtmlData];
     NSData *updatedData = [updatedString dataUsingEncoding:NSUTF8StringEncoding];
     

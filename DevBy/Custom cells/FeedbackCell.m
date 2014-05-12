@@ -77,7 +77,8 @@
         commentsButton.frame = CGRectMake(halfOffset, self.totalHeight - 0.5 * halfOffset, self.bounds.size.width*0.9 - halfOffset, 30);
         [commentsButton setTitle:[NSString stringWithFormat:@"Комментариев: %d", self.commentsCount] forState:UIControlStateNormal];
         commentsButton.titleLabel.font = [UIFont systemFontOfSize:FBCTextFont];
-        commentsButton.titleLabel.textColor = [UIColor grayColor];
+        [commentsButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        [commentsButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];        
         [commentsButton layer].borderWidth = 1;
         [commentsButton layer].borderColor = [UIColor grayColor].CGColor;
         [[commentsButton layer] setCornerRadius:4];

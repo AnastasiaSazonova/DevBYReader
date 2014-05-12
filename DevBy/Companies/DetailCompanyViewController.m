@@ -94,6 +94,7 @@
         cell.commentsCount = item.commentsCount;
         cell.btnLink = item.btnLink;
         cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell drawCell];
         
         [feedbackCellsArray addObject:cell];
