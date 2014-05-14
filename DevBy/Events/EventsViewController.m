@@ -24,15 +24,6 @@ NSString * eventCellReuseIdentifier = @"EventCell";
     EventsParser *eventsParser;
 }
 
-/*-(NSMutableArray *)events
-{
-    if (!_events)
-    {
-        _events = [[NSMutableArray alloc] initWithArray:@[@"Как правильно составить резюме молодому специалисту", @"Как правильно составить резюме молодому специалисту", @"Как правильно составить резюме молодому специалисту", @"Как правильно составить резюме молодому специалисту", @"Как правильно составить резюме молодому специалисту", @"Апрельская MLUG 2014", @"Официальный Scrum-тренинг в Минске: Professional Scrum Master.", @"Встреча сообщества разработчиков WinITby"]];
-    }
-    return _events;
-}*/
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -86,7 +77,6 @@ NSString * eventCellReuseIdentifier = @"EventCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DetailEventViewController * detailEventViewController = [[DetailEventViewController alloc] init];
-    //detailEventViewController.eventsName = self.events[indexPath.row];    //?
     [self.navigationController pushViewController:detailEventViewController animated:YES];
 }
 

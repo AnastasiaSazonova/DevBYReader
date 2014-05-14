@@ -12,11 +12,4 @@
 
 @interface DetailEventViewController : UIViewController
 
-/*@property(nonatomic, strong)NSString * eventsName;
-@property(nonatomic, strong)NSString * eventsDate;
-@property(nonatomic, strong)NSString * eventsDescription;
-@property(nonatomic, strong)NSString * eventsPrice;
-@property(nonatomic, strong)NSString * eventsAddress;
-@property(nonatomic, strong)NSString * eventsContacts;
-*/
 @end

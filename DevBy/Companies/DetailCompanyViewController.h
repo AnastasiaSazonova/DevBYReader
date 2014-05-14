@@ -11,6 +11,4 @@
 
 @interface DetailCompanyViewController : UIViewController
 
-//@property(nonatomic, strong)NSString * companysName;
-
 @end

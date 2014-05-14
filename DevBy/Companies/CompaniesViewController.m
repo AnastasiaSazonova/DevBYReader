@@ -27,15 +27,6 @@
 
 @implementation CompaniesViewController
 
-/*-(NSArray *)companysNames
-{
-    if (!_companysNames)
-    {
-        _companysNames = @[@"Altoros", @"BPMobile", @"Cib Software", @"ISSoft", @"IT-Max (ASBIS, бренд Prestigio)", @"Представительство PamConsult Gmbh в Минске", @"EPAM", @"Exadel", @"Quilix Systems", @"WarGaming", @"Altoros", @"BPMobile", @"Cib Software", @"ISSoft", @"IT-Max (ASBIS, бренд Prestigio)", @"Представительство PamConsult Gmbh в Минске", @"EPAM", @"Exadel"];
-    }
-    return _companysNames;
-}*/
-
 -(NSArray *)searchResults
 {
     if (!_searchResults)

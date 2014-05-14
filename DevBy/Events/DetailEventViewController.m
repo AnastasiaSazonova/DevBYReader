@@ -24,61 +24,6 @@
 
 @implementation DetailEventViewController
 
-/*-(NSString *)eventsName
-{
-    if (!_eventsName)
-    {
-        _eventsName = @"3х-дневный тренинг \"Продвинутый Professional Scrum Master (PSM)\"";
-    }
-    return _eventsName;
-}
-
--(NSString *)eventsContacts
-{
-    if (!_eventsContacts)
-    {
-        _eventsContacts = @"Эл. почта: contact@ithouse.by \nСайт: http://ithouse.by \nТелефон: (017) 209-54-04";
-    }
-    return _eventsContacts;
-}
-
--(NSString *)eventsDate
-{
-    if (!_eventsDate)
-    {
-        _eventsDate = @"Минск, 24 Апреля 14:00 - 16:00";
-    }
-    return _eventsDate;
-}
-
--(NSString *)eventsDescription
-{
-    if (!_eventsDescription)
-    {
-        _eventsDescription = @"По сложившейся традиции в последнюю пятницу месяца в Минске проходит Python Meetup – неформальная встреча белорусских питонистов. Время и место встречи уже хорошо всем знакомы  – это клуб «Центр» во Дворце Республики, начало в 19.00.Программа апрельской встречи:Доклад №1. Дмитрий Овчинников, Wargaming \"Разработка мобильных приложений на Python \"О чем: 1. Python для мобильных девайсов. 2. Фреймворк Kivy. Птица или фрукт? 3. Один код на разных платформах (Не Java!!!) Доклад №2. Никита Гришко, Wargaming \"Python для ленивых или как сделать свою жизнь проще \"О чем: Рассмотрим, что в мире Python’а поможет сделать разработку проще на всех ее этапах: создание проекта, настройка окружения, отладка, тестирование, профилирование, публикация на PyPI. Доклад №3. Максим Барышников, WG \"Wargaming: тыл — фронту! \"О чем: Полагаю, что не открою секрет Полишинеля, если скажу следующее: чтобы игра стала успешной (а из успешной превратилась в легендарную), недостаточно  самой игры, сколь бы хороша она ни была. Помимо всего прочего, действительно массовой игре нужна очень развитая веб-часть. О ней и пойдет речь. Как обычно будет работать \"свободный микрофон\", а это значит, что любой желающий сможет выступить с блиц-докладом, не требующим предварительно подготовленной презентации. Главное – желание поделиться чем-то интересным и полезным.";
-    }
-    return _eventsDescription;
-}
-
--(NSString *)eventsPrice
-{
-    if (!_eventsPrice)
-    {
-        _eventsPrice = @"Бесплатно";
-    }
-    return _eventsPrice;
-}
-
--(NSString *)eventsAddress
-{
-    if (!_eventsAddress)
-    {
-        _eventsAddress = @"Минск, г. Минск, ул. Филимонова 15, комната 207 (2 этаж, от лестницы прямо и налево). Идите по указателям.";
-    }
-    return _eventsAddress;
-}
-*/
-
 -(UIScrollView *)scrollView
 {
     if (!_scrollView)
@@ -116,7 +61,7 @@
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelFrame];
     nameLabel.font = [UIFont systemFontOfSize:21];
     nameLabel.numberOfLines = 0;
-    nameLabel.text = eventDetail.title;//self.eventsName;
+    nameLabel.text = eventDetail.title;
 
     if ([eventDetail.title length] > DEMaxCharsForBigFont)
     {
