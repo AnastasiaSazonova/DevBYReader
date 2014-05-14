@@ -51,7 +51,7 @@
 {
     if (!_scrollView)
     {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBarHeight, self.view.bounds.size.width, self.view.bounds.size.height - navBarHeight)];
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     return _scrollView;
@@ -70,10 +70,7 @@
         [cell drawCellWithOffset:item.level];
         
         [commentsCellsArray addObject:cell];
-    }
-        
-    for (CommentsCell* cell in commentsCellsArray)  //must be in couple
-    {
+    
         commentsHeight += cell.totalHeight;
     }
 }
@@ -98,10 +95,7 @@
         [cell drawCell];
         
         [feedbackCellsArray addObject:cell];
-    }
     
-    for (FeedbackCell* cell in feedbackCellsArray)  //must be in couple
-    {
         feedbacksHeight += cell.totalHeight;
     }
 }
@@ -126,7 +120,7 @@
     {
         navObjectsHeight = navBarHeight;
     }
-    totalHeight += offset*0.8 + navObjectsHeight;
+    totalHeight += offset*0.8;
     CGRect nameLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset - DCLogoHeight, DCLogoHeight);
     UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
     nameLabel.font = [UIFont systemFontOfSize:DCNameLabelFont];
