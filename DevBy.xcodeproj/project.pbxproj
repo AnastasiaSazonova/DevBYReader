@@ -49,6 +49,9 @@
 		5DD088921906319D008601DB /* MiddleJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD088911906319D008601DB /* MiddleJobCell.m */; };
 		5DD08895190631B2008601DB /* StandardJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD08894190631B2008601DB /* StandardJobCell.m */; };
 		5DD0889819063238008601DB /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0889719063238008601DB /* Job.m */; };
+		8412794219253A2A0064978A /* PostsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8412794119253A2A0064978A /* PostsParser.m */; };
+		8412794519253B330064978A /* PostDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8412794419253B330064978A /* PostDetail.m */; };
+		84127948192540EC0064978A /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 84127947192540EC0064978A /* Post.m */; };
 		841EDE2E191C171A0041923B /* CommentsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 841EDE21191C171A0041923B /* CommentsParser.m */; };
 		841EDE2F191C171A0041923B /* CompaniesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 841EDE24191C171A0041923B /* CompaniesParser.m */; };
 		841EDE30191C171A0041923B /* EventsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 841EDE27191C171A0041923B /* EventsParser.m */; };
@@ -154,6 +157,12 @@
 		5DD08894190631B2008601DB /* StandardJobCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardJobCell.m; sourceTree = "<group>"; };
 		5DD0889619063238008601DB /* Job.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
 		5DD0889719063238008601DB /* Job.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Job.m; sourceTree = "<group>"; };
+		8412794019253A2A0064978A /* PostsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsParser.h; sourceTree = "<group>"; };
+		8412794119253A2A0064978A /* PostsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsParser.m; sourceTree = "<group>"; };
+		8412794319253B330064978A /* PostDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetail.h; sourceTree = "<group>"; };
+		8412794419253B330064978A /* PostDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetail.m; sourceTree = "<group>"; };
+		84127946192540EC0064978A /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		84127947192540EC0064978A /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		841EDE20191C171A0041923B /* CommentsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsParser.h; sourceTree = "<group>"; };
 		841EDE21191C171A0041923B /* CommentsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsParser.m; sourceTree = "<group>"; };
 		841EDE23191C171A0041923B /* CompaniesParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompaniesParser.h; sourceTree = "<group>"; };
@@ -396,6 +405,10 @@
 				5D4BF6B21909713900E0E405 /* MiddleJob.m */,
 				5DA2BEA01912DB3400833C6E /* Comment.h */,
 				5DA2BEA11912DB3400833C6E /* Comment.m */,
+				8412794319253B330064978A /* PostDetail.h */,
+				8412794419253B330064978A /* PostDetail.m */,
+				84127946192540EC0064978A /* Post.h */,
+				84127947192540EC0064978A /* Post.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -451,9 +464,19 @@
 			path = "Custom cells";
 			sourceTree = "<group>";
 		};
+		8412793F19253A090064978A /* PostsParser */ = {
+			isa = PBXGroup;
+			children = (
+				8412794019253A2A0064978A /* PostsParser.h */,
+				8412794119253A2A0064978A /* PostsParser.m */,
+			);
+			name = PostsParser;
+			sourceTree = "<group>";
+		};
 		841EDE1E191C171A0041923B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8412793F19253A090064978A /* PostsParser */,
 				841EDE28191C171A0041923B /* ReviewsParser */,
 				841EDE1F191C171A0041923B /* CommentsParser */,
 				841EDE22191C171A0041923B /* CompaniesParser */,
@@ -555,6 +578,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = AD;
 				TargetAttributes = {
+					5D29B10818F7CF8F006DCD4F = {
+						DevelopmentTeam = S6T4VJ437P;
+					};
 					5D29B12318F7CF8F006DCD4F = {
 						TestTargetID = 5D29B10818F7CF8F006DCD4F;
 					};
@@ -605,9 +631,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D29B11D18F7CF8F006DCD4F /* AppDelegate.m in Sources */,
+				84127948192540EC0064978A /* Post.m in Sources */,
 				841EDE41191C17580041923B /* Review.m in Sources */,
 				5D82DDCE18F7D0CE009E4D3E /* TFHppleElement.m in Sources */,
 				841EDE40191C17580041923B /* EventDetail.m in Sources */,
+				8412794519253B330064978A /* PostDetail.m in Sources */,
 				5D0B8C3919115DA500A62318 /* MenuViewController.m in Sources */,
 				5D82DDF618F7D37E009E4D3E /* VacanciesViewController.m in Sources */,
 				5D82DE0318F8080A009E4D3E /* MainArticleCell.m in Sources */,
@@ -639,6 +667,7 @@
 				5D28ED9418F8A4E80066011D /* CommentsViewController.m in Sources */,
 				5DA2BEA21912DB3400833C6E /* Comment.m in Sources */,
 				5D29B11918F7CF8F006DCD4F /* main.m in Sources */,
+				8412794219253A2A0064978A /* PostsParser.m in Sources */,
 				841EDE2F191C171A0041923B /* CompaniesParser.m in Sources */,
 				5D0B8C3B19115DA500A62318 /* MSSlideSystemController.m in Sources */,
 				5D0B8C3F19115DA500A62318 /* SlideViewController.m in Sources */,
@@ -776,7 +805,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DevBy/DevBy-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
@@ -800,7 +829,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DevBy/DevBy-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";

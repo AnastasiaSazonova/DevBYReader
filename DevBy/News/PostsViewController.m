@@ -14,12 +14,16 @@
 #import "ArticleCell.h"
 #import "Constants.h"
 #import "SlideViewController.h"
+#import "Post.h"
+#import "PostDetail.h"
+#import "PostsParser.h"
 
 @interface PostsViewController () <SlideViewDelegate>
 {
     NSMutableArray * _posts;
     float mainCellHeight;
     float articleCellHeight;
+    PostsParser *postsParser;
 }
 
 @end
@@ -29,29 +33,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    postsParser = [[PostsParser alloc] init];
+    
     mainCellHeight = self.view.bounds.size.height*0.4 - halfOffset/2;
     articleCellHeight = (self.view.bounds.size.height - mainCellHeight - navBarHeight)/3 + 7;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"devLogo"] scaledToSize:CGSizeMake(100, 35)]];
-    _posts = [[NSMutableArray alloc] initWithArray:@[@"Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.", @"Heartbleed – новое слово в маркетинге багов.", @"Злой гений создал гибрид '2048' и 'Flappy Bird' на погибель вашей продуктивности.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies."]];
+    _posts = [postsParser getPosts];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Новости" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
-    //////
-    /*NSString *path = [[NSBundle mainBundle] pathForResource:@"js" ofType:@"html"];
-     [view loadRequest:[NSURL fileURLWithPath:path]];
-     
-     //NSString *html = [view stringByEvaluatingJavaScriptFromString:@"(function(){var elem = \"dfdfvdfvdfdfvd\"; return elem.length;})();"];
-     NSString *html = [view stringByEvaluatingJavaScriptFromString:@"(function(){var elem = \"dfdfvdfvdfdfvd\"; return elem.length;})();"];
-     */
-    ///last
-    /*UIWebView *view = [[UIWebView alloc] init];
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://companies.dev.by/show_replies?id=6091&time=2014-05-07+20%3A21%3A26+%2B0300"]];
-    NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSRange r = [html rangeOfString:@"root.append("];
-    NSString *x = [html substringFromIndex:r.location + r.length];
-    [view loadHTMLString:x baseURL:nil];
-    [self.view addSubview:view];*/
-    //////cccc
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
@@ -98,7 +88,7 @@
         {
             cell = [[MainArticleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             MainArticleCell * articleCell = (MainArticleCell *)cell;
-            articleCell.title = _posts[indexPath.row];
+            articleCell.title = [(Post *)_posts[indexPath.row] title];
             articleCell.image = [UIImage imageNamed:@"devImage"];
             articleCell.height = mainCellHeight;
             [articleCell drawCell];
@@ -112,7 +102,7 @@
         {
             cell = [[ArticleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             ArticleCell * articleCell = (ArticleCell *)cell;
-            articleCell.title = _posts[indexPath.row];
+            articleCell.title = [(Post *)_posts[indexPath.row] title];
             articleCell.date = @"25 апреля в 08:26";
             articleCell.image = [UIImage imageNamed:@"devImage3"];
             articleCell.height = articleCellHeight;
@@ -129,27 +119,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+{    
     SlideViewController* slideViewController = [[SlideViewController alloc]initWithIndex:indexPath.row];
     slideViewController.delegate = self;
     [self.navigationController pushViewController:slideViewController animated:YES];
-    
-    
-//    DetailPostsViewController * detailViewController = [[DetailPostsViewController alloc] init];
-//    detailViewController.title = _posts[indexPath.row];
-//    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-//    if (indexPath == 0)
-//    {
-//        MainArticleCell * articleCell = (MainArticleCell *)cell;
-//        detailViewController.image = articleCell.image;
-//    }
-//    else
-//    {
-//        ArticleCell * articleCell = (ArticleCell *)cell;
-//        detailViewController.image = articleCell.image;
-//    }
-//    [self.navigationController pushViewController:detailViewController animated:YES];
+
 }
 
 @end
