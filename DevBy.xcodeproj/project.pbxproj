@@ -555,9 +555,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = AD;
 				TargetAttributes = {
-					5D29B10818F7CF8F006DCD4F = {
-						DevelopmentTeam = S6T4VJ437P;
-					};
 					5D29B12318F7CF8F006DCD4F = {
 						TestTargetID = 5D29B10818F7CF8F006DCD4F;
 					};
@@ -779,7 +776,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DevBy/DevBy-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
@@ -803,7 +800,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeny Hil (D6V35V2MGW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DevBy/DevBy-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
