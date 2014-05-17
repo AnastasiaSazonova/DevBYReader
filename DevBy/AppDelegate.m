@@ -10,6 +10,7 @@
 #import "PostsViewController.h"
 #import "SlideViewController.h"
 #import "MSMainViewController.h"
+#import "HTMLParser.h"
 
 @implementation AppDelegate
 
@@ -32,7 +33,7 @@
     
     [self.window makeKeyAndVisible];
     
-    
+    [HTMLParser sharedInstance];
     
     return YES;
 //    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

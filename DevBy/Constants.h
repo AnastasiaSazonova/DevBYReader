@@ -17,6 +17,15 @@
 
 enum
 {
+    newsCells,
+    posts,
+    companies,
+    vacancies,
+    events
+};
+
+enum
+{
     redColor,
     greenColor
 };

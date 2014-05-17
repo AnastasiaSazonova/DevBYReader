@@ -15,7 +15,7 @@
 #import "Constants.h"
 
 #import "SlideViewController.h"
-
+#import "HTMLParser.h"
 
 @interface PostsViewController () <SlideViewDelegate>
 {
@@ -28,6 +28,13 @@
 @end
 
 @implementation PostsViewController
+
+-(void)loadView
+{
+    [super loadView];
+    HTMLParser* parse = [HTMLParser sharedInstance];
+    [parse startParseCategory:NEWS andPostfixOfUrl:nil];
+}
 
 - (void)viewDidLoad
 {
