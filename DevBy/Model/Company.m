@@ -10,6 +10,6 @@
 
 @implementation Company
 
-@synthesize name;
+@synthesize name, postfix;
 
 @end

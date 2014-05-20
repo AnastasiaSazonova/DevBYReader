@@ -45,6 +45,9 @@ NSString *const PrefixCompanyUrl = @"http://companies.dev.by/";
         TFHppleElement *data = [element firstChildWithTagName:@"td"];
         NSString *companyName = [data.attributes objectForKey:@"data"];
         company.name = companyName;
+        
+        NSString *companyPostfix = [data.attributes objectForKey:@"href"];
+        company.postfix = companyPostfix;
     }
     
     return companyNames;

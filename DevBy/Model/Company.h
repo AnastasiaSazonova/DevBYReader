@@ -11,5 +11,6 @@
 @interface Company : NSObject
 
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *postfix;
 
 @end

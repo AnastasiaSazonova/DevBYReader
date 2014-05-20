@@ -144,7 +144,7 @@
     [self.searchResults removeAllObjects];
     
     NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF.NAME contains[cd] %@",
+                                    predicateWithFormat:@"self.name contains[cd] %@",
                                     searchText];
     
     //self.searchResults = [NSMutableArray arrayWithArray:[self.companysNames filteredArrayUsingPredicate:resultPredicate]];  //? search bug after adding a customArray
@@ -175,16 +175,16 @@ shouldReloadTableForSearchString:(NSString *)searchString
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DetailCompanyViewController * detailCompanyViewController = [[DetailCompanyViewController alloc] init];
-    NSString * companysName;
+    NSString * companysPostfix;
     if (self.searchDisplayController.active)
     {
         indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-        companysName = [[self.searchResults objectAtIndex:indexPath.row] name];
+        companysPostfix = [[self.searchResults objectAtIndex:indexPath.row] postfix];
     }
     else
     {
         indexPath = [tableView indexPathForSelectedRow];
-        companysName = [[self.companysNames objectAtIndex:indexPath.row] name];
+        companysPostfix = [[self.companysNames objectAtIndex:indexPath.row] postfix];
     }
     //detailCompanyViewController.companysName = companysName;  //!
     [self.navigationController pushViewController:detailCompanyViewController animated:YES];
