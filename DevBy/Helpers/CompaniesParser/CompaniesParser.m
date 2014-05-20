@@ -8,7 +8,7 @@
 
 #import "CompaniesParser.h"
 
-NSString *const PrefixCompanyUrl = @"http://companies.dev.by/";
+NSString *const PrefixCompanyUrl = @"http://companies.dev.by";
 
 @interface CompaniesParser()
 {
@@ -46,7 +46,7 @@ NSString *const PrefixCompanyUrl = @"http://companies.dev.by/";
         NSString *companyName = [data.attributes objectForKey:@"data"];
         company.name = companyName;
         
-        NSString *companyPostfix = [data.attributes objectForKey:@"href"];
+        NSString *companyPostfix = [[data firstChildWithTagName:@"a"] objectForKey:@"href"];
         company.postfix = companyPostfix;
     }
     
@@ -71,9 +71,14 @@ NSString *const PrefixCompanyUrl = @"http://companies.dev.by/";
     TFHppleElement *fullNameElement = [[[[node firstChildWithClassName:@"widget-companies-header"] firstChildWithClassName:@"clearfix"] firstChildWithClassName:@"left"] firstChildWithClassName:@"full-name"];
     NSString *formattedFullName = [textConverter getText:fullNameElement.children];
     result.fullName = formattedFullName;
+
+    TFHppleElement *aboutElement;
+    aboutElement = [[[[node firstChildWithClassName:@"companies-block"] firstChildWithClassName:@"widget-companies-description"] firstChildWithClassName:@"clearfix"] firstChildWithClassName:@"left data-desc"];
+    if(aboutElement == nil)
+        aboutElement = [[[[node firstChildWithClassName:@"companies-block"] firstChildWithClassName:@"widget-companies-description"] firstChildWithClassName:@"clearfix"] firstChildWithClassName:@"all data-desc left"];
+    TFHppleElement *aboutElResult = [aboutElement firstChildWithClassName:@"description truncate-description blog-node-content"];
     
-    TFHppleElement *aboutElement = [[[[[node firstChildWithClassName:@"companies-block"] firstChildWithClassName:@"widget-companies-description"] firstChildWithClassName:@"clearfix"] firstChildWithClassName:@"left data-desc"] firstChildWithClassName:@"description truncate-description blog-node-content"];
-    NSString *about = [textConverter getText:aboutElement.children];
+    NSString *about = [textConverter getText:aboutElResult.children];
     result.about = about;
     
     CommentsParser *commentParser = [[CommentsParser alloc] init];

@@ -11,4 +11,6 @@
 
 @interface DetailCompanyViewController : UIViewController
 
+- (id)initWithPostfix:(NSString *)companysPostfix;
+
 @end

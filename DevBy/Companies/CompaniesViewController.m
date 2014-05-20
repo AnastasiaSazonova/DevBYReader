@@ -174,19 +174,19 @@ shouldReloadTableForSearchString:(NSString *)searchString
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailCompanyViewController * detailCompanyViewController = [[DetailCompanyViewController alloc] init];
     NSString * companysPostfix;
+    
     if (self.searchDisplayController.active)
     {
         indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-        companysPostfix = [[self.searchResults objectAtIndex:indexPath.row] postfix];
+        companysPostfix = [self.searchResults[indexPath.row] postfix];
     }
     else
     {
         indexPath = [tableView indexPathForSelectedRow];
-        companysPostfix = [[self.companysNames objectAtIndex:indexPath.row] postfix];
+        companysPostfix = [self.companysNames[indexPath.row] postfix];
     }
-    //detailCompanyViewController.companysName = companysName;  //!
+    DetailCompanyViewController * detailCompanyViewController = [[DetailCompanyViewController alloc] initWithPostfix:companysPostfix];
     [self.navigationController pushViewController:detailCompanyViewController animated:YES];
 }
 

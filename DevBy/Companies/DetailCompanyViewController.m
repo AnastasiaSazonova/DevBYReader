@@ -23,6 +23,7 @@
     
     CompaniesParser *companiesParser;
     CompanyDetail *companyDetail;
+    NSString *postfix;
 }
 
 @property(nonatomic, strong)UITextView * textView;
@@ -34,6 +35,16 @@
 @end
 
 @implementation DetailCompanyViewController
+
+- (id)initWithPostfix:(NSString *)companysPostfix
+{
+    self = [super init];
+    if(self)
+    {
+        postfix = companysPostfix;
+    }
+    return self;
+}
 
 -(UITextView *)textView
 {
@@ -106,7 +117,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     companiesParser = [[CompaniesParser alloc] init];
-    companyDetail = [companiesParser getDetailInfoOf:@"wargaming-net-geym-strim"];
+    companyDetail = [companiesParser getDetailInfoOf:postfix/*@"wargaming-net-geym-strim"*/];
     
     commentsHeight = 0;
     feedbacksHeight = 0;
