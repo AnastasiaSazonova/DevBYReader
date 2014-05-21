@@ -12,6 +12,13 @@
 #define JOB @"Вакансии"
 #define EVENTS @"События"
 
+#define NEWS_URL @"http://dev.by"
+#define NEWS_XPATH @"//div[@class='lists-blogs']"
+
+#define COMPANYS_URL @"http://companies.dev.by"
+#define JOB_URL @"http://jobs.dev.by"
+#define EVENTS_URL @"http://events.dev.by"
+
 #define MOVE_RIGHT @"moveRight"
 #define MOVE_LEFT @"moveLeft"
 

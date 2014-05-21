@@ -9,9 +9,13 @@
 #import "DetailPostsViewController.h"
 #import "CommentsViewController.h"
 #import "Constants.h"
+#import "HTMLParser.h"
 
-@interface DetailPostsViewController ()
-
+@interface DetailPostsViewController () <HTMLParserDelegate>
+{
+    NSString* urlPostfix;
+    HTMLParser* parse;
+}
 @property(nonatomic, assign)float totalHeight;
 
 @property(nonatomic, strong)NSString * text;
@@ -20,6 +24,26 @@
 @end
 
 @implementation DetailPostsViewController
+
+- (id)initWithUrlPrefix:(NSString*)postfix
+{
+    self = [super init];
+    if (self) {
+//        urlPostfix = postfix;
+//        parse = [HTMLParser sharedInstance];
+//        [parse startParseCategory:NEWS andPostfixOfUrl:postfix];
+//        parse.delegate = self;
+    }
+    return self;
+}
+
+//- (void) parseData:(id) data WithIdentifier:(NSString *)identifier urlPostfix:(NSString *) postfix
+//{
+//    if([identifier isEqualToString:NEWS] && [postfix isEqualToString:urlPostfix])
+//    {
+//        NSLog(@"add data to forms");
+//    }
+//}
 
 -(NSString *)text
 {
@@ -120,6 +144,16 @@
 {
     CommentsViewController * commentsViewController = [[CommentsViewController alloc] init];
     [self.navigationController pushViewController:commentsViewController animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    if (![[self.navigationController viewControllers] containsObject:self])
+    {
+        [parse finishParse];
+    }
 }
 
 @end

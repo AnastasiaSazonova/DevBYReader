@@ -51,7 +51,7 @@
 		5DD0888F1906307E008601DB /* DetailVacanciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0888E1906307E008601DB /* DetailVacanciesViewController.m */; };
 		5DD088921906319D008601DB /* MiddleJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD088911906319D008601DB /* MiddleJobCell.m */; };
 		5DD08895190631B2008601DB /* StandardJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD08894190631B2008601DB /* StandardJobCell.m */; };
-		8499BCEE191AB08600239F84 /* DevBy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8499BCED191AB08600239F84 /* DevBy-Info.plist */; };
+		84FE2550192972ED006B8E4D /* DevBy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84FE254F192972ED006B8E4D /* DevBy-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,7 +142,7 @@
 		5DD08893190631B2008601DB /* StandardJobCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardJobCell.h; sourceTree = "<group>"; };
 		5DD08894190631B2008601DB /* StandardJobCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardJobCell.m; sourceTree = "<group>"; };
 		5DD0889619063238008601DB /* Job.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
-		8499BCED191AB08600239F84 /* DevBy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DevBy-Info.plist"; sourceTree = "<group>"; };
+		84FE254F192972ED006B8E4D /* DevBy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DevBy-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,7 +248,7 @@
 		5D29B11318F7CF8F006DCD4F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8499BCED191AB08600239F84 /* DevBy-Info.plist */,
+				84FE254F192972ED006B8E4D /* DevBy-Info.plist */,
 				5D82DDA918F7D0CE009E4D3E /* en.lproj */,
 				5D82DDBC18F7D0CE009E4D3E /* reveal-icon.png */,
 				5D82DDC418F7D0CE009E4D3E /* SWRevealViewController */,
@@ -469,7 +469,7 @@
 				5D29B11718F7CF8F006DCD4F /* InfoPlist.strings in Resources */,
 				5D82DDCB18F7D0CE009E4D3E /* InfoPlist.strings in Resources */,
 				5D29B11F18F7CF8F006DCD4F /* Images.xcassets in Resources */,
-				8499BCEE191AB08600239F84 /* DevBy-Info.plist in Resources */,
+				84FE2550192972ED006B8E4D /* DevBy-Info.plist in Resources */,
 				5D82DDD418F7D0CE009E4D3E /* reveal-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

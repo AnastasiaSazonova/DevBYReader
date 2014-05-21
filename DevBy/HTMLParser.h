@@ -8,12 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol HTMLParserDelegate
+
+- (void) parseData:(NSDictionary*) dataDictionary WithUrl:(NSString *)url andXPath:(NSString *) xpath;
+
+@end
+
 @interface HTMLParser : NSObject
 
-
-
 +(HTMLParser *)sharedInstance;
-- (void)startParseCategory:(NSString *)identifier andPostfixOfUrl:(NSString *) postfix;
 
+@property(nonatomic, strong) id<HTMLParserDelegate> delegate;
+
+- (void)startParseFromUrl:(NSString*)url andXPath:(NSString*) xpath;
+- (void) finishParse;
 
 @end

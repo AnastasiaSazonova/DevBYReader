@@ -17,7 +17,7 @@
 #import "SlideViewController.h"
 #import "HTMLParser.h"
 
-@interface PostsViewController () <SlideViewDelegate>
+@interface PostsViewController () <SlideViewDelegate, HTMLParserDelegate>
 {
     NSMutableArray * _posts;
     float mainCellHeight;
@@ -29,11 +29,24 @@
 
 @implementation PostsViewController
 
--(void)loadView
+- (id)init
 {
-    [super loadView];
-    HTMLParser* parse = [HTMLParser sharedInstance];
-    [parse startParseCategory:NEWS andPostfixOfUrl:nil];
+    self = [super init];
+    if (self)
+    {
+        HTMLParser* parse = [HTMLParser sharedInstance];
+        [parse startParseFromUrl:NEWS_URL andXPath:NEWS_XPATH];
+        parse.delegate = self;
+    }
+    return self;
+}
+
+-(void)parseData:(NSDictionary *)dataDictionary WithUrl:(NSString *)url andXPath:(NSString *)xpath
+{
+    if([url isEqualToString:NEWS_URL] && [xpath isEqualToString:NEWS_XPATH])
+    {
+        NSLog(@" DATA COME");
+    }
 }
 
 - (void)viewDidLoad

@@ -10,18 +10,10 @@
 #import "Constants.h"
 #import "TFHpple.h"
 
-@interface HTMLParser()
-{
-    NSString *str;
-    int count;
-    NSMutableArray* xpathArray;
-}
-@property(nonatomic, strong)TFHpple * parser;
-@property (nonatomic, strong) NSString *url;
-
-@end
-
 @implementation HTMLParser
+{
+    NSOperationQueue* operationQueue;
+}
 
 + (HTMLParser *)sharedInstance
 {
@@ -33,90 +25,85 @@
     return sharedInstance;
 }
 
--(NSString *)url
+- (id)init
 {
-    if (!_url)
+    self = [super init];
+    if (self)
     {
-        _url = @"http://dev.by/blogs/main/analitika-na-github"; //@"http://dev.by";
-        //@"http://jobs.dev.by";//@"http://dev.by/?page=2";//@"http://dev.by/blogs/toptal/init-js-zachem-i-kak-razrabatyvat-s-full-stack-javascript";
-        //        @"http://dev.by";
+        operationQueue = [[NSOperationQueue alloc]init];
     }
-    return _url;
+    return self;
 }
 
-- (void)startParseCategory:(NSString*)identifier andPostfixOfUrl:(NSString*) postfix
+- (void)startParseFromUrl:(NSString*)url andXPath:(NSString*) xpath
 {
-    if([identifier isEqualToString: NEWS])
+    NSURLRequest *request=[NSURLRequest requestWithURL:[NSURL URLWithString: url] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:operationQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
     {
-        str = [NSString string];
-        self.url = @"http://dev.by";
-        if(!postfix)
-            xpathArray = [NSMutableArray arrayWithObject:@"//div[@class='lists-blogs']"];
-        else
+        if(error || [data length] ==0)
         {
-            _url =  [NSString stringWithFormat:@"%@%@", _url,postfix];
-            xpathArray = [NSMutableArray arrayWithObjects:@"//div[@class='blog-views-node item-body']", @"//div[@class='comments-list list-more']", nil];
+             [[NSOperationQueue mainQueue] addOperationWithBlock:^
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:error.description message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }];
+            return;
         }
-        [self performSelectorInBackground:@selector(startParse) withObject:nil];
-    }
-}
-
-- (void) startParse
-{
-    NSURL *tutorialsUrl = [NSURL URLWithString:self.url];
-    NSData *tutorialsHtmlData = [NSData dataWithContentsOfURL:tutorialsUrl];
-    
-    self.parser = [TFHpple hppleWithHTMLData:tutorialsHtmlData];
-    
-    for(NSString* xpath in xpathArray)
-    {
-        NSArray * jobsNodes = [self.parser searchWithXPathQuery:xpath];
-        
+         
+        TFHpple * parser = [TFHpple hppleWithHTMLData:data];
+         
+        NSArray * jobsNodes = [parser searchWithXPathQuery:xpath];
+        NSMutableDictionary* htmlDIctionary = [NSMutableDictionary dictionary];
+             
         for(TFHppleElement *element in [[jobsNodes firstObject] children])
         {
-            [self cycle:element];
+            [self cycle:element dictionary:htmlDIctionary];
         }
-    }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"%@",str);
-    });
+
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+        {
+             [self.delegate parseData:htmlDIctionary WithUrl:url andXPath:xpath];
+        }];
+     }];
 }
 
-- (void) cycle:(TFHppleElement*) element
+- (void) finishParse
 {
-    if(![element hasChildren]){
-        str = [NSString stringWithFormat:@"%@%@", str, [element content]];
+    [operationQueue cancelAllOperations];
+}
+
+- (void) cycle:(TFHppleElement*) element dictionary:(NSMutableDictionary*)dictionary
+{
+    if(![element hasChildren] && [element content])
+    {
+        [self setDictionary: dictionary object: [element content]  ForKey: element.tagName];
         return;
-        //        NSLog(@"%@  backSpace    %d",[element content], [[element content] length] );
-        //        NSString* string = [[element content] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        //        string = [string stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-        //        string = [NSString stringWithFormat:@"\n%@",string];
-        //        NSLog(@"  %@ AfterbackSpace %d",string, [[element content] length]);
     }
     
+    NSMutableDictionary* elementDictionary = [NSMutableDictionary dictionary];
     for(TFHppleElement *children in [element children])
     {
-        if([[[[children parent] parent]parent].tagName isEqualToString:@"ol"] && [[children parent].tagName isEqualToString:@"p"])
-        {
-            str = [NSString stringWithFormat:@"%@ %d. %@", str,count, [children content]];
-            count += 1;
-            continue;
-        }
-        if([[[[children parent] parent]parent].tagName isEqualToString:@"ul"] && [[children parent].tagName isEqualToString:@"pre"])
-        {
-            str = [NSString stringWithFormat:@"%@ %d. %@", str,1, [children content]];
-            continue;
-        }
-        if(![children hasChildren] && [children.tagName isEqualToString:@"text"])
-        {
-            str = [NSString stringWithFormat:@"%@ %@", str, [children content]];
-        }
-        if (![children hasChildren] && [children.tagName isEqualToString:@"img"])
-        {
-            //            NSLog(@"%@  IMAGE ",[children objectForKey:@"src"]);
-        }
+        [self setDictionary: dictionary object: elementDictionary ForKey:element.tagName];
+        
         if([children hasChildren])
-            [self cycle:children];
+            [self cycle:children dictionary: elementDictionary];
+        
+        if(![children hasChildren] && [children content])
+        {
+            [self setDictionary:elementDictionary object:[children content] ForKey:children.tagName];
+        }
+    }
+}
+
+- (void) setDictionary:(NSMutableDictionary*)dictionary object:(id) object ForKey:(NSString*) key
+{
+    if ([dictionary objectForKey:key])
+    {
+        [dictionary setObject:object forKey:key];
+    } else
+    {
+        [dictionary setObject: object forKey:[NSString stringWithFormat:@"%@_%d",key, [dictionary.allKeys count] + 1]];
     }
 }
 
