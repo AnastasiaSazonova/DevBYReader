@@ -16,7 +16,7 @@
 
 #import "SlideViewController.h"
 #import "HTMLParser.h"
-#import "NewsParse.h"
+
 
 @interface PostsViewController () <SlideViewDelegate, HTMLParserDelegate>
 {
@@ -46,8 +46,7 @@
 {
     if([url isEqualToString:NEWS_URL] && [xpath isEqualToString:NEWS_XPATH])
     {
-        NewsParse* newsParse = [[NewsParse alloc]init];
-        [newsParse parseFromDictionary:dataDictionary];
+        NSLog(@"%@",dataDictionary);
     }
 }
 

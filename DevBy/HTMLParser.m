@@ -85,7 +85,6 @@
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^
      {
-         NSLog(@"%@",htmlDIctionary);
          [self.delegate parseData:htmlDIctionary WithUrl:currentUrl andXPath:xpath];
      }];
 }

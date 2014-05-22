@@ -51,7 +51,6 @@
 		5DD0888F1906307E008601DB /* DetailVacanciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0888E1906307E008601DB /* DetailVacanciesViewController.m */; };
 		5DD088921906319D008601DB /* MiddleJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD088911906319D008601DB /* MiddleJobCell.m */; };
 		5DD08895190631B2008601DB /* StandardJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD08894190631B2008601DB /* StandardJobCell.m */; };
-		8499DE3C192E01AD009B6C69 /* NewsParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8499DE3B192E01AD009B6C69 /* NewsParse.m */; };
 		8499DE64192E184D009B6C69 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8499DE40192E184D009B6C69 /* AFHTTPRequestOperation.m */; };
 		8499DE65192E184D009B6C69 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8499DE42192E184D009B6C69 /* AFHTTPRequestOperationManager.m */; };
 		8499DE66192E184D009B6C69 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8499DE44192E184D009B6C69 /* AFHTTPSessionManager.m */; };
@@ -160,8 +159,6 @@
 		5DD08893190631B2008601DB /* StandardJobCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardJobCell.h; sourceTree = "<group>"; };
 		5DD08894190631B2008601DB /* StandardJobCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardJobCell.m; sourceTree = "<group>"; };
 		5DD0889619063238008601DB /* Job.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
-		8499DE3A192E01AD009B6C69 /* NewsParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsParse.h; sourceTree = "<group>"; };
-		8499DE3B192E01AD009B6C69 /* NewsParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsParse.m; sourceTree = "<group>"; };
 		8499DE3F192E184D009B6C69 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		8499DE40192E184D009B6C69 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		8499DE41192E184D009B6C69 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -298,7 +295,6 @@
 				5D29B11318F7CF8F006DCD4F /* Supporting Files */,
 				5D56FD1C1927A5E400BE5494 /* HTMLParser.h */,
 				5D56FD1D1927A5E400BE5494 /* HTMLParser.m */,
-				8499DE39192E0189009B6C69 /* Parser */,
 			);
 			path = DevBy;
 			sourceTree = "<group>";
@@ -447,15 +443,6 @@
 				5D1630B5190BA510005AEE23 /* FeedbackCell.m */,
 			);
 			path = "Custom cells";
-			sourceTree = "<group>";
-		};
-		8499DE39192E0189009B6C69 /* Parser */ = {
-			isa = PBXGroup;
-			children = (
-				8499DE3A192E01AD009B6C69 /* NewsParse.h */,
-				8499DE3B192E01AD009B6C69 /* NewsParse.m */,
-			);
-			name = Parser;
 			sourceTree = "<group>";
 		};
 		8499DE3D192E1835009B6C69 /* AFNetwork */ = {
@@ -661,7 +648,6 @@
 				5D0B8C3F19115DA500A62318 /* SlideViewController.m in Sources */,
 				5DD08895190631B2008601DB /* StandardJobCell.m in Sources */,
 				5D2E28E919059FD200C64769 /* PremiumJobCell.m in Sources */,
-				8499DE3C192E01AD009B6C69 /* NewsParse.m in Sources */,
 				8499DE65192E184D009B6C69 /* AFHTTPRequestOperationManager.m in Sources */,
 				5D82DDDF18F7D305009E4D3E /* EventsViewController.m in Sources */,
 			);
