@@ -118,7 +118,13 @@
             [array addObject:[NSDictionary dictionaryWithObject:[[children firstChild] content]forKey:[NSString stringWithFormat:@"%@%@/title_link",keyForDictionary,children.tagName]]];
             continue;
         }
-        if([children.tagName isEqualToString:@"a"] && [children.attributes.allKeys count] == 1)
+        if([children.tagName isEqualToString:@"a"] && [[children.attributes  objectForKey:@"target"] isEqualToString:@"_blank"])
+        {
+            [array addObject:[NSDictionary dictionaryWithObject:[children.attributes  objectForKey:@"href"]forKey:[NSString stringWithFormat:@"%@%@/blank_url",keyForDictionary,children.tagName]]];
+            [array addObject:[NSDictionary dictionaryWithObject:[[children firstChild] content]forKey:[NSString stringWithFormat:@"%@%@/blank_description",keyForDictionary,children.tagName]]];
+            continue;
+        }
+        if([children.tagName isEqualToString:@"a"] && [children.attributes.allKeys count] == 1 && [children.attributes  objectForKey:@"href"])
         {
             [array addObject:[NSDictionary dictionaryWithObject:[children.attributes  objectForKey:@"href"]forKey:[NSString stringWithFormat:@"%@%@/link_text_url",keyForDictionary,children.tagName]]];
             [array addObject:[NSDictionary dictionaryWithObject:[[children firstChild] content]forKey:[NSString stringWithFormat:@"%@%@/link_text",keyForDictionary,children.tagName]]];

@@ -36,9 +36,11 @@
     if (self)
     {
         HTMLParser* parse = [HTMLParser sharedInstance];
-        [parse startParseFromUrl:NEWS_URL andXPath:NEWS_XPATH];
+        [parse startParseFromUrl:@"http://dev.by/blogs/main/vstrecha-soobschestva-winitby-prezentatsii-dokladov-i-para-slov-o-konkurse-microsoft--2" andXPath:NEWS_CELL_XPATH];
         parse.delegate = self;
     }
+    
+//     if([url isEqualToString:@"http://dev.by/blogs/main/vstrecha-soobschestva-winitby-prezentatsii-dokladov-i-para-slov-o-konkurse-microsoft--2"] && [xpath isEqualToString:NEWS_CELL_XPATH])
     return self;
 }
 
