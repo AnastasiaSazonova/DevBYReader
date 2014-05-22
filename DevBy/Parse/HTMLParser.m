@@ -114,7 +114,7 @@
         }
         if([children.tagName isEqualToString:@"a"] && [[children.attributes  objectForKey:@"class"] isEqualToString:@"blog-node-title"])
         {
-            [array addObject:[NSDictionary dictionaryWithObject:[children.attributes  objectForKey:@"href"]forKey:[NSString stringWithFormat:@"%@%@/title_link_url",keyForDictionary,children.tagName]]];
+            [array addObject:[NSDictionary dictionaryWithObject:[children.attributes  objectForKey:@"href"]forKey:[NSString stringWithFormat:@"%@%@/title_url_link",keyForDictionary,children.tagName]]];
             [array addObject:[NSDictionary dictionaryWithObject:[[children firstChild] content]forKey:[NSString stringWithFormat:@"%@%@/title_link",keyForDictionary,children.tagName]]];
             continue;
         }
@@ -126,8 +126,8 @@
         }
         if([children.tagName isEqualToString:@"a"] && [children.attributes.allKeys count] == 1 && [children.attributes  objectForKey:@"href"])
         {
-            [array addObject:[NSDictionary dictionaryWithObject:[children.attributes  objectForKey:@"href"]forKey:[NSString stringWithFormat:@"%@%@/link_text_url",keyForDictionary,children.tagName]]];
-            [array addObject:[NSDictionary dictionaryWithObject:[[children firstChild] content]forKey:[NSString stringWithFormat:@"%@%@/link_text",keyForDictionary,children.tagName]]];
+            [array addObject:[NSDictionary dictionaryWithObject:[children.attributes  objectForKey:@"href"]forKey:[NSString stringWithFormat:@"%@%@/link_sentence_url",keyForDictionary,children.tagName]]];
+            [array addObject:[NSDictionary dictionaryWithObject:[[children firstChild] content]forKey:[NSString stringWithFormat:@"%@%@/link_sentence",keyForDictionary,children.tagName]]];
             continue;
         }
         if(![children hasChildren] && [children.tagName isEqualToString:@"img"])

@@ -18,7 +18,7 @@
 {
     CGRect imageFrame = CGRectMake(0, 0, self.bounds.size.width, self.height);
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-    imageView.image = self.image;
+    [imageView setImageWithURL:[NSURL URLWithString:self.imageUrl]];
     
     CGRect titleLabelRect = CGRectMake(halfOffset / 2, 0, self.bounds.size.width - halfOffset, NSIntegerMax);
     UILabel * titleLabel = [[UILabel alloc] initWithFrame:titleLabelRect];

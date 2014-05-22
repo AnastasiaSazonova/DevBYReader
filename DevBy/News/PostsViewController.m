@@ -16,14 +16,16 @@
 
 #import "SlideViewController.h"
 #import "HTMLParser.h"
+#import "NewsParse.h"
+#import "NewsElement.h"
 
 
 @interface PostsViewController () <SlideViewDelegate, HTMLParserDelegate>
 {
     NSMutableArray * _posts;
     float mainCellHeight;
-    float articleCellHeight;
     NSMutableArray* cellsArray;
+    NSMutableDictionary* cellsDictionary;
 }
 
 @end
@@ -36,11 +38,9 @@
     if (self)
     {
         HTMLParser* parse = [HTMLParser sharedInstance];
-        [parse startParseFromUrl:@"http://dev.by/blogs/main/vstrecha-soobschestva-winitby-prezentatsii-dokladov-i-para-slov-o-konkurse-microsoft--2" andXPath:NEWS_CELL_XPATH];
+        [parse startParseFromUrl:NEWS_URL andXPath:NEWS_XPATH];
         parse.delegate = self;
     }
-    
-//     if([url isEqualToString:@"http://dev.by/blogs/main/vstrecha-soobschestva-winitby-prezentatsii-dokladov-i-para-slov-o-konkurse-microsoft--2"] && [xpath isEqualToString:NEWS_CELL_XPATH])
     return self;
 }
 
@@ -48,38 +48,35 @@
 {
     if([url isEqualToString:NEWS_URL] && [xpath isEqualToString:NEWS_XPATH])
     {
-        NSLog(@"%@",dataDictionary);
+        NewsParse *parser = [[NewsParse alloc]init];
+        [self fillCellArrayWithDataArray:[parser getDataFromDictionary:dataDictionary]];
     }
-}
-
-
-
--(void)workWithTitle:(NSDictionary*)data
-{
-    NSLog(@"%@",data);
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     cellsArray = [NSMutableArray array];
+    cellsDictionary = [NSMutableDictionary dictionary];
     mainCellHeight = self.view.bounds.size.height*0.4 - halfOffset/2;
-    articleCellHeight = (self.view.bounds.size.height - mainCellHeight - navBarHeight)/3 + 7;
-    _posts = [[NSMutableArray alloc] initWithArray:@[@"Full-stack разработчики: Программисты, понимающие весь стек, обычно создают более качественные приложения.", @"Heartbleed .", @"Злой гений создал гибрид '2048' и 'Flappy Bird' на погибель вашей продуктивности.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companies.", @"Сегодня в 18:00 начнется прямая трансляция церемонии награждения Belarusian IT Awards и Best IT Companiesdufhvuidshviufdhvuihadsioufvhaiusdhviuasdhviuoadshiuvhadsiuvhiuasdhviuadshviuhasivuhsadiuvhisad."]];
-    
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Новости" style:UIBarButtonItemStylePlain target:nil action:nil];
-    [self fillCellArray];
 }
 
-- (void)fillCellArray
+- (void)fillCellArrayWithDataArray:(NSArray*)dataArray
 {
-    [_posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [dataArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        if(![obj isKindOfClass:NewsElement.class])
+            return ;
+        
+        NewsElement* element = (NewsElement*)obj;
+        
         if(idx == 0)
-            [cellsArray addObject:[self createMainCellWithTitle:(NSString*)obj image:[UIImage imageNamed:@"devImage3"]]];
+            [cellsArray addObject:[self createMainCellWithElement:element]];
         else
-            [cellsArray addObject:[self createArticleCellWithTitle:(NSString*) obj date:@"25 апреля в 08:26" image:[UIImage imageNamed:@"devImage3"]]];
+            [cellsArray addObject:[self createArticleCellWithElement:element]];
     }];
 
+    [self.tableView reloadData];
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
@@ -91,22 +88,22 @@
     return newImage;
 }
 
-- (MainArticleCell*) createMainCellWithTitle:(NSString *)title image:(UIImage*)image
+- (MainArticleCell*) createMainCellWithElement:(NewsElement*)element
 {
     MainArticleCell * cell = [[MainArticleCell alloc] init];
-    cell.title = title;
-    cell.image = image;
+    cell.title = element.title;
+    cell.imageUrl = element.image;
     cell.height = mainCellHeight;
     [cell drawCell];
     return cell;
 }
 
-- (ArticleCell*)createArticleCellWithTitle:(NSString *)title date:(NSString*) date image:(UIImage*)image
+- (ArticleCell*)createArticleCellWithElement:(NewsElement*)element
 {
     ArticleCell * cell = [[ArticleCell alloc] init];
-    cell.title = title;
-    cell.date = date;
-    cell.image = image;
+    cell.title = element.title;
+    cell.date = element.time;
+    cell.imageUrl = element.image;
     [cell drawCell];
     return cell;
 }
@@ -125,15 +122,14 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.row == 0)
-//    {
-//        return mainCellHeight;
-//    }
-//    else
-//    {
-//        return ((ArticleCell*) [cellsArray objectAtIndex:indexPath.row]).height;
-//    }
-     return ((ArticleCell*) [cellsArray objectAtIndex:indexPath.row]).height;
+    if (indexPath.row == 0)
+    {
+        return mainCellHeight;
+    }
+    else
+    {
+        return ((ArticleCell*) [cellsArray objectAtIndex:indexPath.row]).height;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

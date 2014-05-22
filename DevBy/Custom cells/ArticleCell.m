@@ -8,6 +8,7 @@
 
 #import "ArticleCell.h"
 #import "Constants.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation ArticleCell
 
@@ -54,8 +55,7 @@
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.bounds.size.width, self.height);
     
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.origin.x + self.frame.size.width - 10 - 60, self.center.y - 30, 60,  60)];
-    [imageView setBackgroundColor:[UIColor yellowColor]];
-    imageView.image = self.image;
+    [imageView setImageWithURL:[NSURL URLWithString:self.imageUrl]];
     [self addSubview:imageView];
 }
 
