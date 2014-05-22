@@ -13,7 +13,7 @@
 
 @interface DetailPostsViewController () <HTMLParserDelegate>
 {
-    NSString* urlPostfix;
+    NSString* articleCellurl;
     HTMLParser* parse;
 }
 @property(nonatomic, assign)float totalHeight;
@@ -25,25 +25,26 @@
 
 @implementation DetailPostsViewController
 
-- (id)initWithUrlPrefix:(NSString*)postfix
+- (id)initWithUrl:(NSString*)url
 {
     self = [super init];
     if (self) {
-//        urlPostfix = postfix;
-//        parse = [HTMLParser sharedInstance];
-//        [parse startParseCategory:NEWS andPostfixOfUrl:postfix];
-//        parse.delegate = self;
+        articleCellurl = url;
+        parse = [HTMLParser sharedInstance];
+        [parse startParseFromUrl:articleCellurl andXPath:NEWS_CELL_XPATH];
+        parse.delegate = self;
     }
     return self;
 }
 
-//- (void) parseData:(id) data WithIdentifier:(NSString *)identifier urlPostfix:(NSString *) postfix
-//{
-//    if([identifier isEqualToString:NEWS] && [postfix isEqualToString:urlPostfix])
-//    {
-//        NSLog(@"add data to forms");
-//    }
-//}
+
+-(void)parseData:(NSDictionary *)dataDictionary WithUrl:(NSString *)url andXPath:(NSString *)xpath
+{
+    if([articleCellurl isEqualToString:url] && [xpath isEqualToString:NEWS_CELL_XPATH])
+    {
+    
+    }
+}
 
 -(NSString *)text
 {

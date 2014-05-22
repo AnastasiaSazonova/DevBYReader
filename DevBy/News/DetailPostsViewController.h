@@ -10,6 +10,6 @@
 
 @interface DetailPostsViewController : UIViewController
 
-
+- (id)initWithUrl:(NSString*)url;
 
 @end

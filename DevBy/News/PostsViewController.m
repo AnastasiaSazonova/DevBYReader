@@ -16,6 +16,7 @@
 
 #import "SlideViewController.h"
 #import "HTMLParser.h"
+#import "NewsParse.h"
 
 @interface PostsViewController () <SlideViewDelegate, HTMLParserDelegate>
 {
@@ -45,8 +46,16 @@
 {
     if([url isEqualToString:NEWS_URL] && [xpath isEqualToString:NEWS_XPATH])
     {
-        NSLog(@" DATA COME");
+        NewsParse* newsParse = [[NewsParse alloc]init];
+        [newsParse parseFromDictionary:dataDictionary];
     }
+}
+
+
+
+-(void)workWithTitle:(NSDictionary*)data
+{
+    NSLog(@"%@",data);
 }
 
 - (void)viewDidLoad
@@ -115,14 +124,15 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0)
-    {
-        return mainCellHeight;
-    }
-    else
-    {
-        return ((ArticleCell*) [cellsArray objectAtIndex:indexPath.row]).height;
-    }
+//    if (indexPath.row == 0)
+//    {
+//        return mainCellHeight;
+//    }
+//    else
+//    {
+//        return ((ArticleCell*) [cellsArray objectAtIndex:indexPath.row]).height;
+//    }
+     return ((ArticleCell*) [cellsArray objectAtIndex:indexPath.row]).height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -13,6 +13,8 @@
 @implementation HTMLParser
 {
     NSOperationQueue* operationQueue;
+    NSString* currentUrl;
+    NSData* currentData;
 }
 
 + (HTMLParser *)sharedInstance
@@ -30,6 +32,8 @@
     self = [super init];
     if (self)
     {
+        currentUrl = [NSString string];
+        currentData = [NSData data];
         operationQueue = [[NSOperationQueue alloc]init];
     }
     return self;
@@ -37,8 +41,15 @@
 
 - (void)startParseFromUrl:(NSString*)url andXPath:(NSString*) xpath
 {
-    NSURLRequest *request=[NSURLRequest requestWithURL:[NSURL URLWithString: url] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
+    if([currentUrl isEqualToString:url])
+    {
+        [operationQueue addOperationWithBlock:^{
+             [self parsingData:currentData withXPath:xpath];
+        }];
+        return;
+    }
     
+    NSURLRequest *request=[NSURLRequest requestWithURL:[NSURL URLWithString: url] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0f];
     [NSURLConnection sendAsynchronousRequest:request queue:operationQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
     {
         if(error || [data length] ==0)
@@ -50,21 +61,32 @@
             }];
             return;
         }
-         
-        TFHpple * parser = [TFHpple hppleWithHTMLData:data];
-         
-        NSArray * jobsNodes = [parser searchWithXPathQuery:xpath];
-        NSMutableDictionary* htmlDIctionary = [NSMutableDictionary dictionary];
-             
-        for(TFHppleElement *element in [[jobsNodes firstObject] children])
-        {
-            [self cycle:element dictionary:htmlDIctionary];
-        }
+        currentUrl = url;
+        currentData = data;
+        
+        [self parsingData:data withXPath:xpath];
+     }];
+}
 
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+- (void)parsingData:(NSData*)data withXPath:(NSString*)xpath
+{
+    NSMutableDictionary* htmlDIctionary = [NSMutableDictionary dictionary];
+    NSArray * jobsNodes = [[TFHpple hppleWithHTMLData:data] searchWithXPathQuery:xpath];
+    
+    for(TFHppleElement *element in [[jobsNodes firstObject] children])
+    {
+        if([element.attributes count] > 0)
         {
-             [self.delegate parseData:htmlDIctionary WithUrl:url andXPath:xpath];
-        }];
+            NSMutableArray* array = [NSMutableArray array];
+            [self cycle:element array:array key:[NSString string]];
+            [htmlDIctionary setObject:array forKey:[NSNumber numberWithInt:[htmlDIctionary.allValues count] + 1]];
+        }
+    }
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         NSLog(@"%@",htmlDIctionary);
+         [self.delegate parseData:htmlDIctionary WithUrl:currentUrl andXPath:xpath];
      }];
 }
 
@@ -73,37 +95,61 @@
     [operationQueue cancelAllOperations];
 }
 
-- (void) cycle:(TFHppleElement*) element dictionary:(NSMutableDictionary*)dictionary
+
+- (void) cycle:(TFHppleElement*) element array:(NSMutableArray*)array key:(NSString*) keyForDictionary
 {
     if(![element hasChildren] && [element content])
     {
-        [self setDictionary: dictionary object: [element content]  ForKey: element.tagName];
         return;
     }
     
-    NSMutableDictionary* elementDictionary = [NSMutableDictionary dictionary];
     for(TFHppleElement *children in [element children])
     {
-        [self setDictionary: dictionary object: elementDictionary ForKey:element.tagName];
-        
-        if([children hasChildren])
-            [self cycle:children dictionary: elementDictionary];
-        
-        if(![children hasChildren] && [children content])
+        if(![children hasChildren] && [children content] && [[children content] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0)
         {
-            [self setDictionary:elementDictionary object:[children content] ForKey:children.tagName];
+            continue;
         }
-    }
-}
-
-- (void) setDictionary:(NSMutableDictionary*)dictionary object:(id) object ForKey:(NSString*) key
-{
-    if ([dictionary objectForKey:key])
-    {
-        [dictionary setObject:object forKey:key];
-    } else
-    {
-        [dictionary setObject: object forKey:[NSString stringWithFormat:@"%@_%d",key, [dictionary.allKeys count] + 1]];
+        if([children hasChildren] && [children.tagName isEqualToString:@"span"])
+        {
+            continue;
+        }
+        if([children.tagName isEqualToString:@"a"] && [[children.attributes  objectForKey:@"class"] isEqualToString:@"blog-node-title"])
+        {
+            [array addObject:[NSDictionary dictionaryWithObject:[children.attributes  objectForKey:@"href"]forKey:[NSString stringWithFormat:@"%@%@/title_link_url",keyForDictionary,children.tagName]]];
+            [array addObject:[NSDictionary dictionaryWithObject:[[children firstChild] content]forKey:[NSString stringWithFormat:@"%@%@/title_link",keyForDictionary,children.tagName]]];
+            continue;
+        }
+        if([children.tagName isEqualToString:@"a"] && [children.attributes.allKeys count] == 1)
+        {
+            [array addObject:[NSDictionary dictionaryWithObject:[children.attributes  objectForKey:@"href"]forKey:[NSString stringWithFormat:@"%@%@/link_text_url",keyForDictionary,children.tagName]]];
+            [array addObject:[NSDictionary dictionaryWithObject:[[children firstChild] content]forKey:[NSString stringWithFormat:@"%@%@/link_text",keyForDictionary,children.tagName]]];
+            continue;
+        }
+        if(![children hasChildren] && [children.tagName isEqualToString:@"img"])
+        {
+            [array addObject:[NSDictionary dictionaryWithObject:[children objectForKey:@"src"] forKey:[NSString stringWithFormat:@"%@%@",keyForDictionary,children.tagName]]];
+            continue;
+        }
+        if(![children hasChildren] && [children content] && [children.tagName isEqualToString:@"text"])
+        {
+            [array addObject:[NSDictionary dictionaryWithObject:[children content] forKey:[NSString stringWithFormat:@"%@%@",keyForDictionary,children.tagName]]];
+            continue;
+        }
+        if([children hasChildren] && ![children.tagName isEqualToString:@"a"] && [children.tagName isEqualToString:@"div"])
+        {
+            [self cycle:children array:array key: keyForDictionary];
+            continue;
+        }
+        if([children hasChildren] && ![children.tagName isEqualToString:@"a"] && ![children.tagName isEqualToString:@"div"] && [keyForDictionary isEqualToString:@""])
+        {
+            [self cycle:children array:array key: [NSString stringWithFormat:@"%@%@/",keyForDictionary,children.tagName]];
+            continue;
+        }
+        if([children hasChildren] && ![children.tagName isEqualToString:@"a"] && ![children.tagName isEqualToString:@"div"] && ![keyForDictionary isEqualToString:@""])
+        {
+           [self cycle:children array:array key: [NSString stringWithFormat:@"%@/%@/",keyForDictionary,children.tagName]];
+            continue;
+        }
     }
 }
 

@@ -8,6 +8,7 @@
 
 #import "MainArticleCell.h"
 #import "Constants.h"
+#import "UIImageView+AFNetworking.h"
 
 #define MAX_ROWS 4
 

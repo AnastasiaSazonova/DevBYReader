@@ -14,6 +14,9 @@
 
 #define NEWS_URL @"http://dev.by"
 #define NEWS_XPATH @"//div[@class='lists-blogs']"
+#define NEWS_CELL_XPATH @"//div[@class='blog-views-node item-body']"
+#define NEWS_CELL_COMENTS_XPATH @"//div[@class='comments-list list-more']"
+
 
 #define COMPANYS_URL @"http://companies.dev.by"
 #define JOB_URL @"http://jobs.dev.by"

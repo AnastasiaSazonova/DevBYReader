@@ -8,16 +8,36 @@
 
 #import "CommentsViewController.h"
 #import "CommentsCell.h"
+#import "Constants.h"
+#import "HTMLParser.h"
 
-@interface CommentsViewController ()
-
+@interface CommentsViewController () <HTMLParserDelegate>
+{
+    NSString* articleCellurl;
+    HTMLParser* parse;
+}
 @end
 
 @implementation CommentsViewController
 
-- (void)viewDidLoad
+- (id)initWithUrl:(NSString*)url
 {
-    [super viewDidLoad];
+    self = [super init];
+    if (self) {
+        articleCellurl = url;
+        parse = [HTMLParser sharedInstance];
+        [parse startParseFromUrl:articleCellurl andXPath:NEWS_CELL_COMENTS_XPATH];
+        parse.delegate = self;
+    }
+    return self;
+}
+
+-(void)parseData:(NSDictionary *)dataDictionary WithUrl:(NSString *)url andXPath:(NSString *)xpath
+{
+    if([articleCellurl isEqualToString:url] && [xpath isEqualToString:NEWS_CELL_COMENTS_XPATH])
+    {
+        
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -66,7 +86,16 @@
     {
         [cell drawCellWithOffset:0];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
     
+    if (![[self.navigationController viewControllers] containsObject:self])
+    {
+        [parse finishParse];
+    }
 }
 
 @end
