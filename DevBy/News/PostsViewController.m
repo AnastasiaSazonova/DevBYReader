@@ -26,6 +26,7 @@
     float mainCellHeight;
     NSMutableArray* cellsArray;
     NSMutableDictionary* cellsDictionary;
+    NSString* urlToLoad;
 }
 
 @end
@@ -37,16 +38,22 @@
     self = [super init];
     if (self)
     {
-        HTMLParser* parse = [HTMLParser sharedInstance];
-        [parse startParseFromUrl:NEWS_URL andXPath:NEWS_XPATH];
-        parse.delegate = self;
+        [self startLoadAndParseContentByUrl:NEWS_URL];
     }
     return self;
 }
 
+- (void) startLoadAndParseContentByUrl:(NSString*)url
+{
+    urlToLoad = url;
+    HTMLParser* parse = [HTMLParser sharedInstance];
+    [parse startParseFromUrl:url andXPath:NEWS_XPATH];
+    parse.delegate = self;
+}
+
 -(void)parseData:(NSDictionary *)dataDictionary WithUrl:(NSString *)url andXPath:(NSString *)xpath
 {
-    if([url isEqualToString:NEWS_URL] && [xpath isEqualToString:NEWS_XPATH])
+    if([url isEqualToString:urlToLoad] && [xpath isEqualToString:NEWS_XPATH])
     {
         NewsParse *parser = [[NewsParse alloc]init];
         [self fillCellArrayWithDataArray:[parser getDataFromDictionary:dataDictionary]];
@@ -93,6 +100,7 @@
     MainArticleCell * cell = [[MainArticleCell alloc] init];
     cell.title = element.title;
     cell.imageUrl = element.image;
+    cell.articleUrl = element.url;
     cell.height = mainCellHeight;
     [cell drawCell];
     return cell;
@@ -104,6 +112,7 @@
     cell.title = element.title;
     cell.date = element.time;
     cell.imageUrl = element.image;
+    cell.articleUrl = element.url;
     [cell drawCell];
     return cell;
 }
@@ -137,14 +146,28 @@
     return [cellsArray objectAtIndex:indexPath.row];
 }
 
+-(NSString *)urlOfCurrentArticle:(int)index
+{
+    NSString* url;
+    if(index == 0)
+    {
+        url = ((MainArticleCell*)[cellsArray objectAtIndex:index]).articleUrl;
+        
+    }else
+    {
+        url = ((ArticleCell*)[cellsArray objectAtIndex:index]).articleUrl;
+    }
+    return url;
+}
+
 -(NSInteger)countForPages
 {
-    return [_posts count];
+    return [cellsArray count];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SlideViewController* slideViewController = [[SlideViewController alloc]initWithIndex:indexPath.row];
+    SlideViewController* slideViewController = [[SlideViewController alloc]initWithPageIndex:indexPath.row];
     slideViewController.delegate = self;
     [self.navigationController pushViewController:slideViewController animated:YES];
 }

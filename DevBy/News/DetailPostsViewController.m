@@ -15,6 +15,7 @@
 {
     NSString* articleCellurl;
     HTMLParser* parse;
+    BOOL isArticleWithData;
 }
 @property(nonatomic, assign)float totalHeight;
 
@@ -29,20 +30,36 @@
 {
     self = [super init];
     if (self) {
-        articleCellurl = url;
-        parse = [HTMLParser sharedInstance];
-        [parse startParseFromUrl:articleCellurl andXPath:NEWS_CELL_XPATH];
-        parse.delegate = self;
+        [self startLoadContentByUrl:url];
     }
     return self;
 }
 
+- (void) startLoadContentByUrl:(NSString*)url
+{
+    if(url)
+    {
+        articleCellurl = url;
+        parse = [HTMLParser sharedInstance];
+        [parse startParseFromUrl:articleCellurl andXPath:NEWS_CELL_XPATH];
+        parse.delegate = self;
+        isArticleWithData = YES;
+    } else
+    {
+        isArticleWithData = NO;
+    }
+}
+
+- (BOOL)isArticleWithData
+{
+    return isArticleWithData;
+}
 
 -(void)parseData:(NSDictionary *)dataDictionary WithUrl:(NSString *)url andXPath:(NSString *)xpath
 {
     if([articleCellurl isEqualToString:url] && [xpath isEqualToString:NEWS_CELL_XPATH])
     {
-    
+//        NSLog(@"%@",dataDictionary);
     }
 }
 

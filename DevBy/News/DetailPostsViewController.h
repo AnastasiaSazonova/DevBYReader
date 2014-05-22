@@ -11,5 +11,7 @@
 @interface DetailPostsViewController : UIViewController
 
 - (id)initWithUrl:(NSString*)url;
+- (void) startLoadContentByUrl:(NSString*)url;
+- (BOOL)isArticleWithData;
 
 @end
