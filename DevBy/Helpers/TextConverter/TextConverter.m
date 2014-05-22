@@ -22,13 +22,19 @@
 - (NSString *)getText:(NSArray *)htmlElements
 {
     NSMutableString *result = [[NSMutableString alloc] init];
+    
+    NSInteger i = 0;
+    NSString *s;
+    @try{
     for(TFHppleElement *item in htmlElements)
-    {   
+    {
+        i++;
+        s = item.tagName;
         if([item.tagName isEqualToString:@"p"] && [item text] != nil)   // PRIMMARY FOR COMMENTS
         {
             for(TFHppleElement *child in item.children)
             {
-                if([child.tagName isEqualToString:@"text"])         //text
+                if([child.tagName isEqualToString:@"text"] && child.text != nil)         //text
                     [result appendFormat:@"%@", [child content]];
                 else if([child.tagName isEqualToString:@"br"])      //br
                     [result appendString:@"\n"];
@@ -79,7 +85,11 @@
             [result appendFormat:@" %@", [item text]];  //especially for reviewsHead
         
     }
-    
+    }
+    @catch(NSException *e)
+    {
+        NSLog(@"%d   %@", i, s);
+    }
     return result;
 }
 

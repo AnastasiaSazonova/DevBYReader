@@ -8,6 +8,7 @@
 
 #import "FeedbackCell.h"
 #import "CommentsParser.h"
+#import "CommentsButton.h"
 
 @interface FeedbackCell()
 
@@ -57,6 +58,15 @@
     [self addSubview:jobExperienceLabel];
     self.totalHeight += jobExperienceRect.origin.y +  jobExperienceLabel.bounds.size.height;
     
+    CGRect jobDateRect = CGRectMake(halfOffset, jobExperienceLabel.frame.size.height + jobExperienceLabel.frame.origin.y, self.bounds.size.width*0.8, 0);
+    UILabel * jobDateLabel = [[UILabel alloc] initWithFrame:jobDateRect];
+    jobDateLabel.font = [UIFont boldSystemFontOfSize:FBCLabelFont];
+    jobDateLabel.numberOfLines = 0;
+    jobDateLabel.text = self.date;
+    [jobDateLabel sizeToFit];
+    [self addSubview:jobDateLabel];
+    self.totalHeight += jobDateLabel.bounds.size.height;
+    
     CGRect backgroundViewRect = CGRectMake(0, 0, self.bounds.size.width*0.935, self.totalHeight - 2 * halfOffset);
     backGroundView.frame = backgroundViewRect;
     [backGroundView.layer setBorderColor:[UIColor grayColor].CGColor];
@@ -73,7 +83,7 @@
     
     if(self.commentsCount > 0)
     {        
-        UIButton *commentsButton = [[UIButton alloc] init];
+        CommentsButton *commentsButton = [[CommentsButton alloc] init];
         commentsButton.frame = CGRectMake(halfOffset, self.totalHeight - 0.5 * halfOffset, self.bounds.size.width*0.9 - halfOffset, 30);
         [commentsButton setTitle:[NSString stringWithFormat:@"Комментариев: %d", self.commentsCount] forState:UIControlStateNormal];
         commentsButton.titleLabel.font = [UIFont systemFontOfSize:FBCTextFont];
@@ -82,6 +92,7 @@
         [commentsButton layer].borderWidth = 1;
         [commentsButton layer].borderColor = [UIColor grayColor].CGColor;
         [[commentsButton layer] setCornerRadius:4];
+        commentsButton.buttonLink = self.btnLink;
         [commentsButton addTarget:self.delegate action:@selector(gotoComments:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:commentsButton];
         self.totalHeight += commentsButton.bounds.size.height + halfOffset;

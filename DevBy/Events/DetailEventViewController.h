@@ -12,4 +12,6 @@
 
 @interface DetailEventViewController : UIViewController
 
+- (id)initWithPostfix:(NSString *)eventsPostfix;
+
 @end

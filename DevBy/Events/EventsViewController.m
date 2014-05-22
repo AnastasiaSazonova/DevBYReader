@@ -76,7 +76,7 @@ NSString * eventCellReuseIdentifier = @"EventCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailEventViewController * detailEventViewController = [[DetailEventViewController alloc] init];
+    DetailEventViewController * detailEventViewController = [[DetailEventViewController alloc] initWithPostfix:[self.events[indexPath.row] link]];
     [self.navigationController pushViewController:detailEventViewController animated:YES];
 }
 

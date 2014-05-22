@@ -11,6 +11,7 @@
 #import "FeedbackCell.h"
 #import "Constants.h"
 #import "Protocols.h"
+#import "CommentsButton.h"
 
 @interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate, CommentsProtocol>
 {
@@ -117,7 +118,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     companiesParser = [[CompaniesParser alloc] init];
-    companyDetail = [companiesParser getDetailInfoOf:postfix/*@"wargaming-net-geym-strim"*/];
+    companyDetail = [companiesParser getDetailInfoOf:postfix];
     
     commentsHeight = 0;
     feedbacksHeight = 0;
@@ -138,6 +139,7 @@
     nameLabel.numberOfLines = 0;
     nameLabel.text = companyDetail.name;
     nameLabel.adjustsFontSizeToFitWidth = YES;
+    [nameLabel sizeToFit];
     [self.scrollView addSubview:nameLabel];
     
     totalHeight += nameLabel.bounds.size.height;
@@ -149,22 +151,23 @@
     [employeeNumberLabel sizeToFit];
     [self.scrollView addSubview:employeeNumberLabel];
     
-    CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - DCLogoHeight, nameLabelRect.origin.y + 5, DCLogoHeight, DCLogoHeight);
+    /*CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - DCLogoHeight, nameLabelRect.origin.y + 5, DCLogoHeight, DCLogoHeight);
     UIImageView * logoView = [[UIImageView alloc] initWithFrame:logoViewRect];
     logoView.backgroundColor = [UIColor grayColor];
-    [self.scrollView addSubview:logoView];
+    [self.scrollView addSubview:logoView];*/
     
     totalHeight += employeeNumberLabel.bounds.size.height + offset/3;
-    CGRect descriptionLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, self.view.bounds.size.height/5);
+    CGRect descriptionLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, 5);
     UILabel * descriptionLabel = [[UILabel alloc] initWithFrame:descriptionLabelRect];
     descriptionLabel.numberOfLines = 0;
-    descriptionLabel.text = companyDetail.fullName;
+    descriptionLabel.text = [companyDetail.fullName stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     descriptionLabel.font = [UIFont systemFontOfSize:DCDescriptionLabelFont];
     descriptionLabel.textColor = [UIColor grayColor];
     descriptionLabel.adjustsFontSizeToFitWidth = YES;
+    [descriptionLabel sizeToFit];
     [self.scrollView addSubview:descriptionLabel];
     
-    totalHeight += descriptionLabel.bounds.size.height + offset/2;
+    totalHeight += descriptionLabel.bounds.size.height + offset;
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"О компании", @"Обсуждение", @"Отзывы", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
@@ -177,16 +180,15 @@
     [self.view addSubview:self.scrollView];
 }
 
-- (void)gotoComments:(id)sender
+- (void)gotoComments:(CommentsButton *)button
 {
     CommentsParser *parser = [[CommentsParser alloc] init];
-    NSMutableArray *comments = [parser getCommentsWithUrl:[NSURL URLWithString:@"http://companies.dev.by/wargaming-net-geym-strim/reviews/114"] andAddress:@"//div[@class='comments-list list-more']/div[@class='clearfix comment']"];
+    NSMutableArray *comments = [parser getCommentsWithUrl:[NSURL URLWithString:[NSString stringWithFormat:@"http://companies.dev.by%@", button.buttonLink]] andAddress:@"//div[@class='comments-list list-more']/div[@class='clearfix comment']"];
     NSArray *result = [NSArray arrayWithArray:comments];
     CommentsViewController *commentsController = [[CommentsViewController alloc] initWithComments:result];
     
     [self.navigationController pushViewController:commentsController animated:YES];
 }
-
 
 -(void)touchSegmentedContorol:(UISegmentedControl *)segmentedControl
 {
@@ -209,6 +211,10 @@
     [self cleanTextView];
     self.textView.frame = textViewFrame;
     self.textView.text = companyDetail.about;
+    if(companyDetail.about == nil)
+    {
+        self.textView.text = @"Нет данных";
+    }
     [self.textView sizeToFit];
     [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
@@ -218,6 +224,11 @@
 {
     [self cleanTextView];
     [self setDiscussionView];
+    if(commentsCellsArray.count == 0)
+    {
+        self.textView.text = @"Нет данных";
+        [self.scrollView addSubview:self.textView];
+    }
     [self.scrollView sizeToFit];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.commentsTableView.bounds.size.height);
 }
@@ -239,6 +250,11 @@
 {
     [self cleanTextView];
     [self setFeedbackView];
+    if(feedbackCellsArray.count == 0)
+    {
+        self.textView.text = @"Нет данных";
+        [self.scrollView addSubview:self.textView];
+    }
     [self.scrollView sizeToFit];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.feedBackTableView.bounds.size.height);
 }

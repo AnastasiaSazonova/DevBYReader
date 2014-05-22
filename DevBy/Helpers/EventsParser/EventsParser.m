@@ -8,7 +8,7 @@
 
 #import "EventsParser.h"
 
-NSString *const PrefixEventUrl = @"http://events.dev.by/";
+NSString *const PrefixEventUrl = @"http://events.dev.by";
 
 @interface EventsParser()
 {
@@ -44,6 +44,9 @@ NSString *const PrefixEventUrl = @"http://events.dev.by/";
         
         NSString *title = [[[element firstChildWithClassName:@"item-body left"] firstChildWithTagName:@"a"] text];
         event.title = title;
+        
+        NSString *link = [[[element firstChildWithClassName:@"item-body left"] firstChildWithTagName:@"a"] objectForKey:@"href"];
+        event.link = link;
         
         NSString *day = [[[element firstChildWithClassName:@"item-date left"] firstChildWithTagName:@"h4"] text];
         event.day = day;

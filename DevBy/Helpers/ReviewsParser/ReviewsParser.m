@@ -74,7 +74,7 @@
         
         TFHppleElement *jobExperienceElement = [reviewHead firstChildWithClassName:@"block data-time"];
         NSString *jobExperience = [textConverter getText:jobExperienceElement.children];
-        review.jobExperience = jobExperience;
+        review.jobExperience = [jobExperience stringByReplacingOccurrencesOfString:date withString:@""];
         
         NSString *commentsCount = [[[[[element firstChildWithClassName:@"review-body clearfix"] firstChildWithClassName:@"review-menu clearfix"] firstChildWithClassName:@"left"] firstChildWithTagName:@"span"] text];
         review.commentsCount = [commentsCount integerValue];

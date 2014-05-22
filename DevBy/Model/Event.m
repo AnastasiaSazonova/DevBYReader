@@ -10,6 +10,6 @@
 
 @implementation Event
 
-@synthesize title, day, dayOfWeek, description, month;
+@synthesize title, day, dayOfWeek, description, month, link;
 
 @end

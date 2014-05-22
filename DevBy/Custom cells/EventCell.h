@@ -16,6 +16,8 @@
 @property(nonatomic, strong)NSString * day;
 @property(nonatomic, strong)NSString * description;
 @property(nonatomic, strong)NSString * dayOfWeek;
+@property(nonatomic, strong)NSString * eventLink;
+
 -(void)drawCell;
 
 @end

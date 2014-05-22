@@ -15,5 +15,6 @@
 @property (strong, nonatomic) NSString *month;
 @property (strong, nonatomic) NSString *dayOfWeek;
 @property (strong, nonatomic) NSString *description;    
+@property (strong, nonatomic) NSString *link;
 
 @end

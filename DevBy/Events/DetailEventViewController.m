@@ -15,6 +15,8 @@
     CGRect textViewFrame;
     EventsParser *eventsParser;
     EventDetail *eventDetail;
+    
+    NSString *postfix;
 }
 
 @property(nonatomic, strong)UIScrollView * scrollView;
@@ -23,6 +25,16 @@
 @end
 
 @implementation DetailEventViewController
+
+- (id)initWithPostfix:(NSString *)eventsPostfix
+{
+    self = [super init];
+    if(self)
+    {
+        postfix = eventsPostfix;
+    }
+    return self;
+}
 
 -(UIScrollView *)scrollView
 {
@@ -51,7 +63,7 @@
     [super viewDidLoad];
 
     eventsParser = [[EventsParser alloc] init];
-    eventDetail = [eventsParser getDetailInfoOf:@"lazertag-na-it-cup-cobiraem-sportsmenov-v-it-boy"];
+    eventDetail = [eventsParser getDetailInfoOf:postfix/*@"lazertag-na-it-cup-cobiraem-sportsmenov-v-it-boy"*/];
     
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     totalHeight = offset*0.4 + navObjectsHeight;
@@ -79,7 +91,7 @@
     dateLabel.font = [UIFont systemFontOfSize:14];
     dateLabel.textColor = [UIColor darkGrayColor];
     dateLabel.numberOfLines = 0;
-    dateLabel.text = eventDetail.time;//self.eventsDate;
+    dateLabel.text = eventDetail.time;
     [dateLabel sizeToFit];
     [self.scrollView addSubview:dateLabel];
     totalHeight += dateLabel.bounds.size.height + offset/1.5;
@@ -144,7 +156,7 @@
 -(void)addDescription
 {
     self.textView.frame = textViewFrame;
-    self.textView.text = eventDetail.description;//self.eventsDescription;
+    self.textView.text = eventDetail.description;
     [self.textView sizeToFit];
     [self.scrollView addSubview:self.textView];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
@@ -153,7 +165,7 @@
 -(void)addPrice
 {
     self.textView.frame = textViewFrame;
-    self.textView.text = eventDetail.price;//self.eventsPrice;
+    self.textView.text = eventDetail.price;
     [self.textView sizeToFit];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
@@ -161,7 +173,7 @@
 -(void)addAddress
 {
     self.textView.frame = textViewFrame;
-    self.textView.text = eventDetail.address;//self.eventsAddress;
+    self.textView.text = eventDetail.address;
     [self.textView sizeToFit];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.textView.bounds.size.height);
 }
