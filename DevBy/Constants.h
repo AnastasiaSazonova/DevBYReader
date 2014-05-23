@@ -6,14 +6,16 @@
 //  Copyright (c) 2014 AD. All rights reserved.
 //
 
-
+#define POSTS @"Главная"
 #define NEWS @"Новости"
 #define COMPANYS @"Компании"
 #define JOB @"Вакансии"
 #define EVENTS @"События"
 
-#define NEWS_URL @"http://dev.by"
-#define NEWS_XPATH @"//div[@class='lists-blogs']"
+#define NEWS_URL @"http://dev.by/news"
+#define POSTS_URL @"http://dev.by"
+#define POSTS_XPATH @"//div[@class='lists-blogs']"
+#define NEWS_XPATH @"//div[@class='lists-blogs news']"
 #define NEWS_CELL_XPATH @"//div[@class='blog-views-node item-body']"
 #define NEWS_CELL_COMENTS_XPATH @"//div[@class='comments-list list-more']"
 

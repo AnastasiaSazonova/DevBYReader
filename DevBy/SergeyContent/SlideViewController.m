@@ -10,7 +10,6 @@
 #import "NewsCellViewController.h"
 #import "MainArticleCell.h"
 #import "ArticleCell.h"
-
 #import "DetailPostsViewController.h"
 
 @interface SlideViewController () <UIPageViewControllerDelegate, UIPageViewControllerDataSource>

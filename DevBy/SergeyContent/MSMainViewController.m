@@ -11,6 +11,7 @@
 #import "CompaniesViewController.h" 
 #import "EventsViewController.h" 
 #import "VacanciesViewController.h"
+#import "NewsViewController.h"
 #import "Constants.h"
 
 #import "HTMLParser.h"
@@ -35,7 +36,7 @@
     parser = [[HTMLParser alloc]init];
     
     //put chosen viewController
-    [self initNewCategory:NEWS];
+    [self initNewCategory:POSTS];
 }
 
 - (void) initNewCategory:(NSString*)type
@@ -45,8 +46,11 @@
     MenuViewController* menuViewController = [[MenuViewController alloc] init];
     menuViewController.menuDelegate = self;
     viewController.menuPanel = menuViewController;
-    if ([type isEqualToString:NEWS]) {
+    if ([type isEqualToString:POSTS]) {
         viewController.centralPanel = [[UINavigationController alloc] initWithRootViewController: [[PostsViewController alloc] init]];
+    }
+    else if ([type isEqualToString:NEWS]) {
+        viewController.centralPanel = [[UINavigationController alloc] initWithRootViewController: [[NewsViewController alloc] init]];
     }
     else if ([type isEqualToString:COMPANYS]) {
         viewController.centralPanel = [[UINavigationController alloc] initWithRootViewController: [[CompaniesViewController alloc] init]];
@@ -77,13 +81,17 @@
     {
         if ([viewController.centralPanel isKindOfClass:UINavigationController.class])
         {
-            if ([chosenViewController isEqualToString:NEWS] && ![navigation.topViewController isKindOfClass:PostsViewController.class])
+            if ([chosenViewController isEqualToString:POSTS] && ![navigation.topViewController isKindOfClass:PostsViewController.class])
             {
                     [navigation pushViewController:[[PostsViewController alloc]init] animated:YES];
             }
             else if ([chosenViewController isEqualToString:COMPANYS] && ![navigation.topViewController isKindOfClass:CompaniesViewController.class])
             {
                     [navigation pushViewController:[[CompaniesViewController alloc]init] animated:YES];
+            }
+            else if ([chosenViewController isEqualToString:NEWS] && ![navigation.topViewController isKindOfClass:NewsViewController.class])
+            {
+                [navigation pushViewController:[[NewsViewController alloc]init] animated:YES];
             }
             else if ([chosenViewController isEqualToString:JOB] && ![navigation.topViewController isKindOfClass:VacanciesViewController.class])
             {
@@ -93,14 +101,18 @@
             {
                     [navigation pushViewController:[[EventsViewController alloc]init] animated:YES];
             }
-            navigation.topViewController.navigationItem.titleView = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"devLogo"] scaledToSize:CGSizeMake(100, 35)]];
+            //navigation.topViewController.navigationItem.titleView = [[UIImageView alloc] initWithImage:[self imageWithImage:[UIImage imageNamed:@"devLogo"] scaledToSize:CGSizeMake(100, 35)]];
             [viewController hideMenu];
         }
     }
     else
     {
         [viewController hideMenu];
-        if ([chosenViewController isEqualToString:NEWS] && [navigation.topViewController isKindOfClass:PostsViewController.class])
+        if ([chosenViewController isEqualToString:POSTS] && [navigation.topViewController isKindOfClass:PostsViewController.class])
+        {
+            return;
+        }
+        else if ([chosenViewController isEqualToString:NEWS] && [navigation.topViewController isKindOfClass:NewsViewController.class])
         {
             return;
         }

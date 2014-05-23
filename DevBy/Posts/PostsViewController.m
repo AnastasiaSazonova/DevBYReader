@@ -13,7 +13,6 @@
 #import "MainArticleCell.h"
 #import "ArticleCell.h"
 #import "Constants.h"
-
 #import "SlideViewController.h"
 #import "HTMLParser.h"
 #import "NewsParse.h"
@@ -26,6 +25,7 @@
     float mainCellHeight;
     NSMutableArray* cellsArray;
     NSMutableDictionary* cellsDictionary;
+    UIActivityIndicatorView * activityIndicator;
 }
 
 @end
@@ -38,7 +38,7 @@
     if (self)
     {
         HTMLParser* parse = [HTMLParser sharedInstance];
-        [parse startParseFromUrl:NEWS_URL andXPath:NEWS_XPATH];
+        [parse startParseFromUrl:POSTS_URL andXPath:POSTS_XPATH];
         parse.delegate = self;
     }
     return self;
@@ -46,7 +46,7 @@
 
 -(void)parseData:(NSDictionary *)dataDictionary WithUrl:(NSString *)url andXPath:(NSString *)xpath
 {
-    if([url isEqualToString:NEWS_URL] && [xpath isEqualToString:NEWS_XPATH])
+    if([url isEqualToString:POSTS_URL] && [xpath isEqualToString:POSTS_XPATH])
     {
         NewsParse *parser = [[NewsParse alloc]init];
         [self fillCellArrayWithDataArray:[parser getDataFromDictionary:dataDictionary]];
@@ -59,6 +59,13 @@
     cellsArray = [NSMutableArray array];
     cellsDictionary = [NSMutableDictionary dictionary];
     mainCellHeight = self.view.bounds.size.height*0.4 - halfOffset/2;
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2 - 50);
+    CGAffineTransform transform = CGAffineTransformMakeScale(1.5f, 1.5f);
+    activityIndicator.transform = transform;
+    [self.view addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+    
 }
 
 - (void)fillCellArrayWithDataArray:(NSArray*)dataArray
@@ -75,7 +82,7 @@
         else
             [cellsArray addObject:[self createArticleCellWithElement:element]];
     }];
-
+    [activityIndicator stopAnimating];
     [self.tableView reloadData];
 }
 

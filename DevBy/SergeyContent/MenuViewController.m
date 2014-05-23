@@ -54,10 +54,11 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 70, 100, 35) andTitle:NEWS];
-    [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 130, 100, 35) andTitle:COMPANYS];
-    [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 190, 100, 35) andTitle:JOB];
-    [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 250, 100, 35) andTitle:EVENTS];
+    [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 70, 100, 35) andTitle:POSTS];
+    [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 130, 100, 35) andTitle:NEWS];
+    [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 190, 100, 35) andTitle:COMPANYS];
+    [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 250, 100, 35) andTitle:JOB];
+    [self createButton:newsButton WithFrame:CGRectMake(self.view.bounds.size.width / 4 - 50, 310, 100, 35) andTitle:EVENTS];
 }
 
 - (void)createButton:(UIButton*)button WithFrame:(CGRect)buttonFrame andTitle:(NSString*)title

@@ -80,46 +80,6 @@
             continue;
         }
     }
-    return element;
-//    [array enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id obj, NSUInteger idx, BOOL *stop)
-//    {
-//        NSLog(@"%@",obj);
-//        
-//       if(![obj isKindOfClass:NSDictionary.class])
-//           return;
-//        
-//        NSDictionary* dictionary = (NSDictionary*)obj;
-//        
-//        if([dictionary.allKeys count] > 1)
-//            return;
-//        if([[dictionary.allKeys firstObject] isKindOfClass:NSString.class])
-//            return;
-//
-//        if([[dictionary.allKeys firstObject] rangeOfString:@"title_link_url"].location != NSNotFound)
-//        {
-//            element.url = [dictionary.allValues firstObject];
-//        }
-//        if([[dictionary.allKeys firstObject] rangeOfString:@"text"].location != NSNotFound)
-//        {
-//            element.rate = [dictionary.allValues firstObject];
-//        }
-//        if([[dictionary.allKeys firstObject] rangeOfString:@"title_link"].location != NSNotFound)
-//        {
-//            element.title = [dictionary.allValues firstObject];
-//        }
-//        if([[dictionary.allKeys firstObject] rangeOfString:@"time/text"].location != NSNotFound)
-//        {
-//            element.time = [dictionary.allValues firstObject];
-//        }
-//        if([[dictionary.allKeys firstObject] rangeOfString:@"img"].location != NSNotFound)
-//        {
-//            element.image = [dictionary.allValues firstObject];
-//        }
-//        if([[dictionary.allKeys firstObject] rangeOfString:@"p/text"].location != NSNotFound)
-//        {
-//            element.content = [NSString stringWithFormat:@"%@ \n %@", element.content, [dictionary.allValues firstObject]];
-//        }
-//    }];
-  
+    return element;  
 }
 @end
