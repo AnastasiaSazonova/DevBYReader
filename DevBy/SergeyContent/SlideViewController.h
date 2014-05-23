@@ -11,6 +11,7 @@
 @protocol SlideViewDelegate
 
 - (NSInteger) countForPages;
+- (NSString*) urlOfCurrentArticle:(int)index;
 
 @end
 
@@ -18,6 +19,6 @@
 
 @property(nonatomic, strong)id<SlideViewDelegate> delegate;
 
-- (id)initWithIndex:(NSInteger)index;
+- (id)initWithPageIndex:(int)index;
 
 @end

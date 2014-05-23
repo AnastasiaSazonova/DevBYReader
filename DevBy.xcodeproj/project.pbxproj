@@ -30,10 +30,10 @@
 		5D29B13018F7CF8F006DCD4F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D29B12E18F7CF8F006DCD4F /* InfoPlist.strings */; };
 		5D29B13218F7CF8F006DCD4F /* DevByTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D29B13118F7CF8F006DCD4F /* DevByTests.m */; };
 		5D2E28E919059FD200C64769 /* PremiumJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2E28E819059FD200C64769 /* PremiumJobCell.m */; };
-		5D3CB94A192F1E1E00993177 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CB945192F1E1E00993177 /* CommentsViewController.m */; };
-		5D3CB94B192F1E1E00993177 /* DetailPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CB947192F1E1E00993177 /* DetailPostsViewController.m */; };
-		5D3CB94C192F1E1E00993177 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CB949192F1E1E00993177 /* PostsViewController.m */; };
 		5D3CB94F192F33F700993177 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CB94E192F33F700993177 /* NewsViewController.m */; };
+		5D3CB957192F3FB900993177 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CB952192F3FB900993177 /* CommentsViewController.m */; };
+		5D3CB958192F3FB900993177 /* DetailPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CB954192F3FB900993177 /* DetailPostsViewController.m */; };
+		5D3CB959192F3FB900993177 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CB956192F3FB900993177 /* PostsViewController.m */; };
 		5D82DDCB18F7D0CE009E4D3E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D82DDAA18F7D0CE009E4D3E /* InfoPlist.strings */; };
 		5D82DDCD18F7D0CE009E4D3E /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDB018F7D0CE009E4D3E /* TFHpple.m */; };
 		5D82DDCE18F7D0CE009E4D3E /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDB218F7D0CE009E4D3E /* TFHppleElement.m */; };
@@ -121,14 +121,14 @@
 		5D29B13118F7CF8F006DCD4F /* DevByTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevByTests.m; sourceTree = "<group>"; };
 		5D2E28E719059FD200C64769 /* PremiumJobCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PremiumJobCell.h; sourceTree = "<group>"; };
 		5D2E28E819059FD200C64769 /* PremiumJobCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PremiumJobCell.m; sourceTree = "<group>"; };
-		5D3CB944192F1E1E00993177 /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
-		5D3CB945192F1E1E00993177 /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
-		5D3CB946192F1E1E00993177 /* DetailPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPostsViewController.h; sourceTree = "<group>"; };
-		5D3CB947192F1E1E00993177 /* DetailPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPostsViewController.m; sourceTree = "<group>"; };
-		5D3CB948192F1E1E00993177 /* PostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsViewController.h; sourceTree = "<group>"; };
-		5D3CB949192F1E1E00993177 /* PostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsViewController.m; sourceTree = "<group>"; };
 		5D3CB94D192F33F700993177 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = News/NewsViewController.h; sourceTree = "<group>"; };
 		5D3CB94E192F33F700993177 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = News/NewsViewController.m; sourceTree = "<group>"; };
+		5D3CB951192F3FB900993177 /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
+		5D3CB952192F3FB900993177 /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
+		5D3CB953192F3FB900993177 /* DetailPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPostsViewController.h; sourceTree = "<group>"; };
+		5D3CB954192F3FB900993177 /* DetailPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPostsViewController.m; sourceTree = "<group>"; };
+		5D3CB955192F3FB900993177 /* PostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsViewController.h; sourceTree = "<group>"; };
+		5D3CB956192F3FB900993177 /* PostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsViewController.m; sourceTree = "<group>"; };
 		5D82DDAB18F7D0CE009E4D3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5D82DDAF18F7D0CE009E4D3E /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
 		5D82DDB018F7D0CE009E4D3E /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
@@ -345,12 +345,12 @@
 		5D3CB943192F1E1E00993177 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
-				5D3CB944192F1E1E00993177 /* CommentsViewController.h */,
-				5D3CB945192F1E1E00993177 /* CommentsViewController.m */,
-				5D3CB946192F1E1E00993177 /* DetailPostsViewController.h */,
-				5D3CB947192F1E1E00993177 /* DetailPostsViewController.m */,
-				5D3CB948192F1E1E00993177 /* PostsViewController.h */,
-				5D3CB949192F1E1E00993177 /* PostsViewController.m */,
+				5D3CB951192F3FB900993177 /* CommentsViewController.h */,
+				5D3CB952192F3FB900993177 /* CommentsViewController.m */,
+				5D3CB953192F3FB900993177 /* DetailPostsViewController.h */,
+				5D3CB954192F3FB900993177 /* DetailPostsViewController.m */,
+				5D3CB955192F3FB900993177 /* PostsViewController.h */,
+				5D3CB956192F3FB900993177 /* PostsViewController.m */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -648,7 +648,6 @@
 				8499DE82192E80F2009B6C69 /* NewsElement.m in Sources */,
 				5D82DDCE18F7D0CE009E4D3E /* TFHppleElement.m in Sources */,
 				8499DEB2192E887D009B6C69 /* UIAlertView+AFNetworking.m in Sources */,
-				5D3CB94A192F1E1E00993177 /* CommentsViewController.m in Sources */,
 				8499DECC192E89DE009B6C69 /* AFHTTPRequestOperation.m in Sources */,
 				8499DEB4192E887D009B6C69 /* UIImageView+AFNetworking.m in Sources */,
 				5D0B8C3919115DA500A62318 /* MenuViewController.m in Sources */,
@@ -665,6 +664,7 @@
 				8499DE7A192E76B4009B6C69 /* HTMLParser.m in Sources */,
 				5D0EA0D9190E61A2004FDE9A /* Job.m in Sources */,
 				8499DED4192E89DE009B6C69 /* AFURLSessionManager.m in Sources */,
+				5D3CB958192F3FB900993177 /* DetailPostsViewController.m in Sources */,
 				5D26DD6A18FC281900914F06 /* CommentsCell.m in Sources */,
 				5D82DDEE18F7D312009E4D3E /* HTMLElement.m in Sources */,
 				5D26DD7318FC674800914F06 /* DetailEventViewController.m in Sources */,
@@ -672,6 +672,7 @@
 				8499DEB0192E887D009B6C69 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				5D26DD7018FC5D8600914F06 /* EventCell.m in Sources */,
 				5D82DE0218F8080A009E4D3E /* ArticleCell.m in Sources */,
+				5D3CB957192F3FB900993177 /* CommentsViewController.m in Sources */,
 				8499DED3192E89DE009B6C69 /* AFURLResponseSerialization.m in Sources */,
 				5DD088921906319D008601DB /* MiddleJobCell.m in Sources */,
 				5D1630B6190BA510005AEE23 /* FeedbackCell.m in Sources */,
@@ -679,16 +680,15 @@
 				8499DEB1192E887D009B6C69 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				5D3CB94F192F33F700993177 /* NewsViewController.m in Sources */,
 				5DA2BEA21912DB3400833C6E /* Comment.m in Sources */,
+				5D3CB959192F3FB900993177 /* PostsViewController.m in Sources */,
 				8499DED2192E89DE009B6C69 /* AFURLRequestSerialization.m in Sources */,
 				8499DECF192E89DE009B6C69 /* AFNetworkReachabilityManager.m in Sources */,
 				5D29B11918F7CF8F006DCD4F /* main.m in Sources */,
 				8499DE7E192E7721009B6C69 /* NewsParse.m in Sources */,
 				5D0B8C3B19115DA500A62318 /* MSSlideSystemController.m in Sources */,
-				5D3CB94B192F1E1E00993177 /* DetailPostsViewController.m in Sources */,
 				5D0B8C3F19115DA500A62318 /* SlideViewController.m in Sources */,
 				5DD08895190631B2008601DB /* StandardJobCell.m in Sources */,
 				5D2E28E919059FD200C64769 /* PremiumJobCell.m in Sources */,
-				5D3CB94C192F1E1E00993177 /* PostsViewController.m in Sources */,
 				5D82DDDF18F7D305009E4D3E /* EventsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

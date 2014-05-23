@@ -131,9 +131,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SlideViewController* slideViewController = [[SlideViewController alloc]initWithIndex:indexPath.row];
-    slideViewController.delegate = self;
-    [self.navigationController pushViewController:slideViewController animated:YES];
+//    SlideViewController* slideViewController = [[SlideViewController alloc]initWithIndex:indexPath.row];
+//    slideViewController.delegate = self;
+//    [self.navigationController pushViewController:slideViewController animated:YES];
 }
 
 @end

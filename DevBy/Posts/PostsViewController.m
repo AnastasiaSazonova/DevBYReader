@@ -26,6 +26,7 @@
     NSMutableArray* cellsArray;
     NSMutableDictionary* cellsDictionary;
     UIActivityIndicatorView * activityIndicator;
+    NSString* urlToLoad;
 }
 
 @end
@@ -42,6 +43,14 @@
         parse.delegate = self;
     }
     return self;
+}
+
+- (void) startLoadAndParseContentByUrl:(NSString*)url
+{
+    urlToLoad = url;
+    HTMLParser* parse = [HTMLParser sharedInstance];
+    [parse startParseFromUrl:url andXPath:NEWS_XPATH];
+    parse.delegate = self;
 }
 
 -(void)parseData:(NSDictionary *)dataDictionary WithUrl:(NSString *)url andXPath:(NSString *)xpath
@@ -100,6 +109,7 @@
     MainArticleCell * cell = [[MainArticleCell alloc] init];
     cell.title = element.title;
     cell.imageUrl = element.image;
+    cell.articleUrl = element.url;
     cell.height = mainCellHeight;
     [cell drawCell];
     return cell;
@@ -111,6 +121,7 @@
     cell.title = element.title;
     cell.date = element.time;
     cell.imageUrl = element.image;
+    cell.articleUrl = element.url;
     [cell drawCell];
     return cell;
 }
@@ -144,14 +155,28 @@
     return [cellsArray objectAtIndex:indexPath.row];
 }
 
+-(NSString *)urlOfCurrentArticle:(int)index
+{
+    NSString* url;
+    if(index == 0)
+    {
+        url = ((MainArticleCell*)[cellsArray objectAtIndex:index]).articleUrl;
+        
+    }else
+    {
+        url = ((ArticleCell*)[cellsArray objectAtIndex:index]).articleUrl;
+    }
+    return url;
+}
+
 -(NSInteger)countForPages
 {
-    return [_posts count];
+    return [cellsArray count];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SlideViewController* slideViewController = [[SlideViewController alloc]initWithIndex:indexPath.row];
+    SlideViewController* slideViewController = [[SlideViewController alloc]initWithPageIndex:indexPath.row];
     slideViewController.delegate = self;
     [self.navigationController pushViewController:slideViewController animated:YES];
 }
