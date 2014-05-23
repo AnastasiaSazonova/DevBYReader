@@ -9,14 +9,13 @@
 #import "CompaniesViewController.h"
 #import "DetailCompanyViewController.h"
 #import "Constants.h"
-
+#import "DejalActivityView.h"
 
 @interface CompaniesViewController()<UISearchDisplayDelegate, UISearchBarDelegate>
 {
     UISearchDisplayController * searchDisplayController;
     CompaniesParser *companiesParser;
 }
-
 
 @property(nonatomic, strong)UITableView * tableView;
 @property(nonatomic, strong)NSArray * companysNames;
@@ -61,6 +60,9 @@
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearch:)];
     self.navigationItem.rightBarButtonItem = searchButton;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Компании" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+//    [DejalBezelActivityView activityViewForView:self.view].showNetworkActivityIndicator = YES;
+//    [DejalBezelActivityView removeView];
 }
 
 - (IBAction)goToSearch:(id)sender

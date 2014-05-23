@@ -49,6 +49,7 @@
 		5DD088921906319D008601DB /* MiddleJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD088911906319D008601DB /* MiddleJobCell.m */; };
 		5DD08895190631B2008601DB /* StandardJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD08894190631B2008601DB /* StandardJobCell.m */; };
 		5DD0889819063238008601DB /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0889719063238008601DB /* Job.m */; };
+		84014358192F92F00070F12F /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84014357192F92F00070F12F /* DejalActivityView.m */; };
 		8412794219253A2A0064978A /* PostsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8412794119253A2A0064978A /* PostsParser.m */; };
 		8412794519253B330064978A /* PostDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8412794419253B330064978A /* PostDetail.m */; };
 		84127948192540EC0064978A /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 84127947192540EC0064978A /* Post.m */; };
@@ -158,6 +159,8 @@
 		5DD08894190631B2008601DB /* StandardJobCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardJobCell.m; sourceTree = "<group>"; };
 		5DD0889619063238008601DB /* Job.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
 		5DD0889719063238008601DB /* Job.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Job.m; sourceTree = "<group>"; };
+		84014356192F92F00070F12F /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
+		84014357192F92F00070F12F /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
 		8412794019253A2A0064978A /* PostsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsParser.h; sourceTree = "<group>"; };
 		8412794119253A2A0064978A /* PostsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsParser.m; sourceTree = "<group>"; };
 		8412794319253B330064978A /* PostDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetail.h; sourceTree = "<group>"; };
@@ -469,6 +472,27 @@
 			path = "Custom cells";
 			sourceTree = "<group>";
 		};
+		84014354192F929A0070F12F /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				8412793F19253A090064978A /* PostsParser */,
+				841EDE28191C171A0041923B /* ReviewsParser */,
+				841EDE1F191C171A0041923B /* CommentsParser */,
+				841EDE22191C171A0041923B /* CompaniesParser */,
+				841EDE25191C171A0041923B /* EventsParser */,
+			);
+			name = Parsers;
+			sourceTree = "<group>";
+		};
+		84014355192F92A90070F12F /* DejalActivityView */ = {
+			isa = PBXGroup;
+			children = (
+				84014356192F92F00070F12F /* DejalActivityView.h */,
+				84014357192F92F00070F12F /* DejalActivityView.m */,
+			);
+			name = DejalActivityView;
+			sourceTree = "<group>";
+		};
 		8412793F19253A090064978A /* PostsParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,11 +505,8 @@
 		841EDE1E191C171A0041923B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8412793F19253A090064978A /* PostsParser */,
-				841EDE28191C171A0041923B /* ReviewsParser */,
-				841EDE1F191C171A0041923B /* CommentsParser */,
-				841EDE22191C171A0041923B /* CompaniesParser */,
-				841EDE25191C171A0041923B /* EventsParser */,
+				84014355192F92A90070F12F /* DejalActivityView */,
+				84014354192F929A0070F12F /* Parsers */,
 				841EDE2B191C171A0041923B /* TextConverter */,
 			);
 			path = Helpers;
@@ -648,6 +669,7 @@
 				841EDE3F191C17580041923B /* Event.m in Sources */,
 				841EDE31191C171A0041923B /* ReviewsParser.m in Sources */,
 				5D12A15218F91366005A5BEE /* DetailCompanyViewController.m in Sources */,
+				84014358192F92F00070F12F /* DejalActivityView.m in Sources */,
 				5D4BF6B31909713900E0E405 /* MiddleJob.m in Sources */,
 				5D82DDEF18F7D312009E4D3E /* PostsViewController.m in Sources */,
 				841EDE2E191C171A0041923B /* CommentsParser.m in Sources */,

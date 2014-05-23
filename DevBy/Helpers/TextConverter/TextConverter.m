@@ -34,7 +34,7 @@
         {
             for(TFHppleElement *child in item.children)
             {
-                if([child.tagName isEqualToString:@"text"] && child.text != nil)         //text
+                if([child.tagName isEqualToString:@"text"] && ([child content] != nil))         //text
                     [result appendFormat:@"%@", [child content]];
                 else if([child.tagName isEqualToString:@"br"])      //br
                     [result appendString:@"\n"];
