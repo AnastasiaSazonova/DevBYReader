@@ -108,10 +108,10 @@
         {
             continue;
         }
-        if([children hasChildren] && [children.tagName isEqualToString:@"span"])
-        {
-            continue;
-        }
+//        if([children hasChildren] && [children.tagName isEqualToString:@"span"])
+//        {
+//            continue;
+//        }
         if([children.tagName isEqualToString:@"a"] && [[children.attributes  objectForKey:@"class"] isEqualToString:@"blog-node-title"])
         {
             [array addObject:[NSDictionary dictionaryWithObject:[children.attributes  objectForKey:@"href"]forKey:[NSString stringWithFormat:@"%@%@/title_url_link",keyForDictionary,children.tagName]]];
