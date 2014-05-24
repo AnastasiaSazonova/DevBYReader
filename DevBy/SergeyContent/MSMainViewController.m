@@ -19,7 +19,12 @@
 
 @interface MSMainViewController () <MenuDelegate>
 {
-    HTMLParser* parser;
+    
+    
+    PostsViewController* postViewController;
+    CompaniesViewController* companiewViewController;
+    VacanciesViewController* vacanciesViewController;
+    EventsViewController* eventsViewController;
 }
 @property(nonatomic, strong) MSSlideSystemController *viewController;
 
@@ -32,8 +37,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    parser = [[HTMLParser alloc]init];
     
     //put chosen viewController
     [self initNewCategory:POSTS];
@@ -49,18 +52,35 @@
     if ([type isEqualToString:POSTS]) {
         viewController.centralPanel = [[UINavigationController alloc] initWithRootViewController: [[PostsViewController alloc] init]];
     }
-    else if ([type isEqualToString:NEWS]) {
-        viewController.centralPanel = [[UINavigationController alloc] initWithRootViewController: [[NewsViewController alloc] init]];
+    else if ([type isEqualToString:NEWS])
+    {
+        if(!postViewController)
+            postViewController = [[PostsViewController alloc] init];
+        
+        viewController.centralPanel = [[UINavigationController alloc] initWithRootViewController: postViewController];
     }
-    else if ([type isEqualToString:COMPANYS]) {
+    else if ([type isEqualToString:COMPANYS])
+    {
+        if(!companiewViewController)
+            companiewViewController = [[CompaniesViewController alloc] init];
+        
         viewController.centralPanel = [[UINavigationController alloc] initWithRootViewController: [[CompaniesViewController alloc] init]];
     }
-    else if ([type isEqualToString:JOB]) {
+    else if ([type isEqualToString:JOB])
+    {
+        if(!vacanciesViewController)
+            vacanciesViewController = [[VacanciesViewController alloc] init];
+        
         viewController.centralPanel = [[UINavigationController alloc] initWithRootViewController: [[VacanciesViewController alloc] init]];
     }
-    else if ([type isEqualToString:EVENTS]) {
+    else if ([type isEqualToString:EVENTS])
+    {
+        if(!eventsViewController)
+            eventsViewController = [[EventsViewController alloc] init];
+        
         viewController.centralPanel = [[UINavigationController alloc] initWithRootViewController: [[EventsViewController alloc] init]];
     }
+    
     [self.navigationController pushViewController:viewController animated:YES];
 
     ((UINavigationController*) viewController.centralPanel).topViewController.navigationItem.title = type;
@@ -75,6 +95,7 @@
 {
     UINavigationController* navigation = ((UINavigationController*) viewController.centralPanel);
     
+    HTMLParser* parser = [HTMLParser sharedInstance];
     [parser finishParse];
     
     if(flag)

@@ -10,6 +10,8 @@
 #import "NewsCellViewController.h"
 #import "MainArticleCell.h"
 #import "ArticleCell.h"
+#import "Constants.h"
+
 #import "DetailPostsViewController.h"
 #import "HTMLParser.h"
 
@@ -41,7 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     contentArray = [[NSMutableArray alloc] init];
     
     int count = [delegate countForPages];
@@ -51,16 +53,16 @@
         [detail.view setBackgroundColor:[UIColor whiteColor]];
         [contentArray addObject:detail];
     }
-
-    [self addArticleNumber: currentIndex + 1];
-
+    
+    [self addArticleNumber];
+    
     pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:50.0] forKey:UIPageViewControllerOptionSpineLocationKey]];
     
     pageViewController.dataSource = self;
     pageViewController.delegate = self;
-
+    
     pageViewController.view.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - [UIApplication sharedApplication].statusBarFrame.size.height);
-
+    
     DetailPostsViewController * detailViewController = [contentArray objectAtIndex:currentIndex];
     
     if(!detailViewController.isArticleWithData)
@@ -81,12 +83,13 @@
     self.view.gestureRecognizers = pageViewController.gestureRecognizers;
 }
 
--(void)addArticleNumber:(int)number
+-(void)addArticleNumber
 {
     UILabel * numberOfArticle = [[UILabel alloc] init];
     numberOfArticle.font = [UIFont boldSystemFontOfSize:12];
     numberOfArticle.textColor = [UIColor grayColor];
     numberOfArticle.numberOfLines = 2;
+    int number = currentIndex + 1;
     if (number < 10)
     {
         numberOfArticle.text = [NSString stringWithFormat:@"Новость \n  %d из %d", number, [delegate countForPages]];;
@@ -104,6 +107,21 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)reloadContent
+{
+    if([contentArray count] == [delegate countForPages])
+        return;
+    
+    [self addArticleNumber];
+    int count = [delegate countForPages] - [contentArray count];
+    for(int i = 0; i < count; i++)
+    {
+        DetailPostsViewController * detail = [[DetailPostsViewController alloc]initWithUrl:nil];
+        [detail.view setBackgroundColor:[UIColor whiteColor]];
+        [contentArray addObject:detail];
+    }
+}
+
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
     HTMLParser* parser = [HTMLParser sharedInstance];
@@ -114,6 +132,7 @@
     
     if(index == 0)
     {
+        [delegate loadContentType:MOVE_RIGHT];
         return nil;
     }
     index--;
@@ -132,6 +151,7 @@
     
     if (index == [delegate countForPages] - 1)
     {
+        [delegate loadContentType:MOVE_LEFT];
         return nil;
     }
     index++;
@@ -143,13 +163,15 @@
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
 {
     DetailPostsViewController * controller = (DetailPostsViewController *)pendingViewControllers[0];
-    if(!controller.isArticleWithData)
-    {
-        [controller startLoadContentByUrl:[delegate urlOfCurrentArticle:currentIndex]];
-    }
-    int index = [contentArray indexOfObject:controller] + 1;
-    [self addArticleNumber: index];
+    currentIndex = [contentArray indexOfObject:controller];
+    [self addArticleNumber];
+    [controller startLoadContentByUrl:[delegate urlOfCurrentArticle:currentIndex]];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [delegate setSlideSystemToNil];
+}
 
 @end

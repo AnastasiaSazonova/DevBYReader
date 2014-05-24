@@ -28,7 +28,8 @@
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 80);
     
     UITextView* titleView = [[UITextView alloc]initWithFrame:CGRectMake(5, self.bounds.origin.y, self.bounds.size.width - 80, 80)];
-    titleView.font = [UIFont boldSystemFontOfSize:ACTitleFont];
+    titleView.textColor = [UIColor blackColor];
+    titleView.font = [UIFont fontWithName:@"AppleSDGothicNeo-Medium" size:ACTitleFont];
     titleView.text = self.title;
     titleView.editable = NO;
     titleView.userInteractionEnabled = NO;
@@ -41,7 +42,7 @@
     [self addSubview:titleView];
     
     UILabel * dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, titleView.frame.origin.y + titleView.frame.size.height, titleView.frame.size.width - 6, 15)];
-    dateLabel.font = [UIFont boldSystemFontOfSize:ACDateLabelFont];
+    dateLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:ACDateLabelFont];
     dateLabel.textColor = [UIColor darkGrayColor];
     dateLabel.text = self.date;
     
@@ -65,6 +66,7 @@
         titleView.frame = CGRectMake(10, titleView.bounds.origin.y, self.bounds.size.width - 10 , titleView.bounds.size.height);
         dateLabel.frame = CGRectMake(10 + 5, titleView.bounds.origin.y + titleView.bounds.size.height, dateLabel.bounds.size.width, dateLabel.bounds.size.height);
     }
+    self.height += halfOffset;
 }
 
 @end

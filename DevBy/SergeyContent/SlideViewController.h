@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class SlideViewController;
+
 @protocol SlideViewDelegate
 
 - (NSInteger) countForPages;
 - (NSString*) urlOfCurrentArticle:(int)index;
+- (void) loadContentType:(NSString*)identifier;
+- (void) setSlideSystemToNil;
 
 @end
 
@@ -20,5 +24,6 @@
 @property(nonatomic, strong)id<SlideViewDelegate> delegate;
 
 - (id)initWithPageIndex:(int)index;
+- (void)reloadContent;
 
 @end

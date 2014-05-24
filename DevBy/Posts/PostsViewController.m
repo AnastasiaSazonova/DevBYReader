@@ -13,20 +13,23 @@
 #import "MainArticleCell.h"
 #import "ArticleCell.h"
 #import "Constants.h"
+
 #import "SlideViewController.h"
 #import "HTMLParser.h"
 #import "NewsParse.h"
 #import "NewsElement.h"
 
+#define NEXT_PAGE_URL @"http://dev.by/?page="
+
 
 @interface PostsViewController () <SlideViewDelegate, HTMLParserDelegate>
 {
-    NSMutableArray * _posts;
     float mainCellHeight;
     NSMutableArray* cellsArray;
-    NSMutableDictionary* cellsDictionary;
-    UIActivityIndicatorView * activityIndicator;
     NSString* urlToLoad;
+    int currentPage;
+    
+    SlideViewController* slideViewController;
 }
 
 @end
@@ -38,9 +41,7 @@
     self = [super init];
     if (self)
     {
-        HTMLParser* parse = [HTMLParser sharedInstance];
-        [parse startParseFromUrl:POSTS_URL andXPath:POSTS_XPATH];
-        parse.delegate = self;
+        [self startLoadAndParseContentByUrl:POSTS_URL];
     }
     return self;
 }
@@ -49,32 +50,74 @@
 {
     urlToLoad = url;
     HTMLParser* parse = [HTMLParser sharedInstance];
-    [parse startParseFromUrl:url andXPath:NEWS_XPATH];
+    [parse startParseFromUrl:url andXPath:POSTS_XPATH];
     parse.delegate = self;
 }
 
 -(void)parseData:(NSDictionary *)dataDictionary WithUrl:(NSString *)url andXPath:(NSString *)xpath
 {
-    if([url isEqualToString:POSTS_URL] && [xpath isEqualToString:POSTS_XPATH])
+    [self.refreshControl endRefreshing];
+    
+    if([url isEqualToString:urlToLoad] && [xpath isEqualToString:POSTS_XPATH] && [url isEqualToString:POSTS_URL] && currentPage != 1 && dataDictionary)
+    {
+        NewsParse *parser = [[NewsParse alloc]init];
+        [self insertNewData:[parser getDataFromDictionary:dataDictionary]];
+        return;
+    }
+    if([url isEqualToString:urlToLoad] && [xpath isEqualToString:POSTS_XPATH] && dataDictionary)
     {
         NewsParse *parser = [[NewsParse alloc]init];
         [self fillCellArrayWithDataArray:[parser getDataFromDictionary:dataDictionary]];
+        currentPage++;
+        return;
     }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger totalRow = [tableView numberOfRowsInSection:indexPath.section];
+    if(indexPath.row == totalRow -2)
+    {
+        urlToLoad = [NSString stringWithFormat:@"%@%d",NEXT_PAGE_URL,currentPage];
+        [self startLoadAndParseContentByUrl:urlToLoad];
+    }
+    //    if(indexPath.row == 0){}
+}
+
+- (void)checkNewData
+{
+    [self startLoadAndParseContentByUrl:POSTS_URL];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    cellsArray = [NSMutableArray array];
-    cellsDictionary = [NSMutableDictionary dictionary];
-    mainCellHeight = self.view.bounds.size.height*0.4 - halfOffset/2;
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    activityIndicator.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2 - 50);
-    CGAffineTransform transform = CGAffineTransformMakeScale(1.5f, 1.5f);
-    activityIndicator.transform = transform;
-    [self.view addSubview:activityIndicator];
-    [activityIndicator startAnimating];
     
+    currentPage = 1;
+    cellsArray = [NSMutableArray array];
+    mainCellHeight = self.view.bounds.size.height*0.4 - halfOffset/2;
+    
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.refreshControl addTarget:self action:@selector(checkNewData) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = self.refreshControl;
+}
+
+- (void)insertNewData:(NSArray*)dataArray
+{
+    [dataArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        if(![obj isKindOfClass:NewsElement.class])
+            return ;
+        
+        NewsElement* element = (NewsElement*)obj;
+        if(![element.url isEqualToString:((MainArticleCell*)[cellsArray objectAtIndex:idx]).articleUrl])
+        {
+            [cellsArray insertObject:[self createMainCellWithElement:element] atIndex:idx];
+        }
+    }];
+    [self.tableView reloadData];
+    if(slideViewController)
+        [slideViewController reloadContent];
 }
 
 - (void)fillCellArrayWithDataArray:(NSArray*)dataArray
@@ -86,13 +129,17 @@
         
         NewsElement* element = (NewsElement*)obj;
         
-        if(idx == 0)
+        if(currentPage == 1 && idx == 0)
+        {
             [cellsArray addObject:[self createMainCellWithElement:element]];
-        else
-            [cellsArray addObject:[self createArticleCellWithElement:element]];
+            return;
+        }
+        [cellsArray addObject:[self createArticleCellWithElement:element]];
     }];
-    [activityIndicator stopAnimating];
+    
     [self.tableView reloadData];
+    if(slideViewController)
+        [slideViewController reloadContent];
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
@@ -112,6 +159,7 @@
     cell.articleUrl = element.url;
     cell.height = mainCellHeight;
     [cell drawCell];
+    
     return cell;
 }
 
@@ -174,9 +222,27 @@
     return [cellsArray count];
 }
 
+-(void)loadContentType:(NSString *)identifier
+{
+    if([identifier isEqualToString:MOVE_RIGHT])
+    {
+        [self startLoadAndParseContentByUrl:NEWS_URL];
+    }
+    if([identifier isEqualToString:MOVE_LEFT])
+    {
+        urlToLoad = [NSString stringWithFormat:@"%@%d",NEXT_PAGE_URL,currentPage];
+        [self startLoadAndParseContentByUrl:urlToLoad];
+    }
+}
+
+-(void)setSlideSystemToNil
+{
+    slideViewController = nil;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SlideViewController* slideViewController = [[SlideViewController alloc]initWithPageIndex:indexPath.row];
+    slideViewController = [[SlideViewController alloc]initWithPageIndex:indexPath.row];
     slideViewController.delegate = self;
     [self.navigationController pushViewController:slideViewController animated:YES];
 }

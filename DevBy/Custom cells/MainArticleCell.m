@@ -22,7 +22,7 @@
     
     CGRect titleLabelRect = CGRectMake(halfOffset / 2, 0, self.bounds.size.width - halfOffset, NSIntegerMax);
     UILabel * titleLabel = [[UILabel alloc] initWithFrame:titleLabelRect];
-    titleLabel.font = [UIFont boldSystemFontOfSize:MACTitleFont];
+    titleLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-Medium" size:MACTitleFont];
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.numberOfLines = MAX_ROWS;
     titleLabel.text = self.title;

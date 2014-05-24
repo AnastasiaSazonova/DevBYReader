@@ -17,6 +17,7 @@
 #import "HTMLParser.h"
 #import "NewsParse.h"
 #import "NewsElement.h"
+#import "DetailNewsViewController.h"
 
 
 @interface  NewsViewController() <SlideViewDelegate, HTMLParserDelegate>
@@ -98,8 +99,15 @@
     cell.title = element.title;
     cell.date = element.time;
     cell.imageUrl = element.image;
+    cell.articleUrl = element.url;
     [cell drawCell];
     return cell;
+}
+
+-(NSString *)trimLeadingOffset:(NSString *)tempStr
+{
+    tempStr = [tempStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return tempStr;
 }
 
 #pragma mark - Table view data source
@@ -131,9 +139,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    SlideViewController* slideViewController = [[SlideViewController alloc]initWithIndex:indexPath.row];
+//    SlideViewController* slideViewController = [[SlideViewController alloc]initWithPageIndex:indexPath.row];
 //    slideViewController.delegate = self;
 //    [self.navigationController pushViewController:slideViewController animated:YES];
+    ArticleCell * currentCell = cellsArray[indexPath.row];
+    DetailNewsViewController * detailNewsViewController = [[DetailNewsViewController alloc] initWithUrl:[NSString stringWithFormat:@"http://dev.by/%@", currentCell.articleUrl] date:currentCell.date];
+    [self.navigationController pushViewController:detailNewsViewController animated:NO];
 }
 
 @end

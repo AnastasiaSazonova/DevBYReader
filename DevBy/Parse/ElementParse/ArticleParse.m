@@ -2,14 +2,14 @@
 //  NewsParse.m
 //  DevBy
 //
-//  Created by Admin on 22.05.14.
+//  Created by Anastasia on 22.05.14.
 //  Copyright (c) 2014 AD. All rights reserved.
 //
 
-#import "NewsParse.h"
+#import "ArticleParse.h"
 #import "NewsElement.h"
 
-@implementation NewsParse
+@implementation ArticleParse
 
 - (NSArray*) getDataFromDictionary:(NSDictionary*) dictionary
 {
@@ -24,20 +24,16 @@
                    
                    return (NSComparisonResult)NSOrderedSame;
                }];
-
-     NSMutableArray* arrayWithElements = [NSMutableArray array];
+    
+    NSMutableArray* arrayWithElements = [NSMutableArray array];
     
     [allkeys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
-    {
-        if(![[dictionary objectForKey:obj] isKindOfClass:NSArray.class] || [[dictionary objectForKey:obj] count] < 3)
-            return ;
-        NewsElement* element = [self parseDictionary:[dictionary objectForKey:obj]];
-        
-        if(!element)
-            return;
-        
-        [arrayWithElements addObject:element];
-    }];
+     {
+         if(![[dictionary objectForKey:obj] isKindOfClass:NSArray.class] || [[dictionary objectForKey:obj] count] < 3)
+             return ;
+         
+         [arrayWithElements addObject:[self parseDictionary:[dictionary objectForKey:obj]]];
+     }];
     return arrayWithElements;
 }
 
@@ -45,20 +41,14 @@
 {
     NewsElement* element = [[NewsElement alloc]init];
     
-    BOOL flag = YES;
-    
     for(NSDictionary* dictionary in array)
     {
+        //        NSLog(@"%@",dictionary);
         if([dictionary.allKeys count] > 1)
             continue;
         if(![[dictionary.allKeys firstObject] isKindOfClass:NSString.class])
             continue;
         
-        if([[dictionary.allKeys firstObject] rangeOfString:@"nav//span"].location != NSNotFound)
-        {
-            flag = NO;
-            continue;
-        }
         if([[dictionary.allKeys firstObject] rangeOfString:@"title_url_link"].location != NSNotFound)
         {
             element.url = [dictionary.allValues firstObject];
@@ -90,9 +80,6 @@
             continue;
         }
     }
-    if(flag)
-        return element;
-    else
-        return nil;
+    return element;
 }
 @end

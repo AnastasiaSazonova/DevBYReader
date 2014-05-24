@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-AFNetworking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-TTTAttributedLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3C38AC4272B24545B38FB918</key>
+		<key>89A574E1B4364202BC3E063E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5350D95AB0C84DD990EE5AEB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BA177386B5514DFE9A8AAC20</key>
+		<key>BEBBDA6EB22A46F9AE80D42A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -15,7 +15,9 @@
 #define NEWS_URL @"http://dev.by/news"
 #define POSTS_URL @"http://dev.by"
 #define POSTS_XPATH @"//div[@class='lists-blogs']"
+//#define POST_XPATH @"//div[@class ='lists-blogs one-node']"
 #define NEWS_XPATH @"//div[@class='lists-blogs news']"
+#define NEWS_TEXT_XPATH @"//div[@class='blog-views-node item-body nobrd']"
 #define NEWS_CELL_XPATH @"//div[@class='blog-views-node item-body']"
 #define NEWS_CELL_COMENTS_XPATH @"//div[@class='comments-list list-more']"
 
@@ -69,10 +71,10 @@ static const float navBarHeight = 64.0f;
 
 static const float ACImageHeight = 100;
 static const float ACTitleLabelMaxLength = 110;
-static const float ACTitleFont = 13;
-static const float ACDateLabelFont = 11;
+static const float ACTitleFont = 15;
+static const float ACDateLabelFont = 13;
 
-static const float MACTitleFont = 15;
+static const float MACTitleFont = 16;
 
 static const float CCUsernameFont = 13;
 static const float CCDateLabelFont = 11;

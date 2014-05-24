@@ -104,14 +104,10 @@
     
     for(TFHppleElement *children in [element children])
     {
-        if(![children hasChildren] && [children content] && [[children content] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0)
+        if(![children hasChildren] && [children content] && [[children content] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0)
         {
             continue;
         }
-//        if([children hasChildren] && [children.tagName isEqualToString:@"span"])
-//        {
-//            continue;
-//        }
         if([children.tagName isEqualToString:@"a"] && [[children.attributes  objectForKey:@"class"] isEqualToString:@"blog-node-title"])
         {
             [array addObject:[NSDictionary dictionaryWithObject:[children.attributes  objectForKey:@"href"]forKey:[NSString stringWithFormat:@"%@%@/title_url_link",keyForDictionary,children.tagName]]];
@@ -127,7 +123,11 @@
         if([children.tagName isEqualToString:@"a"] && [children.attributes.allKeys count] == 1 && [children.attributes  objectForKey:@"href"])
         {
             [array addObject:[NSDictionary dictionaryWithObject:[children.attributes  objectForKey:@"href"]forKey:[NSString stringWithFormat:@"%@%@/link_sentence_url",keyForDictionary,children.tagName]]];
-            [array addObject:[NSDictionary dictionaryWithObject:[[children firstChild] content]forKey:[NSString stringWithFormat:@"%@%@/link_sentence",keyForDictionary,children.tagName]]];
+            if ([[children firstChild] content])
+            {
+                [array addObject:[NSDictionary dictionaryWithObject:[[children firstChild] content]forKey:[NSString stringWithFormat:@"%@%@/link_sentence",keyForDictionary,children.tagName]]];
+            }
+            
             continue;
         }
         if(![children hasChildren] && [children.tagName isEqualToString:@"img"])
