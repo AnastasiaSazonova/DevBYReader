@@ -81,7 +81,6 @@
         urlToLoad = [NSString stringWithFormat:@"%@%d",NEXT_PAGE_URL,currentPage];
         [self startLoadAndParseContentByUrl:urlToLoad];
     }
-    //    if(indexPath.row == 0){}
 }
 
 - (void)checkNewData
