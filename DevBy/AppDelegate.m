@@ -11,6 +11,7 @@
 #import "JASidePanelController.h"
 #import "SlideViewController.h"
 #import "MSMainViewController.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation AppDelegate
 
@@ -26,6 +27,8 @@
     self.window.rootViewController = navigationController;
     
     [self.window makeKeyAndVisible];
+    
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
     return YES;
 }

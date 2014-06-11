@@ -28,11 +28,12 @@ NSString *const PrefixCompanyUrl = @"http://companies.dev.by";
     return self;
 }
 
-- (NSMutableArray *)getCompanies
+- (NSMutableArray *)getCompanies:(NSData *)data
 {
-    NSURL *companiesUrl = [NSURL URLWithString:PrefixCompanyUrl];
-    NSData *companiesHtmlData = [NSData dataWithContentsOfURL:companiesUrl];
-    TFHpple *companiesParser = [TFHpple hppleWithHTMLData:companiesHtmlData];
+    //NSURL *companiesUrl = [NSURL URLWithString:PrefixCompanyUrl];
+    //NSData *companiesHtmlData = [NSData dataWithContentsOfURL:companiesUrl];
+    //TFHpple *companiesParser = [TFHpple hppleWithHTMLData:companiesHtmlData];
+    TFHpple *companiesParser = [TFHpple hppleWithHTMLData:data];
     
     NSString *companiesXpathQueryString = @"//table[@id='tablesort']/tbody/tr";
     NSArray *nodes = [companiesParser searchWithXPathQuery:companiesXpathQueryString];
