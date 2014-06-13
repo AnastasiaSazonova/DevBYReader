@@ -12,6 +12,9 @@
 #import "Constants.h"
 #import "Protocols.h"
 #import "CommentsButton.h"
+#import "AFNetworking.h"
+#import "CompanyDetailSerializer.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate, CommentsProtocol>
 {
@@ -25,6 +28,9 @@
     CompaniesParser *companiesParser;
     CompanyDetail *companyDetail;
     NSString *postfix;
+    
+    AFHTTPRequestOperationManager *requestOperationManager;
+    UIActivityIndicatorView *loadingSpinner;
 }
 
 @property(nonatomic, strong)UITextView * textView;
@@ -51,7 +57,7 @@
 {
     if (!_textView)
     {
-        textViewFrame = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, self.view.bounds.size.height/5);
+        textViewFrame = CGRectMake(offset * 0.3, totalHeight, self.view.bounds.size.width - 0.6 * offset, self.view.bounds.size.height/5);
         _textView = [[UITextView alloc] initWithFrame:textViewFrame];
         _textView.userInteractionEnabled = NO;
         _textView.font = [UIFont systemFontOfSize:DCTextViewFont];
@@ -117,73 +123,104 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    companiesParser = [[CompaniesParser alloc] init];
-    companyDetail = [companiesParser getDetailInfoOf:postfix];
-    
     commentsHeight = 0;
     feedbacksHeight = 0;
     
-    [self calculateCommentsTableViewHeights];
-    [self calculateFeedbackTableViewHeights];
+    companiesParser = [[CompaniesParser alloc] init];
+    //companyDetail = [companiesParser getDetailInfoOf:postfix];
     
-    totalHeight = 0;
-    float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
-    if (navObjectsHeight == 0)
-    {
-        navObjectsHeight = navBarHeight;
-    }
-    totalHeight += offset*0.8;
-    CGRect nameLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset - DCLogoHeight, DCLogoHeight);
-    UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
-    nameLabel.font = [UIFont systemFontOfSize:DCNameLabelFont];
-    nameLabel.numberOfLines = 0;
-    nameLabel.text = companyDetail.name;
-    nameLabel.adjustsFontSizeToFitWidth = YES;
-    [nameLabel sizeToFit];
-    [self.scrollView addSubview:nameLabel];
+    //////
+    NSString *prefixCompanyUrl = [NSString stringWithFormat:@"%@%@", COMPANYPREFIX, postfix];
+    NSURL *companiesUrl = [NSURL URLWithString:prefixCompanyUrl];
     
-    totalHeight += nameLabel.bounds.size.height;
-    CGRect employeeLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width, DCLogoHeight);
-    UILabel * employeeNumberLabel = [[UILabel alloc] initWithFrame:employeeLabelRect];
-    employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", companyDetail.workersCount];
-    employeeNumberLabel.font = [UIFont systemFontOfSize:DCEmployeeNumberFont];
-    employeeNumberLabel.textColor = [UIColor grayColor];
-    [employeeNumberLabel sizeToFit];
-    [self.scrollView addSubview:employeeNumberLabel];
+    loadingSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    loadingSpinner.frame = self.view.frame;
+    [loadingSpinner startAnimating];
+    [self.view addSubview:loadingSpinner];
     
-    /*CGRect logoViewRect = CGRectMake( self.view.bounds.size.width - offset - DCLogoHeight, nameLabelRect.origin.y + 5, DCLogoHeight, DCLogoHeight);
-    UIImageView * logoView = [[UIImageView alloc] initWithFrame:logoViewRect];
-    logoView.backgroundColor = [UIColor grayColor];
-    [self.scrollView addSubview:logoView];*/
+    requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:companiesUrl];
+    CompanyDetailSerializer *companyDetailSerializer = [[CompanyDetailSerializer alloc] initWithCompanyName:postfix];
+    requestOperationManager.responseSerializer = companyDetailSerializer;
     
-    totalHeight += employeeNumberLabel.bounds.size.height + offset/3;
-    CGRect descriptionLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, 5);
-    UILabel * descriptionLabel = [[UILabel alloc] initWithFrame:descriptionLabelRect];
-    descriptionLabel.numberOfLines = 0;
-    descriptionLabel.text = [companyDetail.fullName stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    descriptionLabel.font = [UIFont systemFontOfSize:DCDescriptionLabelFont];
-    descriptionLabel.textColor = [UIColor grayColor];
-    descriptionLabel.adjustsFontSizeToFitWidth = YES;
-    [descriptionLabel sizeToFit];
-    [self.scrollView addSubview:descriptionLabel];
-    
-    totalHeight += descriptionLabel.bounds.size.height + offset;
-    
-    NSArray *itemArray = [NSArray arrayWithObjects: @"О компании", @"Обсуждение", @"Отзывы", nil];
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
-    segmentedControl.frame = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, 30);
-    totalHeight += segmentedControl.bounds.size.height + offset/3;
-    [segmentedControl addTarget:self action:@selector(touchSegmentedContorol:) forControlEvents: UIControlEventValueChanged];
-    segmentedControl.selectedSegmentIndex = 0;
-    [self addCompanyDescription];
-    [self.scrollView addSubview:segmentedControl];
-    [self.view addSubview:self.scrollView];
+    [requestOperationManager GET:prefixCompanyUrl
+                      parameters:nil
+                         success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         companyDetail = (CompanyDetail *)responseObject;
+         [loadingSpinner stopAnimating];
+         
+         //begin rendering
+         [self calculateCommentsTableViewHeights];
+         [self calculateFeedbackTableViewHeights];
+         
+         totalHeight = 0;
+         float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
+         if (navObjectsHeight == 0)
+         {
+             navObjectsHeight = navBarHeight;
+         }
+         totalHeight += offset*0.8;
+         CGRect nameLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset - DCLogoHeight, DCLogoHeight);
+         UILabel * nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
+         nameLabel.font = [UIFont systemFontOfSize:DCNameLabelFont];
+         nameLabel.numberOfLines = 0;
+         nameLabel.text = companyDetail.name;
+         nameLabel.adjustsFontSizeToFitWidth = YES;
+         [nameLabel sizeToFit];
+         [self.scrollView addSubview:nameLabel];
+         
+         totalHeight += nameLabel.bounds.size.height;
+         CGRect employeeLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width, DCLogoHeight);
+         UILabel * employeeNumberLabel = [[UILabel alloc] initWithFrame:employeeLabelRect];
+         employeeNumberLabel.text = [NSString stringWithFormat:@"Число сотрудников: %@", companyDetail.workersCount];
+         employeeNumberLabel.font = [UIFont systemFontOfSize:DCEmployeeNumberFont];
+         employeeNumberLabel.textColor = [UIColor grayColor];
+         [employeeNumberLabel sizeToFit];
+         [self.scrollView addSubview:employeeNumberLabel];
+         
+         totalHeight += employeeNumberLabel.bounds.size.height + offset/3;
+         CGRect descriptionLabelRect = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, 5);
+         UILabel * descriptionLabel = [[UILabel alloc] initWithFrame:descriptionLabelRect];
+         descriptionLabel.numberOfLines = 0;
+         descriptionLabel.text = [companyDetail.fullName stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+         descriptionLabel.font = [UIFont systemFontOfSize:DCDescriptionLabelFont];
+         descriptionLabel.textColor = [UIColor grayColor];
+         descriptionLabel.adjustsFontSizeToFitWidth = YES;
+         [descriptionLabel sizeToFit];
+         [self.scrollView addSubview:descriptionLabel];
+         
+         totalHeight += descriptionLabel.bounds.size.height + offset;
+         
+         NSArray *itemArray = [NSArray arrayWithObjects: @"О компании", @"Обсуждение", @"Отзывы", nil];
+         UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
+         segmentedControl.frame = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, 30);
+         totalHeight += segmentedControl.bounds.size.height + offset/3;
+         [segmentedControl addTarget:self action:@selector(touchSegmentedContorol:) forControlEvents: UIControlEventValueChanged];
+         segmentedControl.selectedSegmentIndex = 0;
+         [self addCompanyDescription];
+         [self.scrollView addSubview:segmentedControl];
+         [self.view addSubview:self.scrollView];
+         //end rendering
+         
+     }failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if(error.code != -999)
+         {
+             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Ошибка"
+                                                                 message:[error localizedDescription]
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"Ok"
+                                                       otherButtonTitles:nil];
+             [alertView show];
+         }
+     }];
+    //////
 }
 
 - (void)gotoComments:(CommentsButton *)button
 {
     CommentsParser *parser = [[CommentsParser alloc] init];
-    NSMutableArray *comments = [parser getCommentsWithUrl:[NSURL URLWithString:[NSString stringWithFormat:@"http://companies.dev.by%@", button.buttonLink]] andAddress:@"//div[@class='comments-list list-more']/div[@class='clearfix comment']"];
+    NSMutableArray *comments = [parser getCommentsWithUrl:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", COMPANYPREFIX, button.buttonLink]] andAddress:@"//div[@class='comments-list list-more']/div[@class='clearfix comment']"];
     NSArray *result = [NSArray arrayWithArray:comments];
     CommentsViewController *commentsController = [[CommentsViewController alloc] initWithComments:result];
     
@@ -233,7 +270,6 @@
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, totalHeight + self.commentsTableView.bounds.size.height);
 }
 
-
 -(void)setDiscussionView
 {
     CGRect frame = self.textView.frame;
@@ -242,7 +278,7 @@
     self.commentsTableView.userInteractionEnabled = NO;
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
-    self.commentsTableView.frame = CGRectMake(self.scrollView.center.x - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, commentsHeight);
+    self.commentsTableView.frame = CGRectMake(0, textViewFrame.origin.y, textViewFrame.size.width, commentsHeight);
     [self.scrollView addSubview:self.commentsTableView];
 }
 
@@ -320,7 +356,7 @@
 {
     CGRect frame = textViewFrame;
     frame.size.height += self.view.bounds.size.height/3;
-    self.feedBackTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.center.x - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, feedbacksHeight)];
+    self.feedBackTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.center.x + 0.4 * halfOffset - (textViewFrame.size.width)/2, textViewFrame.origin.y, textViewFrame.size.width, feedbacksHeight)];
     self.feedBackTableView.userInteractionEnabled = YES;
     self.feedBackTableView.delegate = self;
     self.feedBackTableView.dataSource = self;

@@ -12,6 +12,8 @@
 #define JOB @"Вакансии"
 #define EVENTS @"События"
 
+#define COMPANYPREFIX @"http://companies.dev.by"
+
 typedef enum
 {
     redColor,

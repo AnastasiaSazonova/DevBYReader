@@ -7,8 +7,9 @@
 //
 
 #import "CompaniesParser.h"
+#import "Constants.h"
 
-NSString *const PrefixCompanyUrl = @"http://companies.dev.by";
+//NSString *const PrefixCompanyUrl = @"http://companies.dev.by";
 
 @interface CompaniesParser()
 {
@@ -54,13 +55,14 @@ NSString *const PrefixCompanyUrl = @"http://companies.dev.by";
     return companyNames;
 }
 
-- (CompanyDetail *)getDetailInfoOf:(NSString *)companyName
+//- (CompanyDetail *)getDetailInfoOf:(NSString *)companyName andData:(NSData *)data
+- (CompanyDetail *)getDetailInfoWithData:(NSData *)data andCompanyName:(NSString *)companyName
 {
     CompanyDetail *result = [[CompanyDetail alloc] init];
     
-    NSURL *companiesUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", PrefixCompanyUrl, companyName]];
-    NSData *companiesHtmlData = [NSData dataWithContentsOfURL:companiesUrl];
-    TFHpple *companiesParser = [TFHpple hppleWithHTMLData:[textConverter clearHtmlData:companiesHtmlData]];
+    //NSURL *companiesUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", PrefixCompanyUrl, companyName]];
+    //NSData *companiesHtmlData = [NSData dataWithContentsOfURL:companiesUrl];
+    TFHpple *companiesParser = [TFHpple hppleWithHTMLData:[textConverter clearHtmlData:data]];
     NSString *companiesXpathQueryString = @"//div[@class='colums-table']/div[@class='dev-left col1']";
     TFHppleElement *node = [companiesParser peekAtSearchWithXPathQuery:companiesXpathQueryString];
     
@@ -82,14 +84,15 @@ NSString *const PrefixCompanyUrl = @"http://companies.dev.by";
     NSString *about = [textConverter getText:aboutElResult.children];
     result.about = about;
     
+    ///////
     CommentsParser *commentParser = [[CommentsParser alloc] init];
-    NSURL *commentsUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/discussions", PrefixCompanyUrl, companyName]];
+    NSURL *commentsUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/discussions", COMPANYPREFIX, companyName]];
     
     ReviewsParser *reviewsParser = [[ReviewsParser alloc] init];
-    NSURL *reviewsUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/reviews", PrefixCompanyUrl, companyName]];
+    NSURL *reviewsUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/reviews", COMPANYPREFIX, companyName]];
     result.comments = [commentParser getCommentsWithUrl:commentsUrl andAddress:@"//div[@class='dev-left col1']/div[@class='widget-node-comments company nobrd']/div[@class='block-comments']/div[@class='comments-list list-more']/div[@class='clearfix comment']"];
     result.reviews = [reviewsParser getReviewsWithUrl:reviewsUrl andAddress:@"//div[@class='widget-reviews']/div[@class='review item-body']"];
-    
+
     return result;
 }
 

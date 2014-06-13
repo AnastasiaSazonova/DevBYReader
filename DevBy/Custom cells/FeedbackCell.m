@@ -30,6 +30,7 @@
     {
         backGroundView.backgroundColor = [UIColor colorWithRed:102/255.0 green:255/255.0 blue:102/255.0 alpha:0.5];
     }
+    [[backGroundView layer] setCornerRadius:4];
     [self addSubview:backGroundView];
     
     CGRect usernameRect = CGRectMake(halfOffset, halfOffset, 0, 0);
@@ -72,7 +73,7 @@
     [backGroundView.layer setBorderColor:[UIColor grayColor].CGColor];
     [backGroundView.layer setBorderWidth:1.5f];
     
-    CGRect commentRect = CGRectMake(halfOffset, self.totalHeight - 1.5 * halfOffset, self.bounds.size.width*0.9, 0);
+    CGRect commentRect = CGRectMake(halfOffset / 2, self.totalHeight - 1.5 * halfOffset, self.frame.size.width * 0.9, 0);
     UILabel * commentLabel = [[UILabel alloc] initWithFrame:commentRect];
     commentLabel.font = [UIFont systemFontOfSize:FBCTextFont];
     commentLabel.numberOfLines = 0;

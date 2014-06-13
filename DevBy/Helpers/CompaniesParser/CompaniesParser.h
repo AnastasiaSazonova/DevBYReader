@@ -17,6 +17,9 @@
 @interface CompaniesParser : NSObject
 
 - (NSMutableArray *)getCompanies:(NSData *)data;
-- (CompanyDetail *)getDetailInfoOf:(NSString *)companyName;
+//- (CompanyDetail *)getDetailInfoOf:(NSString *)companyName;
+//- (CompanyDetail *)getDetailInfoOf:(NSString *)companyName andData:(NSData *)data;
+//- (CompanyDetail *)getDetailInfoWithData:(NSData *)data;
+- (CompanyDetail *)getDetailInfoWithData:(NSData *)data andCompanyName:(NSString *)companyName;
 
 @end

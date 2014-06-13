@@ -9,7 +9,6 @@
 #import "CompaniesViewController.h"
 #import "DetailCompanyViewController.h"
 #import "Constants.h"
-#import "DejalActivityView.h"
 #import "AFNetworking.h"
 #import "CompaniesListSerializer.h"
 #import "AFNetworkActivityIndicatorManager.h"
@@ -20,7 +19,7 @@
     CompaniesParser *companiesParser;
     
     AFHTTPRequestOperationManager *requestOperationManager;
-    //NSOperationQueue *operationQueue;
+    UIActivityIndicatorView *loadingSpinner;
 }
 
 @property(nonatomic, strong)UITableView * tableView;
@@ -48,32 +47,26 @@
     companiesParser = [[CompaniesParser alloc] init];
 
     //////
-    //operationQueue = [[NSOperationQueue alloc] init];
-    
     NSString *prefixCompanyUrl = @"http://companies.dev.by";
     NSURL *companiesUrl = [NSURL URLWithString:prefixCompanyUrl];
-    //NSURLRequest *request = [NSURLRequest requestWithURL:companiesUrl];
     
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    spinner.frame = self.view.frame;
-    [spinner startAnimating];
-    [self.view addSubview:spinner];
+    loadingSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    loadingSpinner.frame = self.view.frame;
+    [loadingSpinner startAnimating];
+    self.view.userInteractionEnabled = NO;
+    [self.view addSubview:loadingSpinner];
     
     requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:companiesUrl];
-    //requestOperationManager.responseSerializer = [AFHTTPResponseSerializer serializer]; //?
     requestOperationManager.responseSerializer = [CompaniesListSerializer serializer];
     [requestOperationManager GET:prefixCompanyUrl
-      parameters:nil
-         success:^(AFHTTPRequestOperation *operation, id responseObject)
+                      parameters:nil
+                         success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
-        /*[operationQueue addOperationWithBlock:^{
-            self.companysNames = [companiesParser getCompanies:responseObject];
-            [self.tableView reloadData];
-        }];*/
         self.companysNames = (NSArray *)responseObject;
         [self.tableView reloadData];
-        //[AFNetworkActivityIndicatorManager sharedManager].enabled = NO;
-        NSLog(@"dfdf");
+        [loadingSpinner stopAnimating];
+        self.view.userInteractionEnabled = YES;
+        
     }failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
         if(error.code != -999)
@@ -86,8 +79,8 @@
             [alertView show];
         }
     }];
-    //[operation start];
     //////
+    
     self.view.backgroundColor = [UIColor whiteColor];
     CGRect searchBarRect = CGRectMake(0, navBarHeight, self.view.bounds.size.width, CVCRowHeight);
     self.searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
@@ -106,18 +99,16 @@
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearch:)];
     self.navigationItem.rightBarButtonItem = searchButton;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Компании" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
-//    [DejalBezelActivityView activityViewForView:self.view].showNetworkActivityIndicator = YES;
-//    [DejalBezelActivityView removeView];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:YES];
+
     //////////////
-    //[operationQueue cancelAllOperations];
     [requestOperationManager.operationQueue cancelAllOperations];
-    
+    [loadingSpinner stopAnimating];
+    //////////////
 }
 
 - (IBAction)goToSearch:(id)sender

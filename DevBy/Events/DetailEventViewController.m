@@ -63,7 +63,7 @@
     [super viewDidLoad];
 
     eventsParser = [[EventsParser alloc] init];
-    eventDetail = [eventsParser getDetailInfoOf:postfix/*@"lazertag-na-it-cup-cobiraem-sportsmenov-v-it-boy"*/];
+    eventDetail = [eventsParser getDetailInfoOf:postfix];
     
     float navObjectsHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     totalHeight = offset*0.4 + navObjectsHeight;

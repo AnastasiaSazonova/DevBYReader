@@ -34,7 +34,6 @@
 		5D82DDD418F7D0CE009E4D3E /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D82DDBC18F7D0CE009E4D3E /* reveal-icon.png */; };
 		5D82DDD618F7D0CE009E4D3E /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDC118F7D0CE009E4D3E /* JASidePanelController.m */; };
 		5D82DDD718F7D0CE009E4D3E /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDC318F7D0CE009E4D3E /* UIViewController+JASidePanel.m */; };
-		5D82DDD818F7D0CE009E4D3E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDC618F7D0CE009E4D3E /* SWRevealViewController.m */; };
 		5D82DDDF18F7D305009E4D3E /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDDE18F7D305009E4D3E /* EventsViewController.m */; };
 		5D82DDEC18F7D312009E4D3E /* CompaniesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDE218F7D312009E4D3E /* CompaniesViewController.m */; };
 		5D82DDEE18F7D312009E4D3E /* HTMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82DDE818F7D312009E4D3E /* HTMLElement.m */; };
@@ -49,7 +48,6 @@
 		5DD088921906319D008601DB /* MiddleJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD088911906319D008601DB /* MiddleJobCell.m */; };
 		5DD08895190631B2008601DB /* StandardJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD08894190631B2008601DB /* StandardJobCell.m */; };
 		5DD0889819063238008601DB /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0889719063238008601DB /* Job.m */; };
-		84014358192F92F00070F12F /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84014357192F92F00070F12F /* DejalActivityView.m */; };
 		8412794219253A2A0064978A /* PostsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8412794119253A2A0064978A /* PostsParser.m */; };
 		8412794519253B330064978A /* PostDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8412794419253B330064978A /* PostDetail.m */; };
 		84127948192540EC0064978A /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 84127947192540EC0064978A /* Post.m */; };
@@ -83,6 +81,7 @@
 		84DCD51F19474EDC00AC0A28 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCD51519474EDC00AC0A28 /* UIProgressView+AFNetworking.m */; };
 		84DCD52019474EDC00AC0A28 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCD51719474EDC00AC0A28 /* UIRefreshControl+AFNetworking.m */; };
 		84DCD52119474EDC00AC0A28 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCD51919474EDC00AC0A28 /* UIWebView+AFNetworking.m */; };
+		84E7B4E21948D4F60054D329 /* CompanyDetailSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7B4E11948D4F60054D329 /* CompanyDetailSerializer.m */; };
 		84ED696B1948957B00F4A5E3 /* CompaniesListSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED696A1948957B00F4A5E3 /* CompaniesListSerializer.m */; };
 /* End PBXBuildFile section */
 
@@ -116,8 +115,8 @@
 		5D26DD7118FC674800914F06 /* DetailEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailEventViewController.h; sourceTree = "<group>"; };
 		5D26DD7218FC674800914F06 /* DetailEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailEventViewController.m; sourceTree = "<group>"; };
 		5D26EAE7190BD56F00ED47FC /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		5D28ED9218F8A4E80066011D /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
-		5D28ED9318F8A4E80066011D /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
+		5D28ED9218F8A4E80066011D /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsViewController.h; path = News/CommentsViewController.h; sourceTree = "<group>"; };
+		5D28ED9318F8A4E80066011D /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsViewController.m; path = News/CommentsViewController.m; sourceTree = "<group>"; };
 		5D29B10918F7CF8F006DCD4F /* DevBy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevBy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D29B10E18F7CF8F006DCD4F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5D29B11018F7CF8F006DCD4F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -147,8 +146,6 @@
 		5D82DDC118F7D0CE009E4D3E /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
 		5D82DDC218F7D0CE009E4D3E /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
 		5D82DDC318F7D0CE009E4D3E /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
-		5D82DDC518F7D0CE009E4D3E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		5D82DDC618F7D0CE009E4D3E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		5D82DDDD18F7D305009E4D3E /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
 		5D82DDDE18F7D305009E4D3E /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
 		5D82DDE118F7D312009E4D3E /* CompaniesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompaniesViewController.h; sourceTree = "<group>"; };
@@ -177,8 +174,6 @@
 		5DD08894190631B2008601DB /* StandardJobCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardJobCell.m; sourceTree = "<group>"; };
 		5DD0889619063238008601DB /* Job.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
 		5DD0889719063238008601DB /* Job.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Job.m; sourceTree = "<group>"; };
-		84014356192F92F00070F12F /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
-		84014357192F92F00070F12F /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
 		8412794019253A2A0064978A /* PostsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsParser.h; sourceTree = "<group>"; };
 		8412794119253A2A0064978A /* PostsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsParser.m; sourceTree = "<group>"; };
 		8412794319253B330064978A /* PostDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetail.h; sourceTree = "<group>"; };
@@ -246,6 +241,8 @@
 		84DCD51719474EDC00AC0A28 /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		84DCD51819474EDC00AC0A28 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		84DCD51919474EDC00AC0A28 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		84E7B4E01948D4F60054D329 /* CompanyDetailSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyDetailSerializer.h; sourceTree = "<group>"; };
+		84E7B4E11948D4F60054D329 /* CompanyDetailSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailSerializer.m; sourceTree = "<group>"; };
 		84ED69691948957B00F4A5E3 /* CompaniesListSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompaniesListSerializer.h; sourceTree = "<group>"; };
 		84ED696A1948957B00F4A5E3 /* CompaniesListSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompaniesListSerializer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -286,7 +283,7 @@
 				5D0B8C3519115DA500A62318 /* SlideViewController.m */,
 			);
 			name = Navigation;
-			path = SergeyContent;
+			path = ../SergeyContent;
 			sourceTree = "<group>";
 		};
 		5D26EAE6190BD54E00ED47FC /* Constants */ = {
@@ -302,9 +299,6 @@
 			isa = PBXGroup;
 			children = (
 				5D29B11218F7CF8F006DCD4F /* DevBy */,
-				5D29B12B18F7CF8F006DCD4F /* DevByTests */,
-				5D29B10B18F7CF8F006DCD4F /* Frameworks */,
-				5D29B10A18F7CF8F006DCD4F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -315,6 +309,7 @@
 				5D29B12418F7CF8F006DCD4F /* DevByTests.xctest */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		5D29B10B18F7CF8F006DCD4F /* Frameworks */ = {
@@ -326,20 +321,16 @@
 				5D29B12518F7CF8F006DCD4F /* XCTest.framework */,
 			);
 			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		5D29B11218F7CF8F006DCD4F /* DevBy */ = {
 			isa = PBXGroup;
 			children = (
+				84FDDFF0194B698E00124843 /* Pages */,
 				841EDE1E191C171A0041923B /* Helpers */,
-				5D0B8C2019115DA500A62318 /* Navigation */,
 				5D26EAE6190BD54E00ED47FC /* Constants */,
-				5D82DDFD18F8080A009E4D3E /* Custom cells */,
-				5D82DDF318F7D37E009E4D3E /* Vacancies */,
-				5D82DDE018F7D312009E4D3E /* Companies */,
-				5D82DDE618F7D312009E4D3E /* Model */,
-				5D82DDE918F7D312009E4D3E /* News */,
-				5D82DDDC18F7D305009E4D3E /* Events */,
+				5D82DDE618F7D312009E4D3E /* Models */,
 				5D29B11318F7CF8F006DCD4F /* Supporting Files */,
 			);
 			path = DevBy;
@@ -348,14 +339,15 @@
 		5D29B11318F7CF8F006DCD4F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5D29B12B18F7CF8F006DCD4F /* DevByTests */,
+				5D29B10B18F7CF8F006DCD4F /* Frameworks */,
+				5D29B10A18F7CF8F006DCD4F /* Products */,
 				84B1ED4D191E131E006603FC /* DevBy-Info.plist */,
 				5D29B11B18F7CF8F006DCD4F /* AppDelegate.h */,
 				5D29B11C18F7CF8F006DCD4F /* AppDelegate.m */,
 				5D82DDA918F7D0CE009E4D3E /* en.lproj */,
 				5D82DDBC18F7D0CE009E4D3E /* reveal-icon.png */,
 				5D82DDBF18F7D0CE009E4D3E /* Source */,
-				5D82DDC418F7D0CE009E4D3E /* SWRevealViewController */,
-				5D82DDAE18F7D0CE009E4D3E /* hpple */,
 				5D29B11518F7CF8F006DCD4F /* InfoPlist.strings */,
 				5D29B11818F7CF8F006DCD4F /* main.m */,
 				5D29B11A18F7CF8F006DCD4F /* DevBy-Prefix.pch */,
@@ -370,7 +362,7 @@
 				5D29B12C18F7CF8F006DCD4F /* Supporting Files */,
 			);
 			path = DevByTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		5D29B12C18F7CF8F006DCD4F /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -399,7 +391,8 @@
 				5D82DDB318F7D0CE009E4D3E /* XPathQuery.h */,
 				5D82DDB418F7D0CE009E4D3E /* XPathQuery.m */,
 			);
-			path = hpple;
+			name = hpple;
+			path = ../hpple;
 			sourceTree = "<group>";
 		};
 		5D82DDBF18F7D0CE009E4D3E /* Source */ = {
@@ -411,15 +404,6 @@
 				5D82DDC318F7D0CE009E4D3E /* UIViewController+JASidePanel.m */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		5D82DDC418F7D0CE009E4D3E /* SWRevealViewController */ = {
-			isa = PBXGroup;
-			children = (
-				5D82DDC518F7D0CE009E4D3E /* SWRevealViewController.h */,
-				5D82DDC618F7D0CE009E4D3E /* SWRevealViewController.m */,
-			);
-			path = SWRevealViewController;
 			sourceTree = "<group>";
 		};
 		5D82DDDC18F7D305009E4D3E /* Events */ = {
@@ -444,7 +428,7 @@
 			path = Companies;
 			sourceTree = "<group>";
 		};
-		5D82DDE618F7D312009E4D3E /* Model */ = {
+		5D82DDE618F7D312009E4D3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				841EDE33191C17580041923B /* Company.h */,
@@ -472,6 +456,7 @@
 				84127946192540EC0064978A /* Post.h */,
 				84127947192540EC0064978A /* Post.m */,
 			);
+			name = Models;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -482,8 +467,6 @@
 				5D82DDF118F7D368009E4D3E /* DetailPostsViewController.m */,
 				5D82DDEA18F7D312009E4D3E /* PostsViewController.h */,
 				5D82DDEB18F7D312009E4D3E /* PostsViewController.m */,
-				5D28ED9218F8A4E80066011D /* CommentsViewController.h */,
-				5D28ED9318F8A4E80066011D /* CommentsViewController.m */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -525,7 +508,8 @@
 				8417D6DB192D25A5002FAF78 /* CommentsButton.h */,
 				8417D6DC192D25A5002FAF78 /* CommentsButton.m */,
 			);
-			path = "Custom cells";
+			name = "Custom cells";
+			path = "../Custom cells";
 			sourceTree = "<group>";
 		};
 		84014354192F929A0070F12F /* Parsers */ = {
@@ -540,15 +524,6 @@
 			name = Parsers;
 			sourceTree = "<group>";
 		};
-		84014355192F92A90070F12F /* DejalActivityView */ = {
-			isa = PBXGroup;
-			children = (
-				84014356192F92F00070F12F /* DejalActivityView.h */,
-				84014357192F92F00070F12F /* DejalActivityView.m */,
-			);
-			name = DejalActivityView;
-			sourceTree = "<group>";
-		};
 		8412793F19253A090064978A /* PostsParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -561,13 +536,14 @@
 		841EDE1E191C171A0041923B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5D82DDFD18F8080A009E4D3E /* Custom cells */,
+				5D82DDAE18F7D0CE009E4D3E /* hpple */,
+				5D0B8C2019115DA500A62318 /* Navigation */,
+				84FDDFEF194B693200124843 /* Serializers */,
 				84DCD50819474EDC00AC0A28 /* UIKit+AFNetworking */,
 				84DCD4B219474D9900AC0A28 /* AFNetworking */,
-				84014355192F92A90070F12F /* DejalActivityView */,
 				84014354192F929A0070F12F /* Parsers */,
 				841EDE2B191C171A0041923B /* TextConverter */,
-				84ED69691948957B00F4A5E3 /* CompaniesListSerializer.h */,
-				84ED696A1948957B00F4A5E3 /* CompaniesListSerializer.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -665,6 +641,38 @@
 				84DCD51919474EDC00AC0A28 /* UIWebView+AFNetworking.m */,
 			);
 			path = "UIKit+AFNetworking";
+			sourceTree = "<group>";
+		};
+		84FDDFEF194B693200124843 /* Serializers */ = {
+			isa = PBXGroup;
+			children = (
+				84ED69691948957B00F4A5E3 /* CompaniesListSerializer.h */,
+				84ED696A1948957B00F4A5E3 /* CompaniesListSerializer.m */,
+				84E7B4E01948D4F60054D329 /* CompanyDetailSerializer.h */,
+				84E7B4E11948D4F60054D329 /* CompanyDetailSerializer.m */,
+			);
+			name = Serializers;
+			sourceTree = "<group>";
+		};
+		84FDDFF0194B698E00124843 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				84FDDFF1194B6ABF00124843 /* Comments */,
+				5D82DDE018F7D312009E4D3E /* Companies */,
+				5D82DDF318F7D37E009E4D3E /* Vacancies */,
+				5D82DDDC18F7D305009E4D3E /* Events */,
+				5D82DDE918F7D312009E4D3E /* News */,
+			);
+			name = Pages;
+			sourceTree = "<group>";
+		};
+		84FDDFF1194B6ABF00124843 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				5D28ED9218F8A4E80066011D /* CommentsViewController.h */,
+				5D28ED9318F8A4E80066011D /* CommentsViewController.m */,
+			);
+			name = Comments;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -784,14 +792,12 @@
 				84DCD4E519474DEE00AC0A28 /* AFNetworkReachabilityManager.m in Sources */,
 				841EDE31191C171A0041923B /* ReviewsParser.m in Sources */,
 				5D12A15218F91366005A5BEE /* DetailCompanyViewController.m in Sources */,
-				84014358192F92F00070F12F /* DejalActivityView.m in Sources */,
 				5D4BF6B31909713900E0E405 /* MiddleJob.m in Sources */,
 				5D82DDEF18F7D312009E4D3E /* PostsViewController.m in Sources */,
 				841EDE2E191C171A0041923B /* CommentsParser.m in Sources */,
 				841EDE3D191C17580041923B /* Company.m in Sources */,
 				5D0B8C3A19115DA500A62318 /* MSMainViewController.m in Sources */,
 				841EDE3E191C17580041923B /* CompanyDetail.m in Sources */,
-				5D82DDD818F7D0CE009E4D3E /* SWRevealViewController.m in Sources */,
 				5D82DDCF18F7D0CE009E4D3E /* XPathQuery.m in Sources */,
 				84DCD4E219474DEE00AC0A28 /* AFHTTPRequestOperation.m in Sources */,
 				5DD0888F1906307E008601DB /* DetailVacanciesViewController.m in Sources */,
@@ -814,6 +820,7 @@
 				84ED696B1948957B00F4A5E3 /* CompaniesListSerializer.m in Sources */,
 				5D1630B6190BA510005AEE23 /* FeedbackCell.m in Sources */,
 				5D28ED9418F8A4E80066011D /* CommentsViewController.m in Sources */,
+				84E7B4E21948D4F60054D329 /* CompanyDetailSerializer.m in Sources */,
 				5DA2BEA21912DB3400833C6E /* Comment.m in Sources */,
 				5D29B11918F7CF8F006DCD4F /* main.m in Sources */,
 				8412794219253A2A0064978A /* PostsParser.m in Sources */,
