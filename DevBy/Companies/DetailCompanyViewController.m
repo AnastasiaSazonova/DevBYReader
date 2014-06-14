@@ -14,6 +14,7 @@
 #import "CommentsButton.h"
 #import "AFNetworking.h"
 #import "CompanyDetailSerializer.h"
+#import "CommentsSerializer.h"
 #import "AFNetworkActivityIndicatorManager.h"
 
 @interface DetailCompanyViewController ()<UITableViewDataSource, UITableViewDelegate, CommentsProtocol>
@@ -125,10 +126,7 @@
     
     commentsHeight = 0;
     feedbacksHeight = 0;
-    
-    //companiesParser = [[CompaniesParser alloc] init];
-    //companyDetail = [companiesParser getDetailInfoOf:postfix];
-    
+        
     //////
     NSString *prefixCompanyUrl = [NSString stringWithFormat:@"%@%@", COMPANYPREFIX, postfix];
     NSURL *companiesUrl = [NSURL URLWithString:prefixCompanyUrl];
@@ -146,6 +144,34 @@
                       parameters:nil
                          success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
+         /////comments async
+         NSString *commentsUrlString = [NSString stringWithFormat:@"%@%@/discussions", COMPANYPREFIX, postfix];
+         NSURL *commentsUrl = [NSURL URLWithString:commentsUrlString];
+         requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:commentsUrl];
+         CommentsSerializer *commentsSerializer = [[CommentsSerializer alloc] initWithWithUrl:commentsUrl andAddress:@"//div[@class='dev-left col1']/div[@class='widget-node-comments company nobrd']/div[@class='block-comments']/div[@class='comments-list list-more']/div[@class='clearfix comment']"];
+         requestOperationManager.responseSerializer = commentsSerializer;
+         [requestOperationManager GET:commentsUrlString
+                           parameters:nil
+                              success:^(AFHTTPRequestOperation *operation, id responseObject)
+          {
+              //commentsCellsArray = (NSMutableArray *)responseObject;
+              companyDetail.comments = (NSArray *)responseObject;
+              [self calculateCommentsTableViewHeights];
+              NSLog(@"df");
+              
+          } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+          {
+              if(error.code != -999)
+              {
+                  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Ошибка"
+                                                                      message:[error localizedDescription]
+                                                                     delegate:nil
+                                                            cancelButtonTitle:@"Ok"
+                                                            otherButtonTitles:nil];
+                  [alertView show];
+              }
+          }];
+         /////
          companyDetail = (CompanyDetail *)responseObject;
          [loadingSpinner stopAnimating];
          
