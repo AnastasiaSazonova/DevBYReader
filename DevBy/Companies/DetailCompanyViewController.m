@@ -32,6 +32,9 @@
     
     AFHTTPRequestOperationManager *requestOperationManager;
     UIActivityIndicatorView *loadingSpinner;
+    
+    UISegmentedControl *segmentedControl;
+    BOOL commentsLoaded;
 }
 
 @property(nonatomic, strong)UITextView * textView;
@@ -126,6 +129,7 @@
     
     commentsHeight = 0;
     feedbacksHeight = 0;
+    commentsLoaded = NO;
         
     //////
     NSString *prefixCompanyUrl = [NSString stringWithFormat:@"%@%@", COMPANYPREFIX, postfix];
@@ -154,10 +158,15 @@
                            parameters:nil
                               success:^(AFHTTPRequestOperation *operation, id responseObject)
           {
-              //commentsCellsArray = (NSMutableArray *)responseObject;
               companyDetail.comments = (NSArray *)responseObject;
               [self calculateCommentsTableViewHeights];
-              NSLog(@"df");
+              
+              commentsLoaded = YES;
+              if(segmentedControl.selectedSegmentIndex == companysDiscussion)
+              {
+                  [self addCompanysDiscussion];
+                  [loadingSpinner stopAnimating];
+              }
               
           } failure:^(AFHTTPRequestOperation *operation, NSError *error)
           {
@@ -218,7 +227,7 @@
          totalHeight += descriptionLabel.bounds.size.height + offset;
          
          NSArray *itemArray = [NSArray arrayWithObjects: @"О компании", @"Обсуждение", @"Отзывы", nil];
-         UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
+         segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
          segmentedControl.frame = CGRectMake(offset/2, totalHeight, self.view.bounds.size.width - offset, 30);
          totalHeight += segmentedControl.bounds.size.height + offset/3;
          [segmentedControl addTarget:self action:@selector(touchSegmentedContorol:) forControlEvents: UIControlEventValueChanged];
@@ -250,18 +259,21 @@
     [self.navigationController pushViewController:commentsController animated:YES];
 }
 
--(void)touchSegmentedContorol:(UISegmentedControl *)segmentedControl
+-(void)touchSegmentedContorol:(UISegmentedControl *)control
 {
-    if (segmentedControl.selectedSegmentIndex == companysDescription)
+    segmentedControl = control;
+    if (control.selectedSegmentIndex == companysDescription)
     {
+        [loadingSpinner stopAnimating];
         [self addCompanyDescription];
     }
-    else if(segmentedControl.selectedSegmentIndex == companysDiscussion)
+    else if(control.selectedSegmentIndex == companysDiscussion)
     {
         [self addCompanysDiscussion];
     }
-    else if(segmentedControl.selectedSegmentIndex == companysFeedback)
+    else if(control.selectedSegmentIndex == companysFeedback)
     {
+        [loadingSpinner stopAnimating];
         [self addCompanysFeedback];
     }
 }
@@ -284,7 +296,13 @@
 {
     [self cleanTextView];
     [self setDiscussionView];
-    if(commentsCellsArray.count == 0)
+    if(commentsLoaded == NO)
+    {
+        [loadingSpinner startAnimating];
+        self.textView.text = @"Загрузка...";
+        [self.scrollView addSubview:self.textView];
+    }
+    else if(commentsCellsArray.count == 0)
     {
         self.textView.text = @"Нет данных";
         [self.scrollView addSubview:self.textView];
