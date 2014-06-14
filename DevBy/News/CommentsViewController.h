@@ -10,6 +10,7 @@
 
 @interface CommentsViewController : UITableViewController
 
-- (id)initWithComments:(NSArray *)comments;
+//- (id)initWithComments:(NSArray *)comments;
+- (id)initWithCompany:(NSString *)link;
 
 @end

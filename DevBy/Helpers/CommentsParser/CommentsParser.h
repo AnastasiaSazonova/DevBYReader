@@ -13,6 +13,6 @@
 
 @interface CommentsParser : NSObject
 
-- (NSMutableArray *)getCommentsWithUrl:(NSURL *)url andAddress:(NSString *)address;
+- (NSMutableArray *)getCommentsWithData:(NSData *)data andAddress:(NSString *)address; //?
 
 @end

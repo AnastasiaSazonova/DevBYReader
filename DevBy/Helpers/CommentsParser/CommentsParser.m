@@ -43,16 +43,15 @@ NSInteger const DepthLimitation = 6;
     return self;
 }
 
-- (NSMutableArray *)getCommentsWithUrl:(NSURL *)url andAddress:(NSString *)address;
+- (NSMutableArray *)getCommentsWithData:(NSData *)data andAddress:(NSString *)address
 {
-    NSData *commentsHtmlData = [NSData dataWithContentsOfURL:url];
-    buttonLinks = [self getButtonLinks:commentsHtmlData];
-
-    NSString *updatedString = [self getHtmlWithJSContent:commentsHtmlData];
+    buttonLinks = [self getButtonLinks:data];
+    
+    NSString *updatedString = [self getHtmlWithJSContent:data];
     NSData *updatedData = [updatedString dataUsingEncoding:NSUTF8StringEncoding];
     
     TFHpple *parser = [TFHpple hppleWithHTMLData:[textConverter clearHtmlData:updatedData]];
-    nodes = [parser searchWithXPathQuery:address];
+    nodes = [parser searchWithXPathQuery:@"//div[@class='comments-list list-more']/div[@class='clearfix comment']"];
 
     objects = [self getCommentsWithArray:nodes];
     [self depthLimitting];

@@ -82,6 +82,7 @@
 		84DCD52019474EDC00AC0A28 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCD51719474EDC00AC0A28 /* UIRefreshControl+AFNetworking.m */; };
 		84DCD52119474EDC00AC0A28 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCD51919474EDC00AC0A28 /* UIWebView+AFNetworking.m */; };
 		84E7B4E21948D4F60054D329 /* CompanyDetailSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7B4E11948D4F60054D329 /* CompanyDetailSerializer.m */; };
+		84EB78A2194B8BD30029E31A /* CommentsSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB78A1194B8BD30029E31A /* CommentsSerializer.m */; };
 		84ED696B1948957B00F4A5E3 /* CompaniesListSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED696A1948957B00F4A5E3 /* CompaniesListSerializer.m */; };
 /* End PBXBuildFile section */
 
@@ -243,6 +244,8 @@
 		84DCD51919474EDC00AC0A28 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		84E7B4E01948D4F60054D329 /* CompanyDetailSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyDetailSerializer.h; sourceTree = "<group>"; };
 		84E7B4E11948D4F60054D329 /* CompanyDetailSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailSerializer.m; sourceTree = "<group>"; };
+		84EB78A0194B8BD30029E31A /* CommentsSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsSerializer.h; sourceTree = "<group>"; };
+		84EB78A1194B8BD30029E31A /* CommentsSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsSerializer.m; sourceTree = "<group>"; };
 		84ED69691948957B00F4A5E3 /* CompaniesListSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompaniesListSerializer.h; sourceTree = "<group>"; };
 		84ED696A1948957B00F4A5E3 /* CompaniesListSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompaniesListSerializer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -650,6 +653,8 @@
 				84ED696A1948957B00F4A5E3 /* CompaniesListSerializer.m */,
 				84E7B4E01948D4F60054D329 /* CompanyDetailSerializer.h */,
 				84E7B4E11948D4F60054D329 /* CompanyDetailSerializer.m */,
+				84EB78A0194B8BD30029E31A /* CommentsSerializer.h */,
+				84EB78A1194B8BD30029E31A /* CommentsSerializer.m */,
 			);
 			name = Serializers;
 			sourceTree = "<group>";
@@ -790,6 +795,7 @@
 				84DCD4E619474DEE00AC0A28 /* AFSecurityPolicy.m in Sources */,
 				841EDE3F191C17580041923B /* Event.m in Sources */,
 				84DCD4E519474DEE00AC0A28 /* AFNetworkReachabilityManager.m in Sources */,
+				84EB78A2194B8BD30029E31A /* CommentsSerializer.m in Sources */,
 				841EDE31191C171A0041923B /* ReviewsParser.m in Sources */,
 				5D12A15218F91366005A5BEE /* DetailCompanyViewController.m in Sources */,
 				5D4BF6B31909713900E0E405 /* MiddleJob.m in Sources */,

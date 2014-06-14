@@ -47,8 +47,7 @@
     companiesParser = [[CompaniesParser alloc] init];
 
     //////
-    NSString *prefixCompanyUrl = @"http://companies.dev.by";
-    NSURL *companiesUrl = [NSURL URLWithString:prefixCompanyUrl];
+    NSURL *companiesUrl = [NSURL URLWithString:COMPANYPREFIX];
     
     loadingSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     loadingSpinner.frame = self.view.frame;
@@ -58,7 +57,7 @@
     
     requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:companiesUrl];
     requestOperationManager.responseSerializer = [CompaniesListSerializer serializer];
-    [requestOperationManager GET:prefixCompanyUrl
+    [requestOperationManager GET:COMPANYPREFIX
                       parameters:nil
                          success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
@@ -195,11 +194,8 @@
                                     predicateWithFormat:@"self.name contains[cd] %@",
                                     searchText];
     
-    //self.searchResults = [NSMutableArray arrayWithArray:[self.companysNames filteredArrayUsingPredicate:resultPredicate]];  //? search bug after adding a customArray
-    ////
     NSArray *new = [self.companysNames filteredArrayUsingPredicate:resultPredicate];
-    self.searchResults = [NSMutableArray arrayWithArray:new];
-    
+    self.searchResults = [NSMutableArray arrayWithArray:new];    
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller

@@ -126,7 +126,7 @@
     commentsHeight = 0;
     feedbacksHeight = 0;
     
-    companiesParser = [[CompaniesParser alloc] init];
+    //companiesParser = [[CompaniesParser alloc] init];
     //companyDetail = [companiesParser getDetailInfoOf:postfix];
     
     //////
@@ -219,10 +219,7 @@
 
 - (void)gotoComments:(CommentsButton *)button
 {
-    CommentsParser *parser = [[CommentsParser alloc] init];
-    NSMutableArray *comments = [parser getCommentsWithUrl:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", COMPANYPREFIX, button.buttonLink]] andAddress:@"//div[@class='comments-list list-more']/div[@class='clearfix comment']"];
-    NSArray *result = [NSArray arrayWithArray:comments];
-    CommentsViewController *commentsController = [[CommentsViewController alloc] initWithComments:result];
+    CommentsViewController *commentsController = [[CommentsViewController alloc] initWithCompany:button.buttonLink];
     
     [self.navigationController pushViewController:commentsController animated:YES];
 }
