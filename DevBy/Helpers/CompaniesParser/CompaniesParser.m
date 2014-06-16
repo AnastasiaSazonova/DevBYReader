@@ -84,13 +84,8 @@
     NSString *about = [textConverter getText:aboutElResult.children];
     result.about = about;
     
-    ///////
-    CommentsParser *commentParser = [[CommentsParser alloc] init];
-    NSURL *commentsUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/discussions", COMPANYPREFIX, companyName]];
-    
     ReviewsParser *reviewsParser = [[ReviewsParser alloc] init];
     NSURL *reviewsUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/reviews", COMPANYPREFIX, companyName]];
-    //result.comments = [commentParser getCommentsWithUrl:commentsUrl andAddress:@"//div[@class='dev-left col1']/div[@class='widget-node-comments company nobrd']/div[@class='block-comments']/div[@class='comments-list list-more']/div[@class='clearfix comment']"]; //?
     result.reviews = [reviewsParser getReviewsWithUrl:reviewsUrl andAddress:@"//div[@class='widget-reviews']/div[@class='review item-body']"];
 
     return result;

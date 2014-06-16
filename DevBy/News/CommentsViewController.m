@@ -76,6 +76,14 @@
     //////
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:YES];
+    
+    [requestOperationManager.operationQueue cancelAllOperations];
+    [loadingSpinner stopAnimating];    
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

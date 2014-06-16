@@ -63,7 +63,6 @@
 		841EDE40191C17580041923B /* EventDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 841EDE3A191C17580041923B /* EventDetail.m */; };
 		841EDE41191C17580041923B /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 841EDE3C191C17580041923B /* Review.m */; };
 		8425E42B190D218700BB966E /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8425E42A190D218700BB966E /* libxml2.2.dylib */; };
-		84B1ED4E191E131E006603FC /* DevBy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84B1ED4D191E131E006603FC /* DevBy-Info.plist */; };
 		84DCD4E219474DEE00AC0A28 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCD4D019474DEE00AC0A28 /* AFHTTPRequestOperation.m */; };
 		84DCD4E319474DEE00AC0A28 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCD4D219474DEE00AC0A28 /* AFHTTPRequestOperationManager.m */; };
 		84DCD4E419474DEE00AC0A28 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCD4D419474DEE00AC0A28 /* AFHTTPSessionManager.m */; };
@@ -759,7 +758,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D29B11718F7CF8F006DCD4F /* InfoPlist.strings in Resources */,
-				84B1ED4E191E131E006603FC /* DevBy-Info.plist in Resources */,
 				5D82DDD418F7D0CE009E4D3E /* reveal-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

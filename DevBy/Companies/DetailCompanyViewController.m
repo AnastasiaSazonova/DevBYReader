@@ -30,7 +30,8 @@
     CompanyDetail *companyDetail;
     NSString *postfix;
     
-    AFHTTPRequestOperationManager *requestOperationManager;
+    AFHTTPRequestOperationManager *requestOperationDetailManager;
+    AFHTTPRequestOperationManager *requestOperationCommentsManager;
     UIActivityIndicatorView *loadingSpinner;
     
     UISegmentedControl *segmentedControl;
@@ -140,21 +141,21 @@
     [loadingSpinner startAnimating];
     [self.view addSubview:loadingSpinner];
     
-    requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:companiesUrl];
+    requestOperationDetailManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:companiesUrl];
     CompanyDetailSerializer *companyDetailSerializer = [[CompanyDetailSerializer alloc] initWithCompanyName:postfix];
-    requestOperationManager.responseSerializer = companyDetailSerializer;
+    requestOperationDetailManager.responseSerializer = companyDetailSerializer;
     
-    [requestOperationManager GET:prefixCompanyUrl
+    [requestOperationDetailManager GET:prefixCompanyUrl
                       parameters:nil
                          success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          /////comments async
          NSString *commentsUrlString = [NSString stringWithFormat:@"%@%@/discussions", COMPANYPREFIX, postfix];
          NSURL *commentsUrl = [NSURL URLWithString:commentsUrlString];
-         requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:commentsUrl];
+         requestOperationCommentsManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:commentsUrl];
          CommentsSerializer *commentsSerializer = [[CommentsSerializer alloc] initWithWithUrl:commentsUrl andAddress:@"//div[@class='dev-left col1']/div[@class='widget-node-comments company nobrd']/div[@class='block-comments']/div[@class='comments-list list-more']/div[@class='clearfix comment']"];
-         requestOperationManager.responseSerializer = commentsSerializer;
-         [requestOperationManager GET:commentsUrlString
+         requestOperationCommentsManager.responseSerializer = commentsSerializer;
+         [requestOperationCommentsManager GET:commentsUrlString
                            parameters:nil
                               success:^(AFHTTPRequestOperation *operation, id responseObject)
           {
@@ -250,6 +251,15 @@
          }
      }];
     //////
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:YES];
+    
+    [requestOperationDetailManager.operationQueue cancelAllOperations];
+    [requestOperationCommentsManager.operationQueue cancelAllOperations];
+    [loadingSpinner stopAnimating];
 }
 
 - (void)gotoComments:(CommentsButton *)button

@@ -104,10 +104,8 @@
 {
     [super viewDidDisappear:YES];
 
-    //////////////
     [requestOperationManager.operationQueue cancelAllOperations];
     [loadingSpinner stopAnimating];
-    //////////////
 }
 
 - (IBAction)goToSearch:(id)sender

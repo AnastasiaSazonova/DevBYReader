@@ -34,7 +34,7 @@
     NSData *responseData = [super responseObjectForResponse:response data:data error:error];
     
     CommentsParser *commentsParser = [[CommentsParser alloc] init];
-    NSArray *comments = [commentsParser getCommentsWithData:data andAddress:commentsAddress];
+    NSArray *comments = [commentsParser getCommentsWithData:responseData andAddress:commentsAddress];
     
     return comments;
 }
